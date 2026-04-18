@@ -1,21 +1,10 @@
 ---
-title: |
-  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
-  Notas de Aula -- Matemática para Doutorado em Economia
-author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
-subtitle: |
-  EPGE/FGV
-
-  Professora: Silvia Matos
-date: ""
 lang: pt-BR
 bibliography: referencias.bib
-reference-section-title: "Referências"
 format:
   pdf:
     pdf-engine: xelatex
-    toc: true
-    toc-depth: 3
+    toc: false
     number-sections: true
     geometry:
       - margin=2.5cm
@@ -23,11 +12,59 @@ format:
 header-includes:
   - |
     \usepackage{etoolbox}
-    \pretocmd{\tableofcontents}{\begingroup\small}{}{}
-    \apptocmd{\tableofcontents}{\endgroup\clearpage}{}{}
+    \usepackage{graphicx}
+    \usepackage{hyperref}
 execute:
   warning: false
   message: false
 ---
 
+```{=latex}
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+
+% Logo no cabeçalho
+\includegraphics[width=4.5cm]{AM.png}
+
+\vfill
+
+% Título
+{\Huge Notas de Aula do Curso de Matemática da Professora Silvia Matos\par}
+
+\vspace{1.5em}
+
+% Subtítulo
+{\Large\bfseries Doutorado em Economia - EPGE/FGV\par}
+
+\vspace{1.5em}
+
+% Autor
+{\large Vitor Wilher\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\url{http://analisemacro.com.br}). Saiba mais em \url{https://github.com/vitorwilher}.}\par}
+
+\vspace{0.5em}
+
+
+\vfill
+
+\end{titlepage}
+
+% Índice
+\begingroup\small
+\tableofcontents
+\endgroup
+\clearpage
+```
+
+{{< include introducao.qmd >}}
+
+\newpage
+
 {{< include funcoes_varias_variaveis.qmd >}}
+
+\newpage
+
+# Referências
+
+::: {#refs}
+:::

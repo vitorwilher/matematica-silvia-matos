@@ -58,19 +58,19 @@ execute:
 \clearpage
 ```
 
-{{< include introducao.qmd >}}
+{{< include aulas/introducao.qmd >}}
 
 \newpage
 
-{{< include nivelamento.qmd >}}
+{{< include aulas/nivelamento.qmd >}}
 
 \newpage
 
-{{< include limites.qmd >}}
+{{< include aulas/limites.qmd >}}
 
 \newpage
 
-{{< include derivadas.qmd >}}
+{{< include aulas/derivadas.qmd >}}
 
 \newpage
 
@@ -90,11 +90,11 @@ execute:
 
 \newpage
 
-{{< include antiderivada.qmd >}}
+{{< include aulas/antiderivada.qmd >}}
 
 \newpage
 
-{{< include integral.qmd >}}
+{{< include aulas/integral.qmd >}}
 
 \newpage
 
@@ -106,19 +106,19 @@ execute:
 
 \newpage
 
-{{< include log_natural.qmd >}}
+{{< include aulas/log_natural.qmd >}}
 
 \newpage
 
-{{< include funcao_inversa.qmd >}}
+{{< include aulas/funcao_inversa.qmd >}}
 
 \newpage
 
-{{< include exponencial.qmd >}}
+{{< include aulas/exponencial.qmd >}}
 
 \newpage
 
-{{< include integracao_por_partes.qmd >}}
+{{< include aulas/integracao_por_partes.qmd >}}
 
 \newpage
 
@@ -138,11 +138,11 @@ execute:
 
 \newpage
 
-{{< include edo.qmd >}}
+{{< include aulas/edo.qmd >}}
 
 \newpage
 
-{{< include funcoes_varias_variaveis.qmd >}}
+{{< include aulas/funcoes_varias_variaveis.qmd >}}
 
 \newpage
 

@@ -1,0 +1,111 @@
+{
+  "apostila/index.qmd": {
+    "index.tex": "7866e5c5"
+  },
+  "apostila/introducao.qmd": {
+    "introducao.tex": "711dff4a",
+    "introducao.html": "9a134eb2"
+  },
+  "apostila/nivelamento.qmd": {
+    "nivelamento.tex": "2906fee5",
+    "nivelamento.html": "8e8ba77e"
+  },
+  "apostila/limites.qmd": {
+    "limites.tex": "b2992d92",
+    "limites.html": "707967f3"
+  },
+  "apostila/derivadas.qmd": {
+    "derivadas.tex": "06487078",
+    "derivadas.html": "e0d1437f"
+  },
+  "apostila/antiderivada.qmd": {
+    "antiderivada.tex": "4dd542f6",
+    "antiderivada.html": "abc37a74"
+  },
+  "apostila/integral.qmd": {
+    "integral.tex": "042dd70e",
+    "integral.html": "b17c3cb0"
+  },
+  "apostila/log_natural.qmd": {
+    "log_natural.tex": "c8253ddc",
+    "log_natural.html": "092c1101"
+  },
+  "apostila/funcao_inversa.qmd": {
+    "funcao_inversa.tex": "34b25673",
+    "funcao_inversa.html": "980cb1d1"
+  },
+  "apostila/exponencial.qmd": {
+    "exponencial.tex": "30ab4bb8",
+    "exponencial.html": "858c3e1b"
+  },
+  "apostila/integracao_por_partes.qmd": {
+    "integracao_por_partes.tex": "904b821a",
+    "integracao_por_partes.html": "cbfe28eb"
+  },
+  "apostila/edo.qmd": {
+    "edo.tex": "65314300",
+    "edo.html": "b5ae6949"
+  },
+  "apostila/funcoes_varias_variaveis.qmd": {
+    "funcoes_varias_variaveis.tex": "80860595",
+    "funcoes_varias_variaveis.html": "a1602c4f"
+  },
+  "monitorias/monitoria_1.qmd": {
+    "monitoria_1.tex": "becca4de",
+    "monitoria_1.html": "551160c0"
+  },
+  "monitorias/monitoria_2.qmd": {
+    "monitoria_2.tex": "c5e73994",
+    "monitoria_2.html": "3ba4f418"
+  },
+  "monitorias/monitoria_3.qmd": {
+    "monitoria_3.tex": "7e47fec7",
+    "monitoria_3.html": "60687aa9"
+  },
+  "monitorias/monitoria_4.qmd": {
+    "monitoria_4.tex": "c9a20f8a",
+    "monitoria_4.html": "bacb73f2"
+  },
+  "monitorias/monitoria_5.qmd": {
+    "monitoria_5.tex": "c0409d0e",
+    "monitoria_5.html": "70756148"
+  },
+  "monitorias/monitoria_6.qmd": {
+    "monitoria_6.tex": "d709bf93",
+    "monitoria_6.html": "f60d9cae"
+  },
+  "monitorias/monitoria_7.qmd": {
+    "monitoria_7.tex": "0421cdb8",
+    "monitoria_7.html": "c2b34b06"
+  },
+  "testes/teste1.qmd": {
+    "teste1.tex": "d50676bd",
+    "teste1.html": "5e1101aa"
+  },
+  "testes/teste2.qmd": {
+    "teste2.tex": "e260b541",
+    "teste2.html": "c6739e01"
+  },
+  "testes/teste3.qmd": {
+    "teste3.tex": "47f68b6c",
+    "teste3.html": "65754f50"
+  },
+  "monitorias/index.qmd": {
+    "index.html": "3e1a4465"
+  },
+  "index.qmd": {
+    "index.html": "6e58292d"
+  },
+  "testes/index.qmd": {
+    "index.html": "f32ca8bd"
+  },
+  "apostila/funcoes_varias_variaveis_apresentacao.qmd": {
+    "funcoes_varias_variaveis_apresentacao.html": "dc51e11d"
+  },
+  "apostila/funcoes_trigonometricas.qmd": {
+    "funcoes_trigonometricas.html": "17042b20"
+  },
+  "apostila/funcoes_varias_variaveis_beamer.qmd": {
+    "funcoes_varias_variaveis_beamer.tex": "87a49105"
+  }
+}

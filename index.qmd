@@ -14,6 +14,7 @@ header-includes:
     \usepackage{etoolbox}
     \usepackage{graphicx}
     \usepackage{hyperref}
+    \renewcommand{\maketitle}{}
 execute:
   warning: false
   message: false
@@ -24,18 +25,20 @@ execute:
 \thispagestyle{empty}
 \centering
 
-% Logo no cabeçalho
+% Logos no cabeçalho
 \includegraphics[width=4.5cm]{AM.png}
+\hspace{1.5cm}
+\includegraphics[width=4.5cm]{epge.png}
 
 \vfill
 
 % Título
-{\Huge Notas de Aula do Curso de Matemática da Professora Silvia Matos\par}
+{\Huge Notas de Aula de Matemática para o Mestrado e Doutorado em Economia\par}
 
 \vspace{1.5em}
 
 % Subtítulo
-{\Large\bfseries Doutorado em Economia - EPGE/FGV\par}
+{\Large\bfseries EPGE/FGV — Professora Silvia Matos\par}
 
 \vspace{1.5em}
 
@@ -43,7 +46,6 @@ execute:
 {\large Vitor Wilher\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\url{http://analisemacro.com.br}). Saiba mais em \url{https://github.com/vitorwilher}.}\par}
 
 \vspace{0.5em}
-
 
 \vfill
 
@@ -57,6 +59,86 @@ execute:
 ```
 
 {{< include introducao.qmd >}}
+
+\newpage
+
+{{< include nivelamento.qmd >}}
+
+\newpage
+
+{{< include limites.qmd >}}
+
+\newpage
+
+{{< include derivadas.qmd >}}
+
+\newpage
+
+{{< include monitorias/monitoria_1.qmd >}}
+
+\newpage
+
+{{< include monitorias/monitoria_2.qmd >}}
+
+\newpage
+
+{{< include monitorias/monitoria_3.qmd >}}
+
+\newpage
+
+{{< include testes/teste1.qmd >}}
+
+\newpage
+
+{{< include antiderivada.qmd >}}
+
+\newpage
+
+{{< include integral.qmd >}}
+
+\newpage
+
+{{< include monitorias/monitoria_4.qmd >}}
+
+\newpage
+
+{{< include monitorias/monitoria_5.qmd >}}
+
+\newpage
+
+{{< include log_natural.qmd >}}
+
+\newpage
+
+{{< include funcao_inversa.qmd >}}
+
+\newpage
+
+{{< include exponencial.qmd >}}
+
+\newpage
+
+{{< include integracao_por_partes.qmd >}}
+
+\newpage
+
+{{< include monitorias/monitoria_6.qmd >}}
+
+\newpage
+
+{{< include monitorias/monitoria_7.qmd >}}
+
+\newpage
+
+{{< include testes/teste2.qmd >}}
+
+\newpage
+
+{{< include testes/teste3.qmd >}}
+
+\newpage
+
+{{< include edo.qmd >}}
 
 \newpage
 

@@ -1,0 +1,162 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Monitoria 4
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Monitoria 4
+
+## Conexão entre Derivada e Integral
+
+Dois conceitos centrais do Cálculo são, em certa medida, opostos e complementares:
+
+- **Derivada:** mede a *inclinação da reta tangente* ao gráfico de $f$ no ponto $(x, f(x))$ — é uma operação *local*.
+- **Integral definida:** mede a *área sob o gráfico* de $f$ entre dois pontos $x_0$ e $x_1$ — é uma operação *global*.
+
+O Teorema Fundamental do Cálculo é exatamente o resultado que formaliza essa dualidade.
+
+```{r}
+#| label: fig-mon4-dualidade
+#| fig-cap: "À esquerda: a derivada como inclinação da reta tangente. À direita: a integral definida como área sob o gráfico."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+
+f  <- function(x) 0.4*x^3 - 1.5*x^2 + 0.5*x + 3
+fp <- function(x) 1.2*x^2 - 3*x + 0.5
+
+x_seq <- seq(-0.5, 3.8, length.out = 400)
+df    <- data.frame(x = x_seq, y = f(x_seq))
+
+x0 <- 1.5
+y0 <- f(x0); m <- fp(x0)
+df_tan <- data.frame(x = x_seq, y = y0 + m*(x_seq - x0))
+
+p1 <- ggplot(df, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_line(data = df_tan, aes(x, y), color = "#31688e",
+            linewidth = 0.9, linetype = "dashed") +
+  geom_point(aes(x = x0, y = y0), color = "#FDE725", size = 3) +
+  annotate("text", x = 3.1, y = f(3.1) + 0.3, label = "f(x)",
+           color = "#440154", size = 4) +
+  annotate("text", x = 2.8, y = y0 + m*(2.8 - x0) + 0.4,
+           label = "f'(x₀)", color = "#31688e", size = 3.5) +
+  labs(title = "Derivada: inclinação da tangente",
+       x = "x", y = "f(x)") + base_t
+
+x_a <- 0.5; x_b <- 3.2
+x_fill <- seq(x_a, x_b, length.out = 300)
+df_fill <- data.frame(x = x_fill, y = f(x_fill))
+
+p2 <- ggplot(df, aes(x, y)) +
+  geom_area(data = df_fill, aes(x, y), fill = "#31688e", alpha = 0.35) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = (x_a+x_b)/2, y = 1.2,
+           label = expression(integral(f(x)*dx, x[0], x[1])),
+           color = "#31688e", size = 4) +
+  annotate("text", x = x_a - 0.1, y = -0.15, label = expression(x[0]),
+           color = "gray40", size = 3.5) +
+  annotate("text", x = x_b + 0.1, y = -0.15, label = expression(x[1]),
+           color = "gray40", size = 3.5) +
+  labs(title = "Integral: área sob o gráfico",
+       x = "x", y = "f(x)") + base_t
+
+p1 + p2
+```
+
+## Teorema Fundamental do Cálculo
+
+**Teorema.** Sejam $f, F : [a, b] \to \mathbb{R}$ tais que $F'(x) = f(x)$ para todo $x \in [a, b]$ — ou seja, $F$ é a primitiva (antiderivada) de $f$. Então:
+
+$$\int_a^b f(x)\,dx = F(b) - F(a).$$
+
+Este resultado é notável: para calcular a área sob o gráfico de $f$ entre $a$ e $b$, basta encontrar uma antiderivada $F$ e avaliar nos extremos. Não é necessário calcular limites de somas.
+
+## Regras de Integração
+
+**Regra da potência:**
+
+$$\int x^n\,dx = \frac{x^{n+1}}{n+1} + C, \quad n \neq -1.$$
+
+*Verificação:* $\left(\dfrac{x^{n+1}}{n+1}\right)' = \dfrac{1}{n+1}\cdot(n+1)x^n = x^n$. $\checkmark$
+
+**Linearidade:**
+
+$$\int \bigl[f(x) \pm g(x)\bigr]\,dx = \int f(x)\,dx \pm \int g(x)\,dx.$$
+
+## Exemplos
+
+### Exemplo 1: $\displaystyle\int_0^2 x^2\,dx$
+
+Antiderivada de $x^2$: $F(x) = \dfrac{x^3}{3}$.
+
+$$\int_0^2 x^2\,dx = \left[\frac{x^3}{3}\right]_0^2 = \frac{2^3}{3} - \frac{0^3}{3} = \frac{8}{3}.$$
+
+### Exemplo 2: $\displaystyle\int_1^2 4x^3\,dx$
+
+Antiderivada de $4x^3$: $F(x) = x^4$.
+
+$$\int_1^2 4x^3\,dx = \bigl[x^4\bigr]_1^2 = 2^4 - 1^4 = 16 - 1 = 15.$$
+
+### Exemplo 3: $\displaystyle\int \bigl(2x - x^2 - x^4\bigr)\,dx$
+
+Aplicando a regra da potência em cada termo via linearidade:
+
+$$\int \bigl(2x - x^2 - x^4\bigr)\,dx = 2\cdot\frac{x^2}{2} - \frac{x^3}{3} - \frac{x^5}{5} + C = x^2 - \frac{x^3}{3} - \frac{x^5}{5} + C.$$
+
+```{r}
+#| label: fig-mon4-exemplos
+#| fig-cap: "Exemplos 1 e 2: áreas exatas calculadas pelo Teorema Fundamental do Cálculo."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+
+# Exemplo 1: x^2 em [0,2]
+x1 <- seq(0, 2.5, length.out = 300)
+df1 <- data.frame(x = x1, y = x1^2)
+xf1 <- seq(0, 2, length.out = 200)
+dff1 <- data.frame(x = xf1, y = xf1^2)
+
+p1 <- ggplot() +
+  geom_area(data = dff1, aes(x, y), fill = "#440154", alpha = 0.4) +
+  geom_line(data = df1,  aes(x, y), color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = 1, y = 1.5, label = "8/3 ≈ 2.67", size = 4,
+           color = "#440154", fontface = "bold") +
+  labs(title = expression(integral(x^2*dx, 0, 2) == frac(8,3)),
+       x = "x", y = "y") + base_t
+
+# Exemplo 2: 4x^3 em [1,2]
+x2 <- seq(0.5, 2.3, length.out = 300)
+df2 <- data.frame(x = x2, y = 4*x2^3)
+xf2 <- seq(1, 2, length.out = 200)
+dff2 <- data.frame(x = xf2, y = 4*xf2^3)
+
+p2 <- ggplot() +
+  geom_area(data = dff2, aes(x, y), fill = "#31688e", alpha = 0.4) +
+  geom_line(data = df2,  aes(x, y), color = "#31688e", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = 1.5, y = 12, label = "15", size = 4,
+           color = "#31688e", fontface = "bold") +
+  labs(title = expression(integral(4*x^3*dx, 1, 2) == 15),
+       x = "x", y = "y") + base_t
+
+p1 + p2
+```

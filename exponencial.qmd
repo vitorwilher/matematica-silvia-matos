@@ -1,0 +1,315 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Funções Exponenciais
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Funções Exponenciais
+
+## Motivação Econômica
+
+A função exponencial $e^{rt}$ é o bloco de construção de praticamente toda dinâmica econômica contínua. Ela aparece sempre que o crescimento (ou decaimento) é proporcional ao tamanho atual da variável.
+
+**Crescimento do PIB.** Se a taxa de crescimento do produto é constante $g$, então $Y(t) = Y_0 e^{gt}$. Após $T$ anos, o PIB multiplica-se por $e^{gT}$. Para $g = 2\%$ ao ano e $T = 35$ anos, $e^{0.02 \times 35} \approx 2$ — a regra do número 70 (o produto dobra em $70/g$ anos) é uma aproximação dessa fórmula.
+
+**Desconto contínuo e valor presente.** O fator de desconto para um fluxo recebido no instante $t$, a uma taxa de juros $r$, é $e^{-rt}$. O valor presente de um fluxo perpétuo $\pi$ é $\int_0^\infty \pi e^{-rt}\,dt = \pi/r$ — a fórmula da perpetuidade, obtida por integração da exponencial.
+
+**Capitalização contínua.** Um capital $K_0$ aplicado à taxa $r$ composta continuamente cresce como $K(t) = K_0 e^{rt}$. No limite da capitalização discreta com $n \to \infty$ períodos por ano: $K_0(1 + r/n)^{nt} \to K_0 e^{rt}$.
+
+**Depreciação e amortização.** O estoque de capital deprecia-se à taxa $\delta$: $K(t) = K_0 e^{-\delta t}$. O mesmo modelo descreve a depreciação de qualquer ativo, o decaimento de dívidas, ou a queda de preços de bens duráveis.
+
+**Modelo de inflação de Cagan.** A demanda por moeda no modelo de Cagan é $m - p = -\alpha \dot{p}$, cuja solução estável envolve $e^{-t/\alpha}$. A estabilidade do equilíbrio inflacionário depende do sinal do expoente.
+
+## Função Exponencial Natural $e^x$
+
+### Definição como Inversa do Logaritmo
+
+Definimos $\ln x = \displaystyle\int_1^x \dfrac{dt}{t}$ para $x > 0$. Como $(\ln x)' = \dfrac{1}{x} > 0$, a função logaritmo é estritamente crescente e possui inversa. Definimos:
+
+$$\exp(x) = e^x := (\ln)^{-1}(x), \quad x \in \mathbb{R}.$$
+
+Ou seja, $e^x = y \iff x = \ln y$, e as composições inversas dão:
+
+$$\ln(e^x) = x \quad \forall x \in \mathbb{R}, \qquad e^{\ln x} = x \quad \forall x > 0.$$
+
+**Domínio e imagem:**
+
+$$\mathrm{Dom}(e^x) = \mathbb{R}, \qquad \mathrm{Im}(e^x) = \mathbb{R}_+ = (0, +\infty).$$
+
+**O número $e$.** A constante $e \approx 2{,}71828\ldots$ é o único número real tal que $\ln e = 1$, ou equivalentemente:
+
+$$e = \exp(1), \qquad \ln e = \int_1^e \frac{dt}{t} = 1.$$
+
+### Propriedades de $e^x$
+
+Para quaisquer $a, b \in \mathbb{R}$:
+
+| Propriedade | Fórmula |
+|-------------|---------|
+| Produto | $e^a \cdot e^b = e^{a+b}$ |
+| Quociente | $\dfrac{e^a}{e^b} = e^{a-b}$ |
+| Potência | $(e^a)^b = e^{ab}$ |
+| Neutro | $e^0 = 1$ |
+
+**Prova de $e^a \cdot e^b = e^{a+b}$:** Sejam $A = e^a$ e $B = e^b$, de modo que $\ln A = a$ e $\ln B = b$. Usando $\ln(AB) = \ln A + \ln B = a + b$ e aplicando $\exp$ em ambos os lados: $AB = e^{a+b}$. $\blacksquare$
+
+### Derivada e Antiderivada
+
+**Derivada.** Pelo Teorema da Função Inversa aplicado a $f(x) = \ln x$:
+
+$$\frac{d}{dx}e^x = \frac{1}{(\ln y)'}\bigg|_{y = e^x} = \frac{1}{1/e^x} = e^x.$$
+
+A exponencial natural é a única função (a menos de múltiplos) igual à sua própria derivada.
+
+**Regra da cadeia.** Para $h(x) = e^{g(x)}$:
+
+$$h'(x) = e^{g(x)} \cdot g'(x).$$
+
+**Antiderivada:**
+
+$$\int e^x\,dx = e^x + C.$$
+
+Mais geralmente, se $u = g(x)$:
+
+$$\int e^{g(x)} g'(x)\,dx = e^{g(x)} + C.$$
+
+### Exemplos — Derivadas
+
+**Exemplo 1:** $f(x) = e^{x^2}$
+
+$$f'(x) = e^{x^2} \cdot 2x = 2x\,e^{x^2}.$$
+
+**Exemplo 2:** $f(x) = e^{1/x^2} = e^{x^{-2}}$
+
+$$f'(x) = e^{x^{-2}} \cdot (-2x^{-3}) = -\frac{2}{x^3}\,e^{1/x^2}.$$
+
+**Exemplo 3:** $y = \ln\!\bigl(e^x + e^{-x}\bigr)$
+
+$$y' = \frac{e^x - e^{-x}}{e^x + e^{-x}}.$$
+
+**Exemplo 4:** $y = \ln\!\left(\dfrac{e^{4x}-1}{e^{4x}+1}\right) = \ln(e^{4x}-1) - \ln(e^{4x}+1)$
+
+$$y' = \frac{4e^{4x}}{e^{4x}-1} - \frac{4e^{4x}}{e^{4x}+1} = \frac{4e^{4x}\bigl[(e^{4x}+1)-(e^{4x}-1)\bigr]}{(e^{4x}-1)(e^{4x}+1)} = \frac{8e^{4x}}{e^{8x}-1}.$$
+
+### Exemplo — Antiderivada
+
+**Exemplo 5:** $\displaystyle\int \frac{e^{\sqrt{x}}}{\sqrt{x}}\,dx$
+
+Fazemos $u = \sqrt{x}$, $du = \dfrac{dx}{2\sqrt{x}}$, logo $\dfrac{dx}{\sqrt{x}} = 2\,du$:
+
+$$\int \frac{e^{\sqrt{x}}}{\sqrt{x}}\,dx = 2\int e^u\,du = 2e^u + C = 2e^{\sqrt{x}} + C.$$
+
+**Exemplo 6:** $\displaystyle\int x^2 e^{2x^3}\,dx$
+
+Fazemos $u = 2x^3$, $du = 6x^2\,dx$, logo $x^2\,dx = du/6$:
+
+$$\int x^2 e^{2x^3}\,dx = \frac{1}{6}\int e^u\,du = \frac{1}{6}e^{2x^3} + C.$$
+
+```{r}
+#| label: fig-exp-natural
+#| fig-cap: "Gráfico de $e^x$ e $\\ln x$: simétricos em relação à reta $y=x$. A exponencial tem domínio $\\mathbb{R}$ e imagem $(0,+\\infty)$; o logaritmo, o inverso."
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 5
+
+library(ggplot2)
+
+x_exp <- seq(-2.5, 3,   length.out = 400)
+x_ln  <- seq(0.05, 3,   length.out = 400)
+x_ref <- seq(-2.5, 3,   length.out = 400)
+
+df <- data.frame(
+  x   = c(x_exp,  x_ln,    x_ref),
+  y   = c(exp(x_exp), log(x_ln), x_ref),
+  fun = c(rep("eˣ", 400), rep("ln x", 400), rep("y = x", 400))
+)
+
+ggplot(df, aes(x, y, color = fun, linetype = fun)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(data = data.frame(x = 0, y = 1, fun = "eˣ"),
+             aes(x, y), color = "#440154", size = 3) +
+  geom_point(data = data.frame(x = 1, y = 0, fun = "ln x"),
+             aes(x, y), color = "#31688e", size = 3) +
+  coord_cartesian(xlim = c(-2.5, 3), ylim = c(-2.5, 3)) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+  scale_color_manual(values = c("eˣ" = "#440154", "ln x" = "#31688e", "y = x" = "gray50")) +
+  scale_linetype_manual(values = c("eˣ" = "solid", "ln x" = "dashed", "y = x" = "dotted")) +
+  labs(title = expression(e^x ~ "e" ~ ln~x ~ "— simetria em relação a" ~ y == x),
+       x = "x", y = "y", color = NULL, linetype = NULL) +
+  theme_minimal(base_size = 13) + theme(legend.position = "bottom")
+```
+
+---
+
+## Segunda Definição de $e$
+
+Além de $e = \exp(1)$, existe uma definição via limite:
+
+$$e = \lim_{h \to 0}(1+h)^{1/h} \approx 2{,}71828\ldots$$
+
+**Derivação.** Como $f(x) = \ln x$ e $f'(1) = 1$:
+
+$$1 = f'(1) = \lim_{h \to 0}\frac{\ln(1+h) - \ln 1}{h} = \lim_{h \to 0}\frac{1}{h}\ln(1+h) = \lim_{h \to 0}\ln(1+h)^{1/h}.$$
+
+Como $\exp$ é contínua: $\exp(1) = \exp\!\left(\lim_{h\to0}\ln(1+h)^{1/h}\right) = \lim_{h\to0}(1+h)^{1/h}$.
+
+Logo $e = \lim_{h\to0}(1+h)^{1/h}$. $\blacksquare$
+
+---
+
+## Diferenciação Logarítmica — $f(x) = x^x$
+
+Para funções da forma $f(x) = x^x$ (base e expoente variáveis), a regra da potência $nx^{n-1}$ não se aplica diretamente. Usamos a técnica de **diferenciação logarítmica**:
+
+$$f(x) = x^x = e^{\ln x^x} = e^{x\ln x}.$$
+
+Derivando pela regra da cadeia:
+
+$$f'(x) = e^{x\ln x}\cdot\frac{d}{dx}(x\ln x) = x^x\left(\ln x + x\cdot\frac{1}{x}\right) = x^x(\ln x + 1).$$
+
+**Alternativa via ln implícito.** Tome $\ln f(x) = x\ln x$. Diferenciando:
+
+$$\frac{f'(x)}{f(x)} = \ln x + 1 \;\Rightarrow\; f'(x) = f(x)(\ln x+1) = x^x(\ln x+1).$$
+
+---
+
+## Funções Exponenciais em Outras Bases
+
+### Definição e Derivada
+
+Para $a > 0$, $a \neq 1$, definimos:
+
+$$a^x := e^{x\ln a}.$$
+
+**Derivada.** Pela regra da cadeia:
+
+$$\frac{d}{dx}a^x = e^{x\ln a}\cdot\ln a = a^x\ln a.$$
+
+Mais geralmente, para $f(x) = a^{g(x)}$:
+
+$$f'(x) = a^{g(x)}\,g'(x)\,\ln a.$$
+
+**Antiderivada:**
+
+$$\int a^x\,dx = \frac{a^x}{\ln a} + C.$$
+
+**Verificação:** $\left(\dfrac{a^x}{\ln a}\right)' = \dfrac{a^x\ln a}{\ln a} = a^x$. $\checkmark$
+
+### Propriedades de $a^x$
+
+| Propriedade | Fórmula |
+|-------------|---------|
+| Produto | $a^x\cdot a^y = a^{x+y}$ |
+| Quociente | $a^x/a^y = a^{x-y}$ |
+| Potência | $(a^x)^y = a^{xy}$ |
+| Produto de bases | $(ab)^x = a^x b^x$ |
+| Neutro | $a^0 = 1$ |
+
+### Exemplos
+
+**Exemplo 7:** $f(x) = 6^{-3x}$
+
+$$f'(x) = 6^{-3x}\cdot(-3)\cdot\ln 6 = -3\ln 6\cdot 6^{-3x}.$$
+
+**Exemplo 8:** $f(x) = 10^{x^2-2x}$
+
+$$f'(x) = 10^{x^2-2x}\cdot(2x-2)\cdot\ln 10 = (2x-2)\ln 10\cdot 10^{x^2-2x}.$$
+
+**Exemplo 9:** $f(x) = 3^{x^2}$
+
+$$f'(x) = 3^{x^2}\cdot 2x\cdot\ln 3.$$
+
+**Exemplo 10:** $\displaystyle\int 3^{2x}\,dx$
+
+Fazemos $u = 2x$, $du = 2\,dx$:
+
+$$\int 3^{2x}\,dx = \frac{1}{2}\int 3^u\,du = \frac{1}{2}\cdot\frac{3^u}{\ln 3}+C = \frac{3^{2x}}{2\ln 3}+C.$$
+
+---
+
+## Logaritmo em Outras Bases e Mudança de Base
+
+### Definição
+
+Para $a > 0$, $a \neq 1$, o **logaritmo na base $a$** de $x > 0$ é:
+
+$$y = \log_a x \iff x = a^y.$$
+
+A fórmula de **mudança de base** expressa $\log_a x$ em termos do logaritmo natural:
+
+$$\log_a x = \frac{\ln x}{\ln a}.$$
+
+**Derivação:** De $x = a^y$ tomamos $\ln$ em ambos os lados: $\ln x = y\ln a$, logo $y = \dfrac{\ln x}{\ln a}$.
+
+**Exemplos:** $\log_e e = \dfrac{\ln e}{\ln e} = 1$; $\quad \log_{10} 1000 = \dfrac{\ln 1000}{\ln 10} = 3$.
+
+### Derivada
+
+$$\frac{d}{dx}\log_a x = \frac{d}{dx}\frac{\ln x}{\ln a} = \frac{1}{x\ln a}.$$
+
+Para $h(x) = \log_a g(x)$:
+
+$$h'(x) = \frac{g'(x)}{g(x)\,\ln a}.$$
+
+```{r}
+#| label: fig-exp-outras-bases
+#| fig-cap: "Funções exponenciais $a^x$ para diferentes bases $a$. Para $a>1$, a função é crescente; para $0<a<1$, decrescente. O caso $a=e$ é destacado."
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 4.5
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+x_seq <- seq(-2.5, 3, length.out = 400)
+
+df <- do.call(rbind, lapply(c(0.5, 2, exp(1), 3), function(a) {
+  data.frame(x = x_seq, y = a^x_seq,
+             base = paste0("a = ", ifelse(a == exp(1), "e", a)))
+}))
+df <- subset(df, y < 20)
+
+cols <- c("a = 0.5" = "#35b779", "a = 2" = "#31688e",
+          "a = e"   = "#440154", "a = 3" = "#FDE725")
+
+p1 <- ggplot(df, aes(x, y, color = base)) +
+  geom_line(linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(0, 12)) +
+  scale_color_manual(values = cols) +
+  labs(title = expression(f(x) == a^x ~ "para diferentes bases"),
+       x = "x", y = "y", color = NULL) +
+  base_t + theme(legend.position = "bottom")
+
+# Derivada de 2^x vs e^x
+df2 <- data.frame(
+  x = x_seq,
+  f2 = 2^x_seq,
+  df2 = 2^x_seq * log(2),
+  fe = exp(x_seq),
+  dfe = exp(x_seq)
+)
+df2 <- subset(df2, f2 < 10)
+
+p2 <- ggplot(df2, aes(x)) +
+  geom_line(aes(y = f2,  color = "2ˣ"),    linewidth = 1) +
+  geom_line(aes(y = df2, color = "2ˣ ln2"), linewidth = 1, linetype = "dashed") +
+  geom_line(aes(y = fe,  color = "eˣ"),     linewidth = 1.2) +
+  coord_cartesian(ylim = c(0, 8)) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  scale_color_manual(values = c("2ˣ" = "#31688e", "2ˣ ln2" = "#35b779", "eˣ" = "#440154")) +
+  labs(title = expression((2^x)~"'"~"= 2"^x~"ln 2," ~ (e^x)~"'"~"= e"^x),
+       x = "x", y = "y", color = NULL) +
+  base_t + theme(legend.position = "bottom")
+
+p1 + p2
+```

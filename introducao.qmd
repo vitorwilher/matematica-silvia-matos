@@ -1,7 +1,21 @@
 # Introdução
 
-Este documento reúne as notas de aula do curso de Matemática do Mestrado e Doutorado em Economia da EPGE/FGV, ministrado pela Professora Silvia Matos no primeiro semestre de 2026. O curso é dividido em duas partes. Na primeira, desenvolvemos os fundamentos do cálculo diferencial e integral, cobrindo derivadas, regras de diferenciação, antiderivadas, integrais definidas, funções logarítmica e exponencial e equações diferenciais ordinárias. Na segunda parte, introduzimos tópicos de álgebra linear e otimização estática, com aplicações diretas à teoria econômica — em particular à teoria do consumidor e da firma.
+Economia é, em essência, o estudo de decisões — de consumidores, firmas, governos e mercados. Para entender essas decisões com precisão, precisamos de uma linguagem que permita formalizá-las, manipulá-las e extrair conclusões que não seriam visíveis a olho nu. Essa linguagem é a matemática.
 
-A principal referência para os fundamentos de cálculo é @leithold, cuja abordagem progressiva e repleta de exemplos serve como ponto de partida para os temas das primeiras aulas. Para os métodos matemáticos aplicados à economia, a referência central é @chiang, que articula de forma clara os instrumentos de álgebra linear, cálculo multivariado e otimização com problemas econômicos clássicos como estática comparativa e o modelo IS-LM. A referência mais completa e rigorosa adotada no curso é @simon_blume, indispensável para os tópicos de otimização restrita, formas quadráticas e o Teorema da Função Implícita. Para os tópicos de álgebra linear, utilizamos @shilov, e para o cálculo de funções de várias variáveis, @guidorizzi oferece uma exposição detalhada das ferramentas necessárias. O texto de @maddala complementa a discussão com uma perspectiva econométrica dos fundamentos de álgebra matricial.
+O objetivo destas notas não é desenvolver matemática pela matemática. É o oposto: usar a matemática como instrumento para iluminar questões econômicas concretas. Por que o consumidor escolhe determinada cesta de bens? Como a firma decide quanto produzir? O que acontece com o emprego quando a taxa de juros sobe? Essas perguntas têm respostas precisas — e a matemática é o caminho para chegar a elas.
 
-Ao longo do curso, os conceitos são desenvolvidos progressivamente: partimos da derivada de funções de uma variável, passamos pelo cálculo integral, equações diferenciais e funções de várias variáveis, até chegar às condições de otimalidade de primeira e segunda ordem para problemas com e sem restrições. As aplicações incluem maximização de lucro, minimização de custo, maximização de utilidade e minimização de despesa, culminando no Teorema do Envelope e nas condições de Kuhn-Tucker.
+## O que vamos estudar
+
+O curso é organizado em torno de três grandes blocos:
+
+**Cálculo diferencial e integral.** A derivada mede como uma variável reage a uma mudança marginal em outra — é a formalização da ideia de "custo marginal", "receita marginal" e "propensão marginal a consumir". A integral acumula essas variações ao longo do tempo ou de um intervalo — e aparece naturalmente em modelos de crescimento, excedentes e valor presente. Equações diferenciais ordinárias descrevem dinâmicas: como a inflação evolui, como o estoque de capital se acumula, como um mercado converge para o equilíbrio.
+
+**Funções de várias variáveis.** O mundo econômico é multidimensional. A utilidade depende de vários bens; a produção depende de capital e trabalho; o lucro depende de preço, salário e custo do capital. Derivadas parciais, curvas de nível e o gradiente são as ferramentas que permitem navegar nesse espaço.
+
+**Otimização.** A maior parte dos modelos econômicos é, no fundo, um problema de otimização: maximizar utilidade sujeito a uma restrição orçamentária; maximizar lucro dado um custo de produção; minimizar custo para uma dada meta de produção. As condições de primeira e segunda ordem, o método de Lagrange e as condições de Kuhn-Tucker são o vocabulário desse problema.
+
+## Como usar estas notas
+
+Cada seção abre com uma motivação econômica antes de desenvolver os conceitos formais. A ideia é que o estudante saiba, desde o início, *para que serve* o que está aprendendo. Os exemplos são retirados de microeconomia, macroeconomia e finanças — não porque a matemática seja diferente em cada área, mas porque os problemas de cada área ajudam a dar concretude ao ferramental.
+
+As referências principais são @chiang para métodos matemáticos aplicados à economia, @simon_blume para otimização e álgebra linear com rigor, e @leithold para os fundamentos de cálculo. Ao longo do texto, indicamos onde cada referência aprofunda os tópicos tratados.

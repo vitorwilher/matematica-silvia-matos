@@ -1,0 +1,398 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Integral Definida
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Integral Definida
+
+## Motivação Econômica
+
+A integral definida mede **acumulação**: área sob uma curva, fluxo acumulado ao longo do tempo, ou agregação de variações marginais sobre um intervalo. Em Economia, ela aparece em pelo menos quatro contextos essenciais.
+
+**Excedente do consumidor e do produtor.** Dado um mercado em equilíbrio com preço $p^*$ e quantidade $q^*$, o excedente do consumidor é a área entre a curva de demanda inversa $P^D(q)$ e o preço de mercado:
+
+$$EC = \int_0^{q^*} P^D(q)\,dq - p^* q^*.$$
+
+O excedente do produtor é a área entre o preço e a curva de oferta inversa $P^S(q)$:
+
+$$EP = p^* q^* - \int_0^{q^*} P^S(q)\,dq.$$
+
+**Valor presente de fluxos contínuos.** Se uma firma recebe um fluxo de lucros $\pi(t)$ ao longo do tempo, descontado à taxa $r$, o valor presente é:
+
+$$VP = \int_0^T \pi(t)\,e^{-rt}\,dt.$$
+
+A integral soma infinitos fluxos instantâneos ponderados pelo fator de desconto — generalização contínua da fórmula de valor presente discreta.
+
+**Acumulação de capital no modelo de Solow.** O investimento bruto $I(t)$ ao longo do tempo determina o estoque de capital:
+
+$$K(T) = K(0) + \int_0^T [I(t) - \delta K(t)]\,dt,$$
+
+onde $\delta$ é a taxa de depreciação. A integral acumula os fluxos líquidos de investimento.
+
+**PIB como soma de valor adicionado.** Conceitualmente, o PIB de um período pode ser visto como a integral (soma contínua) do valor adicionado em cada instante, conectando a medida de fluxo do produto nacional à noção de acumulação.
+
+## Operador Somatório
+
+O **operador somatório** (ou sigma) é a notação compacta para somas finitas. Para uma sequência $a_1, a_2, \ldots, a_n$:
+
+$$\sum_{i=1}^{n} a_i = a_1 + a_2 + \cdots + a_n.$$
+
+### Propriedades
+
+| Propriedade | Fórmula |
+|-------------|---------|
+| Soma de constante | $\displaystyle\sum_{i=1}^{n} c = nc$ |
+| Multiplicação por escalar | $\displaystyle\sum_{i=1}^{n} c\,a_i = c\sum_{i=1}^{n} a_i$ |
+| Linearidade | $\displaystyle\sum_{i=1}^{n}[a_i \pm b_i] = \sum_{i=1}^{n}a_i \pm \sum_{i=1}^{n}b_i$ |
+| Soma dos naturais | $\displaystyle\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$ |
+| Soma dos quadrados | $\displaystyle\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$ |
+| Soma dos cubos | $\displaystyle\sum_{i=1}^{n} i^3 = \left[\frac{n(n+1)}{2}\right]^2$ |
+
+---
+
+## Cálculo de Área: Motivação
+
+Seja $f : [a, b] \to \mathbb{R}$ uma função contínua com $f(x) \geq 0$. Queremos calcular a **área da região** compreendida entre o gráfico de $f$ e o eixo $x$ no intervalo $[a, b]$.
+
+A ideia é aproximar essa área por retângulos de largura uniforme $\Delta x = \dfrac{b-a}{n}$.
+
+### Somas de Riemann
+
+Dividimos $[a, b]$ em $n$ subintervalos de tamanho igual:
+
+$$x_0 = a, \quad x_i = a + i\,\Delta x \quad (i = 0, 1, \ldots, n), \quad x_n = b.$$
+
+**Soma dos retângulos inscritos** (usando o extremo esquerdo de cada subintervalo):
+
+$$S_{\mathrm{esq}} = \sum_{i=1}^{n} f(x_{i-1})\,\Delta x.$$
+
+**Soma dos retângulos circunscritos** (usando o extremo direito):
+
+$$S_{\mathrm{dir}} = \sum_{i=1}^{n} f(x_i)\,\Delta x.$$
+
+Para $f$ contínua em $[a, b]$, ambas as somas convergem para o mesmo limite quando $n \to \infty$.
+
+### Exemplo: $f(x) = x^2$ em $[0, 3]$
+
+Calculamos $S_{\mathrm{dir}}$ com $n$ retângulos: $\Delta x = \dfrac{3}{n}$, $x_i = \dfrac{3i}{n}$.
+
+$$S_{\mathrm{dir}} = \sum_{i=1}^{n} \left(\frac{3i}{n}\right)^2 \cdot \frac{3}{n} = \frac{27}{n^3}\sum_{i=1}^{n} i^2 = \frac{27}{n^3}\cdot\frac{n(n+1)(2n+1)}{6} = \frac{27(n+1)(2n+1)}{6n^2}.$$
+
+Tomando o limite:
+
+$$A = \lim_{n \to \infty} S_{\mathrm{dir}} = \lim_{n \to \infty} \frac{27(n+1)(2n+1)}{6n^2} = \frac{27 \cdot 2}{6} = 9.$$
+
+Analogamente, $\lim_{n\to\infty} S_{\mathrm{esq}} = 9$.
+
+```{r}
+#| label: fig-riemann
+#| fig-cap: "Somas de Riemann para $f(x) = x^2$ em $[0, 3]$ com $n = 8$ retângulos. À esquerda: retângulos inscritos ($S_{\\mathrm{esq}}$). À direita: retângulos circunscritos ($S_{\\mathrm{dir}}$). A área exata é 9."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 4.5
+
+library(ggplot2)
+library(patchwork)
+
+f <- function(x) x^2
+a <- 0; b <- 3; n <- 8
+dx <- (b - a) / n
+xi <- seq(a, b, by = dx)
+
+x_curve <- seq(a, b, length.out = 400)
+df_curve <- data.frame(x = x_curve, y = f(x_curve))
+
+make_rects <- function(x_pts) {
+  data.frame(
+    xmin = x_pts[-length(x_pts)],
+    xmax = x_pts[-1],
+    ymin = 0,
+    ymax = f(x_pts[-length(x_pts)])
+  )
+}
+
+make_rects_right <- function(x_pts) {
+  data.frame(
+    xmin = x_pts[-length(x_pts)],
+    xmax = x_pts[-1],
+    ymin = 0,
+    ymax = f(x_pts[-1])
+  )
+}
+
+df_left  <- make_rects(xi)
+df_right <- make_rects_right(xi)
+
+base_t <- theme_minimal(base_size = 12)
+
+S_esq <- sum(f(xi[-length(xi)]) * dx)
+S_dir <- sum(f(xi[-1]) * dx)
+
+p1 <- ggplot() +
+  geom_rect(data = df_left, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+            fill = "#440154", alpha = 0.5, color = "white", linewidth = 0.3) +
+  geom_line(data = df_curve, aes(x, y), color = "#FDE725", linewidth = 1.2) +
+  labs(title = sprintf("Inscritos: S = %.3f", S_esq),
+       x = "x", y = "f(x) = x²") + base_t
+
+p2 <- ggplot() +
+  geom_rect(data = df_right, aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax),
+            fill = "#31688e", alpha = 0.5, color = "white", linewidth = 0.3) +
+  geom_line(data = df_curve, aes(x, y), color = "#FDE725", linewidth = 1.2) +
+  labs(title = sprintf("Circunscritos: S = %.3f", S_dir),
+       x = "x", y = "f(x) = x²") + base_t
+
+p1 + p2
+```
+
+---
+
+## Definição Formal da Integral Definida
+
+**Definição (Integral de Riemann).** Seja $f : [a, b] \to \mathbb{R}$ uma função limitada. Para cada partição $a = x_0 < x_1 < \cdots < x_n = b$ com $\Delta x_i = x_i - x_{i-1}$ e qualquer ponto $x_i^* \in [x_{i-1}, x_i]$, defina a **soma de Riemann**:
+
+$$R_n = \sum_{i=1}^{n} f(x_i^*)\,\Delta x_i.$$
+
+Se o limite $\lim_{\|\mathcal{P}\| \to 0} R_n$ existe e é o mesmo independentemente da escolha da partição e dos pontos $x_i^*$, então $f$ é **integrável** em $[a, b]$ e escrevemos:
+
+$$\int_a^b f(x)\,dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*)\,\Delta x.$$
+
+**Interpretação geométrica.** Quando $f(x) \geq 0$, $\int_a^b f(x)\,dx$ é a área sob o gráfico de $f$ entre $a$ e $b$. Quando $f$ troca de sinal, a integral computa a **área com sinal** (positiva onde $f > 0$, negativa onde $f < 0$).
+
+### Propriedades da Integral Definida
+
+$$\int_a^a f(x)\,dx = 0, \qquad \int_a^b f(x)\,dx = -\int_b^a f(x)\,dx.$$
+
+$$\int_a^b c\,f(x)\,dx = c\int_a^b f(x)\,dx, \qquad \int_a^b [f \pm g]\,dx = \int_a^b f\,dx \pm \int_a^b g\,dx.$$
+
+$$\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx \quad (a \leq c \leq b).$$
+
+**Propriedade de comparação.** Se $f(x) \geq g(x)$ para todo $x \in [a, b]$, então:
+
+$$\int_a^b f(x)\,dx \geq \int_a^b g(x)\,dx.$$
+
+Em particular, se $f(x) \geq 0$, então $\int_a^b f(x)\,dx \geq 0$.
+
+---
+
+## Teorema do Valor Médio para Integrais
+
+**Teorema.** Seja $f : [a, b] \to \mathbb{R}$ contínua. Então existe $X \in [a, b]$ tal que:
+
+$$\int_a^b f(x)\,dx = f(X)\,(b - a).$$
+
+O valor $f(X)$ é chamado de **valor médio** de $f$ no intervalo $[a, b]$.
+
+**Interpretação geométrica.** Existe um ponto $X$ onde o retângulo de base $(b-a)$ e altura $f(X)$ tem exatamente a mesma área que a região sob o gráfico de $f$.
+
+**Prova.** Como $f$ é contínua em $[a,b]$, pelo Teorema de Weierstrass existem $m = \min f$ e $M = \max f$. Então $m \leq f(x) \leq M$ para todo $x$, logo:
+
+$$m(b-a) \leq \int_a^b f(x)\,dx \leq M(b-a) \;\Rightarrow\; m \leq \frac{1}{b-a}\int_a^b f(x)\,dx \leq M.$$
+
+Pelo Teorema do Valor Intermediário, existe $X \in [a,b]$ com $f(X) = \dfrac{1}{b-a}\int_a^b f(x)\,dx$. $\blacksquare$
+
+---
+
+## Teoremas Fundamentais do Cálculo
+
+Os Teoremas Fundamentais estabelecem a conexão profunda entre derivadas e integrais — as duas operações centrais do Cálculo.
+
+### Primeiro Teorema Fundamental
+
+**Teorema.** Seja $f$ contínua em $[a, b]$. Defina a função acumulada:
+
+$$G(x) = \int_a^x f(t)\,dt, \quad x \in [a, b].$$
+
+Então $G$ é diferenciável em $(a, b)$ e
+
+$$G'(x) = f(x).$$
+
+**Interpretação:** A taxa de variação da área acumulada é exatamente o valor da função naquele ponto. Derivar "desfaz" a integração.
+
+**Prova (esboço).**
+
+$$G'(x) = \lim_{h \to 0}\frac{G(x+h)-G(x)}{h} = \lim_{h \to 0}\frac{1}{h}\int_x^{x+h}f(t)\,dt.$$
+
+Pelo Teorema do Valor Médio para Integrais, existe $c_h \in [x, x+h]$ tal que $\int_x^{x+h}f(t)\,dt = f(c_h)\cdot h$. Logo:
+
+$$G'(x) = \lim_{h \to 0} f(c_h) = f(x),$$
+
+pois $c_h \to x$ e $f$ é contínua. $\blacksquare$
+
+### Segundo Teorema Fundamental (Regra de Barrow)
+
+**Teorema.** Seja $f$ contínua em $[a, b]$ e $F$ qualquer antiderivada de $f$ ($F' = f$). Então:
+
+$$\int_a^b f(x)\,dx = F(b) - F(a) =: \Big[F(x)\Big]_a^b.$$
+
+**Interpretação:** Para calcular a integral definida de uma função contínua, basta encontrar uma antiderivada e avaliar nos extremos — sem precisar calcular limites de somas de Riemann.
+
+**Prova (esboço).** Seja $G(x) = \int_a^x f(t)\,dt$. Pelo Primeiro Teorema, $G' = f$. Como $F' = f = G'$, temos $F(x) = G(x) + C$ para alguma constante $C$. Avaliando:
+
+$$F(b) - F(a) = [G(b) + C] - [G(a) + C] = G(b) - G(a) = \int_a^b f(t)\,dt - 0 = \int_a^b f(t)\,dt. \quad \blacksquare$$
+
+---
+
+## Exemplos com a Regra de Barrow
+
+### Exemplo 1: $\displaystyle\int_0^3 x^2\,dx$
+
+Antiderivada: $F(x) = \dfrac{x^3}{3}$.
+
+$$\int_0^3 x^2\,dx = \left[\frac{x^3}{3}\right]_0^3 = \frac{27}{3} - 0 = 9.$$
+
+Confirma o resultado obtido via somas de Riemann.
+
+### Exemplo 2: $\displaystyle\int_1^4 \sqrt{x}\,dx$
+
+Antiderivada: $F(x) = \dfrac{2}{3}x^{3/2}$.
+
+$$\int_1^4 \sqrt{x}\,dx = \left[\frac{2}{3}x^{3/2}\right]_1^4 = \frac{2}{3}(8) - \frac{2}{3}(1) = \frac{14}{3}.$$
+
+### Exemplo 3: $\displaystyle\int_0^2 (3x^2 - 2x + 1)\,dx$
+
+$$\int_0^2(3x^2-2x+1)\,dx = \left[x^3 - x^2 + x\right]_0^2 = (8 - 4 + 2) - 0 = 6.$$
+
+```{r}
+#| label: fig-barrow
+#| fig-cap: "Área sob $f(x) = 3x^2 - 2x + 1$ no intervalo $[0, 2]$. A área exata é 6, confirmada pela Regra de Barrow."
+#| fig-align: center
+
+library(ggplot2)
+
+f <- function(x) 3*x^2 - 2*x + 1
+x_fill <- seq(0, 2, length.out = 300)
+x_all  <- seq(-0.3, 2.5, length.out = 400)
+
+df_fill <- data.frame(x = x_fill, y = f(x_fill))
+df_line <- data.frame(x = x_all,  y = f(x_all))
+
+ggplot() +
+  geom_area(data = df_fill, aes(x, y), fill = "#440154", alpha = 0.35) +
+  geom_line(data = df_line, aes(x, y), color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = 1, y = 2.8, label = "Área = 6", size = 5,
+           color = "#440154", fontface = "bold") +
+  labs(title = expression(integral(3*x^2 - 2*x + 1 * dx, 0, 2) == 6),
+       x = "x", y = "f(x)") +
+  theme_minimal(base_size = 13)
+```
+
+---
+
+## Integral Definida com Substituição
+
+O método de substituição também se aplica a integrais definidas. Ao substituir $u = g(x)$, os limites de integração devem ser convertidos: $u(a)$ e $u(b)$.
+
+### Exemplo: $\displaystyle\int_0^1 x\,e^{x^2}\,dx$
+
+Fazemos $u = x^2$, $du = 2x\,dx$. Novos limites: $u(0) = 0$, $u(1) = 1$.
+
+$$\int_0^1 x\,e^{x^2}\,dx = \frac{1}{2}\int_0^1 e^u\,du = \frac{1}{2}\left[e^u\right]_0^1 = \frac{e - 1}{2} \approx 0{,}859.$$
+
+---
+
+## Exercícios Resolvidos
+
+### Exercício 1 — $\displaystyle\int_0^4 (x^3 - x^2 + 1)\,dx$
+
+Aplicando a regra da potência em cada termo:
+
+$$\int_0^4(x^3-x^2+1)\,dx = \left[\frac{x^4}{4} - \frac{x^3}{3} + x\right]_0^4 = \left(64 - \frac{64}{3} + 4\right) - 0 = 68 - \frac{64}{3} = \frac{204-64}{3} = \frac{140}{3}.$$
+
+$$\boxed{\int_0^4(x^3-x^2+1)\,dx = \frac{140}{3}.}$$
+
+---
+
+### Exercício 2 — $\displaystyle\int_{-1}^{3} \frac{dx}{(x+2)^3}$
+
+Reconhecemos $(x+2)^{-3}$, cuja antiderivada é $\dfrac{(x+2)^{-2}}{-2} = -\dfrac{1}{2(x+2)^2}$. Verificando: $\left[-\frac{1}{2(x+2)^2}\right]' = \frac{1}{(x+2)^3}$. $\checkmark$
+
+$$\int_{-1}^{3}\frac{dx}{(x+2)^3} = \left[-\frac{1}{2(x+2)^2}\right]_{-1}^{3} = -\frac{1}{2(5)^2} - \left(-\frac{1}{2(1)^2}\right) = -\frac{1}{50} + \frac{1}{2} = \frac{-1+25}{50} = \frac{24}{50} = \frac{12}{25}.$$
+
+$$\boxed{\int_{-1}^{3}\frac{dx}{(x+2)^3} = \frac{12}{25}.}$$
+
+---
+
+### Exercício 3 — $\displaystyle\int_0^3 x\sqrt{1+x}\,dx$
+
+**Substituição.** Fazemos $u = 1 + x$, logo $x = u - 1$ e $du = dx$. Novos limites: $u(0) = 1$, $u(3) = 4$.
+
+$$\int_0^3 x\sqrt{1+x}\,dx = \int_1^4 (u-1)\sqrt{u}\,du = \int_1^4\bigl(u^{3/2} - u^{1/2}\bigr)\,du = \left[\frac{2u^{5/2}}{5} - \frac{2u^{3/2}}{3}\right]_1^4.$$
+
+Avaliando nos limites:
+
+$$\text{Em } u=4:\quad \frac{2\cdot 32}{5} - \frac{2\cdot 8}{3} = \frac{64}{5} - \frac{16}{3} = \frac{192 - 80}{15} = \frac{112}{15}.$$
+
+$$\text{Em } u=1:\quad \frac{2}{5} - \frac{2}{3} = \frac{6 - 10}{15} = -\frac{4}{15}.$$
+
+$$\int_0^3 x\sqrt{1+x}\,dx = \frac{112}{15} - \left(-\frac{4}{15}\right) = \frac{116}{15}.$$
+
+$$\boxed{\int_0^3 x\sqrt{1+x}\,dx = \frac{116}{15}.}$$
+
+```{r}
+#| label: fig-integral-exercicios
+#| fig-cap: "Exercícios resolvidos: áreas calculadas pela Regra de Barrow e substituição."
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 11)
+
+# Ex 1: x^3 - x^2 + 1 em [0,4]
+x1f <- seq(0, 4, length.out = 300)
+x1a <- seq(-0.2, 4.4, length.out = 400)
+df1f <- data.frame(x = x1f, y = x1f^3 - x1f^2 + 1)
+df1a <- data.frame(x = x1a, y = x1a^3 - x1a^2 + 1)
+
+p1 <- ggplot() +
+  geom_area(data = df1f, aes(x, y), fill = "#440154", alpha = 0.4) +
+  geom_line(data = df1a, aes(x, y), color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = 2, y = 20, label = "140/3 ≈ 46.67", size = 3.5,
+           color = "#440154", fontface = "bold") +
+  labs(title = expression(integral(x^3-x^2+1~dx, 0, 4) == frac(140,3)),
+       x = "x", y = "y") + base_t
+
+# Ex 2: 1/(x+2)^3 em [-1,3]
+x2f <- seq(-1, 3, length.out = 300)
+x2a <- seq(-1.3, 3.5, length.out = 400)
+df2f <- data.frame(x = x2f, y = 1/(x2f+2)^3)
+df2a <- data.frame(x = x2a, y = 1/(x2a+2)^3)
+
+p2 <- ggplot() +
+  geom_area(data = df2f, aes(x, y), fill = "#31688e", alpha = 0.4) +
+  geom_line(data = df2a, aes(x, y), color = "#31688e", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = 1, y = 0.15, label = "12/25 = 0.48", size = 3.5,
+           color = "#31688e", fontface = "bold") +
+  labs(title = expression(integral(frac(1,(x+2)^3)~dx, -1, 3) == frac(12,25)),
+       x = "x", y = "y") + base_t
+
+# Ex 3: x*sqrt(1+x) em [0,3]
+x3f <- seq(0, 3, length.out = 300)
+x3a <- seq(-0.1, 3.3, length.out = 400)
+df3f <- data.frame(x = x3f, y = x3f*sqrt(1+x3f))
+df3a <- data.frame(x = x3a, y = ifelse(x3a >= 0, x3a*sqrt(1+x3a), NA))
+
+p3 <- ggplot() +
+  geom_area(data = df3f, aes(x, y), fill = "#35b779", alpha = 0.4) +
+  geom_line(data = df3a, aes(x, y), color = "#35b779", linewidth = 1.1, na.rm = TRUE) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = 1.5, y = 3, label = "116/15 ≈ 7.73", size = 3.5,
+           color = "#35b779", fontface = "bold") +
+  labs(title = expression(integral(x*sqrt(1+x)~dx, 0, 3) == frac(116,15)),
+       x = "x", y = "y") + base_t
+
+p1 + p2 + p3
+```

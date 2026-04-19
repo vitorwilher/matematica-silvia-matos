@@ -1,0 +1,205 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Monitoria 7
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Monitoria 7
+
+## Resumo das Regras
+
+### Derivadas
+
+| Regra | Fórmula |
+|-------|---------|
+| D₁ — Soma | $(f+g)' = f' + g'$ |
+| D₂ — Produto | $(f\cdot g)' = f'g + fg'$ |
+| D₃ — Quociente | $\left(\dfrac{f}{g}\right)' = \dfrac{f'g - fg'}{g^2}$ |
+| D₄ — Cadeia | $(f(g))' = f'(g)\cdot g'$ |
+| D₅ — Potência | $(x^n)' = nx^{n-1}$ |
+| D₆ — Logaritmo | $(\ln f)' = \dfrac{f'}{f}$ |
+| D₇ — Potência geral | $(f^g)' = f^g\cdot(g\ln f)'$ |
+
+### Integrações
+
+| Regra | Fórmula |
+|-------|---------|
+| I₁ — Mudança de variável | $\displaystyle\int f(g(x))\,g'(x)\,dx = \int f(u)\,du$ |
+| I₂ — Integração por partes | $\displaystyle\int u\,dv = uv - \int v\,du$ |
+
+---
+
+## Regra D₇ — Diferenciação Logarítmica (Potência Geral)
+
+Para $f(x)^{g(x)}$ com $f(x) > 0$, aplicamos $\ln$ e diferenciamos:
+
+$$\ln\!\bigl[f(x)^{g(x)}\bigr] = g(x)\ln f(x).$$
+
+Diferenciando ambos os lados:
+
+$$\frac{\bigl[f(x)^{g(x)}\bigr]'}{f(x)^{g(x)}} = g'(x)\ln f(x) + g(x)\cdot\frac{f'(x)}{f(x)}.$$
+
+Portanto:
+
+$$\boxed{\bigl[f(x)^{g(x)}\bigr]' = f(x)^{g(x)}\!\left(g'(x)\ln f(x) + g(x)\frac{f'(x)}{f(x)}\right).}$$
+
+**Interpretação:** a derivada tem dois termos — um pelo "expoente variando" ($g'(x)\ln f$) e outro pela "base variando" ($g(x)f'/f$). Para $g$ constante, recupera-se a regra da potência; para $f = e$, recupera-se $(e^{g})' = e^g g'$.
+
+---
+
+## Exemplos — Potência Geral
+
+### Exemplo 1 — $f(x) = x^x$
+
+Identificamos $f = x$, $g = x$.
+
+$$f'(x) = x^x\!\left(1\cdot\ln x + x\cdot\frac{1}{x}\right) = x^x(\ln x + 1).$$
+
+$$\boxed{f'(x) = x^x(\ln x + 1).}$$
+
+---
+
+### Exemplo 2 — $g(x) = \bigl(\ln(2x+1)\bigr)^{x-3}$
+
+Identificamos $f = \ln(2x+1)$, $g = x-3$.
+
+$$f' = \frac{2}{2x+1}, \qquad g' = 1.$$
+
+Aplicando D₇:
+
+$$g'(x) = \bigl(\ln(2x+1)\bigr)^{x-3}\!\left[1\cdot\ln\!\bigl(\ln(2x+1)\bigr) + (x-3)\cdot\frac{2/(2x+1)}{\ln(2x+1)}\right].$$
+
+$$\boxed{g'(x) = \bigl(\ln(2x+1)\bigr)^{x-3}\!\left[\ln\!\bigl(\ln(2x+1)\bigr) + \frac{2(x-3)}{(2x+1)\ln(2x+1)}\right].}$$
+
+**Observação:** o segundo termo requer $\ln(2x+1) \neq 0$, i.e., $x \neq 0$, além de $2x+1 > 0$.
+
+---
+
+### Exemplo 3 — $h(x) = \left(\dfrac{x^2-x}{3+x^2}\right)^{x^2}$
+
+Identificamos $f = \dfrac{x^2-x}{3+x^2}$, $g = x^2$.
+
+**Derivada de $f$** pela regra do quociente:
+
+$$f'(x) = \frac{(2x-1)(3+x^2) - (x^2-x)\cdot 2x}{(3+x^2)^2} = \frac{6x - 3 + 2x^3 - x^2 - 2x^3 + 2x^2}{(3+x^2)^2} = \frac{x^2+6x-3}{(3+x^2)^2}.$$
+
+**Razão $f'/f$:**
+
+$$\frac{f'(x)}{f(x)} = \frac{x^2+6x-3}{(3+x^2)^2}\cdot\frac{3+x^2}{x^2-x} = \frac{x^2+6x-3}{(3+x^2)(x^2-x)}.$$
+
+**Aplicando D₇** com $g'(x) = 2x$:
+
+$$h'(x) = \left(\frac{x^2-x}{3+x^2}\right)^{x^2}\!\left[2x\ln\!\left(\frac{x^2-x}{3+x^2}\right) + x^2\cdot\frac{x^2+6x-3}{(3+x^2)(x^2-x)}\right].$$
+
+$$\boxed{h'(x) = \left(\frac{x^2-x}{3+x^2}\right)^{x^2}\!\left[2x\ln\!\left(\frac{x^2-x}{3+x^2}\right) + \frac{x^2(x^2+6x-3)}{(3+x^2)(x^2-x)}\right].}$$
+
+---
+
+## Derivação da Fórmula de Integração por Partes
+
+A integração por partes é a contrapartida integral da **regra do produto** D₂. Sejam $f$ e $g$ diferenciáveis. Então:
+
+$$\bigl(f(x)\cdot g(x)\bigr)' = f'(x)\,g(x) + f(x)\,g'(x).$$
+
+Integrando ambos os lados em relação a $x$:
+
+$$f(x)\,g(x) = \int f'(x)\,g(x)\,dx + \int f(x)\,g'(x)\,dx.$$
+
+Isolando a integral do lado direito:
+
+$$\int f(x)\,g'(x)\,dx = f(x)\,g(x) - \int f'(x)\,g(x)\,dx.$$
+
+**Substituição de variáveis:** definindo $u = f(x)$, $du = f'(x)\,dx$, $v = g(x)$, $dv = g'(x)\,dx$:
+
+$$\boxed{\int u\,dv = uv - \int v\,du.}$$
+
+---
+
+## Exemplos — Integração por Partes
+
+### Exemplo 4 — $\displaystyle\int xe^x\,dx$
+
+**Escolha:** $u = x \;\Rightarrow\; du = dx$; $\quad dv = e^x\,dx \;\Rightarrow\; v = e^x$.
+
+$$\int xe^x\,dx = xe^x - \int e^x\,dx = xe^x - e^x + C = e^x(x-1) + C.$$
+
+$$\boxed{\int xe^x\,dx = e^x(x-1) + C.}$$
+
+**Verificação:**
+
+$$\bigl[e^x(x-1)\bigr]' = e^x(x-1) + e^x\cdot 1 = e^x x - e^x + e^x = xe^x. \quad \checkmark$$
+
+---
+
+### Exemplo 5 — $\displaystyle\int \ln x\,dx$
+
+**Escolha:** $u = \ln x \;\Rightarrow\; du = \dfrac{1}{x}\,dx$; $\quad dv = dx \;\Rightarrow\; v = x$.
+
+$$\int \ln x\,dx = x\ln x - \int x\cdot\frac{1}{x}\,dx = x\ln x - \int dx = x\ln x - x + C = x(\ln x - 1) + C.$$
+
+$$\boxed{\int \ln x\,dx = x(\ln x - 1) + C.}$$
+
+**Verificação:**
+
+$$\bigl[x(\ln x - 1)\bigr]' = (\ln x - 1) + x\cdot\frac{1}{x} = \ln x - 1 + 1 = \ln x. \quad \checkmark$$
+
+---
+
+```{r}
+#| label: fig-monitoria7
+#| fig-cap: "Monitoria 7: diferenciação logarítmica e integração por partes. À esquerda: $f(x)=x^x$ e $f'(x)=x^x(\\ln x+1)$. À direita: integrando $xe^x$ e sua primitiva $e^x(x-1)$."
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 4.5
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+
+# Exemplo 1: x^x e sua derivada
+x1 <- seq(0.05, 2.5, length.out = 500)
+df1 <- data.frame(
+  x  = x1,
+  f  = x1^x1,
+  fp = x1^x1 * (log(x1) + 1)
+)
+df1 <- subset(df1, abs(fp) < 8 & f < 8)
+
+p1 <- ggplot(df1, aes(x)) +
+  geom_line(aes(y = f,  color = "xˣ"),              linewidth = 1.1) +
+  geom_line(aes(y = fp, color = "xˣ(ln x + 1)"),   linewidth = 1.1, linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(-1, 7)) +
+  scale_color_manual(values = c("xˣ" = "#440154", "xˣ(ln x + 1)" = "#31688e")) +
+  labs(title = expression(f(x) == x^x ~ "e" ~ f*minute(x) == x^x*(ln~x+1)),
+       x = "x", y = "", color = NULL) +
+  base_t + theme(legend.position = "bottom")
+
+# Exemplo 4: x e^x e sua primitiva e^x(x-1)
+x2 <- seq(-2, 3, length.out = 500)
+df2 <- data.frame(
+  x = x2,
+  f = x2 * exp(x2),
+  F = exp(x2) * (x2 - 1)
+)
+df2 <- subset(df2, abs(df2$f) < 15 & abs(df2$F) < 15)
+
+p2 <- ggplot(df2, aes(x)) +
+  geom_line(aes(y = f, color = "x eˣ"),         linewidth = 1.1) +
+  geom_line(aes(y = F, color = "eˣ(x − 1)"),   linewidth = 1.1, linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(-5, 12)) +
+  scale_color_manual(values = c("x eˣ" = "#35b779", "eˣ(x − 1)" = "#FDE725")) +
+  labs(title = expression(integral(x*e^x*dx) == e^x*(x-1)+C),
+       x = "x", y = "", color = NULL) +
+  base_t + theme(legend.position = "bottom")
+
+p1 + p2
+```

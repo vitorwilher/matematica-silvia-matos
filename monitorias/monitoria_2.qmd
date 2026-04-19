@@ -1,0 +1,142 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Monitoria 2
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Monitoria 2
+
+## Exercícios Resolvidos
+
+### Exercício 1 — Derivada pela Definição: $f(x) = \dfrac{7}{\sqrt{x-5}}$
+
+**Domínio.** A função exige $x - 5 > 0$, logo $\mathrm{Dom}(f) = (5, +\infty)$.
+
+**Cálculo de $f'(x)$ pela definição.**
+
+$$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \to 0} \frac{1}{h}\left(\frac{7}{\sqrt{x+h-5}} - \frac{7}{\sqrt{x-5}}\right).$$
+
+Colocando em denominador comum:
+
+$$= \lim_{h \to 0} \frac{7}{h} \cdot \frac{\sqrt{x-5} - \sqrt{x+h-5}}{\sqrt{x+h-5}\,\sqrt{x-5}}.$$
+
+Racionalizamos o numerador multiplicando por $\dfrac{\sqrt{x-5}+\sqrt{x+h-5}}{\sqrt{x-5}+\sqrt{x+h-5}}$:
+
+$$\sqrt{x-5} - \sqrt{x+h-5} = \frac{(x-5)-(x+h-5)}{\sqrt{x-5}+\sqrt{x+h-5}} = \frac{-h}{\sqrt{x-5}+\sqrt{x+h-5}}.$$
+
+Substituindo:
+
+$$f'(x) = \lim_{h \to 0} \frac{7}{h} \cdot \frac{-h}{\sqrt{x+h-5}\,\sqrt{x-5}\,\bigl(\sqrt{x-5}+\sqrt{x+h-5}\bigr)}$$
+
+$$= \lim_{h \to 0} \frac{-7}{\sqrt{x+h-5}\,\sqrt{x-5}\,\bigl(\sqrt{x-5}+\sqrt{x+h-5}\bigr)}.$$
+
+Tomando $h \to 0$:
+
+$$\boxed{f'(x) = \frac{-7}{\sqrt{x-5}\cdot\sqrt{x-5}\cdot 2\sqrt{x-5}} = -\frac{7}{2(x-5)^{3/2}}.}$$
+
+**Verificação pela regra da potência.** Reescrevendo $f(x) = 7(x-5)^{-1/2}$ e aplicando a regra da cadeia:
+
+$$f'(x) = 7 \cdot \left(-\tfrac{1}{2}\right)(x-5)^{-3/2} \cdot 1 = -\frac{7}{2(x-5)^{3/2}}. \qquad \checkmark$$
+
+---
+
+### Exercício 2 — Análise Completa: $f(x) = x(x-4)^3$ (Teste 1 — 2022)
+
+#### 1º) Sinal de $f'(x)$
+
+Pela regra do produto:
+
+$$f'(x) = (x-4)^3 + x \cdot 3(x-4)^2 = (x-4)^2\bigl[(x-4) + 3x\bigr] = 4(x-1)(x-4)^2.$$
+
+Como $(x-4)^2 \geq 0$ para todo $x \in \mathbb{R}$, o sinal de $f'$ depende apenas de $(x-1)$:
+
+| Intervalo | $(x-1)$ | $(x-4)^2$ | $f'(x)$ | Comportamento |
+|-----------|---------|-----------|---------|---------------|
+| $x < 1$ | $-$ | $+$ | $-$ | Decrescente |
+| $x = 1$ | $0$ | $+$ | $0$ | Mínimo local |
+| $1 < x < 4$ | $+$ | $+$ | $+$ | Crescente |
+| $x = 4$ | $+$ | $0$ | $0$ | Tangente horizontal |
+| $x > 4$ | $+$ | $+$ | $+$ | Crescente |
+
+- $f'(x) < 0$ para $x < 1$: $f$ é **decrescente** em $(-\infty, 1)$.
+- $f'(x) > 0$ para $x > 1$, $x \neq 4$: $f$ é **crescente** em $(1, +\infty)$.
+- $x = 1$ é **mínimo local**: $f(1) = 1 \cdot (-3)^3 = -27$.
+- $x = 4$ é ponto de tangente horizontal (mas **não é extremo**, pois $f'$ não troca de sinal).
+
+#### 2º) Sinal de $f''(x)$
+
+$$f''(x) = \frac{d}{dx}\bigl[4(x-1)(x-4)^2\bigr] = 4\bigl[(x-4)^2 + (x-1)\cdot 2(x-4)\bigr]$$
+
+$$= 4(x-4)\bigl[(x-4) + 2(x-1)\bigr] = 4(x-4)(3x-6) = 12(x-4)(x-2).$$
+
+| Intervalo | $(x-2)$ | $(x-4)$ | $f''(x)$ | Concavidade |
+|-----------|---------|---------|----------|-------------|
+| $x < 2$ | $-$ | $-$ | $+$ | Convexa |
+| $x = 2$ | $0$ | $-$ | $0$ | **Inflexão** |
+| $2 < x < 4$ | $+$ | $-$ | $-$ | Côncava |
+| $x = 4$ | $+$ | $0$ | $0$ | **Inflexão** |
+| $x > 4$ | $+$ | $+$ | $+$ | Convexa |
+
+- Pontos de inflexão: $x = 2$ com $f(2) = 2(-2)^3 = -16$, e $x = 4$ com $f(4) = 0$.
+
+#### 3º) Esboço do gráfico
+
+```{r}
+#| label: fig-mon2-ex2
+#| fig-cap: "Análise completa de $f(x) = x(x-4)^3$: mínimo local em $x = 1$, pontos de inflexão em $x = 2$ e $x = 4$."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+x  <- seq(-0.8, 5.5, length.out = 500)
+df <- data.frame(x = x, y = x * (x - 4)^3)
+
+pts <- data.frame(
+  x     = c(1,   2,   4),
+  y     = c(-27, -16, 0),
+  label = c("Mín. local\n(1, -27)", "Infl.\n(2, -16)", "Infl.\n(4, 0)"),
+  tipo  = c("Mínimo", "Inflexão", "Inflexão2")
+)
+
+base_t <- theme_minimal(base_size = 12)
+
+p1 <- ggplot(df, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_point(data = pts, aes(x, y, color = tipo), size = 3, show.legend = FALSE) +
+  geom_text(data = pts, aes(x, y, label = label, color = tipo),
+            vjust = 1.6, size = 3, fontface = "bold", show.legend = FALSE) +
+  scale_color_manual(values = c("Mínimo" = "#35b779",
+                                 "Inflexão"  = "#31688e",
+                                 "Inflexão2" = "#FDE725")) +
+  labs(title = expression(f(x) == x*(x-4)^3), x = "x", y = "f(x)") + base_t
+
+df_fp  <- data.frame(x = x, y = 4*(x-1)*(x-4)^2)
+df_fpp <- data.frame(x = x, y = 12*(x-4)*(x-2))
+
+p2 <- ggplot(df_fp, aes(x, y)) +
+  geom_line(color = "#31688e", linewidth = 1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(-60, 120)) +
+  labs(title = expression(f*minute(x) == 4*(x-1)*(x-4)^2),
+       x = "x", y = "f'(x)") + base_t
+
+p3 <- ggplot(df_fpp, aes(x, y)) +
+  geom_line(color = "#35b779", linewidth = 1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(-30, 60)) +
+  labs(title = expression(f*second(x) == 12*(x-4)*(x-2)),
+       x = "x", y = "f''(x)") + base_t
+
+p1 + p2 + p3
+```

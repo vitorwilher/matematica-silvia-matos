@@ -1,0 +1,874 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Derivadas
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Derivadas
+
+## Motivação Econômica
+
+O conceito de derivada surge da necessidade de medir a **taxa de variação instantânea** de uma função. Em Economia, essa ideia está presente em toda parte: o custo marginal é a taxa de variação do custo total em relação à quantidade produzida; a utilidade marginal é a variação da utilidade ao consumir uma unidade adicional de um bem; a produtividade marginal do trabalho mede o acréscimo de produto decorrente de uma unidade extra de trabalho.
+
+A derivada generaliza o conceito de **inclinação de uma reta** para funções arbitrárias: em vez de medir a inclinação entre dois pontos fixos, medimos a inclinação da reta tangente ao gráfico em um ponto.
+
+**Exemplos econômicos centrais:**
+
+- **Maximização de lucro.** A firma maximiza $\pi(q) = R(q) - C(q)$ igualando receita marginal e custo marginal: $\pi'(q^*) = R'(q^*) - C'(q^*) = 0$. A condição de segunda ordem ($\pi''(q^*) < 0$) garante que é máximo.
+- **Elasticidade.** A elasticidade-preço da demanda mede a sensibilidade percentual da quantidade ao preço: $\varepsilon = \dfrac{dq}{dp} \cdot \dfrac{p}{q}$. Bens com $|\varepsilon| > 1$ são elásticos; com $|\varepsilon| < 1$, inelásticos.
+- **Estática comparativa.** Como o equilíbrio $q^*(p, m)$ muda quando o preço $p$ ou a renda $m$ mudam? A resposta é dada pelas derivadas $\partial q^*/\partial p$ e $\partial q^*/\partial m$.
+- **Produtividade marginal decrescente.** Na função de produção $Q(L)$, a hipótese $Q'' < 0$ captura a lei dos rendimentos decrescentes: cada unidade adicional de trabalho contribui menos que a anterior.
+
+## Definição Formal
+
+### Taxa de Variação Média
+
+Dada uma função $f : D \subseteq \mathbb{R} \to \mathbb{R}$, a **taxa de variação média** de $f$ no intervalo $[x_0, x_0 + h]$ é:
+
+$$\frac{\Delta f}{\Delta x} = \frac{f(x_0 + h) - f(x_0)}{h}, \quad h \neq 0.$$
+
+Geometricamente, essa é a inclinação da **reta secante** que passa pelos pontos $(x_0, f(x_0))$ e $(x_0 + h, f(x_0 + h))$.
+
+### Derivada
+
+A **derivada de $f$ no ponto $x_0$** é o limite da taxa de variação média quando $h \to 0$:
+
+$$\boxed{f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h},}$$
+
+desde que esse limite exista. Quando existe, dizemos que $f$ é **diferenciável** em $x_0$.
+
+A derivada é a inclinação da **reta tangente** ao gráfico de $f$ no ponto $(x_0, f(x_0))$.
+
+### Notação
+
+Para $y = f(x)$, todas as notações abaixo são equivalentes:
+
+$$f'(x) = \frac{dy}{dx} = \frac{df}{dx} = Df(x) = \dot{y}.$$
+
+### Exemplo: $f(x) = x^2$
+
+Aplicando a definição:
+
+$$f'(x) = \lim_{h \to 0} \frac{(x+h)^2 - x^2}{h} = \lim_{h \to 0} \frac{2xh + h^2}{h} = \lim_{h \to 0} (2x + h) = 2x.$$
+
+```{r}
+#| label: fig-tangente
+#| fig-cap: "Reta tangente a $f(x) = x^2$ no ponto $x_0 = 1$: inclinação $f'(1) = 2$"
+#| fig-align: center
+
+library(ggplot2)
+
+x   <- seq(-1.5, 2.5, length.out = 300)
+x0  <- 1
+fx0 <- x0^2
+fp0 <- 2 * x0   # f'(1) = 2
+
+df_f   <- data.frame(x = x, y = x^2)
+df_tan <- data.frame(x = x, y = fp0 * (x - x0) + fx0)
+
+ggplot() +
+  geom_line(data = df_f,   aes(x, y), color = "#440154", linewidth = 1.1) +
+  geom_line(data = df_tan, aes(x, y), color = "#31688e", linewidth = 0.9,
+            linetype = "dashed") +
+  geom_point(aes(x = x0, y = fx0), color = "#FDE725", size = 3) +
+  annotate("text", x = 2.1, y = 4.5, label = "f(x) = x²",
+           color = "#440154", size = 4) +
+  annotate("text", x = 2.1, y = 3.3, label = "tangente: y = 2x - 1",
+           color = "#31688e", size = 4) +
+  coord_cartesian(ylim = c(-0.5, 6)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 13)
+```
+
+---
+
+## Interpretação Econômica
+
+A derivada é a formalização matemática do conceito de **marginal** em Economia.
+
+| Função $f(x)$ | Derivada $f'(x)$ |
+|---------------|-----------------|
+| Custo total $C(q)$ | Custo marginal $CMg(q)$ |
+| Receita total $R(q)$ | Receita marginal $RMg(q)$ |
+| Lucro $\pi(q)$ | Lucro marginal $\pi'(q)$ |
+| Função de produção $Q(L)$ | Produto marginal do trabalho $PMgL$ |
+| Função utilidade $U(x)$ | Utilidade marginal $UMg(x)$ |
+
+### Exemplo: Custo Marginal
+
+Seja o custo total $C(q) = q^3 - 6q^2 + 15q + 10$. O custo marginal é:
+
+$$CMg(q) = C'(q) = 3q^2 - 12q + 15.$$
+
+```{r}
+#| label: fig-custo-marginal
+#| fig-cap: "Custo total e custo marginal"
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+q <- seq(0, 6, length.out = 300)
+
+df <- data.frame(
+  q   = q,
+  CT  = q^3 - 6*q^2 + 15*q + 10,
+  CMg = 3*q^2 - 12*q + 15
+)
+
+p1 <- ggplot(df, aes(x = q, y = CT)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  labs(title = "Custo Total", x = "q", y = "C(q)") +
+  theme_minimal(base_size = 13)
+
+p2 <- ggplot(df, aes(x = q, y = CMg)) +
+  geom_line(color = "#31688e", linewidth = 1.1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray60") +
+  labs(title = "Custo Marginal", x = "q", y = "C'(q)") +
+  theme_minimal(base_size = 13)
+
+p1 + p2
+```
+
+---
+
+## Regras de Derivação
+
+### Derivadas Elementares
+
+| Função $f(x)$ | Derivada $f'(x)$ |
+|---------------|-----------------|
+| $c$ (constante) | $0$ |
+| $x^n$ | $nx^{n-1}$ |
+| $e^x$ | $e^x$ |
+| $a^x$ | $a^x \ln a$ |
+| $\ln x$ | $\dfrac{1}{x}$ |
+| $\log_a x$ | $\dfrac{1}{x \ln a}$ |
+| $\sin x$ | $\cos x$ |
+| $\cos x$ | $-\sin x$ |
+
+### Regras Algébricas
+
+Sejam $f$ e $g$ funções diferenciáveis e $c \in \mathbb{R}$.
+
+**Soma e diferença:**
+$$[f(x) \pm g(x)]' = f'(x) \pm g'(x).$$
+
+**Multiplicação por escalar:**
+$$[c \cdot f(x)]' = c \cdot f'(x).$$
+
+**Produto:**
+$$[f(x) \cdot g(x)]' = f'(x)\,g(x) + f(x)\,g'(x).$$
+
+**Quociente:**
+$$\left[\frac{f(x)}{g(x)}\right]' = \frac{f'(x)\,g(x) - f(x)\,g'(x)}{[g(x)]^2}, \quad g(x) \neq 0.$$
+
+#### Provas a partir da Definição
+
+**Prova — Regra da Soma.**
+
+$$[f+g]'(x) = \lim_{h \to 0} \frac{[f(x+h)+g(x+h)] - [f(x)+g(x)]}{h}$$
+$$= \lim_{h \to 0} \frac{f(x+h)-f(x)}{h} + \lim_{h \to 0} \frac{g(x+h)-g(x)}{h} = f'(x) + g'(x). \qquad \blacksquare$$
+
+**Prova — Regra do Produto.** $\bigstar$ *Esta prova cai na prova.*
+
+O truque é somar e subtrair o termo $f(x)\,g(x+h)$ no numerador:
+
+$$[fg]'(x) = \lim_{h \to 0} \frac{f(x+h)g(x+h) - f(x)g(x)}{h}$$
+
+$$= \lim_{h \to 0} \frac{[\,f(x+h)-f(x)\,]\,g(x+h) + f(x)\,[\,g(x+h)-g(x)\,]}{h}$$
+
+$$= \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}\cdot g(x+h) \;+\; f(x)\cdot\lim_{h \to 0}\frac{g(x+h)-g(x)}{h}$$
+
+$$= f'(x)\cdot g(x) + f(x)\cdot g'(x). \qquad \blacksquare$$
+
+(Usamos que $g(x+h) \to g(x)$ quando $h \to 0$, pois $g$ é diferenciável e portanto contínua.)
+
+**Prova — Regra do Quociente.**
+
+$$\left[\frac{f}{g}\right]'(x) = \lim_{h \to 0} \frac{1}{h}\left[\frac{f(x+h)}{g(x+h)} - \frac{f(x)}{g(x)}\right] = \lim_{h \to 0} \frac{f(x+h)\,g(x) - f(x)\,g(x+h)}{h\,g(x+h)\,g(x)}.$$
+
+Somando e subtraindo $f(x)\,g(x)$ no numerador:
+
+$$= \lim_{h \to 0} \frac{[\,f(x+h)-f(x)\,]\,g(x) - f(x)\,[\,g(x+h)-g(x)\,]}{h\,g(x+h)\,g(x)}$$
+
+$$= \frac{f'(x)\,g(x) - f(x)\,g'(x)}{[g(x)]^2}. \qquad \blacksquare$$
+
+### Exemplos
+
+#### Produto: $h(x) = x^2 e^x$
+
+$$h'(x) = 2x \cdot e^x + x^2 \cdot e^x = xe^x(2 + x).$$
+
+#### Quociente: $h(x) = \dfrac{x^2 + 1}{x - 1}$
+
+$$h'(x) = \frac{2x(x-1) - (x^2+1) \cdot 1}{(x-1)^2} = \frac{x^2 - 2x - 1}{(x-1)^2}.$$
+
+### Derivadas pela Definição de Limite
+
+Os exercícios a seguir illustram como calcular a derivada diretamente da definição, sem usar as regras algébricas — um treinamento fundamental para compreender o conceito.
+
+#### $f(x) = x^3$
+
+$$f'(x) = \lim_{h \to 0} \frac{(x+h)^3 - x^3}{h} = \lim_{h \to 0} \frac{3x^2 h + 3x h^2 + h^3}{h} = \lim_{h \to 0}(3x^2 + 3xh + h^2) = 3x^2.$$
+
+#### $f(x) = \sqrt{x - 1}$
+
+Racionalizamos multiplicando numerador e denominador por $\sqrt{x+h-1}+\sqrt{x-1}$:
+
+$$f'(x) = \lim_{h \to 0} \frac{\sqrt{x+h-1} - \sqrt{x-1}}{h} = \lim_{h \to 0} \frac{(x+h-1)-(x-1)}{h\bigl(\sqrt{x+h-1}+\sqrt{x-1}\bigr)} = \frac{1}{2\sqrt{x-1}}.$$
+
+#### $f(x) = \dfrac{1}{\sqrt{x}}$
+
+$$f'(x) = \lim_{h \to 0} \frac{\dfrac{1}{\sqrt{x+h}} - \dfrac{1}{\sqrt{x}}}{h} = \lim_{h \to 0} \frac{\sqrt{x} - \sqrt{x+h}}{h\sqrt{x}\sqrt{x+h}}.$$
+
+Racionalizando o numerador:
+
+$$= \lim_{h \to 0} \frac{x - (x+h)}{h\sqrt{x}\sqrt{x+h}\bigl(\sqrt{x}+\sqrt{x+h}\bigr)} = \frac{-1}{\sqrt{x}\cdot\sqrt{x}\cdot 2\sqrt{x}} = -\frac{1}{2x^{3/2}}.$$
+
+#### $f(x) = \dfrac{1}{\sqrt{2x+3}}$
+
+$$f'(x) = \lim_{h \to 0} \frac{\sqrt{2x+3} - \sqrt{2x+2h+3}}{h\sqrt{2x+3}\sqrt{2x+2h+3}}.$$
+
+Racionalizando o numerador por $\sqrt{2x+3}+\sqrt{2x+2h+3}$:
+
+$$= \lim_{h \to 0} \frac{-2h}{h\sqrt{2x+3}\sqrt{2x+2h+3}\bigl(\sqrt{2x+3}+\sqrt{2x+2h+3}\bigr)} = \frac{-2}{(2x+3)\cdot 2\sqrt{2x+3}} = -\frac{1}{(2x+3)^{3/2}}.$$
+
+#### $f(x) = x^{1/3}$ e a Reta Tangente Vertical
+
+Usamos a identidade $a^3 - b^3 = (a-b)(a^2+ab+b^2)$ com $a = (x+h)^{1/3}$ e $b = x^{1/3}$:
+
+$$(x+h)^{1/3} - x^{1/3} = \frac{h}{(x+h)^{2/3} + (x+h)^{1/3}x^{1/3} + x^{2/3}}.$$
+
+Portanto:
+
+$$f'(x) = \lim_{h \to 0} \frac{(x+h)^{1/3} - x^{1/3}}{h} = \lim_{h \to 0} \frac{1}{(x+h)^{2/3} + (x+h)^{1/3}x^{1/3} + x^{2/3}} = \frac{1}{3x^{2/3}}, \quad x \neq 0.$$
+
+**Reta tangente vertical em $x = 0$.**  Quando $x \to 0$, $f'(x) = \frac{1}{3x^{2/3}} \to +\infty$. A reta tangente existe no sentido geométrico (é a reta vertical $x = 0$), mas a derivada não é finita. Portanto, $f(x) = x^{1/3}$ é **contínua em $\mathbb{R}$**, mas **não é diferenciável em $x = 0$**.
+
+```{r}
+#| label: fig-tangente-vertical
+#| fig-cap: "$f(x) = x^{1/3}$: contínua em todo $\\mathbb{R}$, mas com reta tangente vertical em $x = 0$ — não diferenciável nesse ponto."
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+base_theme <- theme_minimal(base_size = 12)
+
+x_pos <- seq(0.001, 2.5, length.out = 300)
+x_neg <- seq(-2.5, -0.001, length.out = 300)
+
+df_f <- rbind(
+  data.frame(x = x_neg, y = -(-x_neg)^(1/3)),
+  data.frame(x = x_pos, y =    x_pos^(1/3))
+)
+
+df_fp <- rbind(
+  data.frame(x = x_neg, y = 1 / (3 * (-x_neg)^(2/3))),
+  data.frame(x = x_pos, y = 1 / (3 *   x_pos^(2/3)))
+)
+
+p1 <- ggplot(df_f, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_vline(xintercept = 0, color = "#31688e", linetype = "dashed", linewidth = 0.9) +
+  geom_point(aes(x = 0, y = 0), color = "#FDE725", size = 3) +
+  annotate("text", x = 0.25, y = -0.9,
+           label = "tangente vertical\nem x = 0", color = "#31688e", size = 3.2) +
+  labs(title = expression(f(x) == x^{1/3}), x = "x", y = "f(x)") +
+  base_theme
+
+p2 <- ggplot(df_fp, aes(x, y)) +
+  geom_line(color = "#35b779", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(0, 5)) +
+  annotate("text", x = 1.8, y = 4.3,
+           label = "f'(x) → +∞ quando x → 0", color = "#35b779", size = 3.2) +
+  labs(title = expression(f*minute(x) == frac(1, 3*x^{2/3}) ~ " (x ≠ 0)"),
+       x = "x", y = "f'(x)") +
+  base_theme
+
+p1 + p2
+```
+
+#### $f(x) = \dfrac{1}{(x-1)^2} + \sqrt{x}$ — Linearidade do Limite
+
+Para uma soma, o limite distribui-se:
+
+$$f'(x) = \left[\frac{1}{(x-1)^2}\right]' + \left[\sqrt{x}\right]'.$$
+
+**Derivada de $\frac{1}{(x-1)^2}$.** Fatorando o numerador como diferença de quadrados:
+
+$$\left[\frac{1}{(x-1)^2}\right]' = \lim_{h \to 0}\frac{(x-1)^2-(x+h-1)^2}{h(x+h-1)^2(x-1)^2}.$$
+
+$(x-1)^2-(x+h-1)^2 = \bigl[(x-1)-(x+h-1)\bigr]\bigl[(x-1)+(x+h-1)\bigr] = (-h)(2x+h-2).$
+
+$$= \lim_{h \to 0}\frac{-h(2x+h-2)}{h(x+h-1)^2(x-1)^2} = \frac{-(2x-2)}{(x-1)^4} = -\frac{2}{(x-1)^3}.$$
+
+**Derivada de $\sqrt{x}$**: $\dfrac{1}{2\sqrt{x}}$ (calculada anteriormente). Logo:
+
+$$\boxed{f'(x) = -\frac{2}{(x-1)^3} + \frac{1}{2\sqrt{x}}.}$$
+
+**Domínio:** $\sqrt{x}$ exige $x \geq 0$; $(x-1)^{-2}$ exige $x \neq 1$:
+$$\mathrm{Dom}(f) = [0,\,1)\cup(1,\,+\infty).$$
+
+---
+
+## Regra da Cadeia
+
+### Definição
+
+Se $g$ é diferenciável em $x$ e $f$ é diferenciável em $g(x)$, então a composição $h(x) = f(g(x))$ é diferenciável em $x$ e:
+
+$$\boxed{h'(x) = f'(g(x)) \cdot g'(x).}$$
+
+Em notação de Leibniz, com $y = f(u)$ e $u = g(x)$:
+
+$$\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}.$$
+
+A ideia é: **derivar a função externa avaliada na interna, multiplicado pela derivada da interna**.
+
+### Prova
+
+Como $f$ é diferenciável em $u = g(x)$, podemos escrever, para qualquer $\Delta u$:
+
+$$f(u + \Delta u) - f(u) = f'(u)\,\Delta u + \varepsilon(\Delta u)\,\Delta u,$$
+
+onde $\varepsilon(\Delta u) \to 0$ quando $\Delta u \to 0$. Isso é simplesmente a definição de derivada reescrita com um erro residual $\varepsilon$.
+
+Agora, seja $\Delta u = g(x + \Delta x) - g(x)$. Dividindo por $\Delta x \neq 0$:
+
+$$\frac{h(x+\Delta x) - h(x)}{\Delta x} = \frac{f(g(x+\Delta x)) - f(g(x))}{\Delta x} = \bigl[f'(u) + \varepsilon(\Delta u)\bigr] \cdot \frac{\Delta u}{\Delta x}.$$
+
+Tomando o limite quando $\Delta x \to 0$:
+
+- $\dfrac{\Delta u}{\Delta x} \to g'(x)$, pois $g$ é diferenciável em $x$.
+- $\Delta u \to 0$ (pois $g$ é contínua, consequência da diferenciabilidade).
+- Portanto $\varepsilon(\Delta u) \to 0$.
+
+Concluímos:
+
+$$h'(x) = \lim_{\Delta x \to 0} \frac{h(x+\Delta x)-h(x)}{\Delta x} = \bigl[f'(g(x)) + 0\bigr] \cdot g'(x) = f'(g(x))\cdot g'(x). \qquad \blacksquare$$
+
+**Observação.** A "prova ingênua" multiplica e divide por $\Delta u$, mas isso falha se $\Delta u = 0$ para algum $\Delta x \neq 0$. A prova acima, via erro residual $\varepsilon$, contorna esse problema.
+
+### Intuição Geométrica
+
+A regra da cadeia é uma consequência direta da **linearidade local** das funções diferenciáveis. Perto de qualquer ponto, uma função diferenciável se comporta como uma reta — e inclinações se multiplicam ao longo de uma cadeia.
+
+Formalmente: se $\Delta x$ é pequeno,
+
+$$\Delta u \approx g'(x)\,\Delta x \qquad \text{e} \qquad \Delta y \approx f'(u)\,\Delta u.$$
+
+Substituindo:
+
+$$\Delta y \approx f'(u) \cdot g'(x)\,\Delta x \implies \frac{\Delta y}{\Delta x} \approx f'(g(x))\cdot g'(x).$$
+
+O gráfico abaixo ilustra essa amplificação em cadeia para $g(x) = x^2$ e $f(u) = e^u$, com $h(x) = e^{x^2}$, avaliado em $x_0 = 1$.
+
+```{r}
+#| label: fig-cadeia-intuicao
+#| fig-cap: "Intuição geométrica da regra da cadeia: $h(x) = e^{x^2}$, avaliada em $x_0 = 1$. Uma perturbação $\\Delta x$ é amplificada por $g'(x_0) = 2$ e depois por $f'(u_0) = e$, dando $h'(x_0) = 2e$."
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+base <- theme_minimal(base_size = 11)
+
+x0 <- 1; u0 <- x0^2; y0 <- exp(u0)
+gp <- 2 * x0        # g'(x0) = 2x0
+fp <- exp(u0)       # f'(u0) = e^u0
+hp <- fp * gp       # h'(x0) = 2e
+
+dx <- 0.6
+
+# --- Painel 1: g(x) = x^2 com tangente em x0 ---
+x_seq <- seq(-0.2, 2, length.out = 300)
+df_g  <- data.frame(x = x_seq, y = x_seq^2)
+df_tg <- data.frame(x = x_seq, y = u0 + gp * (x_seq - x0))
+
+p1 <- ggplot() +
+  geom_line(data = df_g,  aes(x, y), color = "#440154", linewidth = 1) +
+  geom_line(data = df_tg, aes(x, y), color = "#440154", linewidth = 0.7,
+            linetype = "dashed") +
+  geom_segment(aes(x = x0, xend = x0 + dx,
+                   y = u0,  yend = u0),
+               arrow = arrow(length = unit(0.2,"cm")), color = "#31688e") +
+  geom_segment(aes(x = x0 + dx, xend = x0 + dx,
+                   y = u0,      yend = u0 + gp * dx),
+               arrow = arrow(length = unit(0.2,"cm")), color = "#35b779") +
+  annotate("text", x = x0 + dx/2, y = u0 - 0.15,
+           label = "Δx", color = "#31688e", size = 3.5) +
+  annotate("text", x = x0 + dx + 0.12, y = u0 + gp * dx / 2,
+           label = "Δu ≈ g'·Δx", color = "#35b779", size = 3) +
+  annotate("point", x = x0, y = u0, color = "#FDE725", size = 3) +
+  coord_cartesian(ylim = c(-0.1, 3.5)) +
+  labs(title = expression(g(x) == x^2 ~ ", " ~ g*"'"*(1) == 2),
+       x = "x", y = "u = g(x)") + base
+
+# --- Painel 2: f(u) = e^u com tangente em u0 ---
+u_seq <- seq(-0.2, 2.5, length.out = 300)
+df_f  <- data.frame(u = u_seq, y = exp(u_seq))
+df_tf <- data.frame(u = u_seq, y = y0 + fp * (u_seq - u0))
+du    <- gp * dx
+
+p2 <- ggplot() +
+  geom_line(data = df_f,  aes(u, y), color = "#31688e", linewidth = 1) +
+  geom_line(data = df_tf, aes(u, y), color = "#31688e", linewidth = 0.7,
+            linetype = "dashed") +
+  geom_segment(aes(x = u0, xend = u0 + du,
+                   y = y0,  yend = y0),
+               arrow = arrow(length = unit(0.2,"cm")), color = "#35b779") +
+  geom_segment(aes(x = u0 + du, xend = u0 + du,
+                   y = y0,      yend = y0 + fp * du),
+               arrow = arrow(length = unit(0.2,"cm")), color = "#FDE725") +
+  annotate("text", x = u0 + du/2, y = y0 - 0.3,
+           label = "Δu", color = "#35b779", size = 3.5) +
+  annotate("text", x = u0 + du + 0.18, y = y0 + fp * du / 2,
+           label = "Δy ≈ f'·Δu", color = "#FDE725", size = 3) +
+  annotate("point", x = u0, y = y0, color = "#FDE725", size = 3) +
+  coord_cartesian(ylim = c(-0.5, 12)) +
+  labs(title = expression(f(u) == e^u ~ ", " ~ f*"'"*(1) == e),
+       x = "u", y = "y = f(u)") + base
+
+# --- Painel 3: h(x) = e^(x^2) com tangente em x0 ---
+df_h  <- data.frame(x = x_seq, y = exp(x_seq^2))
+df_th <- data.frame(x = x_seq, y = y0 + hp * (x_seq - x0))
+dy    <- hp * dx
+
+p3 <- ggplot() +
+  geom_line(data = df_h,  aes(x, y), color = "#35b779", linewidth = 1) +
+  geom_line(data = df_th, aes(x, y), color = "#35b779", linewidth = 0.7,
+            linetype = "dashed") +
+  geom_segment(aes(x = x0, xend = x0 + dx,
+                   y = y0,  yend = y0),
+               arrow = arrow(length = unit(0.2,"cm")), color = "#31688e") +
+  geom_segment(aes(x = x0 + dx, xend = x0 + dx,
+                   y = y0,      yend = y0 + dy),
+               arrow = arrow(length = unit(0.2,"cm")), color = "#440154") +
+  annotate("text", x = x0 + dx/2, y = y0 - 0.4,
+           label = "Δx", color = "#31688e", size = 3.5) +
+  annotate("text", x = x0 + dx + 0.2, y = y0 + dy / 2,
+           label = "Δy ≈ h'·Δx\n= 2e·Δx", color = "#440154", size = 3) +
+  annotate("point", x = x0, y = y0, color = "#FDE725", size = 3) +
+  coord_cartesian(ylim = c(-0.5, 12)) +
+  labs(title = expression(h(x) == e^{x^2} ~ ", " ~ h*"'"*(1) == 2*e),
+       x = "x", y = "y = h(x)") + base
+
+p1 + p2 + p3
+```
+
+### Exemplos
+
+#### $h(x) = e^{x^2}$
+
+Identificamos $f(u) = e^u$ e $g(x) = x^2$:
+
+$$h'(x) = e^{x^2} \cdot 2x = 2x\,e^{x^2}.$$
+
+#### $h(x) = \ln(1 + x^2)$
+
+Com $f(u) = \ln u$ e $g(x) = 1 + x^2$:
+
+$$h'(x) = \frac{1}{1+x^2} \cdot 2x = \frac{2x}{1+x^2}.$$
+
+#### $h(x) = (3x^2 + 5)^4$
+
+Com $f(u) = u^4$ e $g(x) = 3x^2 + 5$:
+
+$$h'(x) = 4(3x^2+5)^3 \cdot 6x = 24x(3x^2+5)^3.$$
+
+#### $h(x) = \sqrt{x^2 + 1}$
+
+Reescrevendo $h(x) = (x^2+1)^{1/2}$:
+
+$$h'(x) = \frac{1}{2}(x^2+1)^{-1/2} \cdot 2x = \frac{x}{\sqrt{x^2+1}}.$$
+
+#### $g(x) = \sqrt{1 + \sqrt{1 + \sqrt{1 + x^2}}}$ — Cadeia Tripla
+
+Decompõe-se em três camadas, de dentro para fora:
+
+$$u_1 = 1 + x^2, \qquad u_2 = 1 + \sqrt{u_1}, \qquad u_3 = 1 + \sqrt{u_2}, \qquad g = \sqrt{u_3}.$$
+
+A regra da cadeia se aplica repetidamente, multiplicando as derivadas de cada camada:
+
+$$g'(x) = \underbrace{\frac{1}{2\sqrt{u_3}}}_{\partial g/\partial u_3} \cdot \underbrace{\frac{1}{2\sqrt{u_2}}}_{\partial u_3/\partial u_2} \cdot \underbrace{\frac{1}{2\sqrt{u_1}}}_{\partial u_2/\partial u_1} \cdot \underbrace{2x}_{u_1'(x)}$$
+
+$$= \frac{x}{4\,\sqrt{1+x^2}\;\sqrt{1+\sqrt{1+x^2}}\;\sqrt{1+\sqrt{1+\sqrt{1+x^2}}}}.$$
+
+### Aplicação Econômica: Elasticidade
+
+A **elasticidade** de $y = f(x)$ é definida como:
+
+$$\varepsilon = \frac{dy/y}{dx/x} = \frac{dy}{dx} \cdot \frac{x}{y} = f'(x) \cdot \frac{x}{f(x)}.$$
+
+Usando a regra da cadeia, a elasticidade também pode ser escrita como:
+
+$$\varepsilon = \frac{d \ln y}{d \ln x},$$
+
+pois $\dfrac{d \ln f(x)}{d \ln x} = \dfrac{f'(x)}{f(x)} \cdot x$.
+
+---
+
+## Derivada Segunda e Concavidade
+
+### Definição
+
+A **derivada segunda** de $f$ é a derivada da derivada primeira:
+
+$$f''(x) = [f'(x)]' = \frac{d^2 y}{dx^2}.$$
+
+Enquanto $f'(x)$ mede a taxa de variação de $f$, $f''(x)$ mede a **taxa de variação de $f'$** — ou seja, como a inclinação da função está mudando.
+
+### Concavidade
+
+| Condição | Interpretação geométrica | Econômica |
+|----------|--------------------------|-----------|
+| $f''(x) > 0$ | $f$ é **convexa** (côncava para cima) | Custo marginal crescente |
+| $f''(x) < 0$ | $f$ é **côncava** (côncava para baixo) | Utilidade marginal decrescente |
+| $f''(x) = 0$ | possível **ponto de inflexão** | Mudança na curvatura |
+
+### Exemplo: $f(x) = x^3 - 3x^2$
+
+$$f'(x) = 3x^2 - 6x = 3x(x-2),$$
+$$f''(x) = 6x - 6 = 6(x-1).$$
+
+- $f''(x) > 0$ para $x > 1$: convexa.
+- $f''(x) < 0$ para $x < 1$: côncava.
+- $f''(1) = 0$: ponto de inflexão em $x = 1$.
+
+```{r}
+#| label: fig-concavidade
+#| fig-cap: "Função, derivada primeira e derivada segunda de $f(x) = x^3 - 3x^2$"
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 3.5
+
+library(ggplot2)
+library(patchwork)
+
+x <- seq(-0.8, 3.5, length.out = 300)
+
+df <- data.frame(
+  x   = x,
+  f   = x^3 - 3*x^2,
+  fp  = 3*x^2 - 6*x,
+  fpp = 6*x - 6
+)
+
+base <- theme_minimal(base_size = 12)
+
+p1 <- ggplot(df, aes(x, f)) +
+  geom_line(color = "#440154", linewidth = 1) +
+  geom_vline(xintercept = 1, linetype = "dashed", color = "gray50") +
+  annotate("point", x = 1, y = 1^3 - 3*1^2, color = "#FDE725", size = 3) +
+  labs(title = expression(f(x) == x^3 - 3*x^2), x = "x", y = "f(x)") + base
+
+p2 <- ggplot(df, aes(x, fp)) +
+  geom_line(color = "#31688e", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  labs(title = expression(f*minute(x) == 3*x^2 - 6*x), x = "x", y = "f'(x)") + base
+
+p3 <- ggplot(df, aes(x, fpp)) +
+  geom_line(color = "#35b779", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_vline(xintercept = 1, linetype = "dashed", color = "gray50") +
+  annotate("text", x = 2.5, y = 8, label = "convexa", color = "#35b779", size = 3.5) +
+  annotate("text", x = -0.3, y = -4, label = "côncava", color = "#440154", size = 3.5) +
+  labs(title = expression(f*second(x) == 6*x - 6), x = "x", y = "f''(x)") + base
+
+p1 + p2 + p3
+```
+
+---
+
+## Gráficos de Funções
+
+A combinação de $f'$ e $f''$ permite esboçar o gráfico de qualquer função diferenciável de forma sistemática.
+
+### Critérios de Análise
+
+| Informação | O que verificar |
+|------------|----------------|
+| Domínio e zeros | Onde $f$ está definida e onde $f(x) = 0$ |
+| Crescimento | $f'(x) > 0$: crescente; $f'(x) < 0$: decrescente |
+| Pontos críticos | $f'(x) = 0$ ou $f'(x)$ não existe |
+| Concavidade | $f''(x) > 0$: convexa; $f''(x) < 0$: côncava |
+| Pontos de inflexão | $f''(x) = 0$ e mudança de sinal |
+
+### Exemplo Completo: $f(x) = x^3 - 3x^2$
+
+**Zeros:** $f(x) = x^2(x-3) = 0 \Rightarrow x = 0$ ou $x = 3$.
+
+**Pontos críticos:** $f'(x) = 3x(x-2) = 0 \Rightarrow x = 0$ ou $x = 2$.
+
+- $f'(x) > 0$ para $x < 0$ ou $x > 2$: crescente.
+- $f'(x) < 0$ para $0 < x < 2$: decrescente.
+- $f(0) = 0$ é **máximo local**; $f(2) = -4$ é **mínimo local**.
+
+**Concavidade:** $f''(x) = 6(x-1) = 0 \Rightarrow x = 1$.
+
+- Ponto de inflexão em $x = 1$: $f(1) = -2$.
+
+```{r}
+#| label: fig-grafico-completo
+#| fig-cap: "Análise completa de $f(x) = x^3 - 3x^2$: máximo local, mínimo local e ponto de inflexão"
+#| fig-align: center
+
+library(ggplot2)
+
+x  <- seq(-1, 3.8, length.out = 400)
+df <- data.frame(x = x, y = x^3 - 3*x^2)
+
+criticos <- data.frame(
+  x     = c(0, 1, 2),
+  y     = c(0, -2, -4),
+  label = c("Máx. local\n(0, 0)", "Infl.\n(1, -2)", "Mín. local\n(2, -4)"),
+  tipo  = c("Máximo", "Inflexão", "Mínimo")
+)
+
+ggplot(df, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_point(data = criticos, aes(x, y, color = tipo), size = 3) +
+  geom_text(data = criticos, aes(x, y, label = label, color = tipo),
+            vjust = -0.6, size = 3.2, fontface = "bold") +
+  scale_color_manual(values = c("Máximo" = "#FDE725",
+                                 "Inflexão" = "#31688e",
+                                 "Mínimo" = "#35b779")) +
+  labs(x = "x", y = "f(x)", color = NULL,
+       title = expression(f(x) == x^3 - 3*x^2)) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom")
+```
+
+### Condições Necessárias vs. Suficientes
+
+Um equívoco comum é interpretar as condições de primeira e segunda ordens como **suficientes** quando são apenas **necessárias**.
+
+**Máximos e mínimos:** $f'(x^*) = 0$ é condição necessária para um extremo interior, mas não suficiente. Pode haver pontos em que $f'(x^*) = 0$ e $x^*$ não seja nem máximo nem mínimo (pontos de inflexão com tangente horizontal).
+
+**Pontos de inflexão:** $f''(x^*) = 0$ é condição necessária para um ponto de inflexão, mas não suficiente. O sinal de $f''$ deve efetivamente mudar em $x^*$.
+
+#### Contraexemplo: $f(x) = x^4$ e $f(x) = -x^4$
+
+Considere $f(x) = x^4$:
+
+$$f'(x) = 4x^3 \implies f'(0) = 0.$$
+$$f''(x) = 12x^2 \implies f''(0) = 0.$$
+
+O teste da segunda derivada é **inconclusivo** em $x = 0$. No entanto, como $f(x) = x^4 \geq 0 = f(0)$ para todo $x$, o ponto $x = 0$ é um **mínimo global** — não um ponto de inflexão.
+
+Para $g(x) = -x^4$: $g''(0) = 0$ também, mas $x = 0$ é **máximo global**.
+
+A conclusão é: quando $f''(x^*) = 0$, é preciso analisar o sinal de $f'$ (ou usar derivadas de ordem superior) para determinar a natureza do ponto crítico.
+
+```{r}
+#| label: fig-contraexemplo-x4
+#| fig-cap: "Em ambas as funções, $f''(0) = 0$, mas $x = 0$ é mínimo global de $x^4$ e máximo global de $-x^4$ — não pontos de inflexão."
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+x <- seq(-1.5, 1.5, length.out = 300)
+df1 <- data.frame(x = x, y =  x^4)
+df2 <- data.frame(x = x, y = -x^4)
+
+base_t <- theme_minimal(base_size = 12)
+
+p1 <- ggplot(df1, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_point(aes(x = 0, y = 0), color = "#FDE725", size = 3) +
+  annotate("text", x = 0.4, y = 0.3, label = "mínimo\nf''(0) = 0",
+           color = "#31688e", size = 3.5) +
+  labs(title = expression(f(x) == x^4), x = "x", y = "f(x)") + base_t
+
+p2 <- ggplot(df2, aes(x, y)) +
+  geom_line(color = "#35b779", linewidth = 1.1) +
+  geom_point(aes(x = 0, y = 0), color = "#FDE725", size = 3) +
+  annotate("text", x = 0.4, y = -0.3, label = "máximo\ng''(0) = 0",
+           color = "#31688e", size = 3.5) +
+  labs(title = expression(g(x) == -x^4), x = "x", y = "g(x)") + base_t
+
+p1 + p2
+```
+
+### Funções Definidas por Partes
+
+A análise de extremos e diferenciabilidade pode ser mais sutil quando a função é definida por partes, pois o ponto de junção pode ser um extremo **sem que $f' = 0$** (ou mesmo sem que $f'$ exista).
+
+#### Exemplo: $f(x) = \begin{cases} 4 - x^2, & x \leq 1 \\ 2 + x^2, & x > 1 \end{cases}$
+
+**Continuidade em $x = 1$:**
+
+$$\lim_{x \to 1^-} f(x) = 4 - 1 = 3 = f(1), \qquad \lim_{x \to 1^+} f(x) = 2 + 1 = 3.$$
+
+A função é contínua em $x = 1$.
+
+**Diferenciabilidade em $x = 1$:**
+
+$$f'_-(1) = \lim_{x \to 1^-}(-2x)\big|_{x=1} = -2, \qquad f'_+(1) = \lim_{x \to 1^+}(2x)\big|_{x=1} = 2.$$
+
+Como $f'_-(1) \neq f'_+(1)$, a função é **não diferenciável em $x = 1$** (canto no gráfico).
+
+**Análise de extremos:**
+
+- Para $x < 1$: $f'(x) = -2x < 0$ se $x > 0$ e $> 0$ se $x < 0$. Há máximo local em $x = 0$ com $f(0) = 4$.
+- Para $x > 1$: $f'(x) = 2x > 0$, função estritamente crescente.
+- Em $x = 1$: $f'$ passa de $-2$ (negativo) para $+2$ (positivo) — mudança de decrescente para crescente. Portanto, $x = 1$ é **mínimo local** com $f(1) = 3$, **sem que $f'(1) = 0$**.
+
+```{r}
+#| label: fig-funcao-partes
+#| fig-cap: "Função definida por partes: contínua em $x = 1$, mas não diferenciável (canto). O mínimo local em $x = 1$ ocorre sem $f'(1) = 0$."
+#| fig-align: center
+#| fig-width: 9
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+x_left  <- seq(-2.5, 1,    length.out = 300)
+x_right <- seq(1,    2.5,  length.out = 300)
+
+df_left  <- data.frame(x = x_left,  y = 4 - x_left^2)
+df_right <- data.frame(x = x_right, y = 2 + x_right^2)
+
+df_fp_left  <- data.frame(x = x_left,  y = -2 * x_left)
+df_fp_right <- data.frame(x = x_right, y =  2 * x_right)
+
+base_t <- theme_minimal(base_size = 12)
+
+p1 <- ggplot() +
+  geom_line(data = df_left,  aes(x, y), color = "#440154", linewidth = 1.1) +
+  geom_line(data = df_right, aes(x, y), color = "#31688e", linewidth = 1.1) +
+  geom_point(aes(x = 0, y = 4), color = "#FDE725", size = 3) +
+  geom_point(aes(x = 1, y = 3), color = "#FDE725", size = 3) +
+  annotate("text", x =  0,   y = 4.3, label = "Máx. local\n(0, 4)",
+           size = 3, color = "#440154") +
+  annotate("text", x =  1.5, y = 2.7, label = "Mín. local\n(1, 3)\nsem f'=0",
+           size = 3, color = "#31688e") +
+  labs(title = "f(x): contínua, não diferenciável em x = 1",
+       x = "x", y = "f(x)") + base_t
+
+p2 <- ggplot() +
+  geom_line(data = df_fp_left,  aes(x, y), color = "#440154", linewidth = 1.1) +
+  geom_line(data = df_fp_right, aes(x, y), color = "#31688e", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 1, linetype = "dashed", color = "gray50") +
+  annotate("point", x = 1, y = -2, color = "#440154", size = 3) +
+  annotate("point", x = 1, y =  2, color = "#31688e", size = 3) +
+  annotate("text", x = 1.6, y = -1, label = "salto: f'(1⁻)=-2\nf'(1⁺)=+2",
+           size = 3, color = "gray30") +
+  labs(title = "f'(x): salto em x = 1", x = "x", y = "f'(x)") + base_t
+
+p1 + p2
+```
+
+### Exemplos Adicionais de Análise Completa
+
+#### $f(x) = x^3 - 3x$
+
+**Zeros:** $f(x) = x(x^2-3) = 0 \Rightarrow x = 0,\, \pm\sqrt{3}$.
+
+**Pontos críticos:** $f'(x) = 3x^2 - 3 = 3(x^2-1) = 0 \Rightarrow x = \pm 1$.
+
+- $f''(x) = 6x$.
+- $f''(-1) = -6 < 0$: $x = -1$ é **máximo local**, $f(-1) = 2$.
+- $f''(1) = 6 > 0$: $x = 1$ é **mínimo local**, $f(1) = -2$.
+
+**Concavidade:** $f''(x) = 6x = 0 \Rightarrow x = 0$. Ponto de inflexão em $(0, 0)$.
+
+```{r}
+#| label: fig-x3-menos-3x
+#| fig-cap: "Análise completa de $f(x) = x^3 - 3x$: máximo local em $x = -1$, mínimo local em $x = 1$, ponto de inflexão em $x = 0$."
+#| fig-align: center
+
+library(ggplot2)
+
+x  <- seq(-2.5, 2.5, length.out = 400)
+df <- data.frame(x = x, y = x^3 - 3*x)
+
+pts <- data.frame(
+  x     = c(-1, 0, 1),
+  y     = c( 2, 0,-2),
+  label = c("Máx. local\n(-1, 2)", "Infl.\n(0, 0)", "Mín. local\n(1, -2)"),
+  tipo  = c("Máximo", "Inflexão", "Mínimo")
+)
+
+ggplot(df, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_point(data = pts, aes(x, y, color = tipo), size = 3) +
+  geom_text(data = pts, aes(x, y, label = label, color = tipo),
+            vjust = -0.5, size = 3.2, fontface = "bold") +
+  scale_color_manual(values = c("Máximo" = "#FDE725",
+                                 "Inflexão" = "#31688e",
+                                 "Mínimo" = "#35b779")) +
+  labs(x = "x", y = "f(x)", color = NULL,
+       title = expression(f(x) == x^3 - 3*x)) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom")
+```
+
+#### $f(x) = x^3 - 3x^2 + 3$
+
+**Zeros:** $f(x) = x^3 - 3x^2 + 3 = 0$. Não há fatoração elementar; o zero real aproximado é $x \approx -0{,}879$.
+
+**Pontos críticos:** $f'(x) = 3x^2 - 6x = 3x(x-2) = 0 \Rightarrow x = 0$ ou $x = 2$.
+
+- $f''(x) = 6x - 6$.
+- $f''(0) = -6 < 0$: $x = 0$ é **máximo local**, $f(0) = 3$.
+- $f''(2) = 6 > 0$: $x = 2$ é **mínimo local**, $f(2) = -1$.
+
+**Ponto de inflexão:** $f''(x) = 6(x-1) = 0 \Rightarrow x = 1$, $f(1) = 1$.
+
+```{r}
+#| label: fig-x3-3x2-mais3
+#| fig-cap: "Análise completa de $f(x) = x^3 - 3x^2 + 3$: máximo local em $x = 0$, mínimo local em $x = 2$, ponto de inflexão em $x = 1$."
+#| fig-align: center
+
+library(ggplot2)
+
+x  <- seq(-1.2, 3.5, length.out = 400)
+df <- data.frame(x = x, y = x^3 - 3*x^2 + 3)
+
+pts <- data.frame(
+  x     = c(0, 1, 2),
+  y     = c(3, 1,-1),
+  label = c("Máx. local\n(0, 3)", "Infl.\n(1, 1)", "Mín. local\n(2, -1)"),
+  tipo  = c("Máximo", "Inflexão", "Mínimo")
+)
+
+ggplot(df, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_point(data = pts, aes(x, y, color = tipo), size = 3) +
+  geom_text(data = pts, aes(x, y, label = label, color = tipo),
+            vjust = -0.5, size = 3.2, fontface = "bold") +
+  scale_color_manual(values = c("Máximo" = "#FDE725",
+                                 "Inflexão" = "#31688e",
+                                 "Mínimo" = "#35b779")) +
+  labs(x = "x", y = "f(x)", color = NULL,
+       title = expression(f(x) == x^3 - 3*x^2 + 3)) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom")
+```

@@ -1,0 +1,220 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Integração por Partes
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Integração por Partes
+
+## Motivação Econômica
+
+A integração por partes é a técnica que resolve integrais envolvendo **produtos de funções** — e em Economia, integrais desse tipo aparecem com frequência em problemas de valor presente, otimização dinâmica e cálculo de excedentes.
+
+**Valor presente de uma renda crescente.** Suponha que uma firma receba um fluxo de lucros $\pi(t) = t$ (crescendo linearmente) e desconte à taxa $r$. O valor presente é:
+
+$$VP = \int_0^T t\,e^{-rt}\,dt.$$
+
+Essa integral não se resolve por regra direta — requer integração por partes, com $u = t$ e $dv = e^{-rt}\,dt$.
+
+**Excedente do consumidor com demanda log-linear.** Se a demanda inversa é $P(q) = a - b\ln q$, o cálculo do excedente do consumidor $\int_0^{q^*} P(q)\,dq$ envolve $\int \ln q\,dq$ — resolvida por partes com $u = \ln q$ e $dv = dq$.
+
+**Otimização dinâmica (controle ótimo).** Na derivação das condições de Euler no problema do consumidor intertemporal, a integração por partes é usada para mover a derivada de uma variável de estado para uma variável de coestado. É o passo central que leva às condições de Hamilton.
+
+**Regra geral de uso.** A integração por partes é útil sempre que o integrando é um produto de funções de naturezas distintas: polinômio × exponencial, logaritmo × potência, polinômio × trigonométrica. A escolha de $u$ e $dv$ segue a mnemônica LIATE (Logarítmica, Inversa trig., Algébrica, Trigonométrica, Exponencial) — $u$ é o tipo mais à esquerda.
+
+## Derivação da Fórmula
+
+A técnica de **integração por partes** é a contrapartida da regra do produto para derivadas. Sejam $u$ e $v$ funções diferenciáveis de $x$. A regra do produto afirma:
+
+$$(uv)' = u'v + uv'.$$
+
+Integrando ambos os lados:
+
+$$uv = \int u'v\,dx + \int uv'\,dx.$$
+
+Reorganizando:
+
+$$\int uv'\,dx = uv - \int u'v\,dx.$$
+
+Escrevendo $dv = v'\,dx$ e $du = u'\,dx$, obtemos a fórmula na forma compacta:
+
+$$\boxed{\int u\,dv = uv - \int v\,du.}$$
+
+**Estratégia.** A integração por partes é útil quando o integrando é produto de dois fatores de tipos diferentes — por exemplo, polinômio $\times$ logaritmo, polinômio $\times$ exponencial, polinômio $\times$ trigonométrica. A regra mnemônica **LIATE** (Logaritmo, Inversa, Algébrica/Polinomial, Trigonométrica, Exponencial) sugere a ordem de prioridade para escolher $u$: escolha como $u$ o fator que aparecer primeiro nessa lista, pois sua derivada tende a simplificar o integrando.
+
+---
+
+## Exemplos com Logaritmo
+
+### Exemplo 1 — $\displaystyle\int \ln x\,dx$
+
+**Escolha:** $u = \ln x$, $dv = dx$.
+
+$$du = \frac{1}{x}\,dx, \qquad v = x.$$
+
+Aplicando a fórmula:
+
+$$\int \ln x\,dx = x\ln x - \int x\cdot\frac{1}{x}\,dx = x\ln x - \int 1\,dx = x\ln x - x + C.$$
+
+$$\boxed{\int \ln x\,dx = x(\ln x - 1) + C.}$$
+
+**Verificação:** $\bigl(x(\ln x-1)\bigr)' = (\ln x-1) + x\cdot\dfrac{1}{x} = \ln x$. $\checkmark$
+
+---
+
+### Exemplo 2 — $\displaystyle\int x\ln x\,dx$
+
+**Escolha:** $u = \ln x$, $dv = x\,dx$.
+
+$$du = \frac{1}{x}\,dx, \qquad v = \frac{x^2}{2}.$$
+
+Aplicando a fórmula:
+
+$$\int x\ln x\,dx = \frac{x^2}{2}\ln x - \int \frac{x^2}{2}\cdot\frac{1}{x}\,dx = \frac{x^2}{2}\ln x - \frac{1}{2}\int x\,dx = \frac{x^2}{2}\ln x - \frac{x^2}{4} + C.$$
+
+$$\boxed{\int x\ln x\,dx = \frac{x^2}{2}\!\left(\ln x - \frac{1}{2}\right) + C.}$$
+
+**Verificação:** $\dfrac{d}{dx}\!\left[\dfrac{x^2}{2}\ln x - \dfrac{x^2}{4}\right] = x\ln x + \dfrac{x}{2} - \dfrac{x}{2} = x\ln x$. $\checkmark$
+
+---
+
+### Exemplo 3 — $\displaystyle\int x^n \ln x\,dx$ (fórmula geral)
+
+**Escolha:** $u = \ln x$, $dv = x^n\,dx$ (com $n \neq -1$).
+
+$$du = \frac{1}{x}\,dx, \qquad v = \frac{x^{n+1}}{n+1}.$$
+
+$$\int x^n\ln x\,dx = \frac{x^{n+1}}{n+1}\ln x - \int \frac{x^{n+1}}{n+1}\cdot\frac{1}{x}\,dx = \frac{x^{n+1}}{n+1}\ln x - \frac{1}{n+1}\int x^n\,dx.$$
+
+$$= \frac{x^{n+1}}{n+1}\ln x - \frac{x^{n+1}}{(n+1)^2} + C.$$
+
+$$\boxed{\int x^n\ln x\,dx = \frac{x^{n+1}}{n+1}\!\left(\ln x - \frac{1}{n+1}\right) + C, \quad n \neq -1.}$$
+
+Os exemplos anteriores são casos particulares: $n=0$ dá o Exemplo 1, $n=1$ dá o Exemplo 2.
+
+---
+
+### Exemplo 4 — $\displaystyle\int (\ln x)^2\,dx$
+
+**Escolha:** $u = (\ln x)^2$, $dv = dx$.
+
+$$du = \frac{2\ln x}{x}\,dx, \qquad v = x.$$
+
+$$\int (\ln x)^2\,dx = x(\ln x)^2 - 2\int \ln x\,dx = x(\ln x)^2 - 2x(\ln x - 1) + C.$$
+
+$$= x(\ln x)^2 - 2x\ln x + 2x + C = x\bigl[(\ln x)^2 - 2\ln x + 2\bigr] + C.$$
+
+$$\boxed{\int (\ln x)^2\,dx = x\bigl[(\ln x - 1)^2 + 1\bigr] + C.}$$
+
+*(Note que $(\ln x-1)^2+1 = (\ln x)^2-2\ln x+2$, confirmando a equivalência.)*
+
+---
+
+## Exemplos com Exponencial
+
+### Exemplo 5 — $\displaystyle\int xe^x\,dx$
+
+**Escolha:** $u = x$, $dv = e^x\,dx$.
+
+$$du = dx, \qquad v = e^x.$$
+
+$$\int xe^x\,dx = xe^x - \int e^x\,dx = xe^x - e^x + C = e^x(x-1) + C.$$
+
+$$\boxed{\int xe^x\,dx = e^x(x-1) + C.}$$
+
+**Verificação:** $\bigl(e^x(x-1)\bigr)' = e^x(x-1) + e^x = xe^x$. $\checkmark$
+
+---
+
+### Exemplo 6 — $\displaystyle\int x^2 e^x\,dx$
+
+Duas aplicações de integração por partes são necessárias.
+
+**1ª aplicação:** $u = x^2$, $dv = e^x\,dx \Rightarrow du = 2x\,dx$, $v = e^x$.
+
+$$\int x^2 e^x\,dx = x^2 e^x - 2\int xe^x\,dx.$$
+
+**2ª aplicação:** do Exemplo 5, $\int xe^x\,dx = e^x(x-1)+C$.
+
+$$\int x^2 e^x\,dx = x^2 e^x - 2e^x(x-1) + C = e^x(x^2 - 2x + 2) + C.$$
+
+$$\boxed{\int x^2 e^x\,dx = e^x(x^2-2x+2) + C.}$$
+
+**Verificação:** $\bigl(e^x(x^2-2x+2)\bigr)' = e^x(x^2-2x+2)+e^x(2x-2) = e^x x^2$. $\checkmark$
+
+---
+
+### Exemplo 7 — $\displaystyle\int xe^{-3x}\,dx$
+
+**Escolha:** $u = x$, $dv = e^{-3x}\,dx$.
+
+$$du = dx, \qquad v = -\frac{1}{3}e^{-3x}.$$
+
+$$\int xe^{-3x}\,dx = -\frac{x}{3}e^{-3x} - \int\!\left(-\frac{1}{3}\right)e^{-3x}\,dx = -\frac{x}{3}e^{-3x} + \frac{1}{3}\int e^{-3x}\,dx.$$
+
+$$= -\frac{x}{3}e^{-3x} + \frac{1}{3}\cdot\left(-\frac{1}{3}\right)e^{-3x} + C = -\frac{x}{3}e^{-3x} - \frac{1}{9}e^{-3x} + C.$$
+
+$$\boxed{\int xe^{-3x}\,dx = -\frac{e^{-3x}}{9}(3x+1) + C.}$$
+
+**Verificação:** $\dfrac{d}{dx}\!\left[-\dfrac{e^{-3x}}{9}(3x+1)\right] = \dfrac{3e^{-3x}}{9}(3x+1) - \dfrac{3e^{-3x}}{9} = e^{-3x}\!\left(x+\dfrac{1}{3}-\dfrac{1}{3}\right) = xe^{-3x}$. $\checkmark$
+
+---
+
+```{r}
+#| label: fig-ibp-exemplos
+#| fig-cap: "Integração por partes: integrando e primitiva para dois exemplos. À esquerda: $\\int \\ln x\\,dx = x(\\ln x-1)+C$ — o integrando $\\ln x$ e a primitiva $x(\\ln x-1)$. À direita: $\\int xe^x\\,dx = e^x(x-1)+C$ — o integrando $xe^x$ e a primitiva $e^x(x-1)$."
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+
+# Exemplo 1: ln x e sua primitiva x(ln x - 1)
+x1 <- seq(0.05, 4, length.out = 400)
+df1 <- data.frame(
+  x   = x1,
+  f   = log(x1),
+  F   = x1 * (log(x1) - 1)
+)
+
+p1 <- ggplot(df1, aes(x)) +
+  geom_line(aes(y = f, color = "ln x"),           linewidth = 1.1) +
+  geom_line(aes(y = F, color = "x(ln x − 1)"),   linewidth = 1.1, linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(-3, 4)) +
+  scale_color_manual(values = c("ln x" = "#440154", "x(ln x − 1)" = "#31688e")) +
+  labs(title = expression(integral(ln~x~dx) == x*(ln~x-1)+C),
+       x = "x", y = "", color = NULL) +
+  base_t + theme(legend.position = "bottom")
+
+# Exemplo 5: xe^x e sua primitiva e^x(x-1)
+x2 <- seq(-2, 2, length.out = 400)
+df2 <- data.frame(
+  x = x2,
+  f = x2 * exp(x2),
+  F = exp(x2) * (x2 - 1)
+)
+
+p2 <- ggplot(df2, aes(x)) +
+  geom_line(aes(y = f, color = "x eˣ"),         linewidth = 1.1) +
+  geom_line(aes(y = F, color = "eˣ(x − 1)"),   linewidth = 1.1, linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(-4, 8)) +
+  scale_color_manual(values = c("x eˣ" = "#35b779", "eˣ(x − 1)" = "#FDE725")) +
+  labs(title = expression(integral(x*e^x~dx) == e^x*(x-1)+C),
+       x = "x", y = "", color = NULL) +
+  base_t + theme(legend.position = "bottom")
+
+p1 + p2
+```

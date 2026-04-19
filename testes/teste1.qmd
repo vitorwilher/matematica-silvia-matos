@@ -1,0 +1,417 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Testes Anteriores — Gabarito
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Testes Anteriores
+
+## Teste 1 — 16 de março de 2024
+
+### Questão 1 (3 pontos)
+
+Considere a função:
+
+$$f(x) = \frac{1}{(x-1)^2} + \sqrt{x}.$$
+
+1. **(2 pontos)** Utilizando a definição formal, encontre a derivada de $f(x)$.
+2. **(1 ponto)** Obtenha o domínio de $f(x)$.
+
+#### Gabarito
+
+##### Parte 1 — Derivada pela Definição Formal
+
+Pela **linearidade do limite**, a derivada de uma soma é a soma das derivadas:
+
+$$f'(x) = \left[\frac{1}{(x-1)^2}\right]' + \left[\sqrt{x}\right]'.$$
+
+**Derivada de $\frac{1}{(x-1)^2}$.**
+
+$$\left[\frac{1}{(x-1)^2}\right]' = \lim_{h \to 0} \frac{\dfrac{1}{(x+h-1)^2} - \dfrac{1}{(x-1)^2}}{h} = \lim_{h \to 0} \frac{(x-1)^2 - (x+h-1)^2}{h\,(x+h-1)^2(x-1)^2}.$$
+
+Fatoramos o numerador como diferença de quadrados:
+
+$$(x-1)^2 - (x+h-1)^2 = \bigl[(x-1)-(x+h-1)\bigr]\bigl[(x-1)+(x+h-1)\bigr] = (-h)(2x+h-2).$$
+
+Substituindo e cancelando $h$:
+
+$$= \lim_{h \to 0} \frac{-h(2x+h-2)}{h\,(x+h-1)^2(x-1)^2} = \lim_{h \to 0} \frac{-(2x+h-2)}{(x+h-1)^2(x-1)^2} = \frac{-(2x-2)}{(x-1)^4} = -\frac{2}{(x-1)^3}.$$
+
+**Derivada de $\sqrt{x}$.**
+
+$$\left[\sqrt{x}\right]' = \lim_{h \to 0} \frac{\sqrt{x+h} - \sqrt{x}}{h} = \lim_{h \to 0} \frac{(x+h)-x}{h(\sqrt{x+h}+\sqrt{x})} = \frac{1}{2\sqrt{x}}.$$
+
+**Resultado:**
+
+$$\boxed{f'(x) = -\frac{2}{(x-1)^3} + \frac{1}{2\sqrt{x}}.}$$
+
+##### Parte 2 — Domínio
+
+Analisamos as restrições de cada parcela:
+
+- $\sqrt{x}$: exige $x \geq 0$.
+- $\dfrac{1}{(x-1)^2}$: exige $(x-1)^2 \neq 0$, ou seja, $x \neq 1$.
+
+Combinando:
+
+$$\boxed{\mathrm{Dom}(f) = [0,\,1) \cup (1,\,+\infty).}$$
+
+---
+
+### Questão 2 (3 pontos)
+
+Utilizando os teoremas de derivação, calcule a derivada das funções:
+
+$$f(x) = \frac{x^4 + 2x^2\sqrt{x-1}}{x\,\sqrt[3]{3x^4 - 5x^2}}, \qquad g(x) = \sqrt{1 + \sqrt{1 + \sqrt{1 + x^2}}}.$$
+
+#### Gabarito
+
+##### Derivada de $f(x)$
+
+Identificamos numerador e denominador:
+
+$$N(x) = x^4 + 2x^2(x-1)^{1/2}, \qquad D(x) = x\,(3x^4-5x^2)^{1/3}.$$
+
+**Derivada do numerador** (regra da soma + regra do produto na segunda parcela):
+
+$$N'(x) = 4x^3 + \left[4x(x-1)^{1/2} + 2x^2 \cdot \frac{1}{2}(x-1)^{-1/2}\right] = 4x^3 + 4x\sqrt{x-1} + \frac{x^2}{\sqrt{x-1}}.$$
+
+**Derivada do denominador** (regra do produto):
+
+$$D'(x) = (3x^4-5x^2)^{1/3} + x \cdot \frac{1}{3}(3x^4-5x^2)^{-2/3}(12x^3-10x)$$
+
+$$= \sqrt[3]{3x^4-5x^2} + \frac{2x^2(6x^2-5)}{3(3x^4-5x^2)^{2/3}}.$$
+
+**Aplicando a regra do quociente:**
+
+$$\boxed{f'(x) = \frac{N'(x)\,D(x) - N(x)\,D'(x)}{[D(x)]^2}.}$$
+
+##### Derivada de $g(x)$
+
+Decompõe-se em três camadas:
+
+$$u_1 = 1+x^2, \qquad u_2 = 1 + \sqrt{u_1}, \qquad u_3 = 1 + \sqrt{u_2}, \qquad g = \sqrt{u_3}.$$
+
+Aplicando a regra da cadeia de fora para dentro:
+
+$$g'(x) = \frac{1}{2\sqrt{u_3}} \cdot \frac{1}{2\sqrt{u_2}} \cdot \frac{1}{2\sqrt{u_1}} \cdot 2x$$
+
+$$\boxed{g'(x) = \frac{x}{4\,\sqrt{1+x^2}\;\sqrt{1+\sqrt{1+x^2}}\;\sqrt{1+\sqrt{1+\sqrt{1+x^2}}}}.}$$
+
+---
+
+### Questão 3 (4 pontos)
+
+Dada a função $f(x) = (x-1)(x-2)(x-3)$:
+
+1. **(3,5 pontos)** Encontre os intervalos onde a função é crescente, decrescente, côncava e convexa, e os eventuais pontos de máximo, mínimo e inflexão.
+2. **(0,5 pontos)** Faça um esboço do gráfico.
+
+#### Gabarito
+
+##### Expansão e derivadas
+
+Expandindo $f(x) = (x-1)(x-2)(x-3)$:
+
+$$(x-1)(x-2) = x^2-3x+2 \implies f(x) = x^3 - 6x^2 + 11x - 6.$$
+
+$$f'(x) = 3x^2 - 12x + 11, \qquad f''(x) = 6x - 12 = 6(x-2).$$
+
+##### Pontos críticos
+
+Resolvemos $f'(x) = 0$:
+
+$$x = \frac{12 \pm \sqrt{144 - 132}}{6} = \frac{12 \pm 2\sqrt{3}}{6} = 2 \pm \frac{\sqrt{3}}{3}.$$
+
+Seja $x_1 = 2 - \dfrac{\sqrt{3}}{3} \approx 1{,}42$ e $x_2 = 2 + \dfrac{\sqrt{3}}{3} \approx 2{,}58$.
+
+**Classificação pela derivada segunda:**
+
+- $f''(x_1) = 6\!\left(2 - \tfrac{\sqrt{3}}{3}\right) - 12 = -2\sqrt{3} < 0 \implies x_1$ é **máximo local**.
+- $f''(x_2) = 6\!\left(2 + \tfrac{\sqrt{3}}{3}\right) - 12 = +2\sqrt{3} > 0 \implies x_2$ é **mínimo local**.
+
+**Valores:** com $a = \tfrac{\sqrt{3}}{3}$, temos $a^2 = \tfrac{1}{3}$ e $1-a^2 = \tfrac{2}{3}$:
+
+$$f(x_1) = a(1-a^2) = \frac{\sqrt{3}}{3}\cdot\frac{2}{3} = \frac{2\sqrt{3}}{9} \approx 0{,}385.$$
+
+$$f(x_2) = -a(1-a^2) = -\frac{2\sqrt{3}}{9} \approx -0{,}385.$$
+
+##### Ponto de inflexão
+
+$f''(x) = 0 \implies x = 2$; $f(2) = (1)(0)(-1) = 0$.
+
+Mudança de sinal de $f''$: negativo para positivo em $x=2$ confirma inflexão.
+
+##### Tabela de análise
+
+| Intervalo | $f'(x)$ | $f''(x)$ | Comportamento |
+|-----------|---------|----------|---------------|
+| $(-\infty,\, x_1)$ | $+$ | $-$ | Crescente, côncava |
+| $(x_1,\; 2)$ | $-$ | $-$ | Decrescente, côncava |
+| $(2,\; x_2)$ | $-$ | $+$ | Decrescente, convexa |
+| $(x_2,\; +\infty)$ | $+$ | $+$ | Crescente, convexa |
+
+##### Zeros
+
+$f(x) = 0 \implies x = 1,\; 2,\; 3.$
+
+##### Esboço do gráfico
+
+```{r}
+#| label: fig-teste1-q3
+#| fig-cap: "Análise completa de $f(x) = (x-1)(x-2)(x-3)$: máximo local, mínimo local, ponto de inflexão e zeros."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 3.8
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+
+x  <- seq(0.2, 3.8, length.out = 400)
+x1 <- 2 - sqrt(3)/3
+x2 <- 2 + sqrt(3)/3
+f  <- function(x) (x-1)*(x-2)*(x-3)
+fp <- function(x) 3*x^2 - 12*x + 11
+fpp<- function(x) 6*x - 12
+
+df <- data.frame(x = x, y = f(x), yp = fp(x), ypp = fpp(x))
+
+criticos <- data.frame(
+  x     = c(x1, 2, x2),
+  y     = c(f(x1), 0, f(x2)),
+  label = c(sprintf("Máx. (%.2f, %.3f)", x1, f(x1)),
+            "Infl. (2, 0)",
+            sprintf("Mín. (%.2f, %.3f)", x2, f(x2))),
+  tipo  = c("Máximo", "Inflexão", "Mínimo")
+)
+
+zeros <- data.frame(x = c(1, 2, 3), y = 0,
+                    label = c("x=1","x=2","x=3"))
+
+p1 <- ggplot(df, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_point(data = criticos, aes(x, y, color = tipo), size = 3) +
+  geom_text(data = criticos, aes(x, y + 0.04, label = label, color = tipo),
+            size = 2.8, vjust = -0.3) +
+  geom_point(data = zeros, aes(x, y), shape = 1, size = 3, color = "gray40") +
+  scale_color_manual(values = c("Máximo" = "#FDE725",
+                                 "Inflexão" = "#31688e",
+                                 "Mínimo" = "#35b779")) +
+  labs(title = expression(f(x) == (x-1)(x-2)(x-3)),
+       x = "x", y = "f(x)", color = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom")
+
+p2 <- ggplot(df, aes(x, yp)) +
+  geom_line(color = "#31688e", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray60") +
+  geom_vline(xintercept = c(x1, x2), linetype = "dotted", color = "#FDE725") +
+  labs(title = expression(f*minute(x) == 3*x^2 - 12*x + 11),
+       x = "x", y = "f'(x)") + base_t
+
+p3 <- ggplot(df, aes(x, ypp)) +
+  geom_line(color = "#35b779", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray60") +
+  geom_vline(xintercept = 2, linetype = "dotted", color = "#31688e") +
+  annotate("text", x = 1.0, y = -4, label = "côncava", color = "#440154", size = 3) +
+  annotate("text", x = 3.2, y = 5,  label = "convexa", color = "#35b779", size = 3) +
+  labs(title = expression(f*second(x) == 6*x - 12),
+       x = "x", y = "f''(x)") + base_t
+
+p1 + p2 + p3
+```
+
+---
+
+## Teste 1 — 28 de março de 2026
+
+### Questão 1 (3 pontos)
+
+Considere a função:
+
+$$f(x) = \sqrt{x^2 - 9}.$$
+
+1. **(2 pontos)** Utilizando a definição formal, encontre a derivada de $f(x)$.
+2. **(1 ponto)** Obtenha o domínio de $f(x)$.
+
+#### Gabarito
+
+##### Parte 1 — Derivada pela Definição Formal
+
+$$f'(x) = \lim_{h \to 0} \frac{\sqrt{(x+h)^2-9} - \sqrt{x^2-9}}{h}.$$
+
+Racionalizamos multiplicando por $\dfrac{\sqrt{(x+h)^2-9}+\sqrt{x^2-9}}{\sqrt{(x+h)^2-9}+\sqrt{x^2-9}}$:
+
+$$= \lim_{h \to 0} \frac{(x+h)^2-9-(x^2-9)}{h\bigl(\sqrt{(x+h)^2-9}+\sqrt{x^2-9}\bigr)}.$$
+
+O numerador simplifica para $2xh + h^2$:
+
+$$= \lim_{h \to 0} \frac{h(2x+h)}{h\bigl(\sqrt{(x+h)^2-9}+\sqrt{x^2-9}\bigr)} = \frac{2x}{2\sqrt{x^2-9}}.$$
+
+$$\boxed{f'(x) = \frac{x}{\sqrt{x^2-9}}, \quad |x| > 3.}$$
+
+##### Parte 2 — Domínio
+
+$\sqrt{x^2-9}$ exige $x^2 - 9 \geq 0$, ou seja, $|x| \geq 3$:
+
+$$\boxed{\mathrm{Dom}(f) = (-\infty,\,-3\,] \cup [\,3,\,+\infty).}$$
+
+---
+
+### Questão 2 (3 pontos)
+
+Utilizando os teoremas de derivação, calcule a derivada das funções:
+
+$$(a)\quad f(x) = \frac{x - 4x^4\sqrt{x+5}}{x\,\sqrt[3]{x^2+9x}}, \qquad (b)\quad g(x) = x\sqrt{\frac{x^2-4}{x+2}}.$$
+
+#### Gabarito
+
+##### (a) Derivada de $f(x)$
+
+Identificamos:
+
+$$N(x) = x - 4x^4(x+5)^{1/2}, \qquad D(x) = x\,(x^2+9x)^{1/3}.$$
+
+**Derivada do numerador** (regra da soma + produto na segunda parcela):
+
+$$N'(x) = 1 - \left[16x^3(x+5)^{1/2} + 4x^4 \cdot \tfrac{1}{2}(x+5)^{-1/2}\right] = 1 - 16x^3\sqrt{x+5} - \frac{2x^4}{\sqrt{x+5}}.$$
+
+**Derivada do denominador** (regra do produto):
+
+$$D'(x) = (x^2+9x)^{1/3} + x \cdot \tfrac{1}{3}(x^2+9x)^{-2/3}(2x+9) = \sqrt[3]{x^2+9x} + \frac{x(2x+9)}{3(x^2+9x)^{2/3}}.$$
+
+**Regra do quociente:**
+
+$$\boxed{f'(x) = \frac{N'(x)\,D(x) - N(x)\,D'(x)}{[D(x)]^2}.}$$
+
+##### (b) Derivada de $g(x)$
+
+**Simplificação prévia.** Para $x > 2$:
+
+$$\frac{x^2-4}{x+2} = \frac{(x-2)(x+2)}{x+2} = x-2.$$
+
+Logo $g(x) = x\sqrt{x-2}$, com domínio $[2,\,+\infty)$.
+
+Aplicando a regra do produto:
+
+$$g'(x) = \sqrt{x-2} + x \cdot \frac{1}{2\sqrt{x-2}} = \frac{2(x-2)+x}{2\sqrt{x-2}}.$$
+
+$$\boxed{g'(x) = \frac{3x-4}{2\sqrt{x-2}}.}$$
+
+---
+
+### Questão 3 (4 pontos)
+
+Considere a função $f(x) = x^3 - 3x^2 + 2$.
+
+1. **(3,5 pontos)** Encontre os intervalos onde a função é crescente, decrescente, côncava e convexa, e os eventuais pontos de máximo, mínimo e inflexão.
+2. **(0,5 pontos)** Faça um esboço do gráfico.
+
+#### Gabarito
+
+##### Derivadas
+
+$$f'(x) = 3x^2 - 6x = 3x(x-2), \qquad f''(x) = 6x - 6 = 6(x-1).$$
+
+##### Pontos críticos
+
+$f'(x) = 0 \implies x = 0$ ou $x = 2$.
+
+- $f''(0) = -6 < 0 \implies x=0$ é **máximo local**, $f(0) = 2$.
+- $f''(2) = +6 > 0 \implies x=2$ é **mínimo local**, $f(2) = 8-12+2 = -2$.
+
+##### Ponto de inflexão
+
+$f''(x) = 0 \implies x = 1$; $f(1) = 1-3+2 = 0$. Mudança de sinal de $f''$ confirma inflexão.
+
+##### Zeros
+
+$f(x) = 0$: nota-se que $x = 1$ é raiz. Fatorando:
+
+$$x^3 - 3x^2 + 2 = (x-1)(x^2 - 2x - 2) = 0 \implies x = 1 \;\text{ ou }\; x = 1 \pm \sqrt{3}.$$
+
+Zeros em $x = 1-\sqrt{3} \approx -0{,}73$, $x = 1$ e $x = 1+\sqrt{3} \approx 2{,}73$.
+
+##### Tabela de análise
+
+| Intervalo | $f'(x)$ | $f''(x)$ | Comportamento |
+|-----------|---------|----------|---------------|
+| $(-\infty,\; 0)$ | $+$ | $-$ | Crescente, côncava |
+| $(0,\; 1)$ | $-$ | $-$ | Decrescente, côncava |
+| $(1,\; 2)$ | $-$ | $+$ | Decrescente, convexa |
+| $(2,\; +\infty)$ | $+$ | $+$ | Crescente, convexa |
+
+##### Esboço do gráfico
+
+```{r}
+#| label: fig-teste2026-q3
+#| fig-cap: "Análise completa de $f(x) = x^3 - 3x^2 + 2$: máximo local, mínimo local, ponto de inflexão e zeros."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 3.8
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+
+x   <- seq(-1.2, 3.5, length.out = 400)
+f   <- function(x) x^3 - 3*x^2 + 2
+fp  <- function(x) 3*x^2 - 6*x
+fpp <- function(x) 6*x - 6
+
+df <- data.frame(x = x, y = f(x), yp = fp(x), ypp = fpp(x))
+
+x_zeros <- c(1 - sqrt(3), 1, 1 + sqrt(3))
+
+criticos <- data.frame(
+  x     = c(0, 1, 2),
+  y     = c(f(0), f(1), f(2)),
+  label = c("Máx. (0, 2)", "Infl. (1, 0)", "Mín. (2, −2)"),
+  tipo  = c("Máximo", "Inflexão", "Mínimo")
+)
+
+zeros_df <- data.frame(x = x_zeros, y = 0)
+
+p1 <- ggplot(df, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_point(data = criticos, aes(x, y, color = tipo), size = 3) +
+  geom_text(data = criticos, aes(x, y, label = label, color = tipo),
+            size = 2.8, vjust = -0.7) +
+  geom_point(data = zeros_df, aes(x, y), shape = 1, size = 3, color = "gray40") +
+  scale_color_manual(values = c("Máximo" = "#FDE725",
+                                 "Inflexão" = "#31688e",
+                                 "Mínimo" = "#35b779")) +
+  labs(title = expression(f(x) == x^3 - 3*x^2 + 2),
+       x = "x", y = "f(x)", color = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom")
+
+p2 <- ggplot(df, aes(x, yp)) +
+  geom_line(color = "#31688e", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray60") +
+  geom_vline(xintercept = c(0, 2), linetype = "dotted", color = "#FDE725") +
+  labs(title = expression(f*minute(x) == 3*x^2 - 6*x),
+       x = "x", y = "f'(x)") + base_t
+
+p3 <- ggplot(df, aes(x, ypp)) +
+  geom_line(color = "#35b779", linewidth = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray60") +
+  geom_vline(xintercept = 1, linetype = "dotted", color = "#31688e") +
+  annotate("text", x = -0.5, y = -4, label = "côncava", color = "#440154", size = 3) +
+  annotate("text", x = 2.8,  y = 7,  label = "convexa",  color = "#35b779", size = 3) +
+  labs(title = expression(f*second(x) == 6*x - 6),
+       x = "x", y = "f''(x)") + base_t
+
+p1 + p2 + p3
+```

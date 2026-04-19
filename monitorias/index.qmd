@@ -1,0 +1,15 @@
+---
+title: "Monitorias"
+---
+
+Sessões de monitoria com exercícios resolvidos, cobrindo os tópicos do curso.
+
+| Monitoria | Tópicos |
+|-----------|---------|
+| [Monitoria 1](monitoria_1.qmd) | Derivadas — regras elementares e regra da cadeia |
+| [Monitoria 2](monitoria_2.qmd) | Derivadas — diferenciação logarítmica e funções implícitas |
+| [Monitoria 3](monitoria_3.qmd) | Análise de funções — extremos, concavidade e gráficos |
+| [Monitoria 4](monitoria_4.qmd) | Antiderivadas e mudança de variável |
+| [Monitoria 5](monitoria_5.qmd) | Integral definida e Teorema Fundamental do Cálculo |
+| [Monitoria 6](monitoria_6.qmd) | Funções logarítmica, inversa e exponencial |
+| [Monitoria 7](monitoria_7.qmd) | Diferenciação logarítmica e integração por partes |

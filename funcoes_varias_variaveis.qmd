@@ -1,5 +1,17 @@
 # Funções de Várias Variáveis Reais
 
+## Motivação Econômica
+
+Quase toda relação econômica de interesse depende de **múltiplos fatores simultaneamente**. Funções de várias variáveis são a linguagem natural da teoria econômica:
+
+- **Função de utilidade:** $U(x_1, x_2, \ldots, x_n)$ representa a satisfação do consumidor com $n$ bens. O problema do consumidor — maximizar $U$ sujeito à restrição orçamentária $\sum p_i x_i = m$ — exige derivadas parciais e condições de primeira ordem em cada argumento.
+
+- **Função de produção Cobb-Douglas:** $F(K, L) = A K^\alpha L^\beta$ relaciona produto a capital $K$ e trabalho $L$. As produtividades marginais $\partial F/\partial K$ e $\partial F/\partial L$ determinam a demanda por fatores; a taxa marginal de substituição técnica (TMST) é o quociente dessas derivadas.
+
+- **Função de lucro:** $\pi(p, w, r) = p \cdot F(K^*, L^*) - wL^* - rK^*$ depende do preço do produto $p$, do salário $w$ e do custo do capital $r$. O Lema de Hotelling — $\partial \pi / \partial p = y^*$ — é um resultado direto de diferenciação parcial.
+
+- **Estática comparativa:** como $y^* = f(p, w, r, \ldots)$ varia quando um parâmetro muda, mantendo os demais fixos? A resposta é sempre uma derivada parcial — o objeto central deste capítulo.
+
 ## Introdução
 
 Na matemática do ensino médio e no cálculo univariado, estudamos funções de uma única variável real: $y = f(x)$, em que um número real $x$ é mapeado em um número real $y$. Em Economia, porém, quase todas as relações de interesse dependem de **múltiplos fatores simultaneamente** — o consumo depende da renda e dos preços; a utilidade depende das quantidades de vários bens; o produto depende do capital, do trabalho e da tecnologia. Para modelar essas relações, precisamos generalizar o conceito de função para o caso de **várias variáveis**.

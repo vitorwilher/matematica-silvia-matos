@@ -1,0 +1,209 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Monitoria 6
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Monitoria 6
+
+## Resumo das Regras
+
+### Derivadas
+
+| Regra | Fórmula |
+|-------|---------|
+| Produto | $(f_1 \cdot f_2)' = f_1'\,f_2 + f_1\,f_2'$ |
+| Quociente | $\left(\dfrac{f_1}{f_2}\right)' = \dfrac{f_1'\,f_2 - f_1\,f_2'}{f_2^2}$ |
+| Cadeia | $(f(g(x)))' = f'(g(x))\cdot g'(x)$ |
+| Potência | $(x^n)' = nx^{n-1}$ |
+| Exponencial | $(e^x)' = e^x$ |
+| Logaritmo | $(\ln x)' = \dfrac{1}{x}$ |
+
+### Integrais
+
+| Regra | Fórmula |
+|-------|---------|
+| Potência | $\displaystyle\int x^n\,dx = \dfrac{x^{n+1}}{n+1} + C$, $\;n \neq -1$ |
+| Logaritmo | $\displaystyle\int \frac{1}{x}\,dx = \ln|x| + C$ |
+| Exponencial | $\displaystyle\int e^x\,dx = e^x + C$ |
+
+---
+
+## Exercício 1 — Regra do Produto com Logaritmo e Raiz
+
+### $f(x) = \ln(\sqrt{x})\cdot\sqrt{x+1}$
+
+**Identificação das partes:** $u = \ln(\sqrt{x}) = \dfrac{1}{2}\ln x$ e $v = \sqrt{x+1} = (x+1)^{1/2}$.
+
+$$u' = \frac{1}{2x}, \qquad v' = \frac{1}{2\sqrt{x+1}}.$$
+
+**Aplicando a regra do produto** $f' = u'v + uv'$:
+
+$$f'(x) = \frac{1}{2x}\cdot\sqrt{x+1} + \ln(\sqrt{x})\cdot\frac{1}{2\sqrt{x+1}}.$$
+
+**Denominador comum** $2x\sqrt{x+1}$:
+
+$$\boxed{f'(x) = \frac{(x+1) + x\ln(\sqrt{x})}{2x\sqrt{x+1}} = \frac{x+1+\frac{x}{2}\ln x}{2x\sqrt{x+1}}.}$$
+
+**Verificação de dimensão:** para $x > 0$, o numerador tem termos $x+1 > 0$ e $\frac{x}{2}\ln x$ (que pode ser negativo para $x < 1$); o denominador $2x\sqrt{x+1} > 0$. Consistente.
+
+---
+
+## Exercício 2 — Regra do Quociente
+
+### $g(x) = \dfrac{\sqrt{x+1}}{x\,\ln x}$
+
+**Identificação:** $p = \sqrt{x+1}$, $q = x\ln x$.
+
+$$p' = \frac{1}{2\sqrt{x+1}}, \qquad q' = \ln x + 1.$$
+
+**Regra do quociente** $g' = (p'q - pq')/q^2$:
+
+$$g'(x) = \frac{\dfrac{x\ln x}{2\sqrt{x+1}} - \sqrt{x+1}(\ln x + 1)}{(x\ln x)^2}.$$
+
+Multiplicando numerador e denominador por $2\sqrt{x+1}$:
+
+$$g'(x) = \frac{x\ln x - 2(x+1)(\ln x + 1)}{2\sqrt{x+1}\,(x\ln x)^2}.$$
+
+Expandindo o numerador:
+
+$$x\ln x - 2(x+1)\ln x - 2(x+1) = \ln x\bigl[x - 2x - 2\bigr] - 2(x+1) = -\ln x\,(x+2) - 2(x+2) + 2.$$
+
+$$= -(x+2)(\ln x + 2) + 2.$$
+
+$$\boxed{g'(x) = \frac{-(x+2)(\ln x + 2) + 2}{2\sqrt{x+1}\,(x\ln x)^2}.}$$
+
+---
+
+## Exercício 3 — Regra da Cadeia com Funções Aninhadas
+
+### $h(x) = \sqrt{1 + x + \sqrt{x^2+1}}$
+
+**Escrevemos** $h(x) = [w(x)]^{1/2}$ com $w(x) = 1 + x + \sqrt{x^2+1}$.
+
+**Derivada de $w$:** pela regra da cadeia,
+
+$$w'(x) = 1 + \frac{x}{\sqrt{x^2+1}}.$$
+
+**Derivada de $h$:**
+
+$$h'(x) = \frac{w'(x)}{2\sqrt{w(x)}} = \frac{1 + \dfrac{x}{\sqrt{x^2+1}}}{2\sqrt{1+x+\sqrt{x^2+1}}}.$$
+
+**Simplificando o numerador** — denominador comum $\sqrt{x^2+1}$:
+
+$$h'(x) = \frac{\sqrt{x^2+1} + x}{2\sqrt{x^2+1}\cdot\sqrt{1+x+\sqrt{x^2+1}}}.$$
+
+$$\boxed{h'(x) = \frac{x + \sqrt{x^2+1}}{2\sqrt{x^2+1}\cdot\sqrt{1+x+\sqrt{x^2+1}}}.}$$
+
+---
+
+## Exercício 4 — Logaritmo de Função Composta com Raiz
+
+### $f(x) = \ln\!\left(x + \sqrt{x^2 - a^2}\right)$, $\;|x| > a > 0$
+
+**Objetivo:** mostrar que $f'(x) = \dfrac{1}{\sqrt{x^2-a^2}}$.
+
+**Derivada pela regra da cadeia** com $g(x) = x + \sqrt{x^2-a^2}$:
+
+$$f'(x) = \frac{g'(x)}{g(x)}, \qquad g'(x) = 1 + \frac{x}{\sqrt{x^2-a^2}} = \frac{\sqrt{x^2-a^2}+x}{\sqrt{x^2-a^2}}.$$
+
+Portanto:
+
+$$f'(x) = \frac{1}{x+\sqrt{x^2-a^2}}\cdot\frac{\sqrt{x^2-a^2}+x}{\sqrt{x^2-a^2}} = \frac{\sqrt{x^2-a^2}+x}{(x+\sqrt{x^2-a^2})\,\sqrt{x^2-a^2}}.$$
+
+O fator $(x+\sqrt{x^2-a^2})$ cancela:
+
+$$\boxed{f'(x) = \frac{1}{\sqrt{x^2-a^2}}.}$$
+
+**Caso $a = 0$:** $f(x) = \ln(x+|x|)$, não definido para $x \leq 0$. Para $x > 0$: $f(x) = \ln(2x)$, $f'(x) = 1/x = 1/\sqrt{x^2}$. Consistente. $\checkmark$
+
+---
+
+## Exercício 5 — Aplicação do Teorema da Função Inversa
+
+Seja $f(x) = \ln\!\left(x + \sqrt{x^2-a^2}\right)$ do Exercício 4. Pelo Exercício 4, $f'(x) = 1/\sqrt{x^2-a^2} > 0$, logo $f$ é estritamente crescente e possui inversa $f^{-1}$.
+
+**a) Calcular $(f^{-1})'(y)$.**
+
+Pelo Teorema da Função Inversa, sendo $y = f(x)$:
+
+$$(f^{-1})'(y) = \frac{1}{f'(x)} = \sqrt{x^2 - a^2}.$$
+
+**b) Expressar em termos de $y$.**
+
+De $y = \ln(x+\sqrt{x^2-a^2})$ temos $e^y = x + \sqrt{x^2-a^2}$. Também:
+
+$$x - \sqrt{x^2-a^2} = \frac{(x-\sqrt{x^2-a^2})(x+\sqrt{x^2-a^2})}{x+\sqrt{x^2-a^2}} = \frac{a^2}{e^y}.$$
+
+Somando: $2x = e^y + a^2 e^{-y}$, ou seja, $x = f^{-1}(y) = \dfrac{e^y + a^2 e^{-y}}{2} = a\cosh\!\left(\frac{y}{a}\right)$ para $a=1$.
+
+Portanto:
+
+$$\sqrt{x^2-a^2} = \sqrt{\left(\frac{e^y+a^2 e^{-y}}{2}\right)^2 - a^2},$$
+
+e para $a = 1$: $f^{-1}(y) = \cosh(y)$ e $(f^{-1})'(y) = \sinh(y) = \sqrt{\cosh^2 y - 1}$.
+
+$$\boxed{(f^{-1})'(y) = \sqrt{(f^{-1}(y))^2 - a^2}.}$$
+
+---
+
+```{r}
+#| label: fig-monitoria6
+#| fig-cap: "Exercícios da Monitoria 6. À esquerda: $f(x) = \\ln(\\sqrt{x})\\cdot\\sqrt{x+1}$ e sua derivada. À direita: $f(x) = \\ln(x+\\sqrt{x^2-1})$ e sua derivada $f'(x)=1/\\sqrt{x^2-1}$."
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 4.5
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+
+# Exercício 1: f(x) = ln(sqrt(x)) * sqrt(x+1)
+x1 <- seq(0.05, 4, length.out = 500)
+df1 <- data.frame(
+  x  = x1,
+  f  = log(sqrt(x1)) * sqrt(x1 + 1),
+  fp = (x1 + 1 + (x1/2)*log(x1)) / (2*x1*sqrt(x1+1))
+)
+df1 <- subset(df1, abs(fp) < 5)
+
+p1 <- ggplot(df1, aes(x)) +
+  geom_line(aes(y = f,  color = "f(x) = ln(√x)·√(x+1)"), linewidth = 1.1) +
+  geom_line(aes(y = fp, color = "f'(x)"),                 linewidth = 1.1, linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(-1.5, 2.5)) +
+  scale_color_manual(values = c("f(x) = ln(√x)·√(x+1)" = "#440154",
+                                 "f'(x)"                = "#31688e")) +
+  labs(title = expression(f(x) == ln(sqrt(x)) * sqrt(x+1)),
+       x = "x", y = "", color = NULL) +
+  base_t + theme(legend.position = "bottom")
+
+# Exercício 4: f(x) = ln(x + sqrt(x^2 - 1)), a=1
+x2 <- seq(1.01, 5, length.out = 500)
+df2 <- data.frame(
+  x  = x2,
+  f  = log(x2 + sqrt(x2^2 - 1)),
+  fp = 1/sqrt(x2^2 - 1)
+)
+df2 <- subset(df2, fp < 10)
+
+p2 <- ggplot(df2, aes(x)) +
+  geom_line(aes(y = f,  color = "ln(x + √(x²−1))"), linewidth = 1.1) +
+  geom_line(aes(y = fp, color = "1/√(x²−1)"),        linewidth = 1.1, linetype = "dashed") +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  coord_cartesian(ylim = c(0, 5)) +
+  scale_color_manual(values = c("ln(x + √(x²−1))" = "#35b779",
+                                 "1/√(x²−1)"       = "#FDE725")) +
+  labs(title = expression(f(x) == ln(x + sqrt(x^2-1)) ~ "," ~ f*minute(x) == frac(1, sqrt(x^2-1))),
+       x = "x", y = "", color = NULL) +
+  base_t + theme(legend.position = "bottom")
+
+p1 + p2
+```

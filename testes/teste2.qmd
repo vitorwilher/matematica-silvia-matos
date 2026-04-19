@@ -1,0 +1,312 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Testes Anteriores — Teste 2
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Testes Anteriores — Teste 2
+
+## Teste 2 (2026) — 11 de abril de 2026
+
+### Questão 1 — Derivadas
+
+**Utilizando os teoremas de derivação, calcule a derivada das seguintes funções.**
+
+#### a) $f(x) = \dfrac{(x^3-2x)\cdot e^{-x^4+4x}}{x\cdot\sqrt{x+3}}$
+
+**Estratégia:** Regra do quociente, com numerador tratado pela regra do produto e denominador pela regra do produto. A regra da cadeia entra na derivação de $e^{-x^4+4x}$ e de $(x+3)^{1/2}$.
+
+Definimos $N = (x^3-2x)\cdot e^{-x^4+4x}$ e $D = x(x+3)^{1/2}$, de modo que $f = N/D$.
+
+**Derivada do numerador** (regra do produto):
+
+$$N' = (3x^2-2)\,e^{-x^4+4x} + (x^3-2x)\cdot e^{-x^4+4x}\cdot(-4x^3+4)$$
+$$= e^{-x^4+4x}\bigl[(3x^2-2) + (x^3-2x)(4-4x^3)\bigr]$$
+$$= e^{-x^4+4x}\bigl[-4x^6+8x^4+4x^3+3x^2-8x-2\bigr].$$
+
+**Derivada do denominador** (regra do produto):
+
+$$D' = (x+3)^{1/2} + x\cdot\frac{1}{2}(x+3)^{-1/2} = \frac{2(x+3)+x}{2\sqrt{x+3}} = \frac{3(x+2)}{2\sqrt{x+3}}.$$
+
+**Aplicando a regra do quociente** com $D^2 = x^2(x+3)$:
+
+$$f'(x) = \frac{N'D - ND'}{D^2}$$
+
+$$= \frac{e^{-x^4+4x}\bigl[-4x^6+8x^4+4x^3+3x^2-8x-2\bigr]\cdot x\sqrt{x+3} \;-\; (x^3-2x)\,e^{-x^4+4x}\cdot\dfrac{3(x+2)}{2\sqrt{x+3}}}{x^2(x+3)}.$$
+
+Fatorando $e^{-x^4+4x}$ e colocando sobre denominador comum $2\sqrt{x+3}$:
+
+$$\boxed{f'(x) = \frac{e^{-x^4+4x}}{2x(x+3)^{3/2}}\left[2(x+3)(-4x^6+8x^4+4x^3+3x^2-8x-2) - 3(x^2-2)(x+2)\right].}$$
+
+---
+
+#### b) $f(x) = \ln\!\bigl(x + e^{x+x^2}\bigr)\cdot\sqrt{3-x^3} + e^{x+\ln x}$
+
+**Simplificação prévia.** Usando $e^{x+\ln x} = e^x\cdot e^{\ln x} = xe^x$, reescrevemos:
+
+$$f(x) = \underbrace{\ln(x+e^{x+x^2})}_{A}\cdot\underbrace{(3-x^3)^{1/2}}_{B} + xe^x.$$
+
+**Derivadas de cada peça:**
+
+$$A' = \frac{\bigl[x+e^{x+x^2}\bigr]'}{x+e^{x+x^2}} = \frac{1+(1+2x)\,e^{x+x^2}}{x+e^{x+x^2}},$$
+
+$$B' = \frac{1}{2}(3-x^3)^{-1/2}\cdot(-3x^2) = -\frac{3x^2}{2\sqrt{3-x^3}},$$
+
+$$(xe^x)' = e^x + xe^x = (1+x)e^x.$$
+
+**Aplicando a regra do produto em $AB$ e somando $(xe^x)'$:**
+
+$$\boxed{f'(x) = \frac{1+(1+2x)e^{x+x^2}}{x+e^{x+x^2}}\cdot\sqrt{3-x^3} - \frac{3x^2\ln(x+e^{x+x^2})}{2\sqrt{3-x^3}} + (1+x)e^x.}$$
+
+---
+
+### Questão 2 — Integrais Indefinidas
+
+#### a) $\displaystyle\int \frac{2x-x^2}{(1+3x^2-x^3)^3}\,dx$
+
+**Substituição.** Identificamos $u = 1+3x^2-x^3$. Então:
+
+$$du = (6x-3x^2)\,dx = 3(2x-x^2)\,dx \;\Rightarrow\; (2x-x^2)\,dx = \frac{du}{3}.$$
+
+Substituindo:
+
+$$\int \frac{2x-x^2}{(1+3x^2-x^3)^3}dx = \frac{1}{3}\int u^{-3}\,du = \frac{1}{3}\cdot\frac{u^{-2}}{-2}+C = -\frac{1}{6u^2}+C.$$
+
+$$\boxed{\int \frac{2x-x^2}{(1+3x^2-x^3)^3}dx = -\frac{1}{6(1+3x^2-x^3)^2}+C.}$$
+
+---
+
+#### b) $\displaystyle\int \frac{x-5}{x+3}\,dx$
+
+**Divisão do integrando.** Reescrevemos o numerador em termos do denominador:
+
+$$\frac{x-5}{x+3} = \frac{(x+3)-8}{x+3} = 1 - \frac{8}{x+3}.$$
+
+Integrando:
+
+$$\int\!\left(1-\frac{8}{x+3}\right)dx = x - 8\ln|x+3| + C.$$
+
+$$\boxed{\int\frac{x-5}{x+3}\,dx = x - 8\ln|x+3| + C.}$$
+
+---
+
+### Questão 3 — Integrais Definidas
+
+#### a) $\displaystyle\int_0^1 (x^3+4)^4\,x^2\,dx$
+
+**Substituição com troca de limites.** Fazemos $u = x^3+4$, $du = 3x^2\,dx$:
+
+$$x^2\,dx = \frac{du}{3}; \qquad x=0\Rightarrow u=4,\quad x=1\Rightarrow u=5.$$
+
+$$\int_0^1(x^3+4)^4 x^2\,dx = \frac{1}{3}\int_4^5 u^4\,du = \frac{1}{3}\left[\frac{u^5}{5}\right]_4^5 = \frac{1}{15}(5^5-4^5) = \frac{3125-1024}{15}.$$
+
+$$\boxed{\int_0^1(x^3+4)^4 x^2\,dx = \frac{2101}{15} \approx 140{,}07.}$$
+
+---
+
+#### b) $\displaystyle\int_1^2 \frac{\sqrt{2+\tfrac{2}{x^2}}}{x^3}\,dx$
+
+**Substituição com troca de limites.** Fazemos $u = 2+\dfrac{2}{x^2}$. Então:
+
+$$du = -\frac{4}{x^3}\,dx \;\Rightarrow\; \frac{dx}{x^3} = -\frac{du}{4};\qquad x=1\Rightarrow u=4,\quad x=2\Rightarrow u=\tfrac{5}{2}.$$
+
+$$\int_1^2\frac{\sqrt{2+2/x^2}}{x^3}dx = \int_4^{5/2}\sqrt{u}\left(-\frac{du}{4}\right) = \frac{1}{4}\int_{5/2}^4 u^{1/2}\,du = \frac{1}{4}\cdot\frac{2u^{3/2}}{3}\Bigg|_{5/2}^4 = \frac{1}{6}\left[4^{3/2}-\left(\frac{5}{2}\right)^{3/2}\right].$$
+
+Calculando cada termo:
+
+$$4^{3/2} = 8, \qquad \left(\frac{5}{2}\right)^{3/2} = \frac{5^{3/2}}{2^{3/2}} = \frac{5\sqrt{5}}{2\sqrt{2}} = \frac{5\sqrt{10}}{4}.$$
+
+$$\int_1^2\frac{\sqrt{2+2/x^2}}{x^3}dx = \frac{1}{6}\left(8-\frac{5\sqrt{10}}{4}\right) = \frac{32-5\sqrt{10}}{24}.$$
+
+$$\boxed{\int_1^2\frac{\sqrt{2+2/x^2}}{x^3}dx = \frac{32-5\sqrt{10}}{24} \approx 0{,}675.}$$
+
+```{r}
+#| label: fig-teste2-verificacao
+#| fig-cap: "Verificação numérica: Questão 3a (esquerda) e Questão 3b (direita). As áreas sombreadas correspondem aos valores exatos obtidos pela Regra de Barrow."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 4
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12)
+
+# Q3a
+x3a <- seq(0, 1.1, length.out = 300)
+xf3a <- seq(0, 1, length.out = 200)
+f3a  <- function(x) (x^3+4)^4 * x^2
+df3a  <- data.frame(x = x3a,  y = f3a(x3a))
+dff3a <- data.frame(x = xf3a, y = f3a(xf3a))
+
+p1 <- ggplot() +
+  geom_area(data = dff3a, aes(x, y), fill = "#440154", alpha = 0.4) +
+  geom_line(data = df3a,  aes(x, y), color = "#440154", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = 0.5, y = 80, label = "2101/15 ≈ 140.07",
+           size = 3.8, color = "#440154", fontface = "bold") +
+  labs(title = expression(integral((x^3+4)^4*x^2*dx, 0, 1) == frac(2101,15)),
+       x = "x", y = "y") + base_t
+
+# Q3b
+x3b <- seq(1, 2.1, length.out = 300)
+xf3b <- seq(1, 2, length.out = 200)
+f3b  <- function(x) sqrt(2 + 2/x^2) / x^3
+df3b  <- data.frame(x = x3b,  y = f3b(x3b))
+dff3b <- data.frame(x = xf3b, y = f3b(xf3b))
+
+val3b <- (32 - 5*sqrt(10)) / 24
+
+p2 <- ggplot() +
+  geom_area(data = dff3b, aes(x, y), fill = "#31688e", alpha = 0.4) +
+  geom_line(data = df3b,  aes(x, y), color = "#31688e", linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  annotate("text", x = 1.5, y = 1.2,
+           label = sprintf("(32-5√10)/24 ≈ %.3f", val3b),
+           size = 3.8, color = "#31688e", fontface = "bold") +
+  labs(title = expression(integral(frac(sqrt(2+2/x^2), x^3)*dx, 1, 2) == frac(32-5*sqrt(10), 24)),
+       x = "x", y = "y") + base_t
+
+p1 + p2
+```
+
+---
+
+## Teste 2 (2025) — 7 de abril de 2025
+
+### Questão 1 — Derivadas
+
+**Utilizando os teoremas de derivação, calcule a derivada das seguintes funções.**
+
+#### a) $f(x) = \ln(x^2+1)\cdot\sqrt{x^3+2}$
+
+**Estratégia:** Regra do produto com cadeia em cada fator.
+
+Definimos $A = \ln(x^2+1)$ e $B = (x^3+2)^{1/2}$:
+
+$$A' = \frac{2x}{x^2+1}, \qquad B' = \frac{1}{2}(x^3+2)^{-1/2}\cdot 3x^2 = \frac{3x^2}{2\sqrt{x^3+2}}.$$
+
+Pela regra do produto:
+
+$$\boxed{f'(x) = \frac{2x\,\sqrt{x^3+2}}{x^2+1} + \frac{3x^2\ln(x^2+1)}{2\sqrt{x^3+2}}.}$$
+
+---
+
+#### b) $g(x) = \dfrac{(x^2+x+1)^3}{x\cdot\ln(x^5)}$
+
+**Simplificação prévia.** Como $\ln(x^5) = 5\ln x$:
+
+$$g(x) = \frac{(x^2+x+1)^3}{5x\ln x}.$$
+
+**Derivadas das partes** com $N=(x^2+x+1)^3$ e $D=5x\ln x$:
+
+$$N' = 3(x^2+x+1)^2(2x+1),$$
+
+$$D' = 5\ln x + 5x\cdot\frac{1}{x} = 5(\ln x + 1).$$
+
+**Regra do quociente**, fatorando $(x^2+x+1)^2$ e $5$ do numerador:
+
+$$g'(x) = \frac{N'D - ND'}{D^2} = \frac{3(x^2+x+1)^2(2x+1)\cdot 5x\ln x - (x^2+x+1)^3\cdot 5(\ln x+1)}{25x^2\ln^2 x}$$
+
+$$\boxed{g'(x) = \frac{(x^2+x+1)^2\bigl[3x(2x+1)\ln x - (x^2+x+1)(\ln x+1)\bigr]}{5x^2\ln^2 x}.}$$
+
+---
+
+### Questão 2 — Integrais
+
+#### a) $\displaystyle\int \frac{x^2}{(x^3+1)^2}\,dx$
+
+**Substituição.** Fazemos $u = x^3+1$, $du = 3x^2\,dx$, portanto $x^2\,dx = du/3$:
+
+$$\int\frac{x^2}{(x^3+1)^2}\,dx = \frac{1}{3}\int u^{-2}\,du = \frac{1}{3}\cdot\frac{u^{-1}}{-1}+C = -\frac{1}{3u}+C.$$
+
+$$\boxed{\int\frac{x^2}{(x^3+1)^2}\,dx = -\frac{1}{3(x^3+1)}+C.}$$
+
+---
+
+#### b) $\displaystyle\int_2^3 \frac{x}{x-1}\,dx$
+
+**Divisão do integrando:**
+
+$$\frac{x}{x-1} = \frac{(x-1)+1}{x-1} = 1 + \frac{1}{x-1}.$$
+
+Integrando e aplicando a Regra de Barrow:
+
+$$\int_2^3\frac{x}{x-1}\,dx = \Bigl[x+\ln|x-1|\Bigr]_2^3 = (3+\ln 2)-(2+\ln 1) = 1+\ln 2.$$
+
+$$\boxed{\int_2^3\frac{x}{x-1}\,dx = 1+\ln 2 \approx 1{,}693.}$$
+
+---
+
+### Questão 3 — Função Inversa de $f(x) = \dfrac{1}{x-1}$
+
+#### a) Existência, cálculo e verificação de $f^{-1}$
+
+**Injetividade.** $f$ é diferenciável com $f'(x) = -(x-1)^{-2} < 0$ para todo $x \neq 1$. Sendo estritamente decrescente em cada ramo, $f$ é **injetiva** em $\mathrm{Dom}(f) = \mathbb{R}\setminus\{1\}$.
+
+Formalmente: se $f(x_1)=f(x_2)$, então $\dfrac{1}{x_1-1}=\dfrac{1}{x_2-1}$, logo $x_1-1=x_2-1$, ou seja $x_1=x_2$. $\blacksquare$
+
+**Cálculo de $f^{-1}$.** Escrevemos $y = \dfrac{1}{x-1}$ e isolamos $x$:
+
+$$y(x-1)=1 \;\Rightarrow\; x-1=\frac{1}{y} \;\Rightarrow\; x = 1+\frac{1}{y}.$$
+
+$$\boxed{f^{-1}(y) = 1+\frac{1}{y} = \frac{y+1}{y}, \quad y \neq 0.}$$
+
+**Verificação.** $f\!\bigl(f^{-1}(y)\bigr) = f\!\left(1+\dfrac{1}{y}\right) = \dfrac{1}{\left(1+\frac{1}{y}\right)-1} = \dfrac{1}{1/y} = y$. $\checkmark$
+
+#### b) Esboço de $f$ e $f^{-1}$ no mesmo plano
+
+O gráfico de $f^{-1}$ é a reflexão do gráfico de $f$ em relação à reta $y = x$.
+
+- $f(x) = \dfrac{1}{x-1}$: hipérbole com assíntota vertical $x=1$ e assíntota horizontal $y=0$.
+- $f^{-1}(x) = 1+\dfrac{1}{x}$: hipérbole com assíntota vertical $x=0$ e assíntota horizontal $y=1$.
+
+```{r}
+#| label: fig-teste2-2025-q3
+#| fig-cap: "Funções $f(x)=1/(x-1)$ e $f^{-1}(x)=1+1/x$. Os gráficos são reflexões um do outro em relação à reta $y=x$ (tracejada em cinza)."
+#| fig-align: center
+#| fig-width: 7
+#| fig-height: 5.5
+
+library(ggplot2)
+
+xl <- seq(-4, 0.85, length.out = 300)
+xr <- seq(1.15, 4,  length.out = 300)
+
+df_f <- rbind(data.frame(x = xl, y = 1/(xl-1), group="f"),
+              data.frame(x = xr, y = 1/(xr-1), group="f"))
+
+xl2 <- seq(-4, -0.15, length.out = 300)
+xr2 <- seq(0.15, 4,   length.out = 300)
+
+df_fi <- rbind(data.frame(x = xl2, y = 1 + 1/xl2, group="fi"),
+               data.frame(x = xr2, y = 1 + 1/xr2, group="fi"))
+
+x_diag <- seq(-4, 4, length.out = 100)
+df_d   <- data.frame(x = x_diag, y = x_diag)
+
+ggplot() +
+  geom_line(data = df_d, aes(x, y), color = "gray60", linewidth = 0.6,
+            linetype = "dashed") +
+  geom_line(data = df_f,  aes(x, y, group = group), color = "#440154", linewidth = 1.1) +
+  geom_line(data = df_fi, aes(x, y, group = group), color = "#31688e", linewidth = 1.1) +
+  geom_vline(xintercept = 1, linetype = "dotted", color = "#440154", linewidth = 0.6) +
+  geom_hline(yintercept = 0, linetype = "dotted", color = "#440154", linewidth = 0.6) +
+  geom_vline(xintercept = 0, linetype = "dotted", color = "#31688e", linewidth = 0.6) +
+  geom_hline(yintercept = 1, linetype = "dotted", color = "#31688e", linewidth = 0.6) +
+  annotate("text", x = 3.2, y = 0.6, label = "f(x) = 1/(x-1)",
+           color = "#440154", size = 3.8) +
+  annotate("text", x = 2.5, y = 1.8, label = "f⁻¹(x) = 1 + 1/x",
+           color = "#31688e", size = 3.8) +
+  annotate("text", x = 3.5, y = 3.2, label = "y = x",
+           color = "gray50", size = 3.5) +
+  coord_cartesian(xlim = c(-4,4), ylim = c(-4,4)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 13)
+```

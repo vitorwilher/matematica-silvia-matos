@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vitor Wilher">
 
-<title>quarto-input32d9fae38f446aae – Matemática — EPGE/FGV</title>
+<title>quarto-input2540575117f81307 – Matemática — EPGE/FGV</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,10 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -80,18 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -137,9 +121,10 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,7 +139,6 @@ window.Quarto = {
     <span class="navbar-title">Matemática — EPGE/FGV</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Procurar"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -231,7 +215,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://epge.fgv.br"> 
-<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="35"></span></a>
+<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="55"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -243,62 +227,8 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Nesta página</h2>
-   
-  <ul>
-  <li><a href="#derivadas" id="toc-derivadas" class="nav-link active" data-scroll-target="#derivadas"><span class="header-section-number">1</span> Derivadas</a>
-  <ul class="collapse">
-  <li><a href="#motivação-econômica" id="toc-motivação-econômica" class="nav-link" data-scroll-target="#motivação-econômica"><span class="header-section-number">1.1</span> Motivação Econômica</a></li>
-  <li><a href="#definição-formal" id="toc-definição-formal" class="nav-link" data-scroll-target="#definição-formal"><span class="header-section-number">1.2</span> Definição Formal</a>
-  <ul class="collapse">
-  <li><a href="#taxa-de-variação-média" id="toc-taxa-de-variação-média" class="nav-link" data-scroll-target="#taxa-de-variação-média"><span class="header-section-number">1.2.1</span> Taxa de Variação Média</a></li>
-  <li><a href="#derivada" id="toc-derivada" class="nav-link" data-scroll-target="#derivada"><span class="header-section-number">1.2.2</span> Derivada</a></li>
-  <li><a href="#notação" id="toc-notação" class="nav-link" data-scroll-target="#notação"><span class="header-section-number">1.2.3</span> Notação</a></li>
-  <li><a href="#exemplo-fx-x2" id="toc-exemplo-fx-x2" class="nav-link" data-scroll-target="#exemplo-fx-x2"><span class="header-section-number">1.2.4</span> Exemplo: <span class="math inline">\(f(x) = x^2\)</span></a></li>
-  </ul></li>
-  <li><a href="#interpretação-econômica" id="toc-interpretação-econômica" class="nav-link" data-scroll-target="#interpretação-econômica"><span class="header-section-number">1.3</span> Interpretação Econômica</a>
-  <ul class="collapse">
-  <li><a href="#exemplo-custo-marginal" id="toc-exemplo-custo-marginal" class="nav-link" data-scroll-target="#exemplo-custo-marginal"><span class="header-section-number">1.3.1</span> Exemplo: Custo Marginal</a></li>
-  </ul></li>
-  <li><a href="#regras-de-derivação" id="toc-regras-de-derivação" class="nav-link" data-scroll-target="#regras-de-derivação"><span class="header-section-number">1.4</span> Regras de Derivação</a>
-  <ul class="collapse">
-  <li><a href="#derivadas-elementares" id="toc-derivadas-elementares" class="nav-link" data-scroll-target="#derivadas-elementares"><span class="header-section-number">1.4.1</span> Derivadas Elementares</a></li>
-  <li><a href="#regras-algébricas" id="toc-regras-algébricas" class="nav-link" data-scroll-target="#regras-algébricas"><span class="header-section-number">1.4.2</span> Regras Algébricas</a></li>
-  <li><a href="#exemplos" id="toc-exemplos" class="nav-link" data-scroll-target="#exemplos"><span class="header-section-number">1.4.3</span> Exemplos</a></li>
-  <li><a href="#derivadas-pela-definição-de-limite" id="toc-derivadas-pela-definição-de-limite" class="nav-link" data-scroll-target="#derivadas-pela-definição-de-limite"><span class="header-section-number">1.4.4</span> Derivadas pela Definição de Limite</a></li>
-  </ul></li>
-  <li><a href="#regra-da-cadeia" id="toc-regra-da-cadeia" class="nav-link" data-scroll-target="#regra-da-cadeia"><span class="header-section-number">1.5</span> Regra da Cadeia</a>
-  <ul class="collapse">
-  <li><a href="#definição" id="toc-definição" class="nav-link" data-scroll-target="#definição"><span class="header-section-number">1.5.1</span> Definição</a></li>
-  <li><a href="#prova" id="toc-prova" class="nav-link" data-scroll-target="#prova"><span class="header-section-number">1.5.2</span> Prova</a></li>
-  <li><a href="#intuição-geométrica" id="toc-intuição-geométrica" class="nav-link" data-scroll-target="#intuição-geométrica"><span class="header-section-number">1.5.3</span> Intuição Geométrica</a></li>
-  <li><a href="#exemplos-1" id="toc-exemplos-1" class="nav-link" data-scroll-target="#exemplos-1"><span class="header-section-number">1.5.4</span> Exemplos</a></li>
-  <li><a href="#aplicação-econômica-elasticidade" id="toc-aplicação-econômica-elasticidade" class="nav-link" data-scroll-target="#aplicação-econômica-elasticidade"><span class="header-section-number">1.5.5</span> Aplicação Econômica: Elasticidade</a></li>
-  </ul></li>
-  <li><a href="#derivada-segunda-e-concavidade" id="toc-derivada-segunda-e-concavidade" class="nav-link" data-scroll-target="#derivada-segunda-e-concavidade"><span class="header-section-number">1.6</span> Derivada Segunda e Concavidade</a>
-  <ul class="collapse">
-  <li><a href="#definição-1" id="toc-definição-1" class="nav-link" data-scroll-target="#definição-1"><span class="header-section-number">1.6.1</span> Definição</a></li>
-  <li><a href="#concavidade" id="toc-concavidade" class="nav-link" data-scroll-target="#concavidade"><span class="header-section-number">1.6.2</span> Concavidade</a></li>
-  <li><a href="#exemplo-fx-x3---3x2" id="toc-exemplo-fx-x3---3x2" class="nav-link" data-scroll-target="#exemplo-fx-x3---3x2"><span class="header-section-number">1.6.3</span> Exemplo: <span class="math inline">\(f(x) = x^3 - 3x^2\)</span></a></li>
-  </ul></li>
-  <li><a href="#gráficos-de-funções" id="toc-gráficos-de-funções" class="nav-link" data-scroll-target="#gráficos-de-funções"><span class="header-section-number">1.7</span> Gráficos de Funções</a>
-  <ul class="collapse">
-  <li><a href="#critérios-de-análise" id="toc-critérios-de-análise" class="nav-link" data-scroll-target="#critérios-de-análise"><span class="header-section-number">1.7.1</span> Critérios de Análise</a></li>
-  <li><a href="#exemplo-completo-fx-x3---3x2" id="toc-exemplo-completo-fx-x3---3x2" class="nav-link" data-scroll-target="#exemplo-completo-fx-x3---3x2"><span class="header-section-number">1.7.2</span> Exemplo Completo: <span class="math inline">\(f(x) = x^3 - 3x^2\)</span></a></li>
-  <li><a href="#condições-necessárias-vs.-suficientes" id="toc-condições-necessárias-vs.-suficientes" class="nav-link" data-scroll-target="#condições-necessárias-vs.-suficientes"><span class="header-section-number">1.7.3</span> Condições Necessárias vs.&nbsp;Suficientes</a></li>
-  <li><a href="#funções-definidas-por-partes" id="toc-funções-definidas-por-partes" class="nav-link" data-scroll-target="#funções-definidas-por-partes"><span class="header-section-number">1.7.4</span> Funções Definidas por Partes</a></li>
-  <li><a href="#exemplos-adicionais-de-análise-completa" id="toc-exemplos-adicionais-de-análise-completa" class="nav-link" data-scroll-target="#exemplos-adicionais-de-análise-completa"><span class="header-section-number">1.7.5</span> Exemplos Adicionais de Análise Completa</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 

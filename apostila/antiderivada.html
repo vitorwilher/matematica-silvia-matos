@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vitor Wilher">
 
-<title>quarto-inputf53e8cf6a04c328b – Matemática — EPGE/FGV</title>
+<title>quarto-inputa53ace78a85943d1 – Matemática — EPGE/FGV</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,10 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -80,18 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -137,9 +121,10 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,7 +139,6 @@ window.Quarto = {
     <span class="navbar-title">Matemática — EPGE/FGV</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Procurar"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -231,7 +215,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://epge.fgv.br"> 
-<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="35"></span></a>
+<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="55"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -243,43 +227,8 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Nesta página</h2>
-   
-  <ul>
-  <li><a href="#antiderivadas-integral-indefinida" id="toc-antiderivadas-integral-indefinida" class="nav-link active" data-scroll-target="#antiderivadas-integral-indefinida"><span class="header-section-number">1</span> Antiderivadas (Integral Indefinida)</a>
-  <ul class="collapse">
-  <li><a href="#motivação-econômica" id="toc-motivação-econômica" class="nav-link" data-scroll-target="#motivação-econômica"><span class="header-section-number">1.1</span> Motivação Econômica</a></li>
-  <li><a href="#definição" id="toc-definição" class="nav-link" data-scroll-target="#definição"><span class="header-section-number">1.2</span> Definição</a></li>
-  <li><a href="#regras-de-antiderivação" id="toc-regras-de-antiderivação" class="nav-link" data-scroll-target="#regras-de-antiderivação"><span class="header-section-number">1.3</span> Regras de Antiderivação</a>
-  <ul class="collapse">
-  <li><a href="#potências" id="toc-potências" class="nav-link" data-scroll-target="#potências"><span class="header-section-number">1.3.1</span> Potências</a></li>
-  <li><a href="#linearidade" id="toc-linearidade" class="nav-link" data-scroll-target="#linearidade"><span class="header-section-number">1.3.2</span> Linearidade</a></li>
-  <li><a href="#tabela-resumo" id="toc-tabela-resumo" class="nav-link" data-scroll-target="#tabela-resumo"><span class="header-section-number">1.3.3</span> Tabela Resumo</a></li>
-  </ul></li>
-  <li><a href="#exercícios-resolvidos" id="toc-exercícios-resolvidos" class="nav-link" data-scroll-target="#exercícios-resolvidos"><span class="header-section-number">1.4</span> Exercícios Resolvidos</a>
-  <ul class="collapse">
-  <li><a href="#exercício-4-displaystyleint-frac3x5dx" id="toc-exercício-4-displaystyleint-frac3x5dx" class="nav-link" data-scroll-target="#exercício-4-displaystyleint-frac3x5dx"><span class="header-section-number">1.4.1</span> Exercício 4: <span class="math inline">\(\displaystyle\int \frac{3}{x^5}\,dx\)</span></a></li>
-  <li><a href="#exercício-6-displaystyleint-10sqrt3x2dx" id="toc-exercício-6-displaystyleint-10sqrt3x2dx" class="nav-link" data-scroll-target="#exercício-6-displaystyleint-10sqrt3x2dx"><span class="header-section-number">1.4.2</span> Exercício 6: <span class="math inline">\(\displaystyle\int 10\sqrt[3]{x^2}\,dx\)</span></a></li>
-  <li><a href="#exercício-28-displaystyleint-frac27x3---1sqrt3xdx" id="toc-exercício-28-displaystyleint-frac27x3---1sqrt3xdx" class="nav-link" data-scroll-target="#exercício-28-displaystyleint-frac27x3---1sqrt3xdx"><span class="header-section-number">1.4.3</span> Exercício 28: <span class="math inline">\(\displaystyle\int \frac{27x^3 - 1}{\sqrt[3]{x}}\,dx\)</span></a></li>
-  <li><a href="#exercício-27-extra-displaystyleint-sqrtxleftx-frac1xrightdx" id="toc-exercício-27-extra-displaystyleint-sqrtxleftx-frac1xrightdx" class="nav-link" data-scroll-target="#exercício-27-extra-displaystyleint-sqrtxleftx-frac1xrightdx"><span class="header-section-number">1.4.4</span> Exercício 27-extra: <span class="math inline">\(\displaystyle\int \sqrt{x}\left(x + \frac{1}{x}\right)dx\)</span></a></li>
-  </ul></li>
-  <li><a href="#método-de-substituição" id="toc-método-de-substituição" class="nav-link" data-scroll-target="#método-de-substituição"><span class="header-section-number">1.5</span> Método de Substituição</a>
-  <ul class="collapse">
-  <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação"><span class="header-section-number">1.5.1</span> Motivação</a></li>
-  <li><a href="#exemplo-1-displaystyleint-sqrt3x9dx" id="toc-exemplo-1-displaystyleint-sqrt3x9dx" class="nav-link" data-scroll-target="#exemplo-1-displaystyleint-sqrt3x9dx"><span class="header-section-number">1.5.2</span> Exemplo 1: <span class="math inline">\(\displaystyle\int \sqrt{3x+9}\,dx\)</span></a></li>
-  <li><a href="#exemplo-2-displaystyleint-sqrt1---9xdx" id="toc-exemplo-2-displaystyleint-sqrt1---9xdx" class="nav-link" data-scroll-target="#exemplo-2-displaystyleint-sqrt1---9xdx"><span class="header-section-number">1.5.3</span> Exemplo 2: <span class="math inline">\(\displaystyle\int \sqrt{1 - 9x}\,dx\)</span></a></li>
-  <li><a href="#exemplo-3-displaystyleint-xsqrtx2dx" id="toc-exemplo-3-displaystyleint-xsqrtx2dx" class="nav-link" data-scroll-target="#exemplo-3-displaystyleint-xsqrtx2dx"><span class="header-section-number">1.5.4</span> Exemplo 3: <span class="math inline">\(\displaystyle\int x\sqrt{x+2}\,dx\)</span></a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 

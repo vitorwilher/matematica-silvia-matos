@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vitor Wilher">
 
-<title>quarto-input6d5aa41190196c5f – Matemática — EPGE/FGV</title>
+<title>quarto-input96bcf31f7b04c693 – Matemática — EPGE/FGV</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,10 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -80,18 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -137,9 +121,10 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,7 +139,6 @@ window.Quarto = {
     <span class="navbar-title">Matemática — EPGE/FGV</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Procurar"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -231,7 +215,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://epge.fgv.br"> 
-<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="35"></span></a>
+<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="55"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -243,45 +227,8 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Nesta página</h2>
-   
-  <ul>
-  <li><a href="#função-logaritmo-natural" id="toc-função-logaritmo-natural" class="nav-link active" data-scroll-target="#função-logaritmo-natural"><span class="header-section-number">1</span> Função Logaritmo Natural</a>
-  <ul class="collapse">
-  <li><a href="#motivação-econômica" id="toc-motivação-econômica" class="nav-link" data-scroll-target="#motivação-econômica"><span class="header-section-number">1.1</span> Motivação Econômica</a></li>
-  <li><a href="#definição-via-integral" id="toc-definição-via-integral" class="nav-link" data-scroll-target="#definição-via-integral"><span class="header-section-number">1.2</span> Definição via Integral</a></li>
-  <li><a href="#propriedades-do-logaritmo-natural" id="toc-propriedades-do-logaritmo-natural" class="nav-link" data-scroll-target="#propriedades-do-logaritmo-natural"><span class="header-section-number">1.3</span> Propriedades do Logaritmo Natural</a>
-  <ul class="collapse">
-  <li><a href="#prova-de-lnab-ln-a-ln-b" id="toc-prova-de-lnab-ln-a-ln-b" class="nav-link" data-scroll-target="#prova-de-lnab-ln-a-ln-b"><span class="header-section-number">1.3.1</span> Prova de <span class="math inline">\(\ln(ab) = \ln a + \ln b\)</span></a></li>
-  <li><a href="#prova-de-lnab-ln-a---ln-b" id="toc-prova-de-lnab-ln-a---ln-b" class="nav-link" data-scroll-target="#prova-de-lnab-ln-a---ln-b"><span class="header-section-number">1.3.2</span> Prova de <span class="math inline">\(\ln(a/b) = \ln a - \ln b\)</span></a></li>
-  <li><a href="#prova-de-ln-ar-rln-a-para-r-inteiro" id="toc-prova-de-ln-ar-rln-a-para-r-inteiro" class="nav-link" data-scroll-target="#prova-de-ln-ar-rln-a-para-r-inteiro"><span class="header-section-number">1.3.3</span> Prova de <span class="math inline">\(\ln a^r = r\ln a\)</span> (para <span class="math inline">\(r\)</span> inteiro)</a></li>
-  </ul></li>
-  <li><a href="#antiderivada-de-1x" id="toc-antiderivada-de-1x" class="nav-link" data-scroll-target="#antiderivada-de-1x"><span class="header-section-number">1.4</span> Antiderivada de <span class="math inline">\(1/x\)</span></a></li>
-  <li><a href="#exercícios-derivadas-com-ln" id="toc-exercícios-derivadas-com-ln" class="nav-link" data-scroll-target="#exercícios-derivadas-com-ln"><span class="header-section-number">1.5</span> Exercícios — Derivadas com <span class="math inline">\(\ln\)</span></a>
-  <ul class="collapse">
-  <li><a href="#exercício-1-fx-ln4-5x" id="toc-exercício-1-fx-ln4-5x" class="nav-link" data-scroll-target="#exercício-1-fx-ln4-5x"><span class="header-section-number">1.5.1</span> Exercício 1 — <span class="math inline">\(f(x) = \ln(4 + 5x)\)</span></a></li>
-  <li><a href="#exercício-2-fx-xln-x" id="toc-exercício-2-fx-xln-x" class="nav-link" data-scroll-target="#exercício-2-fx-xln-x"><span class="header-section-number">1.5.2</span> Exercício 2 — <span class="math inline">\(f(x) = x\ln x\)</span></a></li>
-  <li><a href="#exercício-3-fx-dfracxln-x" id="toc-exercício-3-fx-dfracxln-x" class="nav-link" data-scroll-target="#exercício-3-fx-dfracxln-x"><span class="header-section-number">1.5.3</span> Exercício 3 — <span class="math inline">\(f(x) = \dfrac{x}{\ln x}\)</span></a></li>
-  <li><a href="#exercício-4-fx-sqrt3ln-x3" id="toc-exercício-4-fx-sqrt3ln-x3" class="nav-link" data-scroll-target="#exercício-4-fx-sqrt3ln-x3"><span class="header-section-number">1.5.4</span> Exercício 4 — <span class="math inline">\(f(x) = \sqrt[3]{\ln x^3}\)</span></a></li>
-  <li><a href="#exercício-5-fx-sqrtx1---lnbigl1-sqrtx1bigr" id="toc-exercício-5-fx-sqrtx1---lnbigl1-sqrtx1bigr" class="nav-link" data-scroll-target="#exercício-5-fx-sqrtx1---lnbigl1-sqrtx1bigr"><span class="header-section-number">1.5.5</span> Exercício 5 — <span class="math inline">\(f(x) = \sqrt{x+1} - \ln\!\bigl(1 + \sqrt{x+1}\bigr)\)</span></a></li>
-  </ul></li>
-  <li><a href="#exercícios-integrais-com-ln" id="toc-exercícios-integrais-com-ln" class="nav-link" data-scroll-target="#exercícios-integrais-com-ln"><span class="header-section-number">1.6</span> Exercícios — Integrais com <span class="math inline">\(\ln\)</span></a>
-  <ul class="collapse">
-  <li><a href="#exercício-6-displaystyleint-fracx2x31dx" id="toc-exercício-6-displaystyleint-fracx2x31dx" class="nav-link" data-scroll-target="#exercício-6-displaystyleint-fracx2x31dx"><span class="header-section-number">1.6.1</span> Exercício 6 — <span class="math inline">\(\displaystyle\int \frac{x^2}{x^3+1}\,dx\)</span></a></li>
-  <li><a href="#exercício-7-displaystyleint-fracdx3---2x" id="toc-exercício-7-displaystyleint-fracdx3---2x" class="nav-link" data-scroll-target="#exercício-7-displaystyleint-fracdx3---2x"><span class="header-section-number">1.6.2</span> Exercício 7 — <span class="math inline">\(\displaystyle\int \frac{dx}{3 - 2x}\)</span></a></li>
-  <li><a href="#exercício-8-displaystyleint-fracxdx2---x2" id="toc-exercício-8-displaystyleint-fracxdx2---x2" class="nav-link" data-scroll-target="#exercício-8-displaystyleint-fracxdx2---x2"><span class="header-section-number">1.6.3</span> Exercício 8 — <span class="math inline">\(\displaystyle\int \frac{x\,dx}{2 - x^2}\)</span></a></li>
-  <li><a href="#exercício-9-displaystyleint-fracln-xxdx" id="toc-exercício-9-displaystyleint-fracln-xxdx" class="nav-link" data-scroll-target="#exercício-9-displaystyleint-fracln-xxdx"><span class="header-section-number">1.6.4</span> Exercício 9 — <span class="math inline">\(\displaystyle\int \frac{\ln x}{x}\,dx\)</span></a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 

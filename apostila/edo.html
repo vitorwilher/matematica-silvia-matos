@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vitor Wilher">
 
-<title>quarto-inputb8c9a537f605367b – Matemática — EPGE/FGV</title>
+<title>quarto-input1aeec2bd71f37054 – Matemática — EPGE/FGV</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,10 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -80,18 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -137,9 +121,10 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,7 +139,6 @@ window.Quarto = {
     <span class="navbar-title">Matemática — EPGE/FGV</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Procurar"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -231,7 +215,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://epge.fgv.br"> 
-<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="35"></span></a>
+<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="55"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -243,61 +227,8 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Nesta página</h2>
-   
-  <ul>
-  <li><a href="#equações-diferenciais-ordinárias" id="toc-equações-diferenciais-ordinárias" class="nav-link active" data-scroll-target="#equações-diferenciais-ordinárias"><span class="header-section-number">1</span> Equações Diferenciais Ordinárias</a>
-  <ul class="collapse">
-  <li><a href="#motivação-econômica" id="toc-motivação-econômica" class="nav-link" data-scroll-target="#motivação-econômica"><span class="header-section-number">1.1</span> Motivação Econômica</a></li>
-  <li><a href="#edo-de-1ª-ordem-com-coeficiente-constante" id="toc-edo-de-1ª-ordem-com-coeficiente-constante" class="nav-link" data-scroll-target="#edo-de-1ª-ordem-com-coeficiente-constante"><span class="header-section-number">1.2</span> EDO de 1ª Ordem com Coeficiente Constante</a>
-  <ul class="collapse">
-  <li><a href="#forma-geral" id="toc-forma-geral" class="nav-link" data-scroll-target="#forma-geral"><span class="header-section-number">1.2.1</span> Forma Geral</a></li>
-  <li><a href="#solução-homogênea" id="toc-solução-homogênea" class="nav-link" data-scroll-target="#solução-homogênea"><span class="header-section-number">1.2.2</span> Solução Homogênea</a></li>
-  <li><a href="#solução-particular" id="toc-solução-particular" class="nav-link" data-scroll-target="#solução-particular"><span class="header-section-number">1.2.3</span> Solução Particular</a></li>
-  <li><a href="#solução-geral-e-condição-inicial" id="toc-solução-geral-e-condição-inicial" class="nav-link" data-scroll-target="#solução-geral-e-condição-inicial"><span class="header-section-number">1.2.4</span> Solução Geral e Condição Inicial</a></li>
-  <li><a href="#estabilidade" id="toc-estabilidade" class="nav-link" data-scroll-target="#estabilidade"><span class="header-section-number">1.2.5</span> Estabilidade</a></li>
-  <li><a href="#diagrama-de-fase" id="toc-diagrama-de-fase" class="nav-link" data-scroll-target="#diagrama-de-fase"><span class="header-section-number">1.2.6</span> Diagrama de Fase</a></li>
-  </ul></li>
-  <li><a href="#edo-de-1ª-ordem-com-coeficiente-variável" id="toc-edo-de-1ª-ordem-com-coeficiente-variável" class="nav-link" data-scroll-target="#edo-de-1ª-ordem-com-coeficiente-variável"><span class="header-section-number">1.3</span> EDO de 1ª Ordem com Coeficiente Variável</a>
-  <ul class="collapse">
-  <li><a href="#forma-geral-1" id="toc-forma-geral-1" class="nav-link" data-scroll-target="#forma-geral-1"><span class="header-section-number">1.3.1</span> Forma Geral</a></li>
-  <li><a href="#método-do-fator-integrante" id="toc-método-do-fator-integrante" class="nav-link" data-scroll-target="#método-do-fator-integrante"><span class="header-section-number">1.3.2</span> Método do Fator Integrante</a></li>
-  <li><a href="#exemplo-dotx-2tx-t2" id="toc-exemplo-dotx-2tx-t2" class="nav-link" data-scroll-target="#exemplo-dotx-2tx-t2"><span class="header-section-number">1.3.3</span> Exemplo — <span class="math inline">\(\dot{x} + 2t\,x = t^2\)</span></a></li>
-  </ul></li>
-  <li><a href="#edo-de-2ª-ordem-com-coeficientes-constantes" id="toc-edo-de-2ª-ordem-com-coeficientes-constantes" class="nav-link" data-scroll-target="#edo-de-2ª-ordem-com-coeficientes-constantes"><span class="header-section-number">1.4</span> EDO de 2ª Ordem com Coeficientes Constantes</a>
-  <ul class="collapse">
-  <li><a href="#forma-geral-2" id="toc-forma-geral-2" class="nav-link" data-scroll-target="#forma-geral-2"><span class="header-section-number">1.4.1</span> Forma Geral</a></li>
-  <li><a href="#solução-homogênea-solução-tentativa" id="toc-solução-homogênea-solução-tentativa" class="nav-link" data-scroll-target="#solução-homogênea-solução-tentativa"><span class="header-section-number">1.4.2</span> Solução Homogênea — Solução Tentativa</a></li>
-  <li><a href="#caso-1-delta-0-duas-raízes-reais-distintas" id="toc-caso-1-delta-0-duas-raízes-reais-distintas" class="nav-link" data-scroll-target="#caso-1-delta-0-duas-raízes-reais-distintas"><span class="header-section-number">1.4.3</span> Caso 1: <span class="math inline">\(\Delta &gt; 0\)</span> — Duas Raízes Reais Distintas</a></li>
-  <li><a href="#caso-2-delta-0-raiz-real-repetida" id="toc-caso-2-delta-0-raiz-real-repetida" class="nav-link" data-scroll-target="#caso-2-delta-0-raiz-real-repetida"><span class="header-section-number">1.4.4</span> Caso 2: <span class="math inline">\(\Delta = 0\)</span> — Raiz Real Repetida</a></li>
-  <li><a href="#funções-trigonométricas-e-fórmula-de-euler" id="toc-funções-trigonométricas-e-fórmula-de-euler" class="nav-link" data-scroll-target="#funções-trigonométricas-e-fórmula-de-euler"><span class="header-section-number">1.4.5</span> Funções Trigonométricas e Fórmula de Euler</a></li>
-  <li><a href="#caso-3-delta-0-raízes-complexas-conjugadas" id="toc-caso-3-delta-0-raízes-complexas-conjugadas" class="nav-link" data-scroll-target="#caso-3-delta-0-raízes-complexas-conjugadas"><span class="header-section-number">1.4.6</span> Caso 3: <span class="math inline">\(\Delta &lt; 0\)</span> — Raízes Complexas Conjugadas</a></li>
-  <li><a href="#solução-particular-caso-constante" id="toc-solução-particular-caso-constante" class="nav-link" data-scroll-target="#solução-particular-caso-constante"><span class="header-section-number">1.4.7</span> Solução Particular — Caso Constante</a></li>
-  <li><a href="#solução-geral-e-condição-inicial-1" id="toc-solução-geral-e-condição-inicial-1" class="nav-link" data-scroll-target="#solução-geral-e-condição-inicial-1"><span class="header-section-number">1.4.8</span> Solução Geral e Condição Inicial</a></li>
-  </ul></li>
-  <li><a href="#solução-particular-com-termo-variável" id="toc-solução-particular-com-termo-variável" class="nav-link" data-scroll-target="#solução-particular-com-termo-variável"><span class="header-section-number">1.5</span> Solução Particular com Termo Variável</a>
-  <ul class="collapse">
-  <li><a href="#regra-de-escolha-da-solução-tentativa" id="toc-regra-de-escolha-da-solução-tentativa" class="nav-link" data-scroll-target="#regra-de-escolha-da-solução-tentativa"><span class="header-section-number">1.5.1</span> Regra de Escolha da Solução Tentativa</a></li>
-  <li><a href="#exemplo-ft-ert" id="toc-exemplo-ft-ert" class="nav-link" data-scroll-target="#exemplo-ft-ert"><span class="header-section-number">1.5.2</span> Exemplo — <span class="math inline">\(f(t) = e^{rt}\)</span></a></li>
-  <li><a href="#exemplo-ft-sinomega-t" id="toc-exemplo-ft-sinomega-t" class="nav-link" data-scroll-target="#exemplo-ft-sinomega-t"><span class="header-section-number">1.5.3</span> Exemplo — <span class="math inline">\(f(t) = \sin(\omega t)\)</span></a></li>
-  </ul></li>
-  <li><a href="#exemplos-resolvidos" id="toc-exemplos-resolvidos" class="nav-link" data-scroll-target="#exemplos-resolvidos"><span class="header-section-number">1.6</span> Exemplos Resolvidos</a>
-  <ul class="collapse">
-  <li><a href="#exemplo-1-delta-0" id="toc-exemplo-1-delta-0" class="nav-link" data-scroll-target="#exemplo-1-delta-0"><span class="header-section-number">1.6.1</span> Exemplo 1 — <span class="math inline">\(\Delta &gt; 0\)</span></a></li>
-  <li><a href="#exemplo-2-delta-0" id="toc-exemplo-2-delta-0" class="nav-link" data-scroll-target="#exemplo-2-delta-0"><span class="header-section-number">1.6.2</span> Exemplo 2 — <span class="math inline">\(\Delta = 0\)</span></a></li>
-  <li><a href="#exemplo-3-delta-0" id="toc-exemplo-3-delta-0" class="nav-link" data-scroll-target="#exemplo-3-delta-0"><span class="header-section-number">1.6.3</span> Exemplo 3 — <span class="math inline">\(\Delta &lt; 0\)</span></a></li>
-  </ul></li>
-  <li><a href="#estabilidade-das-edos-de-2ª-ordem" id="toc-estabilidade-das-edos-de-2ª-ordem" class="nav-link" data-scroll-target="#estabilidade-das-edos-de-2ª-ordem"><span class="header-section-number">1.7</span> Estabilidade das EDOs de 2ª Ordem</a></li>
-  </ul></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 

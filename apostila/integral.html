@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vitor Wilher">
 
-<title>quarto-inputa62159af8d1dca3a – Matemática — EPGE/FGV</title>
+<title>quarto-input2b7da50e7a054584 – Matemática — EPGE/FGV</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,10 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -80,18 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -137,9 +121,10 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,7 +139,6 @@ window.Quarto = {
     <span class="navbar-title">Matemática — EPGE/FGV</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Procurar"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -231,7 +215,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://epge.fgv.br"> 
-<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="35"></span></a>
+<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="55"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -243,57 +227,8 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Nesta página</h2>
-   
-  <ul>
-  <li><a href="#integral-definida" id="toc-integral-definida" class="nav-link active" data-scroll-target="#integral-definida"><span class="header-section-number">1</span> Integral Definida</a>
-  <ul class="collapse">
-  <li><a href="#motivação-econômica" id="toc-motivação-econômica" class="nav-link" data-scroll-target="#motivação-econômica"><span class="header-section-number">1.1</span> Motivação Econômica</a></li>
-  <li><a href="#operador-somatório" id="toc-operador-somatório" class="nav-link" data-scroll-target="#operador-somatório"><span class="header-section-number">1.2</span> Operador Somatório</a>
-  <ul class="collapse">
-  <li><a href="#propriedades" id="toc-propriedades" class="nav-link" data-scroll-target="#propriedades"><span class="header-section-number">1.2.1</span> Propriedades</a></li>
-  </ul></li>
-  <li><a href="#cálculo-de-área-motivação" id="toc-cálculo-de-área-motivação" class="nav-link" data-scroll-target="#cálculo-de-área-motivação"><span class="header-section-number">1.3</span> Cálculo de Área: Motivação</a>
-  <ul class="collapse">
-  <li><a href="#somas-de-riemann" id="toc-somas-de-riemann" class="nav-link" data-scroll-target="#somas-de-riemann"><span class="header-section-number">1.3.1</span> Somas de Riemann</a></li>
-  <li><a href="#exemplo-fx-x2-em-0-3" id="toc-exemplo-fx-x2-em-0-3" class="nav-link" data-scroll-target="#exemplo-fx-x2-em-0-3"><span class="header-section-number">1.3.2</span> Exemplo: <span class="math inline">\(f(x) = x^2\)</span> em <span class="math inline">\([0, 3]\)</span></a></li>
-  </ul></li>
-  <li><a href="#definição-formal-da-integral-definida" id="toc-definição-formal-da-integral-definida" class="nav-link" data-scroll-target="#definição-formal-da-integral-definida"><span class="header-section-number">1.4</span> Definição Formal da Integral Definida</a>
-  <ul class="collapse">
-  <li><a href="#propriedades-da-integral-definida" id="toc-propriedades-da-integral-definida" class="nav-link" data-scroll-target="#propriedades-da-integral-definida"><span class="header-section-number">1.4.1</span> Propriedades da Integral Definida</a></li>
-  </ul></li>
-  <li><a href="#teorema-do-valor-médio-para-integrais" id="toc-teorema-do-valor-médio-para-integrais" class="nav-link" data-scroll-target="#teorema-do-valor-médio-para-integrais"><span class="header-section-number">1.5</span> Teorema do Valor Médio para Integrais</a></li>
-  <li><a href="#teoremas-fundamentais-do-cálculo" id="toc-teoremas-fundamentais-do-cálculo" class="nav-link" data-scroll-target="#teoremas-fundamentais-do-cálculo"><span class="header-section-number">1.6</span> Teoremas Fundamentais do Cálculo</a>
-  <ul class="collapse">
-  <li><a href="#primeiro-teorema-fundamental" id="toc-primeiro-teorema-fundamental" class="nav-link" data-scroll-target="#primeiro-teorema-fundamental"><span class="header-section-number">1.6.1</span> Primeiro Teorema Fundamental</a></li>
-  <li><a href="#segundo-teorema-fundamental-regra-de-barrow" id="toc-segundo-teorema-fundamental-regra-de-barrow" class="nav-link" data-scroll-target="#segundo-teorema-fundamental-regra-de-barrow"><span class="header-section-number">1.6.2</span> Segundo Teorema Fundamental (Regra de Barrow)</a></li>
-  </ul></li>
-  <li><a href="#exemplos-com-a-regra-de-barrow" id="toc-exemplos-com-a-regra-de-barrow" class="nav-link" data-scroll-target="#exemplos-com-a-regra-de-barrow"><span class="header-section-number">1.7</span> Exemplos com a Regra de Barrow</a>
-  <ul class="collapse">
-  <li><a href="#exemplo-1-displaystyleint_03-x2dx" id="toc-exemplo-1-displaystyleint_03-x2dx" class="nav-link" data-scroll-target="#exemplo-1-displaystyleint_03-x2dx"><span class="header-section-number">1.7.1</span> Exemplo 1: <span class="math inline">\(\displaystyle\int_0^3 x^2\,dx\)</span></a></li>
-  <li><a href="#exemplo-2-displaystyleint_14-sqrtxdx" id="toc-exemplo-2-displaystyleint_14-sqrtxdx" class="nav-link" data-scroll-target="#exemplo-2-displaystyleint_14-sqrtxdx"><span class="header-section-number">1.7.2</span> Exemplo 2: <span class="math inline">\(\displaystyle\int_1^4 \sqrt{x}\,dx\)</span></a></li>
-  <li><a href="#exemplo-3-displaystyleint_02-3x2---2x-1dx" id="toc-exemplo-3-displaystyleint_02-3x2---2x-1dx" class="nav-link" data-scroll-target="#exemplo-3-displaystyleint_02-3x2---2x-1dx"><span class="header-section-number">1.7.3</span> Exemplo 3: <span class="math inline">\(\displaystyle\int_0^2 (3x^2 - 2x + 1)\,dx\)</span></a></li>
-  </ul></li>
-  <li><a href="#integral-definida-com-substituição" id="toc-integral-definida-com-substituição" class="nav-link" data-scroll-target="#integral-definida-com-substituição"><span class="header-section-number">1.8</span> Integral Definida com Substituição</a>
-  <ul class="collapse">
-  <li><a href="#exemplo-displaystyleint_01-xex2dx" id="toc-exemplo-displaystyleint_01-xex2dx" class="nav-link" data-scroll-target="#exemplo-displaystyleint_01-xex2dx"><span class="header-section-number">1.8.1</span> Exemplo: <span class="math inline">\(\displaystyle\int_0^1 x\,e^{x^2}\,dx\)</span></a></li>
-  </ul></li>
-  <li><a href="#exercícios-resolvidos" id="toc-exercícios-resolvidos" class="nav-link" data-scroll-target="#exercícios-resolvidos"><span class="header-section-number">1.9</span> Exercícios Resolvidos</a>
-  <ul class="collapse">
-  <li><a href="#exercício-1-displaystyleint_04-x3---x2-1dx" id="toc-exercício-1-displaystyleint_04-x3---x2-1dx" class="nav-link" data-scroll-target="#exercício-1-displaystyleint_04-x3---x2-1dx"><span class="header-section-number">1.9.1</span> Exercício 1 — <span class="math inline">\(\displaystyle\int_0^4 (x^3 - x^2 + 1)\,dx\)</span></a></li>
-  <li><a href="#exercício-2-displaystyleint_-13-fracdxx23" id="toc-exercício-2-displaystyleint_-13-fracdxx23" class="nav-link" data-scroll-target="#exercício-2-displaystyleint_-13-fracdxx23"><span class="header-section-number">1.9.2</span> Exercício 2 — <span class="math inline">\(\displaystyle\int_{-1}^{3} \frac{dx}{(x+2)^3}\)</span></a></li>
-  <li><a href="#exercício-3-displaystyleint_03-xsqrt1xdx" id="toc-exercício-3-displaystyleint_03-xsqrt1xdx" class="nav-link" data-scroll-target="#exercício-3-displaystyleint_03-xsqrt1xdx"><span class="header-section-number">1.9.3</span> Exercício 3 — <span class="math inline">\(\displaystyle\int_0^3 x\sqrt{1+x}\,dx\)</span></a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 

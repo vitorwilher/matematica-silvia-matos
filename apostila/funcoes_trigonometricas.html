@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vitor Wilher">
 
-<title>quarto-input2555e6b0d01367e6 – Matemática — EPGE/FGV</title>
+<title>quarto-input318f3aa8ebcb0b3e – Matemática — EPGE/FGV</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,10 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -80,18 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -137,9 +121,10 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,7 +139,6 @@ window.Quarto = {
     <span class="navbar-title">Matemática — EPGE/FGV</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Procurar"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -231,7 +215,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://epge.fgv.br"> 
-<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="35"></span></a>
+<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="55"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -243,40 +227,8 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Nesta página</h2>
-   
-  <ul>
-  <li><a href="#funções-trigonométricas-série-de-maclaurin-e-fórmula-de-euler" id="toc-funções-trigonométricas-série-de-maclaurin-e-fórmula-de-euler" class="nav-link active" data-scroll-target="#funções-trigonométricas-série-de-maclaurin-e-fórmula-de-euler"><span class="header-section-number">1</span> Funções Trigonométricas, Série de Maclaurin e Fórmula de Euler</a>
-  <ul class="collapse">
-  <li><a href="#funções-trigonométricas" id="toc-funções-trigonométricas" class="nav-link" data-scroll-target="#funções-trigonométricas"><span class="header-section-number">1.1</span> Funções Trigonométricas</a>
-  <ul class="collapse">
-  <li><a href="#definições" id="toc-definições" class="nav-link" data-scroll-target="#definições"><span class="header-section-number">1.1.1</span> Definições</a></li>
-  <li><a href="#periodicidade" id="toc-periodicidade" class="nav-link" data-scroll-target="#periodicidade"><span class="header-section-number">1.1.2</span> Periodicidade</a></li>
-  <li><a href="#derivadas" id="toc-derivadas" class="nav-link" data-scroll-target="#derivadas"><span class="header-section-number">1.1.3</span> Derivadas</a></li>
-  </ul></li>
-  <li><a href="#série-de-maclaurin" id="toc-série-de-maclaurin" class="nav-link" data-scroll-target="#série-de-maclaurin"><span class="header-section-number">1.2</span> Série de Maclaurin</a>
-  <ul class="collapse">
-  <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação"><span class="header-section-number">1.2.1</span> Motivação</a></li>
-  <li><a href="#série-de-ex" id="toc-série-de-ex" class="nav-link" data-scroll-target="#série-de-ex"><span class="header-section-number">1.2.2</span> Série de <span class="math inline">\(e^x\)</span></a></li>
-  <li><a href="#séries-de-sin-x-e-cos-x" id="toc-séries-de-sin-x-e-cos-x" class="nav-link" data-scroll-target="#séries-de-sin-x-e-cos-x"><span class="header-section-number">1.2.3</span> Séries de <span class="math inline">\(\sin x\)</span> e <span class="math inline">\(\cos x\)</span></a></li>
-  </ul></li>
-  <li><a href="#números-complexos-e-a-fórmula-de-euler" id="toc-números-complexos-e-a-fórmula-de-euler" class="nav-link" data-scroll-target="#números-complexos-e-a-fórmula-de-euler"><span class="header-section-number">1.3</span> Números Complexos e a Fórmula de Euler</a>
-  <ul class="collapse">
-  <li><a href="#a-unidade-imaginária" id="toc-a-unidade-imaginária" class="nav-link" data-scroll-target="#a-unidade-imaginária"><span class="header-section-number">1.3.1</span> A Unidade Imaginária</a></li>
-  <li><a href="#série-de-maclaurin-de-eix" id="toc-série-de-maclaurin-de-eix" class="nav-link" data-scroll-target="#série-de-maclaurin-de-eix"><span class="header-section-number">1.3.2</span> Série de Maclaurin de <span class="math inline">\(e^{ix}\)</span></a></li>
-  <li><a href="#identidade-de-euler" id="toc-identidade-de-euler" class="nav-link" data-scroll-target="#identidade-de-euler"><span class="header-section-number">1.3.3</span> Identidade de Euler</a></li>
-  <li><a href="#interpretação-para-edos" id="toc-interpretação-para-edos" class="nav-link" data-scroll-target="#interpretação-para-edos"><span class="header-section-number">1.3.4</span> Interpretação para EDOs</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 

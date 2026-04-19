@@ -8,7 +8,7 @@
 
 <meta name="author" content="Vitor Wilher">
 
-<title>quarto-input16ca6698aaa4f4ac – Matemática — EPGE/FGV</title>
+<title>quarto-input3cfef8ef68671ab3 – Matemática — EPGE/FGV</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -65,10 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -80,18 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -137,9 +121,10 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,7 +139,6 @@ window.Quarto = {
     <span class="navbar-title">Matemática — EPGE/FGV</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Procurar"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -231,7 +215,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://epge.fgv.br"> 
-<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="35"></span></a>
+<span class="menu-text"><img src="epge.png" style="vertical-align:middle" height="55"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -243,35 +227,8 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Nesta página</h2>
-   
-  <ul>
-  <li><a href="#limites-e-continuidade" id="toc-limites-e-continuidade" class="nav-link active" data-scroll-target="#limites-e-continuidade"><span class="header-section-number">1</span> Limites e Continuidade</a>
-  <ul class="collapse">
-  <li><a href="#motivação-econômica" id="toc-motivação-econômica" class="nav-link" data-scroll-target="#motivação-econômica"><span class="header-section-number">1.1</span> Motivação Econômica</a></li>
-  <li><a href="#limite-lateral" id="toc-limite-lateral" class="nav-link" data-scroll-target="#limite-lateral"><span class="header-section-number">1.2</span> Limite Lateral</a></li>
-  <li><a href="#definição-de-limite" id="toc-definição-de-limite" class="nav-link" data-scroll-target="#definição-de-limite"><span class="header-section-number">1.3</span> Definição de Limite</a></li>
-  <li><a href="#limites-infinitos-e-no-infinito" id="toc-limites-infinitos-e-no-infinito" class="nav-link" data-scroll-target="#limites-infinitos-e-no-infinito"><span class="header-section-number">1.4</span> Limites Infinitos e no Infinito</a>
-  <ul class="collapse">
-  <li><a href="#limite-infinito" id="toc-limite-infinito" class="nav-link" data-scroll-target="#limite-infinito"><span class="header-section-number">1.4.1</span> Limite Infinito</a></li>
-  <li><a href="#limite-no-infinito" id="toc-limite-no-infinito" class="nav-link" data-scroll-target="#limite-no-infinito"><span class="header-section-number">1.4.2</span> Limite no Infinito</a></li>
-  </ul></li>
-  <li><a href="#continuidade" id="toc-continuidade" class="nav-link" data-scroll-target="#continuidade"><span class="header-section-number">1.5</span> Continuidade</a>
-  <ul class="collapse">
-  <li><a href="#tipos-de-descontinuidade" id="toc-tipos-de-descontinuidade" class="nav-link" data-scroll-target="#tipos-de-descontinuidade"><span class="header-section-number">1.5.1</span> Tipos de Descontinuidade</a></li>
-  <li><a href="#propriedades-da-continuidade" id="toc-propriedades-da-continuidade" class="nav-link" data-scroll-target="#propriedades-da-continuidade"><span class="header-section-number">1.5.2</span> Propriedades da Continuidade</a></li>
-  <li><a href="#continuidade-e-diferenciabilidade" id="toc-continuidade-e-diferenciabilidade" class="nav-link" data-scroll-target="#continuidade-e-diferenciabilidade"><span class="header-section-number">1.5.3</span> Continuidade e Diferenciabilidade</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 

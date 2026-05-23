@@ -828,6 +828,84 @@ Hbar = np.array([[-lam*fkk, -lam*fkl, -fk],
 print(f"|H_bar| = {np.linalg.det(Hbar):.4f} (< 0 → mínimo)")
 ```
 
+#### Cobb-Douglas Geral: $f(k, l) = k^\alpha l^{1-\alpha}$
+
+Estendendo o exemplo simétrico para a Cobb-Douglas com parâmetro $\alpha \in (0, 1)$, deduziremos formas fechadas para $k^*$, $l^*$ e $C^*$ em função de $(r, w, \bar Q, \alpha)$. As derivadas parciais são $f_k = \alpha\,k^{\alpha-1}l^{1-\alpha}$ e $f_l = (1-\alpha)\,k^\alpha l^{-\alpha}$, e a condição de tangência $f_k/f_l = r/w$ dá
+
+$$
+\frac{\alpha}{1-\alpha}\cdot\frac{l}{k} \;=\; \frac{r}{w}
+\;\Longrightarrow\; l \;=\; \frac{1-\alpha}{\alpha}\cdot\frac{r}{w}\cdot k.
+$$
+
+Substituindo na restrição $k^\alpha l^{1-\alpha} = \bar Q$:
+
+$$
+k^\alpha \biggl[\frac{1-\alpha}{\alpha}\cdot\frac{r}{w}\cdot k\biggr]^{1-\alpha} \;=\; \bar Q
+\;\Longleftrightarrow\; k\,\biggl[\frac{1-\alpha}{\alpha}\cdot\frac{r}{w}\biggr]^{1-\alpha} = \bar Q.
+$$
+
+Isolando $k$ e procedendo análogo para $l$, obtemos as **demandas condicionais por fatores**:
+
+$$
+\boxed{\;k^*(r, w, \bar Q;\,\alpha) \;=\; \bar Q\,\biggl[\frac{\alpha}{1-\alpha}\cdot\frac{w}{r}\biggr]^{1-\alpha},
+\qquad
+l^*(r, w, \bar Q;\,\alpha) \;=\; \bar Q\,\biggl[\frac{1-\alpha}{\alpha}\cdot\frac{r}{w}\biggr]^{\alpha}.\;}
+$$
+
+Caso simétrico $\alpha = 1/2$ recupera $k^* = \bar Q\sqrt{w/r}$ e $l^* = \bar Q\sqrt{r/w}$, batendo com o exemplo anterior ($k^* = l^* = 4$ quando $r = w = 1$ e $\bar Q = 4$).
+
+**Função custo.** Substituindo nas demandas e reorganizando:
+
+$$
+\begin{aligned}
+C^*(r, w, \bar Q;\,\alpha) \;&=\; r\,k^* + w\,l^* \\
+&=\; \bar Q\,r^\alpha w^{1-\alpha}\,\biggl[\frac{\alpha^{1-\alpha}}{(1-\alpha)^{1-\alpha}} + \frac{(1-\alpha)^\alpha}{\alpha^\alpha}\biggr] \\
+&=\; \boxed{\;\bar Q\,\frac{r^\alpha\,w^{1-\alpha}}{\alpha^\alpha\,(1-\alpha)^{1-\alpha}}.\;}
+\end{aligned}
+$$
+
+A simplificação do colchete usa que, ao reduzir ao denominador comum $\alpha^\alpha(1-\alpha)^{1-\alpha}$, os numeradores ficam $\alpha$ e $(1-\alpha)$, somando 1.
+
+Três propriedades desta função custo são recorrentes na teoria do produtor:
+
+1. **Homogeneidade de grau 1 em $\bar Q$:** o custo cresce linearmente com a produção — consequência de retornos constantes à escala de $f$ ($\alpha + (1-\alpha) = 1$).
+2. **Homogeneidade de grau 1 em $(r, w)$:** dobrar todos os preços de insumos dobra o custo, sem mudar as quantidades ótimas.
+3. **Custo médio = custo marginal**, ambos constantes em $\bar Q$ — propriedade exclusiva de retornos constantes; contrasta com tecnologias de retornos decrescentes (CMg crescente).
+
+```{r}
+# Cobb-Douglas geral
+alpha <- 0.3
+r <- 2; w <- 5; Qbar <- 10
+
+k_star <- Qbar * (alpha/(1-alpha) * w/r)^(1-alpha)
+l_star <- Qbar * ((1-alpha)/alpha * r/w)^alpha
+C_fechada  <- Qbar * r^alpha * w^(1-alpha) /
+              (alpha^alpha * (1-alpha)^(1-alpha))
+C_somando  <- r*k_star + w*l_star
+
+cat(sprintf("k* = %.4f, l* = %.4f\n", k_star, l_star))
+cat(sprintf("C* (forma fechada) = %.6f\n", C_fechada))
+cat(sprintf("C* (= rk* + wl*)   = %.6f\n", C_somando))
+cat(sprintf("f(k*, l*) = %.4f (esperado Q̄ = %g)\n",
+            k_star^alpha * l_star^(1-alpha), Qbar))
+```
+
+```{python}
+alpha = 0.3
+r, w, Qbar = 2, 5, 10
+
+k_star = Qbar * (alpha/(1-alpha) * w/r)**(1-alpha)
+l_star = Qbar * ((1-alpha)/alpha * r/w)**alpha
+C_fechada = Qbar * r**alpha * w**(1-alpha) / \
+            (alpha**alpha * (1-alpha)**(1-alpha))
+C_somando = r*k_star + w*l_star
+
+print(f"k* = {k_star:.4f}, l* = {l_star:.4f}")
+print(f"C* (forma fechada) = {C_fechada:.6f}")
+print(f"C* (= rk* + wl*)   = {C_somando:.6f}")
+print(f"f(k*, l*) = {k_star**alpha * l_star**(1-alpha):.4f} (esperado Q̄ = {Qbar})")
+```
+
 #### Estática Comparativa
 
 As três CPOs do problema de minimização de custo formam um **sistema de funções implícitas** com endógenas $(k, l, \lambda)$ e exógenas $(r, w, \bar Q)$ — exatamente o objeto da @sec-tfi-sistemas, com Jacobiano $J = \bar H$ e condição $|J| \neq 0$ assegurada pela CSO. Diferenciando totalmente e avaliando no ponto crítico:
@@ -882,6 +960,99 @@ O numerador é negativo: $f_k\,f_{ll} < 0$ (porque $f_{ll} < 0$) e $-f_{kl}\,f_l
 
 Como nos problemas anteriores, os resultados qualitativos saem **diretamente dos sinais das derivadas** de $f$ e do sinal do Hessiano orlado, sem qualquer especificação funcional — é a álgebra dos cofatores que torna a análise robusta.
 
-A função-valor $C^*(\bar Q; r, w)$ — o custo mínimo como função de $\bar Q$ e dos preços de insumos — é a **função custo** da firma, peça central da teoria do produtor. Pelo **teorema do envelope**, $\partial C^*/\partial \bar Q = \lambda^*$ (custo marginal) e $\partial C^*/\partial r = k^*$, $\partial C^*/\partial w = l^*$ (lema de Shephard) — as demandas condicionais por fatores são recuperadas diferenciando o custo mínimo nos preços de insumos.
+#### Teorema do Envelope: Lema de Shephard e Custo Marginal
+
+A função-valor $C^*(r, w, \bar Q)$ — o custo mínimo como função das exógenas — é a **função custo** da firma. Suas derivadas têm interpretação econômica imediata via o **teorema do envelope**.
+
+**Enunciado (forma Lagrangeana).** Para um problema parametrizado $\min_x f(x; a)$ s.a. $g(x; a) = 0$, com função-valor $V(a) = f(x^*(a); a)$ e Lagrangeana $\mathcal{L}(x, \lambda; a) = f(x; a) + \lambda\,g(x; a)$:
+
+$$
+\boxed{\;\frac{\partial V}{\partial a_j} \;=\; \biggl.\frac{\partial \mathcal{L}}{\partial a_j}\biggr|_{x = x^*(a),\,\lambda = \lambda^*(a)}.\;}
+$$
+
+A intuição: variar $a_j$ tem dois efeitos no ótimo — **direto**, via a dependência explícita de $\mathcal{L}$ em $a_j$; e **indireto**, via mudanças em $x^*(a)$ e $\lambda^*(a)$. Os efeitos indiretos se **cancelam** porque $x^*$ satisfaz as CPOs $\partial\mathcal{L}/\partial x = 0$, e $\lambda^*$ está atado à identidade $g(x^*; a) = 0$. Sobra apenas a parcial direta — daí o nome "envelope": $V(a)$ tangencia a família de funções $\mathcal{L}(x, \lambda; a)$ no ponto $(x^*, \lambda^*)$.
+
+**Aplicação à minimização de custo.** Com $\mathcal{L} = rk + wl + \lambda[\bar Q - f(k, l)]$, três derivadas saem por inspeção:
+
+$$
+\frac{\partial C^*}{\partial r} = \biggl.\frac{\partial \mathcal{L}}{\partial r}\biggr|_* = k^*,
+\qquad
+\frac{\partial C^*}{\partial w} = \biggl.\frac{\partial \mathcal{L}}{\partial w}\biggr|_* = l^*,
+\qquad
+\frac{\partial C^*}{\partial \bar Q} = \biggl.\frac{\partial \mathcal{L}}{\partial \bar Q}\biggr|_* = \lambda^*.
+$$
+
+As duas primeiras são o **lema de Shephard**: as demandas condicionais por fatores são recuperadas diferenciando a função custo nos preços. A terceira identifica $\lambda^*$ como o **custo marginal** — o preço-sombra da restrição de produção.
+
+**Prova direta** (sem invocar o teorema). De $C^* = r\,k^*(r, w, \bar Q) + w\,l^*(r, w, \bar Q)$:
+
+$$
+\frac{\partial C^*}{\partial r} = k^* + r\,\frac{\partial k^*}{\partial r} + w\,\frac{\partial l^*}{\partial r}.
+$$
+
+Pelas CPOs no ótimo, $r = \lambda^* f_k$ e $w = \lambda^* f_l$, logo
+
+$$
+r\,\frac{\partial k^*}{\partial r} + w\,\frac{\partial l^*}{\partial r}
+\;=\; \lambda^*\biggl[f_k\,\frac{\partial k^*}{\partial r} + f_l\,\frac{\partial l^*}{\partial r}\biggr]
+\;=\; 0,
+$$
+
+porque $f(k^*, l^*) = \bar Q$ é identidade em $r$ — diferenciar dá $f_k\,\partial k^*/\partial r + f_l\,\partial l^*/\partial r = 0$. Sobra $\partial C^*/\partial r = k^*$. Análogo para $w$. Para $\bar Q$, a mesma identidade diferenciada em $\bar Q$ dá $f_k\,\partial k^*/\partial\bar Q + f_l\,\partial l^*/\partial\bar Q = 1$, levando a $\partial C^*/\partial\bar Q = \lambda^*$.
+
+**Verificação na Cobb-Douglas geral.** Usando $C^*(r, w, \bar Q) = \bar Q\,r^\alpha w^{1-\alpha}/[\alpha^\alpha(1-\alpha)^{1-\alpha}]$:
+
+$$
+\frac{\partial C^*}{\partial r} \;=\; \alpha\,\bar Q\,r^{\alpha-1} w^{1-\alpha}\,\frac{1}{\alpha^\alpha(1-\alpha)^{1-\alpha}}
+\;=\; \bar Q\,\biggl[\frac{\alpha}{1-\alpha}\cdot\frac{w}{r}\biggr]^{1-\alpha} \;=\; k^*. \;\checkmark
+$$
+
+$$
+\frac{\partial C^*}{\partial \bar Q} \;=\; \frac{r^\alpha w^{1-\alpha}}{\alpha^\alpha(1-\alpha)^{1-\alpha}} \;=\; \frac{C^*}{\bar Q}.
+$$
+
+Custo marginal igual ao custo médio — manifestação numérica dos retornos constantes à escala. Comparando com a definição $\lambda^* = r/f_k$ no ponto ótimo, como $f_k = \alpha\,k^{\alpha-1}l^{1-\alpha} = \alpha\,\bar Q/k^*$ (usando $f(k^*, l^*) = \bar Q$), temos $\lambda^* = r\,k^*/(\alpha\,\bar Q)$, que substituindo $k^*$ recupera exatamente $r^\alpha w^{1-\alpha}/[\alpha^\alpha(1-\alpha)^{1-\alpha}]$. $\checkmark$
+
+```{r}
+# Verificação numérica das identidades do envelope na Cobb-Douglas geral
+alpha <- 0.3; r <- 2; w <- 5; Qbar <- 10
+eps <- 1e-6
+
+C <- function(r, w, Q) Q * r^alpha * w^(1-alpha) /
+                       (alpha^alpha * (1-alpha)^(1-alpha))
+
+k_star <- Qbar * (alpha/(1-alpha) * w/r)^(1-alpha)
+l_star <- Qbar * ((1-alpha)/alpha * r/w)^alpha
+lam    <- r / (alpha * k_star^(alpha-1) * l_star^(1-alpha))
+
+dC_dr <- (C(r+eps, w, Qbar) - C(r-eps, w, Qbar)) / (2*eps)
+dC_dw <- (C(r, w+eps, Qbar) - C(r, w-eps, Qbar)) / (2*eps)
+dC_dQ <- (C(r, w, Qbar+eps) - C(r, w, Qbar-eps)) / (2*eps)
+
+cat(sprintf("Shephard k:  ∂C/∂r  = %.6f   k* = %.6f\n", dC_dr, k_star))
+cat(sprintf("Shephard l:  ∂C/∂w  = %.6f   l* = %.6f\n", dC_dw, l_star))
+cat(sprintf("CMg:         ∂C/∂Q̄ = %.6f   λ* = %.6f\n", dC_dQ, lam))
+```
+
+```{python}
+alpha = 0.3; r, w, Qbar = 2, 5, 10
+eps = 1e-6
+
+def C(r, w, Q):
+    return Q * r**alpha * w**(1-alpha) / \
+           (alpha**alpha * (1-alpha)**(1-alpha))
+
+k_star = Qbar * (alpha/(1-alpha) * w/r)**(1-alpha)
+l_star = Qbar * ((1-alpha)/alpha * r/w)**alpha
+lam    = r / (alpha * k_star**(alpha-1) * l_star**(1-alpha))
+
+dC_dr = (C(r+eps, w, Qbar) - C(r-eps, w, Qbar)) / (2*eps)
+dC_dw = (C(r, w+eps, Qbar) - C(r, w-eps, Qbar)) / (2*eps)
+dC_dQ = (C(r, w, Qbar+eps) - C(r, w, Qbar-eps)) / (2*eps)
+
+print(f"Shephard k:  ∂C/∂r  = {dC_dr:.6f}   k* = {k_star:.6f}")
+print(f"Shephard l:  ∂C/∂w  = {dC_dw:.6f}   l* = {l_star:.6f}")
+print(f"CMg:         ∂C/∂Q̄ = {dC_dQ:.6f}   λ* = {lam:.6f}")
+```
 
 A maximização de utilidade s.a. restrição orçamentária e a minimização de custo da firma — junto com a maximização de lucro do produtor visto na Parte I — formam o núcleo da microeconomia neoclássica. Os mesmos passos (Lagrangeano, CPO, Hessiano orlado, estática comparativa) reaparecem em todos os problemas restritos: minimização de despesa do consumidor, problemas de portfolio em finanças, etc.

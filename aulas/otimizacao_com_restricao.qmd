@@ -358,6 +358,44 @@ $$
 
 **Comentário.** A utilidade prática é dupla. Primeiro, a função custo encapsula toda a estrutura de demanda condicional por fatores — basta diferenciá-la nos preços, sem precisar passar por estática comparativa do sistema de CPOs. Segundo, o multiplicador $\lambda$, que aparecia como artefato matemático na Lagrangeana, ganha aqui conteúdo econômico explícito: é o preço-sombra da restrição de produção, ou seja, quanto custaria à firma produzir uma unidade adicional de $\bar Q$.
 
+**Exemplo: Cobb-Douglas $f(k, l) = k^\alpha l^{1-\alpha}$.** A condição de tangência $f_k/f_l = r/w$ se escreve $\alpha l / [(1-\alpha) k] = r/w$, dando $l = [(1-\alpha)\,r/(\alpha\,w)]\,k$. Substituindo na restrição $k^\alpha l^{1-\alpha} = \bar Q$,
+
+$$
+k^\alpha \biggl[\frac{(1-\alpha)\,r}{\alpha\,w}\biggr]^{1-\alpha} k^{1-\alpha} = \bar Q
+\;\Longleftrightarrow\; k\,\biggl[\frac{(1-\alpha)\,r}{\alpha\,w}\biggr]^{1-\alpha} = \bar Q,
+$$
+
+de modo que
+
+$$
+k^* = \bar Q\,\biggl[\frac{\alpha}{1-\alpha}\cdot\frac{w}{r}\biggr]^{1-\alpha},
+\qquad
+l^* = \bar Q\,\biggl[\frac{1-\alpha}{\alpha}\cdot\frac{r}{w}\biggr]^{\alpha}.
+$$
+
+Substituindo em $C = rk + wl$ e somando ao denominador comum $\alpha^\alpha(1-\alpha)^{1-\alpha}$, a função custo fica:
+
+$$
+C^*(r, w, \bar Q) \;=\; \bar Q\,\frac{r^\alpha\,w^{1-\alpha}}{\alpha^\alpha (1-\alpha)^{1-\alpha}}.
+$$
+
+Derivando em $r$ e reagrupando potências:
+
+$$
+\frac{\partial C^*}{\partial r}
+\;=\; \alpha\,\bar Q\,\frac{r^{\alpha-1}\,w^{1-\alpha}}{\alpha^\alpha (1-\alpha)^{1-\alpha}}
+\;=\; \bar Q\,\biggl[\frac{\alpha}{1-\alpha}\cdot\frac{w}{r}\biggr]^{1-\alpha}
+\;=\; k^*. \;\checkmark
+$$
+
+Derivando em $\bar Q$:
+
+$$
+\frac{\partial C^*}{\partial \bar Q} \;=\; \frac{r^\alpha\,w^{1-\alpha}}{\alpha^\alpha (1-\alpha)^{1-\alpha}} \;=\; \frac{C^*}{\bar Q} \;=\; \lambda^*.
+$$
+
+(Tratamento numérico desse caso — incluindo verificação por diferenças finitas — no capítulo de aplicações econômicas.)
+
 #### Lema de Hotelling (Função Lucro)
 
 **Problema.** A firma competitiva escolhe insumos $(k, l)$ para maximizar o lucro a preços de produto e fatores $(p, r, w)$:
@@ -383,6 +421,45 @@ $$
 **Resultado.** As três identidades são o **lema de Hotelling**: derivar a função lucro no preço do produto recupera a oferta ótima $Q^*$; derivar nos preços dos fatores recupera as demandas (incondicionais) com sinal trocado.
 
 **Comentário.** A simetria com Shephard é instrutiva. Em ambos os casos, a função-valor codifica toda a estrutura de oferta/demanda da firma, recuperada por diferenciação direta. As diferenças são duas. (i) Aqui as demandas são **incondicionais** — o nível de produção $Q$ é endógeno, ajustado pela firma —, enquanto em Shephard são **condicionais** a $\bar Q$ fixo. (ii) O sinal das derivadas em fatores é negativo porque $r, w$ entram com sinal negativo no lucro; em Shephard era positivo porque entravam positivamente no custo. Combinados, Shephard e Hotelling permitem reconstruir toda a teoria do produtor partindo apenas de funções-valor.
+
+**Exemplo: Cobb-Douglas $f(k, l) = k^{1/4} l^{1/4}$.** Retornos decrescentes à escala ($\alpha + \beta = 1/2 < 1$) garantem que o problema de máximo irrestrito tem solução finita. As CPOs $p\,f_k = r$ e $p\,f_l = w$ se escrevem
+
+$$
+\frac{p}{4}\,k^{-3/4}\,l^{1/4} = r, \qquad \frac{p}{4}\,k^{1/4}\,l^{-3/4} = w.
+$$
+
+Dividindo membro a membro, $l/k = r/w$, ou seja, $l = (r/w)\,k$. Substituindo na primeira CPO:
+
+$$
+\frac{p}{4}\,k^{-3/4}\,\biggl(\frac{r}{w}\biggr)^{1/4}\,k^{1/4} = r
+\;\Longleftrightarrow\; k^{-1/2} = \frac{4\,r^{3/4}\,w^{1/4}}{p}
+\;\Longrightarrow\; k^* = \frac{p^2}{16\,r^{3/2}\,w^{1/2}}.
+$$
+
+Por simetria, $l^* = p^2/(16\,r^{1/2}\,w^{3/2})$. Produção e lucro ótimos:
+
+$$
+Q^* = (k^*\,l^*)^{1/4} = \frac{p}{4\,(rw)^{1/2}},
+\qquad
+\pi^* = p\,Q^* - r\,k^* - w\,l^* = \frac{p^2}{4(rw)^{1/2}} - 2\cdot\frac{p^2}{16(rw)^{1/2}} = \frac{p^2}{8\,(rw)^{1/2}}.
+$$
+
+(Note: $r\,k^* = p^2/(16\,(rw)^{1/2})$ e idem para $w\,l^*$ — as duas parcelas de custo são iguais por simetria $\alpha = \beta$.)
+
+Verificando Hotelling:
+
+$$
+\frac{\partial \pi^*}{\partial p} = \frac{2p}{8(rw)^{1/2}} = \frac{p}{4(rw)^{1/2}} = Q^*. \;\checkmark
+$$
+
+$$
+\frac{\partial \pi^*}{\partial r} = \frac{p^2}{8}\cdot\biggl(-\frac{1}{2}\biggr)(rw)^{-3/2}\,w
+= -\frac{p^2\,w}{16\,(rw)^{3/2}}
+= -\frac{p^2}{16\,r^{3/2}\,w^{1/2}}
+= -k^*. \;\checkmark
+$$
+
+Análogo para $w$: $\partial \pi^*/\partial w = -l^*$.
 
 #### Identidade de Roy (Função Utilidade Indireta)
 
@@ -412,6 +489,47 @@ A demanda Marshalliana ótima por um bem é obtida diferenciando a utilidade ind
 
 **Comentário.** O multiplicador $\lambda^*$ tem aqui interpretação natural como **utilidade marginal da renda**: quanto a utilidade ótima sobe por unidade adicional de orçamento. Repare como ele cancela quando tomamos a razão na identidade — só sobra uma relação observável entre derivadas de $V^*$ e a demanda. Isso resolve um problema empírico real: estimar funções de demanda diretamente é difícil (são funções vetoriais com restrições de simetria de Slutsky), mas estimar $V^*$ e derivá-la é, em muitos casos, mais tratável. A função utilidade indireta também serve para análise de bem-estar — comparar $V^*$ antes e depois de um choque de preços ou renda mede ganho/perda de utilidade do consumidor.
 
+**Exemplo: Cobb-Douglas $U(x_1, x_2) = x_1^\alpha\,x_2^{1-\alpha}$.** As demandas Marshallianas, já obtidas na maximização de utilidade do consumidor, são
+
+$$
+x_1^*(p_1, p_2, R) = \frac{\alpha\,R}{p_1}, \qquad x_2^*(p_1, p_2, R) = \frac{(1-\alpha)\,R}{p_2}.
+$$
+
+Substituindo em $U$ obtemos a **utilidade indireta**:
+
+$$
+\begin{aligned}
+V^*(p_1, p_2, R) \;&=\; \biggl(\frac{\alpha\,R}{p_1}\biggr)^\alpha\,\biggl(\frac{(1-\alpha)\,R}{p_2}\biggr)^{1-\alpha} \\
+&=\; \alpha^\alpha\,(1-\alpha)^{1-\alpha}\,\frac{R^{\alpha + (1-\alpha)}}{p_1^\alpha\,p_2^{1-\alpha}}
+\;=\; \alpha^\alpha (1-\alpha)^{1-\alpha}\,\frac{R}{p_1^\alpha\,p_2^{1-\alpha}}.
+\end{aligned}
+$$
+
+Derivadas:
+
+$$
+\frac{\partial V^*}{\partial p_1}
+\;=\; \alpha^\alpha (1-\alpha)^{1-\alpha}\,R\cdot(-\alpha)\,p_1^{-\alpha-1}\,p_2^{-(1-\alpha)}
+\;=\; -\frac{\alpha}{p_1}\,V^*,
+$$
+
+$$
+\frac{\partial V^*}{\partial R}
+\;=\; \frac{\alpha^\alpha (1-\alpha)^{1-\alpha}}{p_1^\alpha\,p_2^{1-\alpha}}
+\;=\; \frac{V^*}{R}.
+$$
+
+Aplicando a identidade de Roy:
+
+$$
+-\,\frac{\partial V^*/\partial p_1}{\partial V^*/\partial R}
+\;=\; -\,\frac{-\alpha\,V^*/p_1}{V^*/R}
+\;=\; \frac{\alpha\,R}{p_1}
+\;=\; x_1^*. \;\checkmark
+$$
+
+Caso simétrico $\alpha = 1/2$ (feito no quadro): $V^*(p_1, p_2, R) = R/[2\,(p_1\,p_2)^{1/2}]$, com $\partial V^*/\partial p_1 = -R\,p_2/[4\,(p_1 p_2)^{3/2}]$ e $\partial V^*/\partial R = 1/[2\,(p_1\,p_2)^{1/2}]$. A razão Roy retorna $R/(2 p_1) = x_1^*$.
+
 #### Demandas Hicksianas (Função Despesa)
 
 **Problema.** O consumidor minimiza o gasto necessário para atingir um nível de utilidade $\bar U$ a preços $(p_1, p_2)$:
@@ -433,5 +551,44 @@ $$
 **Resultado.** A primeira identidade é o **análogo de Shephard para o consumidor**: derivar a função despesa no preço de um bem recupera a demanda hicksiana por aquele bem. A segunda identifica $\mu^*$ como o **custo marginal de utilidade** — quanto gasto adicional é necessário para atingir uma unidade a mais de $\bar U$.
 
 **Comentário.** O problema de despesa é **dual ao de maximização de utilidade**: ambos descrevem o mesmo conjunto de escolhas ótimas, trocando os papéis de objetivo e restrição. A diferença prática é que as demandas hicksianas $h_i^*(p, \bar U)$ mantêm **utilidade** fixa, enquanto as Marshallianas $x_i^*(p, R)$ mantêm **renda** fixa. Isso é central na análise de bem-estar: a variação compensatória de um choque de preços usa $E^*$ (gasto necessário para manter $\bar U$) em vez de $x_i^*$ (que mistura efeito substituição e efeito renda). A equação de Slutsky formaliza essa decomposição. Note também a simetria matemática: Shephard na firma (custo) e este resultado no consumidor (despesa) têm exatamente a mesma estrutura — não é coincidência, é a dualidade neoclássica entre produtor e consumidor.
+
+**Exemplo: Cobb-Douglas $U(x_1, x_2) = x_1^\alpha\,x_2^{1-\alpha}$.** A condição de tangência $U_1/U_2 = p_1/p_2$ dá $\alpha\,x_2/[(1-\alpha)\,x_1] = p_1/p_2$, ou seja, $x_2 = [(1-\alpha)\,p_1/(\alpha\,p_2)]\,x_1$. Substituindo em $U(x_1, x_2) = \bar U$:
+
+$$
+x_1^\alpha\,\biggl[\frac{(1-\alpha)\,p_1}{\alpha\,p_2}\biggr]^{1-\alpha}\,x_1^{1-\alpha} = \bar U
+\;\Longleftrightarrow\;
+x_1\,\biggl[\frac{(1-\alpha)\,p_1}{\alpha\,p_2}\biggr]^{1-\alpha} = \bar U.
+$$
+
+Logo as demandas hicksianas:
+
+$$
+h_1^*(p_1, p_2, \bar U) = \bar U\,\biggl[\frac{\alpha\,p_2}{(1-\alpha)\,p_1}\biggr]^{1-\alpha},
+\qquad
+h_2^*(p_1, p_2, \bar U) = \bar U\,\biggl[\frac{(1-\alpha)\,p_1}{\alpha\,p_2}\biggr]^{\alpha}.
+$$
+
+Função despesa (mesma simplificação do caso Shephard):
+
+$$
+E^*(p_1, p_2, \bar U) \;=\; p_1\,h_1^* + p_2\,h_2^* \;=\; \bar U\,\frac{p_1^\alpha\,p_2^{1-\alpha}}{\alpha^\alpha (1-\alpha)^{1-\alpha}}.
+$$
+
+Verificação do análogo de Shephard:
+
+$$
+\frac{\partial E^*}{\partial p_1}
+\;=\; \alpha\,\bar U\,\frac{p_1^{\alpha-1}\,p_2^{1-\alpha}}{\alpha^\alpha (1-\alpha)^{1-\alpha}}
+\;=\; \bar U\,\biggl[\frac{\alpha\,p_2}{(1-\alpha)\,p_1}\biggr]^{1-\alpha}
+\;=\; h_1^*. \;\checkmark
+$$
+
+Custo marginal de utilidade:
+
+$$
+\frac{\partial E^*}{\partial \bar U} \;=\; \frac{p_1^\alpha\,p_2^{1-\alpha}}{\alpha^\alpha (1-\alpha)^{1-\alpha}} \;=\; \frac{E^*}{\bar U} \;=\; \mu^*.
+$$
+
+A dualidade com Shephard é perfeita: $E^*(p_1, p_2, \bar U)$ e $C^*(r, w, \bar Q)$ têm exatamente a mesma forma funcional, com $(\bar U, p_1, p_2)$ no consumidor desempenhando o papel de $(\bar Q, r, w)$ na firma.
 
 Em todos os quatro casos, **uma derivada parcial direta substitui um cálculo de derivada total via estática comparativa** — daí o poder prático do resultado.

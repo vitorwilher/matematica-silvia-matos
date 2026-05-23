@@ -828,6 +828,60 @@ Hbar = np.array([[-lam*fkk, -lam*fkl, -fk],
 print(f"|H_bar| = {np.linalg.det(Hbar):.4f} (< 0 → mínimo)")
 ```
 
+#### Estática Comparativa
+
+As três CPOs do problema de minimização de custo formam um **sistema de funções implícitas** com endógenas $(k, l, \lambda)$ e exógenas $(r, w, \bar Q)$. Diferenciando totalmente e avaliando no ponto crítico:
+
+$$
+\begin{aligned}
+-\lambda\,f_{kk}\,dk - \lambda\,f_{kl}\,dl - f_k\,d\lambda &= -dr, \\
+-\lambda\,f_{lk}\,dk - \lambda\,f_{ll}\,dl - f_l\,d\lambda &= -dw, \\
+-f_k\,dk - f_l\,dl \phantom{- f_l\,d\lambda} &= -d\bar Q.
+\end{aligned}
+$$
+
+Em forma matricial:
+
+$$
+\underbrace{\begin{pmatrix} -\lambda f_{kk} & -\lambda f_{kl} & -f_k \\ -\lambda f_{lk} & -\lambda f_{ll} & -f_l \\ -f_k & -f_l & 0 \end{pmatrix}}_{=\;\bar H}
+\begin{pmatrix} dk \\ dl \\ d\lambda \end{pmatrix}
+=
+\begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix} dr
++ \begin{pmatrix} 0 \\ -1 \\ 0 \end{pmatrix} dw
++ \begin{pmatrix} 0 \\ 0 \\ -1 \end{pmatrix} d\bar Q.
+$$
+
+A matriz dos coeficientes é exatamente o **Hessiano orlado** $\bar H$ construído na subseção anterior. Pela CSO de mínimo, $|\bar H| < 0$, logo o sistema tem solução única para qualquer choque exógeno, e aplicamos **regra de Cramer** para isolar cada multiplicador.
+
+**Efeito do preço próprio ($dw = d\bar Q = 0$, $dr \neq 0$):**
+
+$$
+\frac{\partial k}{\partial r} \;=\; \frac{1}{|\bar H|}\,\det\!\begin{pmatrix} -1 & -\lambda f_{kl} & -f_k \\ 0 & -\lambda f_{ll} & -f_l \\ 0 & -f_l & 0 \end{pmatrix}
+\;=\; \frac{f_l^2}{|\bar H|}.
+$$
+
+Numerador $f_l^2 > 0$; denominador $|\bar H| < 0$ pela CSO. Logo $\partial k/\partial r < 0$: encarecer o capital reduz a demanda condicional por capital. Análogo, $\partial l/\partial w < 0$.
+
+**Efeito cruzado ($dr = d\bar Q = 0$, $dw \neq 0$):**
+
+$$
+\frac{\partial k}{\partial w} \;=\; \frac{1}{|\bar H|}\,\det\!\begin{pmatrix} 0 & -\lambda f_{kl} & -f_k \\ -1 & -\lambda f_{ll} & -f_l \\ 0 & -f_l & 0 \end{pmatrix}
+\;=\; \frac{-f_k\,f_l}{|\bar H|}.
+$$
+
+Numerador $-f_k f_l < 0$; denominador $|\bar H| < 0$. Logo $\partial k/\partial w > 0$: encarecer o trabalho aumenta a demanda condicional por capital. Note que esse sinal **não depende** do sinal de $f_{kl}$ — diferente do que ocorreu com as demandas não-condicionais da maximização de lucro na Parte I. Demandas **condicionais** sempre exibem substituição entre fatores, porque a firma precisa manter $\bar Q$ fixo: encarecer um insumo força recomposição em direção ao outro.
+
+**Efeito do nível de produção ($dr = dw = 0$, $d\bar Q \neq 0$):**
+
+$$
+\frac{\partial k}{\partial \bar Q} \;=\; \frac{1}{|\bar H|}\,\det\!\begin{pmatrix} 0 & -\lambda f_{kl} & -f_k \\ 0 & -\lambda f_{ll} & -f_l \\ -1 & -f_l & 0 \end{pmatrix}
+\;=\; \frac{\lambda\,(f_k\,f_{ll} - f_{kl}\,f_l)}{|\bar H|}.
+$$
+
+O numerador é negativo: $f_k\,f_{ll} < 0$ (porque $f_{ll} < 0$) e $-f_{kl}\,f_l < 0$ (porque $f_{kl}, f_l > 0$), somados e multiplicados por $\lambda > 0$. Denominador $|\bar H| < 0$. Logo $\partial k/\partial \bar Q > 0$: aumentar a meta de produção eleva a demanda condicional por capital, como esperado. Análogo, $\partial l/\partial \bar Q > 0$.
+
+Como nos problemas anteriores, os resultados qualitativos saem **diretamente dos sinais das derivadas** de $f$ e do sinal do Hessiano orlado, sem qualquer especificação funcional — é a álgebra dos cofatores que torna a análise robusta.
+
 A função-valor $C^*(\bar Q; r, w)$ — o custo mínimo como função de $\bar Q$ e dos preços de insumos — é a **função custo** da firma, peça central da teoria do produtor. Pelo **teorema do envelope**, $\partial C^*/\partial \bar Q = \lambda^*$ (custo marginal) e $\partial C^*/\partial r = k^*$, $\partial C^*/\partial w = l^*$ (lema de Shephard) — as demandas condicionais por fatores são recuperadas diferenciando o custo mínimo nos preços de insumos.
 
 A maximização de utilidade s.a. restrição orçamentária e a minimização de custo da firma — junto com a maximização de lucro do produtor visto na Parte I — formam o núcleo da microeconomia neoclássica. Os mesmos passos (Lagrangeano, CPO, Hessiano orlado, estática comparativa) reaparecem em todos os problemas restritos: minimização de despesa do consumidor, problemas de portfolio em finanças, etc.

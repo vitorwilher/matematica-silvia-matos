@@ -642,4 +642,192 @@ print(f"x2* = {x2:.3f} (gasto p2·x2 = {p2*x2:.2f} = (1−α)·R = {(1-alpha)*R:
 
 A condição $|\bar H| > 0$ pode ser verificada diretamente para Cobb-Douglas no ponto ótimo, mas decorre alternativamente da quase-concavidade da utilidade — propriedade preservada pela transformação monotônica $\ln U = \alpha \ln x_1 + (1-\alpha) \ln x_2$, que é estritamente côncava em $(\ln x_1, \ln x_2)$.
 
-A maximização de utilidade s.a. restrição orçamentária — junto com a maximização de lucro do produtor visto na Parte I — forma o núcleo da microeconomia neoclássica. Os mesmos passos (Lagrangeano, CPO, Hessiano orlado, estática comparativa) reaparecem em todos os problemas restritos: minimização de despesa do consumidor, minimização de custo da firma, problemas de portfolio em finanças, etc.
+### Minimização de Custo da Firma
+
+A firma neoclássica resolve dois problemas duais: na Parte I, **maximizou lucro** escolhendo $(K, L)$ a preços $(p, r, w)$ dados; agora, dado um nível de produção $\bar Q$, **minimiza o custo total** dos insumos. É o problema dual da firma e o ponto de partida para construir a função de custo $C(\bar Q; r, w)$. Formalmente,
+
+$$
+\min_{k,\, l \geq 0}\; r\,k + w\,l \quad\text{s.a.}\quad f(k, l) = \bar Q,
+$$
+
+onde $f$ satisfaz as hipóteses neoclássicas usuais ($f_k, f_l > 0$; $f_{kk}, f_{ll} < 0$; $f_{kl} > 0$; $f$ quase-côncava).
+
+A Lagrangeana é
+
+$$
+\mathcal{L}(k, l, \lambda) \;=\; r\,k + w\,l + \lambda\,\bigl[\bar Q - f(k, l)\bigr] \;=\; r\,k + w\,l + \lambda\,\bar Q - \lambda\,f(k, l).
+$$
+
+**CPO:**
+
+$$
+\begin{aligned}
+\frac{\partial \mathcal{L}}{\partial k} &= r - \lambda\,f_k = 0 \;\Longrightarrow\; r = \lambda\,f_k, \\
+\frac{\partial \mathcal{L}}{\partial l} &= w - \lambda\,f_l = 0 \;\Longrightarrow\; w = \lambda\,f_l, \\
+\frac{\partial \mathcal{L}}{\partial \lambda} &= \bar Q - f(k, l) = 0.
+\end{aligned}
+$$
+
+Dividindo as duas primeiras:
+
+$$
+\boxed{\;\frac{f_k}{f_l} \;=\; \frac{r}{w}, \qquad \text{equivalente a}\qquad \frac{f_l}{f_k} \;=\; \frac{w}{r}.\;}
+$$
+
+A leitura econômica é **dual à do consumidor**: a Taxa Marginal de Substituição Técnica (TMST) — quanto de $k$ a firma pode dispensar mantendo $\bar Q$ ao adicionar uma unidade de $l$ — iguala a razão dos preços dos insumos. Geometricamente, é a **tangência** entre a isoquanta $f(k, l) = \bar Q$ e a reta de isocusto $rk + wl = \bar C$, com inclinação $-w/r$.
+
+O multiplicador tem interpretação econômica explícita: das CPOs, $\lambda = r/f_k = w/f_l$, ou seja, $\lambda$ é o **custo marginal** de produzir uma unidade adicional do produto — o preço-sombra da restrição $f(k, l) = \bar Q$.
+
+#### Construção do Hessiano Orlado (de onde vêm os coeficientes)
+
+A CSO usa o Hessiano orlado das segundas derivadas da Lagrangeana. Cada coeficiente é literalmente uma segunda derivada parcial de $\mathcal{L}$, e é instrutivo ver de onde vem cada uma. Partindo das primeiras derivadas $\mathcal{L}_k = r - \lambda f_k$, $\mathcal{L}_l = w - \lambda f_l$, $\mathcal{L}_\lambda = \bar Q - f(k,l)$:
+
+$$
+\begin{aligned}
+\mathcal{L}_{kk} &= \frac{\partial}{\partial k}\bigl(r - \lambda f_k\bigr) = -\lambda\,f_{kk}, &
+\mathcal{L}_{kl} &= \frac{\partial}{\partial l}\bigl(r - \lambda f_k\bigr) = -\lambda\,f_{kl}, \\
+\mathcal{L}_{ll} &= \frac{\partial}{\partial l}\bigl(w - \lambda f_l\bigr) = -\lambda\,f_{ll}, &
+\mathcal{L}_{k\lambda} &= \frac{\partial}{\partial \lambda}\bigl(r - \lambda f_k\bigr) = -f_k, \\
+\mathcal{L}_{\lambda\lambda} &= \frac{\partial}{\partial \lambda}\bigl(\bar Q - f\bigr) = 0, &
+\mathcal{L}_{l\lambda} &= \frac{\partial}{\partial \lambda}\bigl(w - \lambda f_l\bigr) = -f_l.
+\end{aligned}
+$$
+
+Três observações tornam transparente a origem de cada termo:
+
+1. **A função-objetivo $rk + wl$ é linear em $(k, l)$**, então suas segundas derivadas são zero. *Toda* a curvatura do bloco $2\times 2$ superior vem do termo $-\lambda f(k, l)$ da Lagrangeana — daí o fator $-\lambda$ multiplicando $f_{kk}, f_{kl}, f_{ll}$.
+2. **A borda $-f_k, -f_l$** aparece quando derivamos $\mathcal{L}_k$ ou $\mathcal{L}_l$ em $\lambda$: a única parcela que depende de $\lambda$ é $-\lambda f_k$ (resp. $-\lambda f_l$), cuja derivada em $\lambda$ é $-f_k$ (resp. $-f_l$). Equivalentemente, são as derivadas da restrição $g(k,l) = \bar Q - f(k,l)$ em $k$ e $l$, que entram com sinal negativo porque $\lambda$ multiplica $g$ na Lagrangeana.
+3. **O canto $\mathcal{L}_{\lambda\lambda} = 0$** vem do fato de a Lagrangeana ser **linear em $\lambda$** (o multiplicador só aparece multiplicando algo que não depende dele): derivar duas vezes em $\lambda$ dá zero.
+
+Montando a matriz simétrica $3\times 3$:
+
+$$
+\bar H \;=\; \begin{pmatrix}
+\mathcal{L}_{kk} & \mathcal{L}_{kl} & \mathcal{L}_{k\lambda} \\
+\mathcal{L}_{lk} & \mathcal{L}_{ll} & \mathcal{L}_{l\lambda} \\
+\mathcal{L}_{\lambda k} & \mathcal{L}_{\lambda l} & \mathcal{L}_{\lambda\lambda}
+\end{pmatrix}
+\;=\;
+\begin{pmatrix}
+-\lambda\,f_{kk} & -\lambda\,f_{kl} & -f_k \\
+-\lambda\,f_{kl} & -\lambda\,f_{ll} & -f_l \\
+-f_k & -f_l & 0
+\end{pmatrix}.
+$$
+
+O bloco $2\times 2$ no canto superior é a Hessiana de $\mathcal{L}$ em relação às **variáveis escolhidas** $(k, l)$ — mede a curvatura da Lagrangeana ao longo do espaço onde se otimiza. A última linha/coluna é a **borda**: encaixam as derivadas parciais da restrição, registrando como cada variável afeta o cumprimento de $f(k, l) = \bar Q$.
+
+**CSO.** Para $n = 2$ variáveis e $m = 1$ restrição, a regra de sinais do Hessiano orlado pede:
+
+- **mínimo:** $\operatorname{sinal}|\bar H| = (-1)^m = -1$, isto é, $|\bar H| < 0$;
+- **máximo:** $\operatorname{sinal}|\bar H| = (-1)^n = +1$, isto é, $|\bar H| > 0$ (o que aconteceu no problema do consumidor).
+
+Sob as hipóteses neoclássicas e $\lambda > 0$, mostra-se que $|\bar H| < 0$ — o ponto crítico é de fato mínimo de custo.
+
+#### Exemplo Numérico: Cobb-Douglas $f(k, l) = \sqrt{kl}$
+
+Tome $f(k, l) = k^{1/2} l^{1/2}$, com $\bar Q = 4$, $r = 1$, $w = 1$. As derivadas parciais são $f_k = \tfrac{1}{2}\sqrt{l/k}$ e $f_l = \tfrac{1}{2}\sqrt{k/l}$, logo
+
+$$
+\frac{f_k}{f_l} \;=\; \frac{l}{k} \;=\; \frac{r}{w} = 1 \;\Longrightarrow\; k = l.
+$$
+
+Substituindo na restrição: $\sqrt{l^2} = 4 \Rightarrow l^* = k^* = 4$. O custo mínimo é $C^* = 1\cdot 4 + 1\cdot 4 = 8$, e $\lambda^* = r/f_k = 1/(1/2) = 2$ — produzir uma unidade adicional custa marginalmente \$2.
+
+**Verificação da CSO.** Calculando as segundas derivadas em $(k, l) = (4, 4)$:
+
+- $f_{kk} = -\tfrac{1}{4}\,k^{-3/2}\,l^{1/2} = -\tfrac{1}{4}\cdot\tfrac{1}{8}\cdot 2 = -\tfrac{1}{16}$;
+- $f_{ll} = -\tfrac{1}{4}\,k^{1/2}\,l^{-3/2} = -\tfrac{1}{16}$;
+- $f_{kl} = \tfrac{1}{4}\,(kl)^{-1/2} = \tfrac{1}{16}$.
+
+Aplicando $\lambda^* = 2$:
+
+$$
+\bar H \;=\; \begin{pmatrix}
+-2\cdot(-1/16) & -2\cdot(1/16) & -1/2 \\
+-2\cdot(1/16) & -2\cdot(-1/16) & -1/2 \\
+-1/2 & -1/2 & 0
+\end{pmatrix}
+\;=\;
+\begin{pmatrix}
+1/8 & -1/8 & -1/2 \\
+-1/8 & 1/8 & -1/2 \\
+-1/2 & -1/2 & 0
+\end{pmatrix}.
+$$
+
+Calculando o determinante (expansão pela última linha):
+
+$$
+|\bar H| \;=\; -\tfrac{1}{2}\cdot\underbrace{\bigl[(-1/8)(-1/2) - (-1/2)(1/8)\bigr]}_{=\,1/8}
+\;-\;(-1)\cdot(-\tfrac{1}{2})\cdot\underbrace{\bigl[(1/8)(-1/2) - (-1/2)(-1/8)\bigr]}_{=\,-1/8}
+\;=\; -\tfrac{1}{16} - \tfrac{1}{16} \;=\; -\tfrac{1}{8} < 0.
+$$
+
+Logo $(k^*, l^*) = (4, 4)$ é **mínimo de custo**.
+
+```{r}
+# Minimização de custo: min rk + wl s.a. sqrt(kl) = Qbar
+r <- 1; w <- 1; Qbar <- 4
+
+# Solução analítica via tangência l/k = r/w (Cobb-Douglas simétrica)
+k_star <- Qbar * sqrt(w / r)
+l_star <- Qbar * sqrt(r / w)
+C_star <- r * k_star + w * l_star
+lam    <- r / (0.5 * sqrt(l_star / k_star))   # = 2
+
+cat(sprintf("k* = %.2f, l* = %.2f, C* = %.2f, λ* = %.2f\n",
+            k_star, l_star, C_star, lam))
+
+# Hessiano orlado em (k*, l*)
+fkk <- -0.25 * k_star^(-1.5) * l_star^(0.5)
+fll <- -0.25 * k_star^(0.5)  * l_star^(-1.5)
+fkl <-  0.25 * (k_star * l_star)^(-0.5)
+fk  <-  0.5  * sqrt(l_star / k_star)
+fl  <-  0.5  * sqrt(k_star / l_star)
+
+Hbar <- matrix(c(-lam*fkk, -lam*fkl, -fk,
+                 -lam*fkl, -lam*fll, -fl,
+                 -fk,      -fl,       0),
+               nrow = 3, byrow = TRUE)
+cat(sprintf("|H_bar| = %.4f (esperado < 0 para mínimo)\n", det(Hbar)))
+```
+
+```{python}
+import numpy as np
+from scipy.optimize import minimize
+
+r, w, Qbar = 1, 1, 4
+
+# Solução analítica
+k_star = Qbar * np.sqrt(w / r)
+l_star = Qbar * np.sqrt(r / w)
+C_star = r * k_star + w * l_star
+lam    = r / (0.5 * np.sqrt(l_star / k_star))
+
+print(f"k* = {k_star:.2f}, l* = {l_star:.2f}, "
+      f"C* = {C_star:.2f}, λ* = {lam:.2f}")
+
+# Verificação numérica
+def custo(x): return r * x[0] + w * x[1]
+cons = ({'type': 'eq', 'fun': lambda x: np.sqrt(x[0] * x[1]) - Qbar})
+res = minimize(custo, x0=[1, 1], constraints=cons,
+               bounds=[(1e-6, None), (1e-6, None)])
+print(f"Numérico: k = {res.x[0]:.4f}, l = {res.x[1]:.4f}, C = {res.fun:.4f}")
+
+# Hessiano orlado
+fkk = -0.25 * k_star**(-1.5) * l_star**(0.5)
+fll = -0.25 * k_star**(0.5)  * l_star**(-1.5)
+fkl =  0.25 * (k_star * l_star)**(-0.5)
+fk  =  0.5  * np.sqrt(l_star / k_star)
+fl  =  0.5  * np.sqrt(k_star / l_star)
+
+Hbar = np.array([[-lam*fkk, -lam*fkl, -fk],
+                 [-lam*fkl, -lam*fll, -fl],
+                 [-fk,      -fl,       0 ]])
+print(f"|H_bar| = {np.linalg.det(Hbar):.4f} (< 0 → mínimo)")
+```
+
+A função-valor $C^*(\bar Q; r, w)$ — o custo mínimo como função de $\bar Q$ e dos preços de insumos — é a **função custo** da firma, peça central da teoria do produtor. Pelo **teorema do envelope**, $\partial C^*/\partial \bar Q = \lambda^*$ (custo marginal) e $\partial C^*/\partial r = k^*$, $\partial C^*/\partial w = l^*$ (lema de Shephard) — as demandas condicionais por fatores são recuperadas diferenciando o custo mínimo nos preços de insumos.
+
+A maximização de utilidade s.a. restrição orçamentária e a minimização de custo da firma — junto com a maximização de lucro do produtor visto na Parte I — formam o núcleo da microeconomia neoclássica. Os mesmos passos (Lagrangeano, CPO, Hessiano orlado, estática comparativa) reaparecem em todos os problemas restritos: minimização de despesa do consumidor, problemas de portfolio em finanças, etc.

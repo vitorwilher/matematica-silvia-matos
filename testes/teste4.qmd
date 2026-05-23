@@ -12,6 +12,260 @@ date: ""
 
 # Testes Anteriores — Teste 4
 
+## Teste 4 (2026) — 16 de maio de 2026
+
+### Questão 1 — EDOs de 2ª Ordem com Coeficientes Constantes
+
+Resolva as seguintes EDOs.
+
+#### Item (i): $y'' + 2y' - 3y = 9$, $\;y(0) = -2$, $\;y'(0) = 9$
+
+**Equação homogênea associada.** $y'' + 2y' - 3y = 0$. Equação característica:
+
+$$r^2 + 2r - 3 = 0 \;\Longleftrightarrow\; (r-1)(r+3) = 0 \;\Longrightarrow\; r_1 = 1,\; r_2 = -3.$$
+
+Raízes reais e distintas, logo $y_h(x) = C_1 e^{x} + C_2 e^{-3x}$.
+
+**Solução particular.** Como o termo não-homogêneo é uma constante e $r=0$ não é raiz característica, tentamos $y_p = A$ constante. Substituindo: $-3A = 9 \Rightarrow A = -3$.
+
+**Solução geral.**
+
+$$y(x) = C_1 e^{x} + C_2 e^{-3x} - 3.$$
+
+**Aplicando as condições iniciais.**
+
+$$y(0) = C_1 + C_2 - 3 = -2 \;\Longrightarrow\; C_1 + C_2 = 1.$$
+
+$$y'(x) = C_1 e^{x} - 3C_2 e^{-3x}, \qquad y'(0) = C_1 - 3C_2 = 9.$$
+
+Resolvendo o sistema $C_1 + C_2 = 1,\; C_1 - 3C_2 = 9$: subtraindo, $4C_2 = -8 \Rightarrow C_2 = -2$ e $C_1 = 3$.
+
+$$\boxed{\;y(x) = 3e^{x} - 2e^{-3x} - 3.\;}$$
+
+**Verificação.** $y(0) = 3 - 2 - 3 = -2$ ✓. $y'(x) = 3e^{x} + 6e^{-3x}$, $y'(0) = 3 + 6 = 9$ ✓.
+
+#### Item (ii): $y'' - 8y' + 16y = 32$, $\;y(0) = 2$, $\;y'(0) = 9$
+
+**Equação característica.** $r^2 - 8r + 16 = (r-4)^2 = 0 \Rightarrow r = 4$ (raiz dupla).
+
+Logo $y_h(x) = (C_1 + C_2 x)\,e^{4x}$.
+
+**Solução particular.** Tentando $y_p = A$ constante: $16A = 32 \Rightarrow A = 2$.
+
+**Solução geral.**
+
+$$y(x) = (C_1 + C_2 x)\,e^{4x} + 2.$$
+
+**Condições iniciais.** $y(0) = C_1 + 2 = 2 \Rightarrow C_1 = 0$.
+
+$$y'(x) = C_2 e^{4x} + 4(C_1 + C_2 x)\,e^{4x} = \bigl(C_2 + 4C_1 + 4C_2 x\bigr)\,e^{4x}.$$
+
+$$y'(0) = C_2 + 4C_1 = C_2 = 9.$$
+
+$$\boxed{\;y(x) = 9x\,e^{4x} + 2.\;}$$
+
+**Verificação.** $y(0) = 0 + 2 = 2$ ✓. $y'(x) = 9e^{4x} + 36x\,e^{4x}$, $y'(0) = 9$ ✓.
+
+```{r}
+#| label: fig-teste4-2026-q1
+#| fig-cap: "Soluções dos itens (i) e (ii) da Questão 1. Esquerda: $y(x)=3e^{x}-2e^{-3x}-3$ — domina $3e^{x}$ para $x>0$, oscilação inicial pequena pelo termo $-2e^{-3x}$ que decai rápido. Direita: $y(x)=9x\\,e^{4x}+2$ — crescimento exponencial puxado pelo fator $9x e^{4x}$, com $y(0)=2$."
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 4.2
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+
+x1 <- seq(-0.5, 1.5, length.out = 400)
+df1 <- data.frame(x = x1, y = 3*exp(x1) - 2*exp(-3*x1) - 3)
+
+p1 <- ggplot(df1, aes(x, y)) +
+  geom_line(color = "#440154", linewidth = 1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.3) +
+  geom_point(aes(x = 0, y = -2), color = "black", size = 2.5) +
+  annotate("text", x = 0.05, y = -2, label = "y(0) = -2",
+           hjust = 0, vjust = 1.3, size = 3.5) +
+  labs(title = expression(y(x) == 3*e^x - 2*e^{-3*x} - 3),
+       x = "x", y = "y(x)") + base_t
+
+x2 <- seq(-0.5, 0.8, length.out = 400)
+df2 <- data.frame(x = x2, y = 9*x2*exp(4*x2) + 2)
+
+p2 <- ggplot(df2, aes(x, y)) +
+  geom_line(color = "#31688e", linewidth = 1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.3) +
+  geom_point(aes(x = 0, y = 2), color = "black", size = 2.5) +
+  annotate("text", x = 0.05, y = 2, label = "y(0) = 2",
+           hjust = 0, vjust = -0.5, size = 3.5) +
+  labs(title = expression(y(x) == 9*x*e^{4*x} + 2),
+       x = "x", y = "y(x)") + base_t
+
+p1 + p2
+```
+
+---
+
+### Questão 2 — Derivadas Parciais até Segunda Ordem de $f(x,y) = y^{x^2}$
+
+**Domínio.** Para $y^{x^2}$ ser definida classicamente via $e^{x^2 \ln y}$, exigimos $y > 0$. Tomamos $\mathrm{Dom}(f) = \{(x,y) : y > 0\}$.
+
+**Reescrita útil.** $f(x,y) = e^{x^2 \ln y}$.
+
+#### Derivadas de primeira ordem
+
+**$\partial f/\partial x$.** O expoente é $x^2 \ln y$. Derivando em $x$: $\partial_x[x^2\ln y] = 2x\ln y$. Pela regra da cadeia:
+
+$$f_x = e^{x^2 \ln y}\cdot 2x\ln y = 2x\,\ln(y)\,y^{x^2}.$$
+
+**$\partial f/\partial y$.** Derivando o expoente em $y$: $\partial_y[x^2 \ln y] = x^2/y$. Então:
+
+$$f_y = e^{x^2 \ln y}\cdot \frac{x^2}{y} = \frac{x^2}{y}\,y^{x^2} = x^2\,y^{x^2 - 1}.$$
+
+$$\boxed{\;f_x = 2x\,\ln(y)\,y^{x^2}, \qquad f_y = x^2\,y^{x^2-1}.\;}$$
+
+#### Derivadas de segunda ordem
+
+**$f_{xx}$.** Derivando $f_x = 2x\,\ln(y)\,y^{x^2}$ em $x$ (com $y$ fixo, $\ln y$ é constante). Pela regra do produto:
+
+$$f_{xx} = 2\ln(y)\,y^{x^2} + 2x\,\ln(y)\cdot \partial_x\!\left[y^{x^2}\right].$$
+
+Como $\partial_x\!\left[y^{x^2}\right] = y^{x^2}\cdot \ln(y) \cdot 2x$:
+
+$$f_{xx} = 2\ln(y)\,y^{x^2} + 4x^2 \ln^2(y)\,y^{x^2} = 2\ln(y)\,y^{x^2}\bigl[1 + 2x^2 \ln(y)\bigr].$$
+
+$$\boxed{\;f_{xx} = 2\ln(y)\,y^{x^2}\bigl[1 + 2x^2 \ln(y)\bigr].\;}$$
+
+**$f_{yy}$.** Derivando $f_y = x^2\,y^{x^2 - 1}$ em $y$ (com $x$ fixo, $x^2$ e $x^2-1$ são constantes):
+
+$$f_{yy} = x^2 (x^2 - 1)\,y^{x^2 - 2}.$$
+
+$$\boxed{\;f_{yy} = x^2(x^2-1)\,y^{x^2-2}.\;}$$
+
+**$f_{xy}$ (derivar $f_x$ em $y$).** $f_x = 2x\,\ln(y)\,y^{x^2}$, com $x$ fixo. Pela regra do produto em $y$:
+
+$$f_{xy} = 2x\left[\frac{1}{y}\,y^{x^2} + \ln(y)\cdot x^2\,y^{x^2-1}\right] = 2x\,y^{x^2-1}\bigl[1 + x^2\ln(y)\bigr].$$
+
+**$f_{yx}$ (derivar $f_y$ em $x$).** $f_y = x^2\,y^{x^2-1}$, com $y$ fixo. Aqui $x^2-1$ é expoente que depende de $x$, então usamos $\partial_x[y^{x^2-1}] = y^{x^2-1}\cdot \ln(y)\cdot 2x$. Pela regra do produto:
+
+$$f_{yx} = 2x\,y^{x^2-1} + x^2\cdot y^{x^2-1}\cdot \ln(y)\cdot 2x = 2x\,y^{x^2-1}\bigl[1 + x^2\ln(y)\bigr].$$
+
+$$\boxed{\;f_{xy} = f_{yx} = 2x\,y^{x^2-1}\bigl[1 + x^2\ln(y)\bigr].\;}$$
+
+**Igualdade das cruzadas.** Confirmada por cálculo direto, como previsto pelo **Teorema de Schwarz** (as derivadas $f_{xy}$ e $f_{yx}$ existem e são contínuas no domínio $y > 0$).
+
+```{r}
+#| label: fig-teste4-2026-q2
+#| fig-cap: "Verificação numérica das derivadas cruzadas de $f(x,y)=y^{x^2}$. Os dois painéis mostram $f_{xy}$ e $f_{yx}$ calculadas pela fórmula analítica $2x\\,y^{x^2-1}[1+x^2\\ln(y)]$ — visualmente idênticas, como exige Schwarz."
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 4.5
+
+library(ggplot2)
+library(patchwork)
+
+grid_xy <- expand.grid(x = seq(-1.5, 1.5, length.out = 80),
+                       y = seq(0.4, 2.5, length.out = 80))
+grid_xy$fxy <- 2*grid_xy$x * grid_xy$y^(grid_xy$x^2 - 1) *
+                 (1 + grid_xy$x^2 * log(grid_xy$y))
+grid_xy$fyx <- grid_xy$fxy  # por Schwarz; mostramos calculado pela mesma fórmula
+
+base_t <- theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+
+p1 <- ggplot(grid_xy, aes(x, y, fill = fxy)) +
+  geom_raster() +
+  scale_fill_viridis_c(option = "C", name = expression(f[xy])) +
+  labs(title = expression(f[xy](x,y)), x = "x", y = "y") + base_t
+
+p2 <- ggplot(grid_xy, aes(x, y, fill = fyx)) +
+  geom_raster() +
+  scale_fill_viridis_c(option = "C", name = expression(f[yx])) +
+  labs(title = expression(f[yx](x,y)), x = "x", y = "y") + base_t
+
+p1 + p2
+```
+
+---
+
+### Questão 3 — Curvas de Nível de $f(x,y) = \dfrac{x^2 - 3x}{y}$
+
+**Domínio.** $y \neq 0$. Logo $\mathrm{Dom}(f) = \{(x,y) \in \mathbb{R}^2 : y \neq 0\}$.
+
+**Curvas de nível.** Igualando $f(x,y) = c$:
+
+$$\frac{x^2 - 3x}{y} = c \;\Longleftrightarrow\; x^2 - 3x = c\,y.$$
+
+**Caso $c = 0$.** A equação reduz-se a $x^2 - 3x = 0$, ou seja, $x(x-3) = 0$. A curva de nível $c=0$ é a união das **retas verticais** $x = 0$ e $x = 3$ (com $y \neq 0$, isto é, excluindo os pontos $(0,0)$ e $(3,0)$).
+
+**Caso $c \neq 0$.** Isolando $y$:
+
+$$y = \frac{x^2 - 3x}{c}.$$
+
+É uma **parábola** em $x$ com eixo de simetria $x = 3/2$ e que cruza o eixo $x$ em $x = 0$ e $x = 3$ (esses pontos têm $y=0$, então estão fora do domínio).
+
+**Vértice.** No vértice $x = 3/2$, o numerador vale $(3/2)^2 - 3(3/2) = 9/4 - 9/2 = -9/4$. Logo o vértice é
+
+$$\left(\tfrac{3}{2},\, -\tfrac{9}{4c}\right).$$
+
+**Classificação por sinal de $c$.**
+
+- **$c > 0$**: a parábola tem **concavidade para cima** (mesmo sinal do numerador $x^2-3x$); o vértice em $y = -9/(4c) < 0$ fica abaixo do eixo $x$. Para $0 < x < 3$ a curva está no semiplano $y < 0$; para $x < 0$ ou $x > 3$, no semiplano $y > 0$.
+- **$c < 0$**: a parábola é **invertida** (sinal oposto ao numerador); vértice em $y = -9/(4c) > 0$. Para $0 < x < 3$ está em $y > 0$; para $x < 0$ ou $x > 3$, em $y < 0$.
+
+**Aspectos qualitativos.**
+
+- Todas as curvas de nível $c \neq 0$ "tocam" os pontos $(0,0)$ e $(3,0)$ — no sentido de que se aproximam deles —, mas esses pontos são excluídos do domínio.
+- Quanto **maior** $|c|$, mais "achatada" a parábola (vértice mais próximo do eixo $x$); quanto **menor** $|c|$, mais "alongada".
+- A função é **ímpar** em $y$: $f(x,-y) = -f(x,y)$. Logo a curva de nível $c$ no semiplano $y>0$ é a reflexão da curva de nível $-c$ no semiplano $y<0$.
+
+```{r}
+#| label: fig-teste4-2026-q3
+#| fig-cap: "Curvas de nível de $f(x,y)=(x^2-3x)/y$ para vários $c$. Parábolas com eixo de simetria $x=3/2$, passando (no limite) por $(0,0)$ e $(3,0)$ — pontos excluídos do domínio ($y \\neq 0$). Sinal de $c$ controla orientação: $c>0$ abre para cima, $c<0$ para baixo. A linha $c=0$ degenera nas retas $x=0$ e $x=3$."
+#| fig-align: center
+#| fig-width: 7
+#| fig-height: 5.5
+
+library(ggplot2)
+
+x  <- seq(-1.5, 4.5, length.out = 400)
+cs <- c(-2, -1, -0.5, 0.5, 1, 2)
+
+df <- do.call(rbind, lapply(cs, function(c)
+  data.frame(x = x, y = (x^2 - 3*x)/c, c = sprintf("c = %.1f", c))))
+
+# excluir pontos com y muito próximo de zero (não está no domínio)
+df <- subset(df, abs(df$y) > 0.02)
+
+# curva c = 0: duas verticais x=0, x=3
+yseg <- seq(-6, 6, length.out = 200)
+yseg <- yseg[abs(yseg) > 0.02]
+df0 <- rbind(
+  data.frame(x = 0, y = yseg, c = "c = 0"),
+  data.frame(x = 3, y = yseg, c = "c = 0")
+)
+
+ggplot() +
+  geom_line(data = df, aes(x, y, color = c), linewidth = 0.9) +
+  geom_line(data = df0, aes(x, y, color = c, group = x),
+            linewidth = 0.9, linetype = "twodash") +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.4) +
+  geom_vline(xintercept = 0, color = "gray85", linewidth = 0.3) +
+  geom_point(data = data.frame(x = c(0, 3), y = c(0, 0)),
+             aes(x, y), shape = 21, fill = "white", color = "black",
+             size = 2.4, stroke = 0.7) +
+  scale_color_viridis_d(option = "D") +
+  coord_cartesian(xlim = c(-1.5, 4.5), ylim = c(-6, 6)) +
+  labs(x = "x", y = "y", color = NULL,
+       title = expression(f(x,y) == (x^2 - 3*x)/y)) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+```
+
+---
+
 ## Teste 4 (2025) — 28 de abril de 2025
 
 ### Questão 1 — Derivadas Parciais até Segunda Ordem

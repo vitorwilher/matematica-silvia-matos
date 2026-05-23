@@ -830,7 +830,7 @@ print(f"|H_bar| = {np.linalg.det(Hbar):.4f} (< 0 → mínimo)")
 
 #### Estática Comparativa
 
-As três CPOs do problema de minimização de custo formam um **sistema de funções implícitas** com endógenas $(k, l, \lambda)$ e exógenas $(r, w, \bar Q)$. Diferenciando totalmente e avaliando no ponto crítico:
+As três CPOs do problema de minimização de custo formam um **sistema de funções implícitas** com endógenas $(k, l, \lambda)$ e exógenas $(r, w, \bar Q)$ — exatamente o objeto da @sec-tfi-sistemas, com Jacobiano $J = \bar H$ e condição $|J| \neq 0$ assegurada pela CSO. Diferenciando totalmente e avaliando no ponto crítico:
 
 $$
 \begin{aligned}

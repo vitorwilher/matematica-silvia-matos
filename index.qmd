@@ -25,10 +25,10 @@ execute:
 \thispagestyle{empty}
 \centering
 
-% Logos no cabeçalho
-\includegraphics[width=4.5cm]{AM.png}
-\hspace{1.5cm}
+% Logo no cabeçalho
+\begin{center}
 \includegraphics[width=4.5cm]{epge.png}
+\end{center}
 
 \vfill
 

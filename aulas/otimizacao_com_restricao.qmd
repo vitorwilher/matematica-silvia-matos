@@ -332,11 +332,106 @@ Esta é a **interpretação do multiplicador como preço-sombra**: $\lambda_i^*$
 
 ### Aplicações Canônicas
 
-O teorema do envelope é uma das ferramentas mais reutilizadas em microeconomia. Casos clássicos:
+O teorema do envelope é uma das ferramentas mais reutilizadas em microeconomia. Trabalhamos abaixo os quatro casos clássicos da teoria do produtor e do consumidor, em ordem: minimização de custo, maximização de lucro, maximização de utilidade e minimização de despesa. Em cada caso, o procedimento é o mesmo: monta-se o problema, escreve-se a Lagrangeana, deriva-se diretamente nos parâmetros, e a identidade resultante carrega nome próprio na literatura.
 
-- **Função custo** $C^*(r, w, \bar Q)$ → **Lema de Shephard** ($\partial C^*/\partial r = k^*$, $\partial C^*/\partial w = l^*$) e **custo marginal** ($\partial C^*/\partial \bar Q = \lambda^*$). Detalhado no capítulo de aplicações econômicas.
-- **Função despesa** $E^*(p_1, p_2, \bar U)$ → demandas hicksianas ($\partial E^*/\partial p_i = h_i^*$) e custo marginal de utilidade ($\partial E^*/\partial \bar U = \mu^*$).
-- **Função utilidade indireta** $V^*(p_1, p_2, R)$ → **identidade de Roy** ($-\partial V^*/\partial p_i \,\div\, \partial V^*/\partial R = x_i^*$).
-- **Função lucro** $\pi^*(p, r, w)$ → **lema de Hotelling** ($\partial \pi^*/\partial p = Q^*$, $\partial \pi^*/\partial r = -k^*$, $\partial \pi^*/\partial w = -l^*$).
+#### Lema de Shephard (Função Custo)
 
-Em todos os casos, **uma derivada parcial direta substitui um cálculo de derivada total via estática comparativa** — daí o poder prático do resultado.
+**Problema.** A firma com tecnologia $f(k, l)$ minimiza o custo dos insumos para atingir um nível de produção $\bar Q$, a preços de fator $(r, w)$:
+
+$$
+\min_{k, l \geq 0}\, r\,k + w\,l \quad \text{s.a.} \quad f(k, l) = \bar Q.
+$$
+
+**Lagrangeana.** $\mathcal{L}(k, l, \lambda;\, r, w, \bar Q) = rk + wl + \lambda\,[\bar Q - f(k, l)]$. Parâmetros: $a = (r, w, \bar Q)$. Função-valor: $C^*(r, w, \bar Q) = r\,k^*(\cdot) + w\,l^*(\cdot)$.
+
+**Derivadas pelo envelope.** Avaliando $\partial \mathcal{L}/\partial a_j$ no ponto crítico:
+
+$$
+\frac{\partial C^*}{\partial r} = \biggl.\frac{\partial \mathcal{L}}{\partial r}\biggr|_* = k^*,
+\qquad
+\frac{\partial C^*}{\partial w} = \biggl.\frac{\partial \mathcal{L}}{\partial w}\biggr|_* = l^*,
+\qquad
+\frac{\partial C^*}{\partial \bar Q} = \biggl.\frac{\partial \mathcal{L}}{\partial \bar Q}\biggr|_* = \lambda^*.
+$$
+
+**Resultado.** As duas primeiras identidades são o **lema de Shephard**: derivar a função custo no preço de um fator recupera a demanda condicional por aquele fator. A terceira identifica $\lambda^*$ como **custo marginal** $\partial C^*/\partial \bar Q$.
+
+**Comentário.** A utilidade prática é dupla. Primeiro, a função custo encapsula toda a estrutura de demanda condicional por fatores — basta diferenciá-la nos preços, sem precisar passar por estática comparativa do sistema de CPOs. Segundo, o multiplicador $\lambda$, que aparecia como artefato matemático na Lagrangeana, ganha aqui conteúdo econômico explícito: é o preço-sombra da restrição de produção, ou seja, quanto custaria à firma produzir uma unidade adicional de $\bar Q$.
+
+#### Lema de Hotelling (Função Lucro)
+
+**Problema.** A firma competitiva escolhe insumos $(k, l)$ para maximizar o lucro a preços de produto e fatores $(p, r, w)$:
+
+$$
+\max_{k, l \geq 0}\, \pi(k, l;\, p, r, w) \;=\; p\,f(k, l) - r\,k - w\,l.
+$$
+
+Este é um problema **sem restrição** — caso especial do envelope com $r = 0$ restrições, em que a Lagrangeana se reduz à própria função-objetivo. As CPOs são $p\,f_k = r$ e $p\,f_l = w$.
+
+**Função-valor.** $\pi^*(p, r, w) = p\,f(k^*, l^*) - r\,k^* - w\,l^*$.
+
+**Derivadas pelo envelope.** Como $\mathcal{L} = \pi$, derivadas parciais diretas avaliadas no ótimo:
+
+$$
+\frac{\partial \pi^*}{\partial p} = \biggl.\frac{\partial \pi}{\partial p}\biggr|_* = f(k^*, l^*) = Q^*,
+\qquad
+\frac{\partial \pi^*}{\partial r} = -k^*,
+\qquad
+\frac{\partial \pi^*}{\partial w} = -l^*.
+$$
+
+**Resultado.** As três identidades são o **lema de Hotelling**: derivar a função lucro no preço do produto recupera a oferta ótima $Q^*$; derivar nos preços dos fatores recupera as demandas (incondicionais) com sinal trocado.
+
+**Comentário.** A simetria com Shephard é instrutiva. Em ambos os casos, a função-valor codifica toda a estrutura de oferta/demanda da firma, recuperada por diferenciação direta. As diferenças são duas. (i) Aqui as demandas são **incondicionais** — o nível de produção $Q$ é endógeno, ajustado pela firma —, enquanto em Shephard são **condicionais** a $\bar Q$ fixo. (ii) O sinal das derivadas em fatores é negativo porque $r, w$ entram com sinal negativo no lucro; em Shephard era positivo porque entravam positivamente no custo. Combinados, Shephard e Hotelling permitem reconstruir toda a teoria do produtor partindo apenas de funções-valor.
+
+#### Identidade de Roy (Função Utilidade Indireta)
+
+**Problema.** O consumidor escolhe quantidades $(x_1, x_2)$ para maximizar a utilidade $U$ sujeito à restrição orçamentária:
+
+$$
+\max_{x_1, x_2 \geq 0}\, U(x_1, x_2) \quad \text{s.a.} \quad p_1 x_1 + p_2 x_2 = R.
+$$
+
+**Lagrangeana.** $\mathcal{L}(x_1, x_2, \lambda;\, p_1, p_2, R) = U(x_1, x_2) + \lambda\,[R - p_1 x_1 - p_2 x_2]$. Parâmetros: $a = (p_1, p_2, R)$. Função-valor: $V^*(p_1, p_2, R) = U(x_1^*, x_2^*)$, chamada **utilidade indireta**.
+
+**Derivadas pelo envelope.** Avaliando $\partial \mathcal{L}/\partial a_j$ no ponto crítico:
+
+$$
+\frac{\partial V^*}{\partial p_i} = \biggl.\frac{\partial \mathcal{L}}{\partial p_i}\biggr|_* = -\lambda^*\,x_i^*,
+\qquad
+\frac{\partial V^*}{\partial R} = \biggl.\frac{\partial \mathcal{L}}{\partial R}\biggr|_* = \lambda^*.
+$$
+
+**Resultado.** Dividindo as duas identidades, $\lambda^*$ cancela e obtemos a **identidade de Roy**:
+
+$$
+\boxed{\;x_i^*(p_1, p_2, R) \;=\; -\,\frac{\partial V^*/\partial p_i}{\partial V^*/\partial R}.\;}
+$$
+
+A demanda Marshalliana ótima por um bem é obtida diferenciando a utilidade indireta no preço próprio e dividindo pela derivada na renda, com sinal trocado.
+
+**Comentário.** O multiplicador $\lambda^*$ tem aqui interpretação natural como **utilidade marginal da renda**: quanto a utilidade ótima sobe por unidade adicional de orçamento. Repare como ele cancela quando tomamos a razão na identidade — só sobra uma relação observável entre derivadas de $V^*$ e a demanda. Isso resolve um problema empírico real: estimar funções de demanda diretamente é difícil (são funções vetoriais com restrições de simetria de Slutsky), mas estimar $V^*$ e derivá-la é, em muitos casos, mais tratável. A função utilidade indireta também serve para análise de bem-estar — comparar $V^*$ antes e depois de um choque de preços ou renda mede ganho/perda de utilidade do consumidor.
+
+#### Demandas Hicksianas (Função Despesa)
+
+**Problema.** O consumidor minimiza o gasto necessário para atingir um nível de utilidade $\bar U$ a preços $(p_1, p_2)$:
+
+$$
+\min_{x_1, x_2 \geq 0}\, p_1 x_1 + p_2 x_2 \quad \text{s.a.} \quad U(x_1, x_2) = \bar U.
+$$
+
+**Lagrangeana.** $\mathcal{L}(x_1, x_2, \mu;\, p_1, p_2, \bar U) = p_1 x_1 + p_2 x_2 + \mu\,[\bar U - U(x_1, x_2)]$. Parâmetros: $a = (p_1, p_2, \bar U)$. Função-valor: $E^*(p_1, p_2, \bar U) = p_1 h_1^* + p_2 h_2^*$, chamada **função despesa**, onde $h_i^*$ é a **demanda hicksiana** (ou compensada) pelo bem $i$.
+
+**Derivadas pelo envelope.** Avaliando $\partial \mathcal{L}/\partial a_j$ no ponto crítico:
+
+$$
+\frac{\partial E^*}{\partial p_i} = \biggl.\frac{\partial \mathcal{L}}{\partial p_i}\biggr|_* = h_i^*,
+\qquad
+\frac{\partial E^*}{\partial \bar U} = \biggl.\frac{\partial \mathcal{L}}{\partial \bar U}\biggr|_* = \mu^*.
+$$
+
+**Resultado.** A primeira identidade é o **análogo de Shephard para o consumidor**: derivar a função despesa no preço de um bem recupera a demanda hicksiana por aquele bem. A segunda identifica $\mu^*$ como o **custo marginal de utilidade** — quanto gasto adicional é necessário para atingir uma unidade a mais de $\bar U$.
+
+**Comentário.** O problema de despesa é **dual ao de maximização de utilidade**: ambos descrevem o mesmo conjunto de escolhas ótimas, trocando os papéis de objetivo e restrição. A diferença prática é que as demandas hicksianas $h_i^*(p, \bar U)$ mantêm **utilidade** fixa, enquanto as Marshallianas $x_i^*(p, R)$ mantêm **renda** fixa. Isso é central na análise de bem-estar: a variação compensatória de um choque de preços usa $E^*$ (gasto necessário para manter $\bar U$) em vez de $x_i^*$ (que mistura efeito substituição e efeito renda). A equação de Slutsky formaliza essa decomposição. Note também a simetria matemática: Shephard na firma (custo) e este resultado no consumidor (despesa) têm exatamente a mesma estrutura — não é coincidência, é a dualidade neoclássica entre produtor e consumidor.
+
+Em todos os quatro casos, **uma derivada parcial direta substitui um cálculo de derivada total via estática comparativa** — daí o poder prático do resultado.

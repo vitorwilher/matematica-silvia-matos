@@ -960,19 +960,9 @@ O numerador é negativo: $f_k\,f_{ll} < 0$ (porque $f_{ll} < 0$) e $-f_{kl}\,f_l
 
 Como nos problemas anteriores, os resultados qualitativos saem **diretamente dos sinais das derivadas** de $f$ e do sinal do Hessiano orlado, sem qualquer especificação funcional — é a álgebra dos cofatores que torna a análise robusta.
 
-#### Teorema do Envelope: Lema de Shephard e Custo Marginal
+#### Aplicação do Envelope: Lema de Shephard e Custo Marginal
 
-A função-valor $C^*(r, w, \bar Q)$ — o custo mínimo como função das exógenas — é a **função custo** da firma. Suas derivadas têm interpretação econômica imediata via o **teorema do envelope**.
-
-**Enunciado (forma Lagrangeana).** Para um problema parametrizado $\min_x f(x; a)$ s.a. $g(x; a) = 0$, com função-valor $V(a) = f(x^*(a); a)$ e Lagrangeana $\mathcal{L}(x, \lambda; a) = f(x; a) + \lambda\,g(x; a)$:
-
-$$
-\boxed{\;\frac{\partial V}{\partial a_j} \;=\; \biggl.\frac{\partial \mathcal{L}}{\partial a_j}\biggr|_{x = x^*(a),\,\lambda = \lambda^*(a)}.\;}
-$$
-
-A intuição: variar $a_j$ tem dois efeitos no ótimo — **direto**, via a dependência explícita de $\mathcal{L}$ em $a_j$; e **indireto**, via mudanças em $x^*(a)$ e $\lambda^*(a)$. Os efeitos indiretos se **cancelam** porque $x^*$ satisfaz as CPOs $\partial\mathcal{L}/\partial x = 0$, e $\lambda^*$ está atado à identidade $g(x^*; a) = 0$. Sobra apenas a parcial direta — daí o nome "envelope": $V(a)$ tangencia a família de funções $\mathcal{L}(x, \lambda; a)$ no ponto $(x^*, \lambda^*)$.
-
-**Aplicação à minimização de custo.** Com $\mathcal{L} = rk + wl + \lambda[\bar Q - f(k, l)]$, três derivadas saem por inspeção:
+A função-valor $C^*(r, w, \bar Q)$ — o custo mínimo como função das exógenas — é a **função custo** da firma. Aplicando o teorema do envelope (@sec-envelope) à Lagrangeana $\mathcal{L} = rk + wl + \lambda[\bar Q - f(k, l)]$, três derivadas saem por inspeção:
 
 $$
 \frac{\partial C^*}{\partial r} = \biggl.\frac{\partial \mathcal{L}}{\partial r}\biggr|_* = k^*,
@@ -982,23 +972,7 @@ $$
 \frac{\partial C^*}{\partial \bar Q} = \biggl.\frac{\partial \mathcal{L}}{\partial \bar Q}\biggr|_* = \lambda^*.
 $$
 
-As duas primeiras são o **lema de Shephard**: as demandas condicionais por fatores são recuperadas diferenciando a função custo nos preços. A terceira identifica $\lambda^*$ como o **custo marginal** — o preço-sombra da restrição de produção.
-
-**Prova direta** (sem invocar o teorema). De $C^* = r\,k^*(r, w, \bar Q) + w\,l^*(r, w, \bar Q)$:
-
-$$
-\frac{\partial C^*}{\partial r} = k^* + r\,\frac{\partial k^*}{\partial r} + w\,\frac{\partial l^*}{\partial r}.
-$$
-
-Pelas CPOs no ótimo, $r = \lambda^* f_k$ e $w = \lambda^* f_l$, logo
-
-$$
-r\,\frac{\partial k^*}{\partial r} + w\,\frac{\partial l^*}{\partial r}
-\;=\; \lambda^*\biggl[f_k\,\frac{\partial k^*}{\partial r} + f_l\,\frac{\partial l^*}{\partial r}\biggr]
-\;=\; 0,
-$$
-
-porque $f(k^*, l^*) = \bar Q$ é identidade em $r$ — diferenciar dá $f_k\,\partial k^*/\partial r + f_l\,\partial l^*/\partial r = 0$. Sobra $\partial C^*/\partial r = k^*$. Análogo para $w$. Para $\bar Q$, a mesma identidade diferenciada em $\bar Q$ dá $f_k\,\partial k^*/\partial\bar Q + f_l\,\partial l^*/\partial\bar Q = 1$, levando a $\partial C^*/\partial\bar Q = \lambda^*$.
+As duas primeiras são o **lema de Shephard**: as demandas condicionais por fatores são recuperadas diferenciando a função custo nos preços. A terceira identifica $\lambda^*$ como o **custo marginal** — o preço-sombra da restrição de produção, exatamente o caso especial do enunciado geral em que o parâmetro $\bar Q$ aparece como deslocamento da restrição.
 
 **Verificação na Cobb-Douglas geral.** Usando $C^*(r, w, \bar Q) = \bar Q\,r^\alpha w^{1-\alpha}/[\alpha^\alpha(1-\alpha)^{1-\alpha}]$:
 

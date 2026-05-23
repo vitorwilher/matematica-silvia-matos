@@ -261,3 +261,82 @@ Para $n$ variáveis e $r$ restrições, monta-se o Hessiano orlado completo (com
 - **Mínimo restrito:** os $n - r$ últimos menores orlados têm **todos o mesmo sinal**, especificamente $(-1)^r$.
 
 No caso $n = 2$, $r = 1$, tem-se $(-1)^n = +1$ (máximo) e $(-1)^r = -1$ (mínimo), recuperando a tabela acima.
+
+## Teorema do Envelope {#sec-envelope}
+
+A maquinaria Lagrangeana + CPO + CSO entrega o ponto ótimo $x^*(a)$ e o multiplicador $\lambda^*(a)$ como funções dos parâmetros $a = (a_1, \ldots, a_k)$ do problema. Resta uma pergunta natural: como a **função-valor** $V(a) = f(x^*(a); a)$ varia quando os parâmetros mudam? A resposta é o **teorema do envelope**, que reduz $\partial V/\partial a_j$ a uma derivada parcial direta da Lagrangeana avaliada no ponto crítico.
+
+### Enunciado
+
+Considere o problema parametrizado
+
+$$
+\min_{x \in \mathbb{R}^n}\, f(x; a) \quad \text{s.a.} \quad g^i(x; a) = 0,\; i = 1, \ldots, r,
+$$
+
+com Lagrangeana $\mathcal{L}(x, \lambda; a) = f(x; a) + \sum_i \lambda_i\,g^i(x; a)$, e suponha que $x^*(a)$ e $\lambda^*(a)$ satisfaçam CPO e CSO em torno de $a$. Defina a função-valor $V(a) = f(x^*(a); a)$. Então:
+
+$$
+\boxed{\;\frac{\partial V}{\partial a_j} \;=\; \biggl.\frac{\partial \mathcal{L}}{\partial a_j}\biggr|_{x = x^*(a),\,\lambda = \lambda^*(a)}.\;}
+$$
+
+O mesmo vale, mutatis mutandis, para problemas de máximo.
+
+### Intuição: Por que os Efeitos Indiretos Cancelam
+
+Variar $a_j$ tem dois efeitos sobre $V$:
+
+- **Efeito direto:** $a_j$ aparece explicitamente em $f$ e em $g^i$ — e portanto em $\mathcal{L}$.
+- **Efeito indireto:** mudar $a_j$ desloca o ótimo $x^*(a)$ (e o multiplicador), o que por sua vez altera $f$.
+
+O teorema afirma que **o efeito indireto cancela**. A razão é simples: no ponto ótimo, $\partial \mathcal{L}/\partial x_i = 0$ para todo $i$, de modo que pequenas perturbações em $x^*$ não mexem em $\mathcal{L}$ a primeira ordem. O multiplicador $\lambda^*$ entra apenas multiplicando $g^i(x^*; a) = 0$, então perturbações em $\lambda^*$ também não importam para $V$ no ponto factível.
+
+Geometricamente: $V(a)$ é o **envelope** da família de funções $\mathcal{L}(x_0, \lambda_0; \cdot)$ indexada por $(x_0, \lambda_0)$ — cada membro da família tangencia $V$ no parâmetro $a_0$ onde $(x_0, \lambda_0) = (x^*(a_0), \lambda^*(a_0))$. Daí o nome.
+
+### Prova
+
+Diferenciando $V(a) = f(x^*(a); a)$ em $a_j$ pela regra da cadeia:
+
+$$
+\frac{\partial V}{\partial a_j} \;=\; \biggl.\frac{\partial f}{\partial a_j}\biggr|_* + \sum_{i=1}^n \biggl.\frac{\partial f}{\partial x_i}\biggr|_*\,\frac{\partial x_i^*}{\partial a_j}.
+$$
+
+Pelas CPOs, $\partial f/\partial x_i\bigr|_* = -\sum_k \lambda_k^*\,\partial g^k/\partial x_i\bigr|_*$. Substituindo:
+
+$$
+\frac{\partial V}{\partial a_j} \;=\; \biggl.\frac{\partial f}{\partial a_j}\biggr|_* - \sum_k \lambda_k^*\,\sum_i \biggl.\frac{\partial g^k}{\partial x_i}\biggr|_*\,\frac{\partial x_i^*}{\partial a_j}.
+$$
+
+Por outro lado, as restrições $g^k(x^*(a); a) = 0$ valem identicamente em $a$; diferenciando em $a_j$:
+
+$$
+\sum_i \biggl.\frac{\partial g^k}{\partial x_i}\biggr|_*\,\frac{\partial x_i^*}{\partial a_j} \;=\; -\biggl.\frac{\partial g^k}{\partial a_j}\biggr|_*.
+$$
+
+Substituindo de volta:
+
+$$
+\frac{\partial V}{\partial a_j} \;=\; \biggl.\frac{\partial f}{\partial a_j}\biggr|_* + \sum_k \lambda_k^*\,\biggl.\frac{\partial g^k}{\partial a_j}\biggr|_*
+\;=\; \biggl.\frac{\partial \mathcal{L}}{\partial a_j}\biggr|_*. \qquad\blacksquare
+$$
+
+### Interpretação do Multiplicador como Preço-Sombra
+
+Um caso especial: se o parâmetro $a_j$ entra apenas como **deslocamento** da $i$-ésima restrição — i.e., $g^i(x; a) = h^i(x) - c_i$ com $a_j = c_i$ — então $\partial \mathcal{L}/\partial c_i = -\lambda_i$ (para Lagrangeana na forma $\mathcal{L} = f + \lambda[c - h]$, comum em economia) e
+
+$$
+\frac{\partial V}{\partial c_i} \;=\; \lambda_i^*.
+$$
+
+Esta é a **interpretação do multiplicador como preço-sombra**: $\lambda_i^*$ mede quanto o valor ótimo $V$ aumenta por unidade marginal de relaxamento da $i$-ésima restrição. O $\lambda$ que aparecia abstrato na Lagrangeana ganha conteúdo econômico explícito.
+
+### Aplicações Canônicas
+
+O teorema do envelope é uma das ferramentas mais reutilizadas em microeconomia. Casos clássicos:
+
+- **Função custo** $C^*(r, w, \bar Q)$ → **Lema de Shephard** ($\partial C^*/\partial r = k^*$, $\partial C^*/\partial w = l^*$) e **custo marginal** ($\partial C^*/\partial \bar Q = \lambda^*$). Detalhado no capítulo de aplicações econômicas.
+- **Função despesa** $E^*(p_1, p_2, \bar U)$ → demandas hicksianas ($\partial E^*/\partial p_i = h_i^*$) e custo marginal de utilidade ($\partial E^*/\partial \bar U = \mu^*$).
+- **Função utilidade indireta** $V^*(p_1, p_2, R)$ → **identidade de Roy** ($-\partial V^*/\partial p_i \,\div\, \partial V^*/\partial R = x_i^*$).
+- **Função lucro** $\pi^*(p, r, w)$ → **lema de Hotelling** ($\partial \pi^*/\partial p = Q^*$, $\partial \pi^*/\partial r = -k^*$, $\partial \pi^*/\partial w = -l^*$).
+
+Em todos os casos, **uma derivada parcial direta substitui um cálculo de derivada total via estática comparativa** — daí o poder prático do resultado.

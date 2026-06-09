@@ -1,0 +1,2093 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{../AM.png}\par\vspace{1em}
+  Roteiro Final de Estudos — Prova de Matemática
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+lang: pt-BR
+format:
+  pdf:
+    pdf-engine: xelatex
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    geometry:
+      - margin=2.5cm
+    fontsize: 11pt
+header-includes:
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
+  - \usepackage{graphicx}
+  - \usepackage{hyperref}
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+\newpage
+
+# Mapa da Matéria da Prova
+
+A prova segue a estrutura abaixo (escopo divulgado e calibrado pelas provas de 2022, 2024 e 2025):
+
+| Bloco | Peso | Conteúdo |
+|---|---|---|
+| **Questão 1 — Teorema** | 1,0 | Demonstração das **condições necessárias e suficientes** para máximo/mínimo |
+| **1ª parte** | 40% | Derivada / Antiderivada, **EDO de 2ª ordem** ($\Delta>0,\ \Delta=0,\ \Delta<0$), Gráfico / Análise |
+| **2ª parte** | 60% | **Máx. lucro**, **Máx. utilidade**, **Min. custo // Min. despesa** (otimização com e sem restrição, estática comparativa, Teorema do Envelope) |
+
+> **A demonstração cai só na Questão 1** (caso univariado via Taylor; caso multivariado via Hessiana). Nos demais blocos o que se cobra é **cálculo** e **modelagem econômica**, não prova de teorema.
+
+Organização: **(I) Simulado 1** (formato da prova, mix geral com firma); **(II) Simulado 2** (teoria do consumidor); **(III) Bateria** de exercícios por tópico; **(IV) Gabarito** completo; **(V) Checklist** de véspera.
+
+\newpage
+
+# Parte I — Simulado 1 (10,0 pontos)
+
+> Tempo sugerido: 2h. Gabarito na Parte IV.
+
+## Questão 1 (1,0 ponto)
+
+Seja $f:\mathbb{R}\to\mathbb{R}$ duas vezes diferenciável e $x^*$ um ponto interior do domínio.
+
+a. Enuncie e **demonstre** as condições **necessárias** de 1ª e 2ª ordem para que $x^*$ seja **mínimo local**.
+
+b. Enuncie as condições **suficientes** e prove que garantem mínimo local estrito.
+
+c. Generalize para $f:\mathbb{R}^n\to\mathbb{R}$: CPO e CSO (Hessiana) para mínimo e máximo, casos $n=2$ e $n=3$.
+
+## Questão 2 (1,5 ponto)
+
+Utilizando os teoremas de derivação, calcule a derivada de
+
+$$
+f(x) \;=\; x^{x} \;+\; \frac{\sqrt{2+3x}}{\ln\!\left(5+3^{x}+x\,e^{x}\right)}.
+$$
+
+## Questão 3 (2,0 pontos)
+
+a. (1,0) Calcule $\displaystyle \int x^{3}\,\ln(x^{2}+2)\,dx$.
+
+b. (1,0) Resolva $y'' + 6y' + 9y = 5$, com $y(0)=\tfrac{14}{9}$ e $y'(0)=0$.
+
+## Questão 4 (1,5 ponto) — Gráfico / Análise
+
+Dada $f(x) = x^{3} - 3x^{2} - 9x + 5$, encontre os intervalos de crescimento/decrescimento e de concavidade/convexidade, localize os pontos de máximo, mínimo e inflexão, e faça um esboço do gráfico.
+
+## Questão 5 (4,0 pontos) — Minimização de Custo da Firma
+
+Uma firma produz $y=f(K,L)$, com $f_K,f_L>0$, $f_{KK},f_{LL}<0$, $f_{KL}=f_{LK}>0$. Sejam $r$ o preço do capital e $w$ o salário.
+
+a. (1,0) Escreva o problema de **minimização de custo** para um nível de produção $q$. Monte o Lagrangeano, encontre as CPO e diga quais são as CSO.
+
+b. (0,5) Represente o problema **graficamente** (isoquanta e isocusto).
+
+c. (1,0) Diferencie as CPO e encontre o **sinal** de $\partial K/\partial r$ e de $\partial K/\partial q$.
+
+d. (1,0) Suponha $f(K,L)=K^{1/2}L^{1/2}$. Encontre $K^*,L^*,\lambda^*$ e a função custo $C^*(r,w,q)$.
+
+e. (0,5) Verifique, pelo **Teorema do Envelope** (Lema de Shephard), que $\partial C^*/\partial r = K^*$ e $\partial C^*/\partial q=\lambda^*$. Qual o grau de homogeneidade de $C^*$ em $(r,w)$?
+
+\newpage
+
+# Parte II — Simulado 2 (10,0 pontos) — Teoria do Consumidor
+
+> Tempo sugerido: 2h. Gabarito na Parte IV.
+
+## Questão 1 (1,0 ponto)
+
+Seja $f:\mathbb{R}\to\mathbb{R}$ duas vezes diferenciável. Enuncie e **demonstre** as condições **necessárias e suficientes** para que $x^*$ seja um ponto de **máximo local**.
+
+## Questão 2 (1,5 ponto)
+
+Calcule a derivada de
+
+$$
+f(x) \;=\; \left(\frac{1}{x}\right)^{x+1} \;+\; \frac{e^{\,x^{2}+2x+1}}{\sqrt{5x-2}} \;-\; 3^{x}.
+$$
+
+## Questão 3 (2,0 pontos)
+
+a. (1,0) Calcule $\displaystyle \int x^{2}\,\ln x \, dx$.
+
+b. (1,0) Resolva $y'' - 3y' + 2y = 4$, com $y(0)=4$ e $y'(0)=5$.
+
+## Questão 4 (5,5 pontos) — O Consumidor por Inteiro
+
+Seja $U(x_1,x_2)$ a utilidade, $p_i$ o preço do bem $i$ e $R$ a renda. Considere $U_i>0$, $U_{ii}<0$, $U_{ij}>0$.
+
+a. (1,0) Escreva o problema de **maximização de utilidade**. Monte o Lagrangeano, encontre as CPO. Quais são as CSO?
+
+b. (0,5) Represente **graficamente**.
+
+c. (1,0) Diferencie as CPO e encontre o sinal de $\partial x_1/\partial p_1$ e de $\partial x_1/\partial R$.
+
+d. (1,0) Para $U(x_1,x_2)=x_1^{1/2}x_2^{1/2}$, encontre as demandas marshallianas $x_1^*,x_2^*$ e $\lambda^*$.
+
+e. (1,0) Encontre a **utilidade indireta** $V(p_1,p_2,R)$; pelo Envelope, calcule $\partial V/\partial p_1$ e $\partial V/\partial R$ e verifique a **Identidade de Roy**.
+
+f. (1,0) Resolva agora o **dual** (minimização de despesa) para atingir utilidade $\bar U$: encontre as demandas hicksianas $h_1,h_2$, a função despesa $E^*(p_1,p_2,\bar U)$ e seu grau de homogeneidade nos preços.
+
+\newpage
+
+# Parte III — Bateria por Tópico
+
+> Sem demonstrações — só cálculo e modelagem. Vários itens vêm de provas e testes anteriores.
+
+## Tópico A — Derivação
+
+**A1.** $f(x)=x^{x+1} + \dfrac{2+3x}{\ln(1-2x+x^{32})}$.
+
+**A2.** $f(x)=(5x-2)^{x} + e^{\sqrt{x}} - \ln(x^{3}+1)$.
+
+**A3.** $f(x,y)=xy+e^{x^{2}+y^{2}}$: derivadas parciais de 1ª e 2ª ordem; mostre $f_{xy}=f_{yx}$.
+
+**A4.** $f(x,y)=x^{a}y^{b}$ (Cobb-Douglas): parciais de 1ª e 2ª ordem e verifique $f_{xy}=f_{yx}$.
+
+## Tópico B — Antiderivada (Integração por Partes e Substituição)
+
+*Por partes:*
+
+**B1.** $\displaystyle \int (\ln x)^2\,dx$ \qquad **B2.** $\displaystyle \int (2+5x)\,e^{x/3}\,dx$ \qquad **B3.** $\displaystyle \int x^2 e^{-x}\,dx$
+
+**B4.** $\displaystyle \int (2+3x)\,e^{2x}\,dx$ \qquad **B5.** $\displaystyle \int x\,\ln(x+1)\,dx$ \qquad **B6.** $\displaystyle \int x^3\ln(x^2+2)\,dx$
+
+*Por substituição:*
+
+**B7.** $\displaystyle \int x\,e^{x^2}\,dx$ \qquad **B8.** $\displaystyle \int \frac{3x^2+6x}{x^3+3x^2-2}\,dx$ \qquad **B9.** $\displaystyle \int x^2\sqrt{x^3+1}\,dx$
+
+**B10.** $\displaystyle \int \frac{\ln x}{x}\,dx$ \qquad **B11.** (substituição + partes) $\displaystyle \int x^3 e^{x^2}\,dx$
+
+## Tópico C — EDO de 2ª Ordem
+
+**C1.** ($\Delta>0$) $y''-5y'+6y=5$, $y(0)=\tfrac56$, $y'(0)=1$.
+
+**C2.** ($\Delta=0$) $y''-4y'+4y=5$, $y(0)=\tfrac32$, $y'(0)=-1$.
+
+**C3.** ($\Delta<0$) $y''+2y'+5y=10$, $y(0)=3$, $y'(0)=0$.
+
+**C4.** ($\Delta<0$, $\alpha=0$) $y''+4y=8$, $y(0)=3$, $y'(0)=2$.
+
+**C5.** ($\Delta=0$) $2y''-8y'+8y=16$, $y(0)=3$, $y'(0)=-1$.
+
+**C6.** ($\Delta>0$) $y''+5y'+4y=1$ (solução geral).
+
+## Tópico D — Análise de Função / Gráfico
+
+**D1.** $f(x)=x^3+3x^2+2x$. \qquad **D2.** $f(x)=x^4-2x^2$. \qquad **D3.** $f(x)=3x^4-4x^3$.
+
+## Tópico E — Otimização sem Restrição (Máx. Lucro)
+
+**E1.** (Concorrência perfeita, 2 insumos) $\max_{K,L}\pi=p\,f(K,L)-wL-rK$: CPO, CSO e interpretação de $f_K/f_L=r/w$.
+
+**E2.** (Monopolista, 2 mercados) $P_1=50-5Q_1$, $P_2=100-10Q_2$, custo $C=90+20(Q_1+Q_2)$. Encontre $(Q_1^*,Q_2^*)$, preços, lucro e verifique a CSO. Onde o preço é maior?
+
+**E3.** (Monopolista, 1 mercado) demanda inversa $P=100-2Q$, custo $C=Q^2+10Q+50$. Encontre $Q^*$, $P^*$, lucro e verifique a CSO.
+
+**E4.** (Concorrência perfeita, 1 produto) $\pi(q)=p\,q-(c_0+c_1q+\tfrac12 c_2 q^2)$. Encontre $q^*$ e interprete.
+
+## Tópico F — Otimização com Restrição (Min. Custo // Min. Despesa)
+
+**F1.** (Firma, Cobb-Douglas) $\min rK+wL$ s.a. $K^{1/2}L^{1/2}=q$: $K^*,L^*,\lambda^*$, $C^*$, homogeneidade, $\partial C^*/\partial q$.
+
+**F2.** (Firma, CES) $\min rK+wL$ s.a. $(K^\rho+L^\rho)^{\beta/\rho}=q$: $K^*,L^*$, função custo e homogeneidade.
+
+**F3.** (Firma, 3 insumos) $f=K^{1/4}L^{1/4}X^{1/2}$, preços $r,w,p_X$: $K^*,L^*,X^*,\lambda^*$, função custo e homogeneidade.
+
+**F4.** (Consumidor, despesa, genérico) $\min p_1x_1+p_2x_2$ s.a. $U(x_1,x_2)=\bar U$: CPO, CSO e sinais de $\partial x_1/\partial\bar U$ e $\partial x_1/\partial p_1$.
+
+**F5.** (Consumidor, 3 bens Cobb-Douglas) $U=x_1^{1/4}x_2^{1/4}x_3^{1/2}$: $x_i^*,\lambda^*$, função despesa e homogeneidade.
+
+**F6.** (Consumidor, utilidade CES) $U=(x_1^\rho+x_2^\rho)^{1/\rho}$: demandas marshallianas $x_1^*,x_2^*$.
+
+\newpage
+
+# Parte IV — Gabarito
+
+## Regras de derivação e estratégia (referência)
+
+> Tenha estas regras à mão para todas as questões de derivada. Sejam $f,g$ deriváveis e $c$ constante.
+
+**Regras básicas.**
+$$
+(c)'=0,\qquad (x^n)'=n\,x^{n-1},\qquad (c\,f)'=c\,f'.
+$$
+
+**Soma / diferença.** $\;(f\pm g)'=f'\pm g'.$
+
+**Produto.** $\;(f\,g)'=f'g+f\,g'.$
+
+**Quociente.** $\;\left(\dfrac{f}{g}\right)'=\dfrac{f'g-f\,g'}{g^2}.$
+
+**Cadeia.** $\;[\,f(g(x))\,]'=f'(g(x))\,g'(x).$
+
+**Exponencial e logaritmo.**
+$$
+(e^x)'=e^x,\quad (e^{g})'=e^{g}\,g',\qquad (a^x)'=a^x\ln a,\quad (a^{g})'=a^{g}\ln a\;g',
+$$
+$$
+(\ln x)'=\frac1x,\quad (\ln g)'=\frac{g'}{g},\qquad (\log_a x)'=\frac{1}{x\ln a}.
+$$
+
+**Potência de expoente variável** (base *e* expoente dependem de $x$). Escreva $u^{v}=e^{\,v\ln u}$ e derive pela cadeia/produto:
+$$
+\big(u^{v}\big)'=u^{v}\Big(v'\ln u+v\,\frac{u'}{u}\Big).
+$$
+Casos úteis: $x^x=e^{x\ln x}\Rightarrow (x^x)'=x^x(\ln x+1)$; $\;x^{g}=e^{g\ln x}$.
+
+**Estratégia para expressões grandes** (a ideia central de todas as questões de derivada):
+
+1. **Identifique a estrutura externa** — é soma, quociente, produto ou potência $u^{v}$?
+2. **Quebre em blocos menores** e nomeie-os (por exemplo $f=A+\dfrac{B}{C}$).
+3. **Derive cada bloco** com a regra apropriada acima.
+4. **Recombine** pela regra da soma/produto/quociente.
+5. Quando houver **expoente variável** ou produtos/quocientes longos, use **diferenciação logarítmica**: tome $\ln f$, derive ($\tfrac{f'}{f}=\dots$) e multiplique por $f$.
+
+## Gabarito — Simulado 1
+
+### Questão 1 — Condições necessárias e suficientes (mínimo)
+
+*Enunciado. Seja $f:\mathbb{R}\to\mathbb{R}$ duas vezes diferenciável e $x^*$ um ponto interior. (a) Enuncie e demonstre as condições necessárias de 1ª e 2ª ordem para $x^*$ ser mínimo local; (b) enuncie as suficientes e prove que garantem mínimo local estrito; (c) generalize para $f:\mathbb{R}^n\to\mathbb{R}$ (CPO e CSO via Hessiana, casos $n=2$ e $n=3$).*
+
+A ferramenta central é a **expansão de Taylor de 2ª ordem com resto**, que decorre do Teorema do Valor Médio (e este, do Teorema de Rolle). Para $\Delta x$ pequeno, existe $\theta\in(0,1)$ tal que
+
+$$
+f(x^*+\Delta x) = f(x^*) + f'(x^*)\,\Delta x + \tfrac{1}{2}\,f''(x^*+\theta\,\Delta x)\,(\Delta x)^2. \tag{T}
+$$
+
+**a) Condições necessárias.**
+
+Se $x^*$ é mínimo local, então, para todo $\Delta x$ pequeno,
+
+$$
+f(x^*+\Delta x)-f(x^*)\ \ge\ 0.
+$$
+
+Substituindo (T), isso significa
+
+$$
+f'(x^*)\,\Delta x + \tfrac{1}{2}f''(x^*+\theta\Delta x)(\Delta x)^2\ \ge\ 0.
+$$
+
+Para $\Delta x\to 0$ o termo linear domina. Se fosse $f'(x^*)>0$, escolhendo $\Delta x<0$ pequeno o lado direito ficaria negativo — contradição. Se fosse $f'(x^*)<0$, escolheríamos $\Delta x>0$. Logo a **condição necessária de 1ª ordem** é
+
+$$
+\boxed{f'(x^*)=0.}
+$$
+
+Com $f'(x^*)=0$, a desigualdade (T) reduz-se a
+
+$$
+\tfrac{1}{2}\,f''(x^*+\theta\Delta x)\,(\Delta x)^2\ \ge\ 0.
+$$
+
+Como $(\Delta x)^2>0$, devemos ter $f''(x^*+\theta\Delta x)\ge 0$; fazendo $\Delta x\to 0$ e usando a continuidade de $f''$, obtém-se a **condição necessária de 2ª ordem**
+
+$$
+\boxed{f''(x^*)\ \ge\ 0.}
+$$
+
+**b) Condições suficientes.**
+
+Suponha agora $f'(x^*)=0$ **e** $f''(x^*)>0$. Por continuidade, $f''>0$ em toda uma vizinhança de $x^*$. Então, para $\Delta x\neq 0$ pequeno, o ponto intermediário $x^*+\theta\Delta x$ está nessa vizinhança e $f''(x^*+\theta\Delta x)>0$. Por (T), com termo linear nulo,
+
+$$
+f(x^*+\Delta x)-f(x^*) = \tfrac{1}{2}\,f''(x^*+\theta\Delta x)\,(\Delta x)^2\ >\ 0.
+$$
+
+Portanto $f(x^*)<f(x^*+\Delta x)$ para todo $\Delta x\neq 0$ próximo: $x^*$ é **mínimo local estrito**. (Para máximo, basta $f''(x^*)<0$.) $\blacksquare$
+
+**c) Caso multivariado.**
+
+A expansão de Taylor passa a ser
+
+$$
+f(x^*+\Delta x)=f(x^*)+\nabla f(x^*)^{\!\top}\Delta x+\tfrac12\,\Delta x^{\top}H\,\Delta x+o(\|\Delta x\|^2),
+$$
+
+com Hessiana $H=\big(f_{ij}(x^*)\big)$, $f_{ij}=\partial^2 f/\partial x_i\partial x_j$. As condições são:
+
+- **CPO:** $\nabla f(x^*)=0$, i.e. $f_i(x^*)=0$ para todo $i$.
+- **CSO** pelos menores principais líderes $D_k=\det H^{(k\times k)}$:
+  - **Mínimo** ($H$ definida positiva): $D_1>0,\ D_2>0,\ \dots,\ D_n>0$ (todos positivos).
+  - **Máximo** ($H$ definida negativa): sinais alternados começando negativo, $D_1<0,\ D_2>0,\ D_3<0,\dots$
+
+Para $n=2$, com $H=\begin{pmatrix} f_{11}&f_{12}\\ f_{12}&f_{22}\end{pmatrix}$ e $|H|=f_{11}f_{22}-f_{12}^2$:
+
+$$
+\text{mín:}\ f_{11}>0,\ |H|>0; \qquad \text{máx:}\ f_{11}<0,\ |H|>0; \qquad \text{sela:}\ |H|<0.
+$$
+
+Para $n=3$, usam-se $D_1=f_{11}$, $D_2=\begin{vmatrix}f_{11}&f_{12}\\ f_{12}&f_{22}\end{vmatrix}$ e $D_3=|H|$, com os mesmos padrões de sinal.
+
+### Questão 2 — Derivada
+
+*Enunciado. Utilizando os teoremas de derivação, calcule a derivada de $f(x)=x^{x}+\dfrac{\sqrt{2+3x}}{\ln(5+3^{x}+xe^{x})}$.*
+
+**Estratégia.** Seguindo a referência, identificamos a estrutura externa (uma **soma** de dois blocos) e quebramos $f$ em funções menores: $f(x)=x^x+\dfrac{B}{C}$, com $B=\sqrt{2+3x}$ e $C=\ln(5+3^x+xe^x)$. Derivamos cada bloco — $x^x$ (potência de expoente variável), $B$ (cadeia) e $C$ (cadeia no logaritmo) — e recombinamos com a regra do quociente.
+
+Para o primeiro termo, reescrevemos como exponencial: $x^x=e^{x\ln x}$. Derivando,
+
+$$
+\frac{d}{dx}\,x^x = e^{x\ln x}\cdot\frac{d}{dx}(x\ln x)= x^x\,(\ln x + 1).
+$$
+
+Para o quociente, calculamos as derivadas das partes. O numerador:
+
+$$
+B'=\frac{d}{dx}(2+3x)^{1/2}=\frac{3}{2\sqrt{2+3x}}.
+$$
+
+O denominador, pela regra da cadeia no logaritmo:
+
+$$
+C'=\frac{1}{5+3^x+xe^x}\cdot\big(3^x\ln 3 + e^x + x e^x\big)=\frac{3^x\ln 3 + e^x(1+x)}{5+3^x+xe^x}.
+$$
+
+Aplicando a regra do quociente $\left(\tfrac{B}{C}\right)'=\dfrac{B'C-BC'}{C^2}$ e somando o primeiro termo:
+
+$$
+\boxed{\,f'(x)= x^x(\ln x+1) + \frac{\dfrac{3}{2\sqrt{2+3x}}\,C - \sqrt{2+3x}\;\dfrac{3^x\ln 3 + e^x(1+x)}{5+3^x+xe^x}}{C^2}\,,\quad C=\ln(5+3^x+xe^x).}
+$$
+
+### Questão 3a — $\int x^3\ln(x^2+2)\,dx$
+
+*Enunciado. Calcule a integral $\displaystyle\int x^{3}\ln(x^{2}+2)\,dx$.*
+
+Integramos por partes com $u=\ln(x^2+2)$ e $dv=x^3\,dx$. Então
+
+$$
+du=\frac{2x}{x^2+2}\,dx, \qquad v=\frac{x^4}{4}.
+$$
+
+Logo
+
+$$
+\int x^3\ln(x^2+2)\,dx = \frac{x^4}{4}\ln(x^2+2) - \frac{1}{2}\int \frac{x^5}{x^2+2}\,dx.
+$$
+
+A integral restante resolve-se por **divisão polinomial**:
+
+$$
+\frac{x^5}{x^2+2}=x^3-2x+\frac{4x}{x^2+2}
+\quad\Longrightarrow\quad
+\int\frac{x^5}{x^2+2}\,dx=\frac{x^4}{4}-x^2+2\ln(x^2+2).
+$$
+
+Substituindo de volta:
+
+$$
+\boxed{\int x^3\ln(x^2+2)\,dx=\frac{x^4}{4}\ln(x^2+2)-\frac{x^4}{8}+\frac{x^2}{2}-\ln(x^2+2)+C.}
+$$
+
+### Questão 3b — $y''+6y'+9y=5$
+
+*Enunciado. Resolva a EDO de 2ª ordem $y''+6y'+9y=5$, com $y(0)=\tfrac{14}{9}$ e $y'(0)=0$.*
+
+A equação característica é
+
+$$
+r^2+6r+9=(r+3)^2=0 \quad\Longrightarrow\quad r=-3 \ \text{(raiz dupla, } \Delta=0).
+$$
+
+A solução homogênea, no caso de raiz dupla, leva o fator $x$:
+
+$$
+y_h(x)=(C_1+C_2x)\,e^{-3x}.
+$$
+
+Para a solução particular, como o termo forçante é constante, tentamos $y_p=A$:
+
+$$
+9A=5 \quad\Longrightarrow\quad A=\frac{5}{9}.
+$$
+
+A solução geral é, portanto,
+
+$$
+y(x)=(C_1+C_2x)\,e^{-3x}+\frac{5}{9}.
+$$
+
+Aplicamos $y(0)=\tfrac{14}{9}$:
+
+$$
+C_1+\frac{5}{9}=\frac{14}{9}\quad\Longrightarrow\quad C_1=1.
+$$
+
+Derivando, $y'(x)=e^{-3x}\big(C_2-3C_1-3C_2x\big)$, e impondo $y'(0)=0$:
+
+$$
+C_2-3C_1=0\quad\Longrightarrow\quad C_2=3.
+$$
+
+$$
+\boxed{y(x)=(1+3x)\,e^{-3x}+\frac{5}{9}.}
+$$
+
+Verificação: $y(0)=1+\tfrac59=\tfrac{14}{9}$ ✓ e $y'(0)=3-3=0$ ✓.
+
+### Questão 4 — Análise de $f(x)=x^3-3x^2-9x+5$
+
+*Enunciado. Dada $f(x)=x^{3}-3x^{2}-9x+5$, encontre os intervalos de crescimento/decrescimento e de concavidade/convexidade, localize os pontos de máximo, mínimo e inflexão, e faça um esboço do gráfico.*
+
+Começamos pela primeira derivada, que controla crescimento e extremos:
+
+$$
+f'(x)=3x^2-6x-9=3(x-3)(x+1).
+$$
+
+As raízes são $x=-1$ e $x=3$. Estudando o sinal:
+
+- $f'(x)>0$ em $(-\infty,-1)$ e em $(3,\infty)$ — função **crescente**;
+- $f'(x)<0$ em $(-1,3)$ — função **decrescente**.
+
+A segunda derivada controla a concavidade:
+
+$$
+f''(x)=6x-6=6(x-1).
+$$
+
+Avaliando nos pontos críticos:
+
+- $f''(-1)=-12<0$, logo $x=-1$ é **máximo local**, com $f(-1)=10$;
+- $f''(3)=12>0$, logo $x=3$ é **mínimo local**, com $f(3)=-22$.
+
+Quanto à concavidade: $f''<0$ em $(-\infty,1)$ (**côncava**) e $f''>0$ em $(1,\infty)$ (**convexa**), com **ponto de inflexão** em $x=1$, onde $f(1)=-6$.
+
+**Esboço:** cúbica que cresce, atinge o máximo $(-1,10)$, decresce mudando de concavidade na inflexão $(1,-6)$, alcança o mínimo $(3,-22)$ e volta a crescer.
+
+### Questão 5 — Minimização de custo da firma
+
+*Enunciado. Firma com $y=f(K,L)$ ($f_K,f_L>0$, $f_{KK},f_{LL}<0$, $f_{KL}=f_{LK}>0$), preço do capital $r$ e salário $w$. (a) Escreva o problema de minimização de custo para produção $q$, com Lagrangeano, CPO e CSO; (b) represente graficamente; (c) ache o sinal de $\partial K/\partial r$ e $\partial K/\partial q$; (d) para $f=K^{1/2}L^{1/2}$, encontre $K^*,L^*,\lambda^*$ e $C^*(r,w,q)$; (e) verifique o Envelope/Shephard e a homogeneidade de $C^*$.*
+
+**a) Problema, Lagrangeano e CPO.**
+
+O problema é
+
+$$
+\min_{K,L}\ rK+wL \qquad \text{s.a.}\qquad f(K,L)=q,
+$$
+
+com Lagrangeano
+
+$$
+\mathcal{L}(K,L,\lambda)=rK+wL+\lambda\big(q-f(K,L)\big).
+$$
+
+As condições de primeira ordem são
+
+$$
+\frac{\partial\mathcal L}{\partial K}=r-\lambda f_K=0, \qquad
+\frac{\partial\mathcal L}{\partial L}=w-\lambda f_L=0, \qquad
+\frac{\partial\mathcal L}{\partial \lambda}=q-f(K,L)=0.
+$$
+
+Dividindo as duas primeiras, o multiplicador cancela e surge a condição de **tangência**:
+
+$$
+\frac{f_K}{f_L}=\frac{r}{w} \qquad (\text{TMST} = \text{razão de preços dos fatores}).
+$$
+
+A CSO usa o **Hessiano orlado**
+
+$$
+\bar H=\begin{pmatrix} -\lambda f_{KK} & -\lambda f_{KL} & -f_K\\ -\lambda f_{KL} & -\lambda f_{LL} & -f_L\\ -f_K & -f_L & 0\end{pmatrix},
+$$
+
+e a condição de **mínimo** é $|\bar H|<0$.
+
+**b) Gráfico.** No plano $(L,K)$, a isoquanta $f(K,L)=q$ é convexa, com inclinação $\left.\tfrac{dK}{dL}\right|_q=-\tfrac{f_L}{f_K}$; a isocusto $rK+wL=\bar C$ é reta com inclinação $-\tfrac{w}{r}$. O ótimo é a **tangência** entre a isoquanta dada e a isocusto mais baixa possível.
+
+**c) Estática comparativa.** Diferenciando o sistema de CPO (Teorema da Função Implícita) e resolvendo por Cramer, com $|\bar H|<0$:
+
+$$
+\frac{\partial K}{\partial r}=\frac{f_L^2}{|\bar H|}<0
+\qquad\text{e}\qquad
+\frac{\partial K}{\partial q}=\frac{\lambda\,(f_K f_{LL}-f_{KL}f_L)}{|\bar H|}>0.
+$$
+
+Ou seja: encarecer o capital reduz seu uso; produzir mais eleva a demanda por capital.
+
+**d) Cobb-Douglas $f(K,L)=K^{1/2}L^{1/2}$.**
+
+O Lagrangeano fica
+
+$$
+\mathcal{L}=rK+wL+\lambda\big(q-K^{1/2}L^{1/2}\big),
+$$
+
+com CPO
+
+$$
+r=\lambda\,\tfrac12 K^{-1/2}L^{1/2}, \qquad w=\lambda\,\tfrac12 K^{1/2}L^{-1/2}.
+$$
+
+Dividindo uma pela outra obtemos a tangência
+
+$$
+\frac{r}{w}=\frac{L}{K}\quad\Longrightarrow\quad L=\frac{r}{w}\,K.
+$$
+
+Substituindo na restrição $K^{1/2}L^{1/2}=q$:
+
+$$
+K^{1/2}\Big(\tfrac{r}{w}K\Big)^{1/2}=q
+\quad\Longrightarrow\quad
+K\sqrt{\tfrac{r}{w}}=q.
+$$
+
+Isolando, obtemos as demandas condicionais de fatores e o multiplicador:
+
+$$
+\boxed{K^*=q\sqrt{\frac{w}{r}}, \qquad L^*=q\sqrt{\frac{r}{w}}, \qquad \lambda^*=2\sqrt{rw}.}
+$$
+
+A função custo no ótimo é
+
+$$
+C^*(r,w,q)=rK^*+wL^*=q\sqrt{rw}+q\sqrt{rw}=2q\sqrt{rw}.
+$$
+
+**e) Envelope (Shephard) e homogeneidade.** Derivando $C^*$ diretamente,
+
+$$
+\frac{\partial C^*}{\partial r}=q\sqrt{\frac{w}{r}}=K^* \ \checkmark, \qquad
+\frac{\partial C^*}{\partial q}=2\sqrt{rw}=\lambda^* \ \checkmark.
+$$
+
+E $C^*$ é **homogênea de grau 1** em $(r,w)$: multiplicar $r$ e $w$ por $t$ multiplica $\sqrt{rw}$ — e portanto o custo — por $t$.
+
+\newpage
+
+## Gabarito — Simulado 2 (Teoria do Consumidor)
+
+### Questão 1 — Condições para máximo
+
+*Enunciado. Seja $f:\mathbb{R}\to\mathbb{R}$ duas vezes diferenciável. Enuncie e demonstre as condições necessárias e suficientes para que $x^*$ seja um ponto de máximo local.*
+
+Pela expansão de Taylor de 2ª ordem (T), $f(x^*+\Delta x)=f(x^*)+f'(x^*)\Delta x+\tfrac12 f''(x^*+\theta\Delta x)(\Delta x)^2$.
+
+Se $x^*$ é **máximo local**, então $f(x^*+\Delta x)-f(x^*)\le 0$. Pelo mesmo argumento de sinal do termo linear (agora invertido), a 1ª ordem exige
+
+$$
+\boxed{f'(x^*)=0.}
+$$
+
+Com isso, $\tfrac12 f''(x^*+\theta\Delta x)(\Delta x)^2\le 0$, e como $(\Delta x)^2>0$, a necessária de 2ª ordem é
+
+$$
+\boxed{f''(x^*)\le 0.}
+$$
+
+A **condição suficiente** é $f'(x^*)=0$ e $f''(x^*)<0$: por continuidade $f''<0$ numa vizinhança, e então
+
+$$
+f(x^*+\Delta x)-f(x^*)=\tfrac12 f''(x^*+\theta\Delta x)(\Delta x)^2<0 \quad\Rightarrow\quad \text{máximo local estrito.}\ \blacksquare
+$$
+
+No caso multivariado, CPO $\nabla f(x^*)=0$ e CSO com Hessiana **definida negativa** (menores principais alternando, $D_1<0,D_2>0,\dots$).
+
+### Questão 2 — Derivada
+
+*Enunciado. Calcule a derivada de $f(x)=\left(\dfrac{1}{x}\right)^{x+1}+\dfrac{e^{\,x^{2}+2x+1}}{\sqrt{5x-2}}-3^{x}$.*
+
+**Estratégia.** A estrutura externa é uma **soma de três blocos**; quebramos $f$ e derivamos cada um pela regra adequada da referência (potência de expoente variável no 1º, quociente com cadeia no 2º, exponencial $a^x$ no 3º). Tratamos os três termos separadamente.
+
+**Termo 1.** Reescrevemos $\left(\tfrac{1}{x}\right)^{x+1}=e^{(x+1)\ln(1/x)}=e^{-(x+1)\ln x}$. Pela cadeia,
+
+$$
+\frac{d}{dx}\left(\frac{1}{x}\right)^{x+1}=\left(\frac{1}{x}\right)^{x+1}\cdot\Big(-\ln x-\frac{x+1}{x}\Big).
+$$
+
+**Termo 2.** Note $x^2+2x+1=(x+1)^2$, logo o numerador é $N=e^{(x+1)^2}$ com $N'=2(x+1)e^{(x+1)^2}$, e o denominador $D=(5x-2)^{1/2}$ com $D'=\dfrac{5}{2\sqrt{5x-2}}$. Pela regra do quociente,
+
+$$
+\frac{d}{dx}\frac{e^{(x+1)^2}}{\sqrt{5x-2}}
+=\frac{2(x+1)e^{(x+1)^2}\sqrt{5x-2}-e^{(x+1)^2}\dfrac{5}{2\sqrt{5x-2}}}{5x-2}.
+$$
+
+**Termo 3.** $\dfrac{d}{dx}3^x=3^x\ln 3$.
+
+Somando,
+
+$$
+\boxed{f'(x)=\left(\frac{1}{x}\right)^{x+1}\!\Big(-\ln x-\frac{x+1}{x}\Big)+\frac{2(x+1)e^{(x+1)^2}\sqrt{5x-2}-\dfrac{5\,e^{(x+1)^2}}{2\sqrt{5x-2}}}{5x-2}-3^x\ln 3.}
+$$
+
+### Questão 3a — $\int x^2\ln x\,dx$
+
+*Enunciado. Calcule a integral $\displaystyle\int x^{2}\ln x\,dx$.*
+
+Por partes, com $u=\ln x$ e $dv=x^2\,dx$:
+
+$$
+du=\frac{1}{x}\,dx, \qquad v=\frac{x^3}{3}.
+$$
+
+Logo
+
+$$
+\int x^2\ln x\,dx=\frac{x^3}{3}\ln x-\int\frac{x^3}{3}\cdot\frac{1}{x}\,dx=\frac{x^3}{3}\ln x-\frac{1}{3}\int x^2\,dx.
+$$
+
+Concluindo,
+
+$$
+\boxed{\int x^2\ln x\,dx=\frac{x^3}{3}\ln x-\frac{x^3}{9}+C=\frac{x^3}{3}\Big(\ln x-\frac{1}{3}\Big)+C.}
+$$
+
+### Questão 3b — $y''-3y'+2y=4$
+
+*Enunciado. Resolva a EDO de 2ª ordem $y''-3y'+2y=4$, com $y(0)=4$ e $y'(0)=5$.*
+
+Equação característica:
+
+$$
+r^2-3r+2=(r-1)(r-2)=0\quad\Longrightarrow\quad r_1=1,\ r_2=2 \quad(\Delta=1>0).
+$$
+
+Solução homogênea:
+
+$$
+y_h(x)=C_1e^{x}+C_2e^{2x}.
+$$
+
+Particular constante: $2A=4\Rightarrow A=2$. Solução geral:
+
+$$
+y(x)=C_1e^{x}+C_2e^{2x}+2.
+$$
+
+Condições iniciais. De $y(0)=4$:
+
+$$
+C_1+C_2+2=4\quad\Longrightarrow\quad C_1+C_2=2.
+$$
+
+Como $y'(x)=C_1e^{x}+2C_2e^{2x}$, de $y'(0)=5$:
+
+$$
+C_1+2C_2=5.
+$$
+
+Subtraindo as duas, $C_2=3$ e $C_1=-1$:
+
+$$
+\boxed{y(x)=-e^{x}+3e^{2x}+2.}
+$$
+
+Verificação: $y(0)=-1+3+2=4$ ✓ e $y'(0)=-1+6=5$ ✓.
+
+### Questão 4 — O consumidor por inteiro
+
+*Enunciado. Seja $U(x_1,x_2)$ a utilidade, preços $p_i$, renda $R$, com $U_i>0$, $U_{ii}<0$, $U_{ij}>0$. (a) Escreva o problema de maximização de utilidade, com Lagrangeano, CPO e CSO; (b) represente graficamente; (c) ache o sinal de $\partial x_1/\partial p_1$ e $\partial x_1/\partial R$; (d) para $U=x_1^{1/2}x_2^{1/2}$, encontre $x_1^*,x_2^*,\lambda^*$; (e) ache a utilidade indireta $V$, calcule $\partial V/\partial p_1$, $\partial V/\partial R$ e verifique a Identidade de Roy; (f) resolva o dual (minimização de despesa para $\bar U$): demandas hicksianas, função despesa $E^*$ e sua homogeneidade.*
+
+**a) Problema, Lagrangeano, CPO.**
+
+$$
+\max_{x_1,x_2}U(x_1,x_2)\quad\text{s.a.}\quad p_1x_1+p_2x_2=R;\qquad
+\mathcal{L}=U(x_1,x_2)+\lambda\,(R-p_1x_1-p_2x_2).
+$$
+
+CPO:
+
+$$
+U_1-\lambda p_1=0, \qquad U_2-\lambda p_2=0, \qquad R-p_1x_1-p_2x_2=0,
+$$
+
+donde a tangência
+
+$$
+\frac{U_1}{U_2}=\frac{p_1}{p_2}.
+$$
+
+CSO: Hessiano orlado $\bar H=\begin{pmatrix}U_{11}&U_{12}&-p_1\\ U_{21}&U_{22}&-p_2\\ -p_1&-p_2&0\end{pmatrix}$ com $|\bar H|>0$ (máximo).
+
+**b) Gráfico.** Curvas de indiferença convexas; reta orçamentária com inclinação $-p_1/p_2$. Ótimo na tangência da curva de indiferença mais alta com a restrição.
+
+**c) Estática comparativa.** Diferenciando as CPO e resolvendo com $|\bar H|>0$:
+
+$$
+\frac{\partial x_1}{\partial p_1}<0 \quad(\text{demanda decrescente no próprio preço}),\qquad
+\frac{\partial x_1}{\partial R}>0 \quad(\text{bem normal}).
+$$
+
+**d) Cobb-Douglas $U=x_1^{1/2}x_2^{1/2}$.**
+
+As derivadas são $U_1=\tfrac12 x_1^{-1/2}x_2^{1/2}$ e $U_2=\tfrac12 x_1^{1/2}x_2^{-1/2}$. A tangência dá
+
+$$
+\frac{U_1}{U_2}=\frac{x_2}{x_1}=\frac{p_1}{p_2}\quad\Longrightarrow\quad x_2=\frac{p_1}{p_2}x_1.
+$$
+
+Na restrição orçamentária:
+
+$$
+p_1x_1+p_2\cdot\frac{p_1}{p_2}x_1=R\quad\Longrightarrow\quad 2p_1x_1=R.
+$$
+
+Logo
+
+$$
+\boxed{x_1^*=\frac{R}{2p_1}, \qquad x_2^*=\frac{R}{2p_2}, \qquad \lambda^*=\frac{U_1(x^*)}{p_1}.}
+$$
+
+(Regra Cobb-Douglas: metade da renda em cada bem, pois os expoentes são $\tfrac12,\tfrac12$.)
+
+**e) Utilidade indireta, Envelope e Roy.** Substituindo as demandas em $U$:
+
+$$
+V(p_1,p_2,R)=\Big(\frac{R}{2p_1}\Big)^{1/2}\Big(\frac{R}{2p_2}\Big)^{1/2}=\frac{R}{2\sqrt{p_1p_2}}.
+$$
+
+Pelo Envelope, a partir de $\mathcal L$,
+
+$$
+\frac{\partial V}{\partial p_1}=\left.\frac{\partial\mathcal L}{\partial p_1}\right|_*=-\lambda^*x_1^*, \qquad
+\frac{\partial V}{\partial R}=\left.\frac{\partial\mathcal L}{\partial R}\right|_*=\lambda^*.
+$$
+
+Derivando a forma fechada: $\dfrac{\partial V}{\partial p_1}=-\dfrac{R}{4p_1^{3/2}p_2^{1/2}}=-\dfrac{V}{2p_1}$ e $\dfrac{\partial V}{\partial R}=\dfrac{1}{2\sqrt{p_1p_2}}=\dfrac{V}{R}$. A **Identidade de Roy** confirma:
+
+$$
+-\frac{\partial V/\partial p_1}{\partial V/\partial R}=-\frac{-V/(2p_1)}{V/R}=\frac{R}{2p_1}=x_1^*. \ \checkmark
+$$
+
+**f) Dual — minimização de despesa.**
+
+$$
+\min_{x_1,x_2}p_1x_1+p_2x_2\quad\text{s.a.}\quad x_1^{1/2}x_2^{1/2}=\bar U;\qquad
+\mathcal{L}=p_1x_1+p_2x_2+\mu(\bar U-x_1^{1/2}x_2^{1/2}).
+$$
+
+A mesma condição de tangência $\dfrac{x_2}{x_1}=\dfrac{p_1}{p_2}$ vale, mas agora a substituímos na **restrição de utilidade** $x_1^{1/2}x_2^{1/2}=\bar U$. Com $x_2=\tfrac{p_1}{p_2}x_1$,
+
+$$
+x_1^{1/2}\Big(\tfrac{p_1}{p_2}x_1\Big)^{1/2}=\bar U
+\quad\Longrightarrow\quad
+x_1\sqrt{\tfrac{p_1}{p_2}}=\bar U.
+$$
+
+Obtemos as **demandas hicksianas**:
+
+$$
+\boxed{h_1=\bar U\sqrt{\frac{p_2}{p_1}}, \qquad h_2=\bar U\sqrt{\frac{p_1}{p_2}}.}
+$$
+
+A função despesa é
+
+$$
+E^*(p_1,p_2,\bar U)=p_1h_1+p_2h_2=\bar U\sqrt{p_1p_2}+\bar U\sqrt{p_1p_2}=2\bar U\sqrt{p_1p_2},
+$$
+
+**homogênea de grau 1** nos preços. (Lema de Shephard: $\partial E^*/\partial p_1=\bar U\sqrt{p_2/p_1}=h_1$.)
+
+\newpage
+
+## Gabarito — Bateria
+
+### Tópico A — Derivação
+
+> Aplicam-se as **regras de derivação e a estratégia** da referência no início desta Parte IV: identificar a estrutura, quebrar em blocos menores, derivar cada um e recombinar.
+
+**A1.** *Enunciado: calcule a derivada de $f(x)=x^{x+1}+\dfrac{2+3x}{\ln(1-2x+x^{32})}$.*
+
+Para $x^{x+1}=e^{(x+1)\ln x}$,
+
+$$
+\frac{d}{dx}x^{x+1}=x^{x+1}\Big(\ln x+\frac{x+1}{x}\Big).
+$$
+
+Para o quociente, $N=2+3x$ ($N'=3$) e $D=\ln(1-2x+x^{32})$ com $D'=\dfrac{-2+32x^{31}}{1-2x+x^{32}}$. Assim,
+
+$$
+f'(x)=x^{x+1}\Big(\ln x+\frac{x+1}{x}\Big)+\frac{3\,\ln(1-2x+x^{32})-(2+3x)\dfrac{-2+32x^{31}}{1-2x+x^{32}}}{\big[\ln(1-2x+x^{32})\big]^2}.
+$$
+
+**A2.** *Enunciado: calcule a derivada de $f(x)=(5x-2)^{x}+e^{\sqrt{x}}-\ln(x^{3}+1)$.*
+
+Para $(5x-2)^x=e^{x\ln(5x-2)}$,
+
+$$
+\frac{d}{dx}(5x-2)^x=(5x-2)^x\Big(\ln(5x-2)+\frac{5x}{5x-2}\Big).
+$$
+
+Os outros termos: $\dfrac{d}{dx}e^{\sqrt{x}}=\dfrac{e^{\sqrt x}}{2\sqrt x}$ e $\dfrac{d}{dx}\ln(x^3+1)=\dfrac{3x^2}{x^3+1}$. Portanto,
+
+$$
+f'(x)=(5x-2)^x\Big(\ln(5x-2)+\frac{5x}{5x-2}\Big)+\frac{e^{\sqrt x}}{2\sqrt x}-\frac{3x^2}{x^3+1}.
+$$
+
+**A3.** *Enunciado: para $f(x,y)=xy+e^{x^2+y^2}$, calcule as parciais de 1ª e 2ª ordem e mostre que $f_{xy}=f_{yx}$.*
+
+As parciais de 1ª ordem são
+
+$$
+f_x=y+2x\,e^{x^2+y^2}, \qquad f_y=x+2y\,e^{x^2+y^2}.
+$$
+
+As de 2ª ordem:
+
+$$
+f_{xx}=(2+4x^2)e^{x^2+y^2}, \qquad f_{yy}=(2+4y^2)e^{x^2+y^2},
+$$
+
+$$
+f_{xy}=1+4xy\,e^{x^2+y^2}=f_{yx}. \ \checkmark
+$$
+
+**A4.** *Enunciado: para $f(x,y)=x^{a}y^{b}$ (Cobb-Douglas), calcule as parciais de 1ª e 2ª ordem e verifique $f_{xy}=f_{yx}$.*
+
+Parciais:
+
+$$
+f_x=a\,x^{a-1}y^b, \qquad f_y=b\,x^ay^{b-1},
+$$
+
+$$
+f_{xx}=a(a-1)x^{a-2}y^b, \qquad f_{yy}=b(b-1)x^ay^{b-2},
+$$
+
+$$
+f_{xy}=ab\,x^{a-1}y^{b-1}=f_{yx}. \ \checkmark
+$$
+
+### Tópico B — Integração por partes
+
+**B1.** *Enunciado: calcule $\displaystyle\int(\ln x)^2\,dx$.*
+
+Por partes, $u=(\ln x)^2$, $dv=dx$, $du=\tfrac{2\ln x}{x}dx$, $v=x$. Então
+
+$$
+\int(\ln x)^2dx=x(\ln x)^2-2\int\ln x\,dx=x(\ln x)^2-2(x\ln x-x)+C.
+$$
+
+$$
+\boxed{\int(\ln x)^2dx=x\big[(\ln x)^2-2\ln x+2\big]+C.}
+$$
+
+**B2.** *Enunciado: calcule $\displaystyle\int(2+5x)e^{x/3}\,dx$.*
+
+Por partes, $u=2+5x$, $dv=e^{x/3}dx$, $du=5dx$, $v=3e^{x/3}$. Então
+
+$$
+\int(2+5x)e^{x/3}dx=3(2+5x)e^{x/3}-15\int e^{x/3}dx=3(2+5x)e^{x/3}-45e^{x/3}+C.
+$$
+
+$$
+\boxed{\int(2+5x)e^{x/3}dx=(15x-39)e^{x/3}+C.}
+$$
+
+**B3.** *Enunciado: calcule $\displaystyle\int x^2 e^{-x}\,dx$.*
+
+Por partes, $u=x^2$, $dv=e^{-x}dx$, $v=-e^{-x}$. Primeira passagem:
+
+$$
+\int x^2e^{-x}dx=-x^2e^{-x}+2\int xe^{-x}dx.
+$$
+
+A integral $\int xe^{-x}dx=-xe^{-x}-e^{-x}$ (nova integração por partes). Logo
+
+$$
+\boxed{\int x^2e^{-x}dx=-e^{-x}(x^2+2x+2)+C.}
+$$
+
+**B4.** *Enunciado: calcule $\displaystyle\int(2+3x)e^{2x}\,dx$.*
+
+Por partes, $u=2+3x$, $dv=e^{2x}dx$, $v=\tfrac12 e^{2x}$. Então
+
+$$
+\int(2+3x)e^{2x}dx=\frac{2+3x}{2}e^{2x}-\frac32\int e^{2x}dx=\frac{2+3x}{2}e^{2x}-\frac34 e^{2x}+C.
+$$
+
+$$
+\boxed{\int(2+3x)e^{2x}dx=\frac{1}{4}(6x+1)e^{2x}+C.}
+$$
+
+**B5.** *Enunciado: calcule $\displaystyle\int x\ln(x+1)\,dx$.*
+
+Por partes, $u=\ln(x+1)$, $dv=x\,dx$, $du=\tfrac{1}{x+1}dx$, $v=\tfrac{x^2}{2}$. Então
+
+$$
+\int x\ln(x+1)dx=\frac{x^2}{2}\ln(x+1)-\frac12\int\frac{x^2}{x+1}dx.
+$$
+
+Como $\dfrac{x^2}{x+1}=x-1+\dfrac{1}{x+1}$, temos $\int\tfrac{x^2}{x+1}dx=\tfrac{x^2}{2}-x+\ln(x+1)$. Portanto,
+
+$$
+\boxed{\int x\ln(x+1)dx=\frac{x^2}{2}\ln(x+1)-\frac{x^2}{4}+\frac{x}{2}-\frac12\ln(x+1)+C.}
+$$
+
+**B6.** *Enunciado: calcule $\displaystyle\int x^3\ln(x^2+2)\,dx$.* (idêntico à Questão 3a do Simulado 1)
+
+$$
+\boxed{\int x^3\ln(x^2+2)dx=\frac{x^4}{4}\ln(x^2+2)-\frac{x^4}{8}+\frac{x^2}{2}-\ln(x^2+2)+C.}
+$$
+
+**B7.** *Enunciado: calcule $\displaystyle\int x\,e^{x^2}\,dx$.*
+
+Substituímos $u=x^2$, de modo que $du=2x\,dx$, ou seja $x\,dx=\tfrac12\,du$. A integral vira
+
+$$
+\int x\,e^{x^2}dx=\frac12\int e^{u}\,du=\frac12 e^{u}+C.
+$$
+
+Voltando a $x$,
+
+$$
+\boxed{\int x\,e^{x^2}dx=\frac12 e^{x^2}+C.}
+$$
+
+**B8.** *Enunciado: calcule $\displaystyle\int\frac{3x^2+6x}{x^3+3x^2-2}\,dx$.*
+
+Repare que o numerador é exatamente a derivada do denominador. Substituindo $u=x^3+3x^2-2$, temos $du=(3x^2+6x)\,dx$, e a integral assume a forma $\int \tfrac{f'}{f}$:
+
+$$
+\int \frac{3x^2+6x}{x^3+3x^2-2}\,dx=\int\frac{du}{u}=\ln|u|+C.
+$$
+
+$$
+\boxed{\int \frac{3x^2+6x}{x^3+3x^2-2}\,dx=\ln\bigl|x^3+3x^2-2\bigr|+C.}
+$$
+
+**B9.** *Enunciado: calcule $\displaystyle\int x^2\sqrt{x^3+1}\,dx$.*
+
+Substituímos $u=x^3+1$, com $du=3x^2\,dx$, isto é $x^2\,dx=\tfrac13\,du$. Então
+
+$$
+\int x^2\sqrt{x^3+1}\,dx=\frac13\int u^{1/2}\,du=\frac13\cdot\frac{2}{3}u^{3/2}+C.
+$$
+
+$$
+\boxed{\int x^2\sqrt{x^3+1}\,dx=\frac{2}{9}\bigl(x^3+1\bigr)^{3/2}+C.}
+$$
+
+**B10.** *Enunciado: calcule $\displaystyle\int\frac{\ln x}{x}\,dx$.*
+
+Substituímos $u=\ln x$, com $du=\tfrac{1}{x}\,dx$. A integral fica imediata:
+
+$$
+\int \frac{\ln x}{x}\,dx=\int u\,du=\frac{u^2}{2}+C.
+$$
+
+$$
+\boxed{\int \frac{\ln x}{x}\,dx=\frac{(\ln x)^2}{2}+C.}
+$$
+
+**B11.** *Enunciado: calcule $\displaystyle\int x^3 e^{x^2}\,dx$ (substituição + partes).*
+
+Aqui combinamos as duas técnicas. Primeiro a substituição $u=x^2$ ($du=2x\,dx$); como $x^3\,dx=x^2\cdot x\,dx=u\cdot\tfrac12\,du$,
+
+$$
+\int x^3 e^{x^2}\,dx=\frac12\int u\,e^{u}\,du.
+$$
+
+A integral em $u$ resolve-se **por partes** ($\int u\,e^u\,du=u e^u-e^u$):
+
+$$
+\frac12\int u\,e^{u}\,du=\frac12\bigl(u e^{u}-e^{u}\bigr)+C.
+$$
+
+Voltando a $x$,
+
+$$
+\boxed{\int x^3 e^{x^2}\,dx=\frac12 e^{x^2}\bigl(x^2-1\bigr)+C.}
+$$
+
+### Tópico C — EDO de 2ª ordem
+
+**C1.** *Enunciado: resolva $y''-5y'+6y=5$, $y(0)=\tfrac56$, $y'(0)=1$ ($\Delta>0$).*
+
+$r^2-5r+6=(r-2)(r-3)=0\Rightarrow r=2,3$. Particular: $6A=5\Rightarrow A=\tfrac56$.
+
+$$
+y=C_1e^{2x}+C_2e^{3x}+\tfrac56.
+$$
+
+$y(0)=C_1+C_2+\tfrac56=\tfrac56\Rightarrow C_1+C_2=0$; $y'(0)=2C_1+3C_2=1\Rightarrow C_2=1,\ C_1=-1$.
+
+$$
+\boxed{y=-e^{2x}+e^{3x}+\tfrac56.}
+$$
+
+**C2.** *Enunciado: resolva $y''-4y'+4y=5$, $y(0)=\tfrac32$, $y'(0)=-1$ ($\Delta=0$).*
+
+$r^2-4r+4=(r-2)^2\Rightarrow r=2$ (dupla). Particular: $4A=5\Rightarrow A=\tfrac54$.
+
+$$
+y=(C_1+C_2x)e^{2x}+\tfrac54.
+$$
+
+$y(0)=C_1+\tfrac54=\tfrac32\Rightarrow C_1=\tfrac14$; $y'=e^{2x}(C_2+2C_1+2C_2x)$, $y'(0)=C_2+2C_1=-1\Rightarrow C_2=-\tfrac32$.
+
+$$
+\boxed{y=\Big(\tfrac14-\tfrac32x\Big)e^{2x}+\tfrac54.}
+$$
+
+**C3.** *Enunciado: resolva $y''+2y'+5y=10$, $y(0)=3$, $y'(0)=0$ ($\Delta<0$).*
+
+$r^2+2r+5=0\Rightarrow r=-1\pm2i$ ($\alpha=-1,\beta=2$). Particular: $5A=10\Rightarrow A=2$.
+
+$$
+y=e^{-x}(C_1\cos2x+C_2\sin2x)+2.
+$$
+
+$y(0)=C_1+2=3\Rightarrow C_1=1$; $y'(0)=-C_1+2C_2=0\Rightarrow C_2=\tfrac12$.
+
+$$
+\boxed{y=e^{-x}\Big(\cos2x+\tfrac12\sin2x\Big)+2.}
+$$
+
+**C4.** *Enunciado: resolva $y''+4y=8$, $y(0)=3$, $y'(0)=2$ ($\Delta<0$, $\alpha=0$).*
+
+$r^2+4=0\Rightarrow r=\pm2i$ ($\alpha=0,\beta=2$). Particular: $4A=8\Rightarrow A=2$.
+
+$$
+y=C_1\cos2x+C_2\sin2x+2.
+$$
+
+$y(0)=C_1+2=3\Rightarrow C_1=1$; $y'=-2C_1\sin2x+2C_2\cos2x$, $y'(0)=2C_2=2\Rightarrow C_2=1$.
+
+$$
+\boxed{y=\cos2x+\sin2x+2.}
+$$
+
+**C5.** *Enunciado: resolva $2y''-8y'+8y=16$, $y(0)=3$, $y'(0)=-1$ ($\Delta=0$).*
+
+Dividindo por 2: $y''-4y'+4y=8$, $(r-2)^2=0$, $r=2$ (dupla). Particular: $4A=8\Rightarrow A=2$.
+
+$$
+y=(C_1+C_2x)e^{2x}+2.
+$$
+
+$y(0)=C_1+2=3\Rightarrow C_1=1$; $y'=e^{2x}(C_2+2C_1+2C_2x)$, $y'(0)=C_2+2C_1=-1\Rightarrow C_2=-3$.
+
+$$
+\boxed{y=(1-3x)e^{2x}+2.}
+$$
+
+**C6.** *Enunciado: resolva (solução geral) $y''+5y'+4y=1$.*
+
+$r^2+5r+4=(r+1)(r+4)=0\Rightarrow r=-1,-4$. Particular: $4A=1\Rightarrow A=\tfrac14$.
+
+$$
+\boxed{y=C_1e^{-x}+C_2e^{-4x}+\tfrac14.}
+$$
+
+### Tópico D — Análise de função
+
+**D1.** *Enunciado: analise $f(x)=x^3+3x^2+2x$ (crescimento, concavidade, extremos, inflexão).* $f'(x)=3x^2+6x+2=0\Rightarrow x=-1\pm\tfrac{1}{\sqrt3}\approx-0{,}42;\,-1{,}58$. $f''(x)=6x+6$: máximo local em $x\approx-1{,}58$ ($f''<0$), mínimo local em $x\approx-0{,}42$ ($f''>0$). Côncava em $x<-1$, convexa em $x>-1$, inflexão em $x=-1$ ($f(-1)=0$).
+
+**D2.** *Enunciado: analise $f(x)=x^4-2x^2$.* $f'(x)=4x^3-4x=4x(x^2-1)=0\Rightarrow x=-1,0,1$. $f''(x)=12x^2-4$: mínimos em $x=\pm1$ ($f=-1$), máximo local em $x=0$ ($f=0$). Inflexões em $x=\pm\tfrac{1}{\sqrt3}$. Função par, em "W".
+
+**D3.** *Enunciado: analise $f(x)=3x^4-4x^3$.* $f'(x)=12x^3-12x^2=12x^2(x-1)=0\Rightarrow x=0,1$. $f''(x)=36x^2-24x=12x(3x-2)$. Em $x=1$, $f''=12>0$: mínimo ($f(1)=-1$). Em $x=0$, $f''=0$ e não há troca de sinal de $f'$ (ambos os lados $f'\le0$): é **inflexão horizontal**, não extremo. Inflexões em $x=0$ e $x=\tfrac23$.
+
+### Tópico E — Máx. lucro
+
+**E1.** *Enunciado: firma em concorrência perfeita com 2 insumos; escreva $\max_{K,L}\pi=p\,f(K,L)-wL-rK$, ache CPO e CSO e interprete $f_K/f_L=r/w$.*
+
+$\max_{K,L}\pi=p\,f(K,L)-wL-rK$. CPO:
+
+$$
+\pi_K=pf_K-r=0, \qquad \pi_L=pf_L-w=0 \quad\Longrightarrow\quad pf_K=r,\ pf_L=w,
+$$
+
+donde $\dfrac{f_K}{f_L}=\dfrac{r}{w}$: o valor do produto marginal de cada fator iguala seu preço, e a TMST iguala a razão de preços. CSO: $H_\pi=p\begin{pmatrix}f_{KK}&f_{KL}\\f_{KL}&f_{LL}\end{pmatrix}$, com $\pi_{KK}=pf_{KK}<0$ e $|H_\pi|=p^2(f_{KK}f_{LL}-f_{KL}^2)>0$ — máximo.
+
+**E2.** *Enunciado: monopolista com 2 mercados, $P_1=50-5Q_1$, $P_2=100-10Q_2$, custo $C=90+20(Q_1+Q_2)$; ache $(Q_1^*,Q_2^*)$, preços, lucro e CSO; em qual mercado o preço é maior?*
+
+Substituindo as demandas inversas,
+
+$$
+\pi=(50-5Q_1)Q_1+(100-10Q_2)Q_2-90-20(Q_1+Q_2).
+$$
+
+CPO:
+
+$$
+\frac{\partial\pi}{\partial Q_1}=50-10Q_1-20=0\Rightarrow Q_1^*=3, \qquad
+\frac{\partial\pi}{\partial Q_2}=100-20Q_2-20=0\Rightarrow Q_2^*=4.
+$$
+
+Preços e lucro: $P_1^*=35$, $P_2^*=60$, $\pi^*=35\cdot3+60\cdot4-[90+20\cdot7]=115$. CSO: $H=\begin{pmatrix}-10&0\\0&-20\end{pmatrix}$, $|H|=200>0$, $\pi_{Q_1Q_1}=-10<0$ — máximo. O preço é maior no mercado **2** (mais inelástico): regra RMg$_1$=RMg$_2$=CMg ⇒ cobra-se mais de quem reage menos (discriminação de 3º grau).
+
+**E3.** *Enunciado: monopolista (1 mercado) com demanda inversa $P=100-2Q$ e custo $C=Q^2+10Q+50$; ache $Q^*$, $P^*$, lucro e verifique a CSO.*
+
+$\pi=(100-2Q)Q-(Q^2+10Q+50)=90Q-3Q^2-50$. CPO: $\pi'=90-6Q=0\Rightarrow Q^*=15$. Então $P^*=100-30=70$, $\pi^*=90\cdot15-3\cdot225-50=625$. CSO: $\pi''=-6<0$ — máximo.
+
+**E4.** *Enunciado: firma em concorrência perfeita, $\pi(q)=pq-(c_0+c_1q+\tfrac12 c_2q^2)$; encontre $q^*$ e interprete.*
+
+$\pi(q)=pq-(c_0+c_1q+\tfrac12c_2q^2)$. CPO: $p-c_1-c_2q=0\Rightarrow q^*=\dfrac{p-c_1}{c_2}$. CSO: $\pi''=-c_2<0$. Interpretação: produz-se até **preço = custo marginal** ($p=c_1+c_2q^*$).
+
+### Tópico F — Min. custo / Min. despesa
+
+**F1.** *Enunciado: min custo $rK+wL$ s.a. $K^{1/2}L^{1/2}=q$; ache $K^*,L^*,\lambda^*$, $C^*$, homogeneidade e $\partial C^*/\partial q$.*
+
+(ver Simulado 1, Q5d–e) Com $f=K^{1/2}L^{1/2}$:
+
+$$
+K^*=q\sqrt{\tfrac{w}{r}}, \quad L^*=q\sqrt{\tfrac{r}{w}}, \quad \lambda^*=2\sqrt{rw}, \quad C^*=2q\sqrt{rw},
+$$
+
+homogênea de grau 1 em $(r,w)$, com $\partial C^*/\partial q=2\sqrt{rw}=\lambda^*$.
+
+**F2.** *Enunciado: min custo $rK+wL$ s.a. $(K^\rho+L^\rho)^{\beta/\rho}=q$ (CES); ache $K^*,L^*$, a função custo e a homogeneidade.*
+
+Para $f=(K^\rho+L^\rho)^{\beta/\rho}$, as derivadas são $f_K=\beta(K^\rho+L^\rho)^{\beta/\rho-1}K^{\rho-1}$ (idem $f_L$). A tangência $f_K/f_L=r/w$ dá
+
+$$
+\Big(\frac{K}{L}\Big)^{\rho-1}=\frac{r}{w}\quad\Longrightarrow\quad \frac{K}{L}=\Big(\frac{r}{w}\Big)^{\frac{1}{\rho-1}}.
+$$
+
+Substituindo na restrição $K^\rho+L^\rho=q^{\rho/\beta}$ e isolando,
+
+$$
+\boxed{K^*=q^{1/\beta}\frac{r^{\frac{1}{\rho-1}}}{\big(r^{\frac{\rho}{\rho-1}}+w^{\frac{\rho}{\rho-1}}\big)^{1/\rho}}, \qquad
+L^*=q^{1/\beta}\frac{w^{\frac{1}{\rho-1}}}{\big(r^{\frac{\rho}{\rho-1}}+w^{\frac{\rho}{\rho-1}}\big)^{1/\rho}}.}
+$$
+
+A função custo simplifica para
+
+$$
+\boxed{C^*=q^{1/\beta}\big(r^{\frac{\rho}{\rho-1}}+w^{\frac{\rho}{\rho-1}}\big)^{\frac{\rho-1}{\rho}},}
+$$
+
+**homogênea de grau 1** em $(r,w)$ (e grau $1/\beta$ em $q$).
+
+**F3.** *Enunciado: min custo com 3 insumos, $f=K^{1/4}L^{1/4}X^{1/2}$, preços $r,w,p_X$; ache $K^*,L^*,X^*,\lambda^*$, a função custo e a homogeneidade.*
+
+Para Cobb-Douglas com expoentes que somam 1, as participações de cada insumo no custo total igualam os expoentes. Com $a_K=a_L=\tfrac14$, $a_X=\tfrac12$, a fórmula geral $C^*=q\prod_i (p_i/a_i)^{a_i}$ dá
+
+$$
+C^*(r,w,p_X,q)=q\,(4r)^{1/4}(4w)^{1/4}(2p_X)^{1/2}=2\sqrt2\,q\,r^{1/4}w^{1/4}p_X^{1/2},
+$$
+
+homogênea de grau 1 nos preços. As demandas saem das participações ($p_iX_i^*=a_iC^*$):
+
+$$
+\boxed{K^*=\frac{C^*}{4r}, \quad L^*=\frac{C^*}{4w}, \quad X^*=\frac{C^*}{2p_X}, \quad \lambda^*=\frac{\partial C^*}{\partial q}=\frac{C^*}{q}.}
+$$
+
+**F4.** *Enunciado: min despesa $p_1x_1+p_2x_2$ s.a. $U(x_1,x_2)=\bar U$ (genérico); ache CPO, CSO e os sinais de $\partial x_1/\partial\bar U$ e $\partial x_1/\partial p_1$.*
+
+$\min p_1x_1+p_2x_2$ s.a. $U=\bar U$, com $\mathcal L=p_1x_1+p_2x_2+\mu(\bar U-U)$. CPO: $p_1=\mu U_1$, $p_2=\mu U_2$, $U=\bar U$, donde $\tfrac{U_1}{U_2}=\tfrac{p_1}{p_2}$. CSO (orlado): $|\bar H|<0$. Diferenciando as CPO (TFI) e resolvendo por Cramer:
+
+$$
+\frac{\partial x_1}{\partial\bar U}>0 \quad(\text{mais utilidade-alvo exige mais consumo}),\qquad
+\frac{\partial x_1}{\partial p_1}<0 \quad(\text{efeito substituição puro}).
+$$
+
+**F5.** *Enunciado: min despesa para $U=x_1^{1/4}x_2^{1/4}x_3^{1/2}$ (3 bens); ache $x_i^*$, $\lambda^*$, a função despesa e a homogeneidade.*
+
+Por dualidade com a Cobb-Douglas (expoentes $a_1=a_2=\tfrac14$, $a_3=\tfrac12$, soma 1), a função despesa é
+
+$$
+E^*=\bar U\prod_i\Big(\frac{p_i}{a_i}\Big)^{a_i}=\bar U\,(4p_1)^{1/4}(4p_2)^{1/4}(2p_3)^{1/2}=2\sqrt2\,\bar U\,p_1^{1/4}p_2^{1/4}p_3^{1/2},
+$$
+
+**homogênea de grau 1** nos preços. As demandas hicksianas e o multiplicador são
+
+$$
+\boxed{x_i^*=\frac{a_i E^*}{p_i}, \qquad \lambda^*=\mu^*=\frac{\partial E^*}{\partial\bar U}=\frac{E^*}{\bar U}.}
+$$
+
+Explicitamente, $x_1^*=\tfrac14 E^*/p_1$, $x_2^*=\tfrac14 E^*/p_2$, $x_3^*=\tfrac12 E^*/p_3$.
+
+**F6.** *Enunciado: maximização de utilidade CES $U=(x_1^\rho+x_2^\rho)^{1/\rho}$; ache as demandas marshallianas $x_1^*,x_2^*$.*
+
+Como $U_1/U_2=(x_1/x_2)^{\rho-1}$, a tangência dá
+
+$$
+\Big(\frac{x_1}{x_2}\Big)^{\rho-1}=\frac{p_1}{p_2}\quad\Longrightarrow\quad \frac{x_1}{x_2}=\Big(\frac{p_1}{p_2}\Big)^{\frac{1}{\rho-1}}=\Big(\frac{p_1}{p_2}\Big)^{-\sigma}, \quad \sigma=\frac{1}{1-\rho}.
+$$
+
+Substituindo na restrição orçamentária $p_1x_1+p_2x_2=R$ e isolando, obtemos as **demandas marshallianas CES**:
+
+$$
+\boxed{x_1^*=\frac{R\,p_1^{-\sigma}}{p_1^{1-\sigma}+p_2^{1-\sigma}}, \qquad x_2^*=\frac{R\,p_2^{-\sigma}}{p_1^{1-\sigma}+p_2^{1-\sigma}}, \qquad \sigma=\frac{1}{1-\rho}.}
+$$
+
+O parâmetro $\sigma$ é a **elasticidade de substituição** entre os bens.
+
+\newpage
+
+# Parte V — Checklist de Véspera
+
+- [ ] **Q1 (a demonstração):** CPO/CSO via Taylor (necessárias: termo linear ⇒ $f'=0$; quadrático ⇒ $f''\ge0$; suficientes: $f''>0/<0$). Multivariado: Hessiana e sinais dos menores ($D_1>0,\dots$ p/ mín; alternando p/ máx).
+- [ ] **Derivadas:** $a^{g(x)}=e^{g(x)\ln a}$ e $x^x=e^{x\ln x}$; produto, quociente e cadeia (saber **aplicar**); parciais e $f_{xy}=f_{yx}$.
+- [ ] **Integração — por partes:** LIATE; $\int(\ln x)^2$, $\int x^n\ln x$, $\int x^k e^{ax}$ (repetida), $\int x^3\ln(x^2+2)$ (divisão polinomial), $\int x\ln(x+1)$.
+- [ ] **Integração — substituição:** achar $u$ cuja derivada aparece no integrando; casos $\int x e^{x^2}$, $\int \tfrac{f'}{f}=\ln|f|$, $\int x^2\sqrt{x^3+1}$, $\int \tfrac{\ln x}{x}$; e combinar substituição + partes ($\int x^3 e^{x^2}$).
+- [ ] **EDO 2ª ordem:** característica $r^2+ar+b=0$; $\Delta>0$ (reais), $\Delta=0$ (dupla, fator $x$), $\Delta<0$ (Euler: $e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$); particular constante $bA=c$; aplicar $y(0),y'(0)$.
+- [ ] **Gráfico:** sinal de $f'$ (cresc./decr.), sinal de $f''$ (concavidade), extremos e inflexão (cuidado com inflexão horizontal).
+- [ ] **Otimização:** Lagrangeano, CPO (tangência), CSO (Hessiano orlado: máx $|\bar H|>0$, mín $|\bar H|<0$).
+- [ ] **Estática comparativa:** diferenciar CPO (TFI) + Cramer; sinais de $\partial x_1/\partial p_1<0$, $\partial x_1/\partial R>0$, $\partial K/\partial r<0$, $\partial K/\partial q>0$.
+- [ ] **Envelope:** consumidor $\partial V/\partial p_i=-\lambda^*x_i^*$, $\partial V/\partial R=\lambda^*$ (Roy: $x_i^*=-\tfrac{\partial V/\partial p_i}{\partial V/\partial R}$); firma/despesa $\partial C^*/\partial r=K^*$, $\partial C^*/\partial q=\lambda^*$ (Shephard); custo/despesa homogêneos de grau 1 nos preços.
+
+\newpage
+
+# Parte VI — Gabaritos de Provas Anteriores
+
+> Resoluções completas, linha a linha, das provas e avaliações substitutivas de 2022, 2024 e 2025 (arquivos na pasta `prova/`). Em ordem cronológica.
+
+\newpage
+
+## Prova 2 — 5 de novembro de 2022
+
+### Questão 1 — Condições de otimalidade na minimização
+
+*Enunciado. Seja $x^*$ um ponto do domínio de $f(x)$, função diferenciável, tal que $f(x^*)\le f(x)$ numa vizinhança de $x^*$ (mínimo relativo). Quais são as condições necessárias de 1ª e 2ª ordem? Quais as suficientes do problema de minimização? Prove.*
+
+Suponha $f$ duas vezes continuamente diferenciável e $x^*$ interior. A ferramenta é a expansão de Taylor de 2ª ordem com resto de Lagrange: para $\Delta x$ pequeno, existe $\theta\in(0,1)$ tal que
+
+$$
+f(x^*+\Delta x)=f(x^*)+f'(x^*)\,\Delta x+\tfrac{1}{2}\,f''(x^*+\theta\,\Delta x)\,(\Delta x)^2 .
+$$
+
+**Necessária de 1ª ordem.** Como $x^*$ é mínimo, $f(x^*+\Delta x)-f(x^*)\ge 0$. Para $\Delta x$ pequeno o termo dominante é o linear, e $f(x^*+\Delta x)-f(x^*)=f'(x^*)\Delta x+o(|\Delta x|)\ge0$. Dividindo por $\Delta x>0$ ($\Delta x\to0^+$) dá $f'(x^*)\ge0$; por $\Delta x<0$ ($\Delta x\to0^-$) dá $f'(x^*)\le0$. Logo
+
+$$
+\boxed{f'(x^*)=0.}
+$$
+
+**Necessária de 2ª ordem.** Com $f'(x^*)=0$, $f(x^*+\Delta x)-f(x^*)=\tfrac12 f''(x^*+\theta\Delta x)(\Delta x)^2\ge0$. Como $(\Delta x)^2>0$, segue $f''(x^*+\theta\Delta x)\ge0$; fazendo $\Delta x\to0$ e usando a continuidade de $f''$,
+
+$$
+\boxed{f''(x^*)\ge0.}
+$$
+
+**Suficientes.** Se $f'(x^*)=0$ **e** $f''(x^*)>0$, então por continuidade $f''>0$ numa vizinhança de $x^*$; para $0<|\Delta x|<\delta$, o ponto $x^*+\theta\Delta x$ está nela e
+
+$$
+f(x^*+\Delta x)-f(x^*)=\tfrac12\underbrace{f''(x^*+\theta\Delta x)}_{>0}\underbrace{(\Delta x)^2}_{>0}>0,
+$$
+
+ou seja, $x^*$ é **mínimo local estrito**. $\blacksquare$
+
+### Questão 2 — Maximização de utilidade
+
+#### (a) $n=2$ — CPO e CSO
+
+*Enunciado. Escreva o problema para $n=2$, as CPO e a CSO.*
+
+$$
+\max_{x_1,x_2}\ U(x_1,x_2)\quad\text{s.a.}\quad p_1x_1+p_2x_2=R,\qquad \mathcal L=U+\lambda(R-p_1x_1-p_2x_2).
+$$
+
+As CPO são
+
+$$
+U_1=\lambda p_1,\qquad U_2=\lambda p_2,\qquad p_1x_1+p_2x_2=R \quad\Longrightarrow\quad \frac{U_1}{U_2}=\frac{p_1}{p_2}.
+$$
+
+A CSO de máximo exige Hessiano orlado com determinante positivo:
+
+$$
+\bar H=\begin{pmatrix}0 & -p_1 & -p_2\\ -p_1 & U_{11} & U_{12}\\ -p_2 & U_{12} & U_{22}\end{pmatrix},\qquad |\bar H|=-U_{11}p_2^2+2U_{12}p_1p_2-U_{22}p_1^2>0.
+$$
+
+#### (b) $n=3$ — CPO e CSO
+
+*Enunciado. Idem para $n=3$.*
+
+$$
+\max_{x_1,x_2,x_3}\ U\quad\text{s.a.}\quad \sum_i p_ix_i=R,\qquad U_i=\lambda p_i\ (i=1,2,3),\qquad \frac{U_i}{U_j}=\frac{p_i}{p_j}.
+$$
+
+O Hessiano orlado é $4\times4$:
+
+$$
+\bar H=\begin{pmatrix}0 & -p_1 & -p_2 & -p_3\\ -p_1 & U_{11} & U_{12} & U_{13}\\ -p_2 & U_{12} & U_{22} & U_{23}\\ -p_3 & U_{13} & U_{23} & U_{33}\end{pmatrix},
+$$
+
+e para máximo os menores principais orlados líderes alternam de sinal a partir do de ordem 3: $|\bar H_3|>0$ e $|\bar H_4|=|\bar H|<0$.
+
+#### (c) Estática comparativa: sinal de $\partial x_1/\partial R$
+
+*Enunciado. Diferencie as CPO e ache o sinal de $\partial x_1/\partial R$.*
+
+Diferenciando o sistema das CPO ($n=2$) em relação a $R$:
+
+$$
+\begin{aligned}
+U_{11}dx_1+U_{12}dx_2-p_1d\lambda&=0,\\
+U_{12}dx_1+U_{22}dx_2-p_2d\lambda&=0,\\
+-p_1dx_1-p_2dx_2&=-dR.
+\end{aligned}
+$$
+
+Em forma matricial, $\bar H\,(dx_1,dx_2,d\lambda)^\top=(0,0,-1)^\top dR$. Por Cramer,
+
+$$
+\frac{\partial x_1}{\partial R}=\frac{p_1U_{22}-p_2U_{12}}{|\bar H|}.
+$$
+
+Com $p_i=U_i/\lambda$, o numerador vale $\tfrac1\lambda(U_1U_{22}-U_2U_{12})$; supondo bem normal e $|\bar H|>0$,
+
+$$
+\boxed{\frac{\partial x_1}{\partial R}>0\quad(\text{bem normal}).}
+$$
+
+#### (d) Demanda CES, $n=3$
+
+*Enunciado. Para $U=\big[\alpha_1^{1/\sigma}x_1^{(\sigma-1)/\sigma}+\alpha_2^{1/\sigma}x_2^{(\sigma-1)/\sigma}+\alpha_3^{1/\sigma}x_3^{(\sigma-1)/\sigma}\big]^{\sigma/(\sigma-1)}$, $\sigma>1$, encontre $x_i^*$ e $\lambda^*$.*
+
+Escreva $A=\sum_j\alpha_j^{1/\sigma}x_j^{(\sigma-1)/\sigma}$, de modo que $U=A^{\sigma/(\sigma-1)}$. A utilidade marginal é
+
+$$
+U_i=A^{1/(\sigma-1)}\,\alpha_i^{1/\sigma}\,x_i^{-1/\sigma}.
+$$
+
+A tangência $U_i/U_j=p_i/p_j$ elimina o fator comum:
+
+$$
+\Big(\frac{\alpha_i}{\alpha_j}\Big)^{1/\sigma}\Big(\frac{x_i}{x_j}\Big)^{-1/\sigma}=\frac{p_i}{p_j}\quad\Longrightarrow\quad \frac{x_i}{x_j}=\frac{\alpha_i}{\alpha_j}\Big(\frac{p_i}{p_j}\Big)^{-\sigma}.
+$$
+
+Logo $p_ix_i=\alpha_ip_i^{1-\sigma}\,(x_jp_j^{\sigma}/\alpha_j)$; somando em $i$ e usando $\sum_ip_ix_i=R$:
+
+$$
+R=\frac{x_jp_j^{\sigma}}{\alpha_j}\sum_i\alpha_ip_i^{1-\sigma}\quad\Longrightarrow\quad
+\boxed{x_k^*=\frac{\alpha_k\,p_k^{-\sigma}}{\sum_j\alpha_j\,p_j^{1-\sigma}}\,R,\quad k=1,2,3.}
+$$
+
+O multiplicador é a utilidade marginal da renda. Com o índice de preços CES $P=\big(\sum_j\alpha_jp_j^{1-\sigma}\big)^{1/(1-\sigma)}$,
+
+$$
+\boxed{\lambda^*=\frac{U_1(x^*)}{p_1}=\Big(\sum_j\alpha_jp_j^{1-\sigma}\Big)^{1/(\sigma-1)}=P^{-1}.}
+$$
+
+Para $\sigma>1$ a CES é estritamente quase-côncava, garantindo a CSO de máximo.
+
+#### (e) Utilidade indireta e Envelope
+
+*Enunciado. Seja $V(\cdot)$ a utilidade indireta. Pelo Envelope, ache $\partial V/\partial p_1$ e $\partial V/\partial R$.*
+
+Pelo Teorema do Envelope, derivam-se apenas os parâmetros em $\mathcal L=U+\lambda(R-\sum p_ix_i)$:
+
+$$
+\frac{\partial V}{\partial p_1}=-\lambda^*x_1^*,\qquad \frac{\partial V}{\partial R}=\lambda^*,
+$$
+
+e combinando obtém-se a **Identidade de Roy**:
+
+$$
+\boxed{x_1^*=-\frac{\partial V/\partial p_1}{\partial V/\partial R}.}
+$$
+
+#### (f) Minimização de despesa, 3 bens (genérico)
+
+*Enunciado. Escreva o problema de minimização de despesa com 3 bens; CPO e CSO.*
+
+$$
+\min_{x_1,x_2,x_3}\sum_ip_ix_i\quad\text{s.a.}\quad U=\bar U,\qquad \mathcal L=\sum_ip_ix_i+\mu(\bar U-U).
+$$
+
+CPO: $p_i=\mu U_i$ ($i=1,2,3$) e $U=\bar U$, donde $\dfrac{p_i}{p_j}=\dfrac{U_i}{U_j}$ (mesma tangência — dualidade). A CSO de mínimo exige Hessiano orlado com $|\bar H|<0$.
+
+### Questão 3 — Minimização de custo da firma
+
+#### (a) Problema, CPO e CSO
+
+$$
+\min_{K,L}\ rK+wL\quad\text{s.a.}\quad f(K,L)=q,\qquad \mathcal L=rK+wL+\lambda(q-f).
+$$
+
+CPO: $r=\lambda f_K$, $w=\lambda f_L$, $f=q$, donde $\dfrac{f_K}{f_L}=\dfrac{r}{w}$. CSO de mínimo: Hessiano orlado com $|\bar H|<0$.
+
+#### (b) Estática comparativa
+
+*Enunciado. Sinais de $\partial K/\partial q$ e $\partial K/\partial r$.*
+
+Diferenciando as CPO e resolvendo por Cramer, com $|\bar H|<0$:
+
+$$
+\frac{\partial K}{\partial r}=\frac{f_L^2}{|\bar H|}<0,\qquad
+\frac{\partial K}{\partial q}=\frac{\lambda(f_Kf_{LL}-f_{KL}f_L)}{|\bar H|}>0.
+$$
+
+#### (c) Função custo CES
+
+*Enunciado. Para $f=(K^\rho+L^\rho)^{\beta/\rho}$, encontre $K^*,L^*$, a função custo e $\partial C/\partial q$.*
+
+Com $f_K=\beta(K^\rho+L^\rho)^{\beta/\rho-1}K^{\rho-1}$ (idem $f_L$), a tangência dá
+
+$$
+\Big(\frac{K}{L}\Big)^{\rho-1}=\frac{r}{w}\quad\Longrightarrow\quad \frac{K}{L}=\Big(\frac{r}{w}\Big)^{1/(\rho-1)}.
+$$
+
+Impondo $K^\rho+L^\rho=q^{\rho/\beta}$,
+
+$$
+\boxed{K^*=q^{1/\beta}\frac{r^{1/(\rho-1)}}{\big(r^{\rho/(\rho-1)}+w^{\rho/(\rho-1)}\big)^{1/\rho}},\quad L^*=q^{1/\beta}\frac{w^{1/(\rho-1)}}{\big(r^{\rho/(\rho-1)}+w^{\rho/(\rho-1)}\big)^{1/\rho}}.}
+$$
+
+A função custo simplifica para
+
+$$
+\boxed{C^*=q^{1/\beta}\big(r^{\rho/(\rho-1)}+w^{\rho/(\rho-1)}\big)^{(\rho-1)/\rho},}
+$$
+
+e o custo marginal (= $\lambda^*$, pelo Envelope) é
+
+$$
+\boxed{\frac{\partial C^*}{\partial q}=\frac1\beta q^{1/\beta-1}\big(r^{\rho/(\rho-1)}+w^{\rho/(\rho-1)}\big)^{(\rho-1)/\rho}=\lambda^*.}
+$$
+
+\newpage
+
+## Avaliação Substitutiva — 18 de novembro de 2022
+
+### Questão 1 — Regra da cadeia
+
+*Enunciado. Demonstre a regra da cadeia: se $g$ é diferenciável em $x$ e $f$ em $u=g(x)$, então $h(x)=f(g(x))$ satisfaz $h'(x)=f'(g(x))g'(x)$.*
+
+Pela diferenciabilidade de $f$ em $u$, definimos a função-erro
+
+$$
+\varepsilon(\Delta u)=\begin{cases}\dfrac{f(u+\Delta u)-f(u)}{\Delta u}-f'(u), & \Delta u\neq0,\\[2mm] 0, & \Delta u=0,\end{cases}
+$$
+
+de modo que, para todo $\Delta u$ (inclusive $0$),
+
+$$
+f(u+\Delta u)-f(u)=\big[f'(u)+\varepsilon(\Delta u)\big]\Delta u,\qquad \lim_{\Delta u\to0}\varepsilon(\Delta u)=0.
+$$
+
+Tomamos $\Delta u=g(x+\Delta x)-g(x)$, de modo que $u+\Delta u=g(x+\Delta x)$, e dividimos o incremento da composta por $\Delta x\neq0$:
+
+$$
+\frac{h(x+\Delta x)-h(x)}{\Delta x}=\big[f'(u)+\varepsilon(\Delta u)\big]\frac{g(x+\Delta x)-g(x)}{\Delta x}.
+$$
+
+Quando $\Delta x\to0$: como $g$ é contínua, $\Delta u\to0$, logo $\varepsilon(\Delta u)\to0$; e $\frac{g(x+\Delta x)-g(x)}{\Delta x}\to g'(x)$. Portanto
+
+$$
+\boxed{h'(x)=f'(g(x))\,g'(x).}
+$$
+
+A função-erro $\varepsilon$ evita a divisão direta por $\Delta u$ (que poderia se anular). $\blacksquare$
+
+### Questão 2 — Integral definida $\int_0^6(2+5x)e^{x/3}dx$
+
+*Enunciado. Calcule $\displaystyle\int_0^6(2+5x)e^{x/3}\,dx$.*
+
+Por partes, com $u=2+5x$ e $dv=e^{x/3}dx$, de modo que $du=5\,dx$ e $v=3e^{x/3}$, a antiderivada é
+
+$$
+F(x)=3(2+5x)e^{x/3}-15\int e^{x/3}dx=3(2+5x)e^{x/3}-45e^{x/3}=(15x-39)e^{x/3}.
+$$
+
+Avaliamos nos extremos ($x/3=2$ em $x=6$):
+
+$$
+F(6)=(90-39)e^{2}=51e^{2},\qquad F(0)=(0-39)e^{0}=-39.
+$$
+
+Pelo Teorema Fundamental do Cálculo,
+
+$$
+\boxed{\int_0^6(2+5x)e^{x/3}\,dx=51e^{2}-(-39)=51e^{2}+39.}
+$$
+
+Verificação: $\frac{d}{dx}[(15x-39)e^{x/3}]=15e^{x/3}+(15x-39)\tfrac13 e^{x/3}=(5x+2)e^{x/3}$ ✓.
+
+### Questão 3 — EDO $y''+5y'+4y=1$
+
+*Enunciado. Resolva $y''+5y'+4y=1$.*
+
+A característica é $r^2+5r+4=(r+1)(r+4)=0$, com raízes reais distintas $r=-1,-4$:
+
+$$
+y_h=C_1e^{-x}+C_2e^{-4x}.
+$$
+
+A particular constante satisfaz $4A=1\Rightarrow A=\tfrac14$. Logo
+
+$$
+\boxed{y(x)=C_1e^{-x}+C_2e^{-4x}+\frac14.}
+$$
+
+### Questão 4 — Análise de $f(x)=x^3+3x^2+2x$
+
+*Enunciado. Determine crescimento/decrescimento, concavidade, máximo, mínimo e inflexão; esboce.*
+
+A 1ª derivada governa a monotonia:
+
+$$
+f'(x)=3x^2+6x+2=0\quad\Longrightarrow\quad x=-1\pm\frac{1}{\sqrt3}\approx-1{,}58;\,-0{,}42.
+$$
+
+Como $f'$ é parábola de boca para cima, $f'>0$ fora das raízes e $f'<0$ entre elas:
+
+- **crescente** em $(-\infty,-1-\tfrac1{\sqrt3})$ e $(-1+\tfrac1{\sqrt3},\infty)$; **decrescente** entre as raízes.
+
+A 2ª derivada governa a concavidade:
+
+$$
+f''(x)=6x+6=6(x+1).
+$$
+
+Assim $f''<0$ em $(-\infty,-1)$ (**côncava**) e $f''>0$ em $(-1,\infty)$ (**convexa**), com **inflexão** em $x=-1$, $f(-1)=0$. Classificando os críticos: em $x\approx-1{,}58$ ($f''<0$) há **máximo local**; em $x\approx-0{,}42$ ($f''>0$) há **mínimo local**. As raízes de $f$ são $x=0,-1,-2$.
+
+**Esboço:** cúbica crescente nas pontas; sobe até o máximo em $\approx-1{,}58$, desce passando pela inflexão $(-1,0)$, atinge o mínimo em $\approx-0{,}42$ e volta a subir; corta o eixo em $-2,-1,0$, com $(-1,0)$ como centro de simetria.
+
+### Questão 5 — Minimização de despesa
+
+#### (a) $n=2$ — CPO e CSO
+
+$$
+\min_{x_1,x_2}p_1x_1+p_2x_2\quad\text{s.a.}\quad U(x_1,x_2)=\bar U,\qquad \mathcal L=p_1x_1+p_2x_2+\mu(\bar U-U).
+$$
+
+CPO: $p_1=\mu U_1$, $p_2=\mu U_2$, $U=\bar U$, donde $\dfrac{U_1}{U_2}=\dfrac{p_1}{p_2}$. CSO de mínimo: Hessiano orlado com $|\bar H|<0$.
+
+#### (b) Gráfico
+
+No plano $(x_1,x_2)$, a curva de indiferença $U=\bar U$ é convexa à origem; as retas de isodespesa $p_1x_1+p_2x_2=c$ têm inclinação $-p_1/p_2$. O ótimo é a **tangência** da curva de indiferença com a reta de isodespesa de menor valor, onde $-U_1/U_2=-p_1/p_2$.
+
+#### (c) Estática comparativa
+
+$$
+\frac{\partial x_1}{\partial\bar U}>0\quad(\text{mais utilidade-alvo exige mais consumo}),\qquad \frac{\partial x_1}{\partial p_1}<0\quad(\text{hicksiana decrescente, efeito substituição puro}).
+$$
+
+#### (d) CES, $n=2$: $U=[x_1^a+x_2^a]^{1/a}$, $a>0$
+
+*Enunciado. Encontre $x_1^*,x_2^*,\lambda^*$.*
+
+Com $U_i=[x_1^a+x_2^a]^{1/a-1}x_i^{a-1}$, a tangência dá
+
+$$
+\Big(\frac{x_1}{x_2}\Big)^{a-1}=\frac{p_1}{p_2}\quad\Longrightarrow\quad \frac{x_1}{x_2}=\Big(\frac{p_1}{p_2}\Big)^{1/(a-1)}.
+$$
+
+Substituindo em $x_1^a+x_2^a=\bar U^a$ e isolando,
+
+$$
+\boxed{x_1^*=\bar U\,\frac{p_1^{1/(a-1)}}{\big(p_1^{a/(a-1)}+p_2^{a/(a-1)}\big)^{1/a}},\qquad x_2^*=\bar U\,\frac{p_2^{1/(a-1)}}{\big(p_1^{a/(a-1)}+p_2^{a/(a-1)}\big)^{1/a}}.}
+$$
+
+A função despesa é
+
+$$
+E^*=p_1x_1^*+p_2x_2^*=\bar U\big(p_1^{a/(a-1)}+p_2^{a/(a-1)}\big)^{(a-1)/a},
+$$
+
+e o multiplicador (custo marginal de utilidade)
+
+$$
+\boxed{\lambda^*=\mu^*=\frac{\partial E^*}{\partial\bar U}=\big(p_1^{a/(a-1)}+p_2^{a/(a-1)}\big)^{(a-1)/a}.}
+$$
+
+Verificação ($p_1=p_2=p$): $x_1^*=x_2^*=\bar U\,2^{-1/a}$, e $U(x^*)=[2(\bar U2^{-1/a})^a]^{1/a}=\bar U$ ✓.
+
+#### (e) Minimização de despesa, 3 bens (genérico)
+
+$$
+\min\sum_ip_ix_i\quad\text{s.a.}\quad U(x_1,x_2,x_3)=\bar U,\qquad p_i=\mu U_i,\quad U=\bar U,\quad \frac{U_i}{U_j}=\frac{p_i}{p_j}.
+$$
+
+CSO de mínimo: Hessiano orlado $4\times4$ com $|\bar H_3|<0$ e $|\bar H_4|>0$.
+
+#### (f) CES, $n=3$, parâmetro $\sigma>1$
+
+*Enunciado. Para $U=\big[\sum_i\alpha_i^{1/\sigma}x_i^{(\sigma-1)/\sigma}\big]^{\sigma/(\sigma-1)}$, encontre as demandas hicksianas $x_i^*$ e $\lambda^*$.*
+
+Seja $\rho=\tfrac{\sigma-1}{\sigma}$ e $S=\sum_j\alpha_j^{1/\sigma}x_j^\rho$, de modo que $U=S^{1/\rho}$. Então $U_i=S^{1/\rho-1}\alpha_i^{1/\sigma}x_i^{\rho-1}$, e como $\rho-1=-1/\sigma$, a tangência $U_i/U_j=p_i/p_j$ dá
+
+$$
+\frac{x_i}{x_j}=\frac{\alpha_i}{\alpha_j}\Big(\frac{p_i}{p_j}\Big)^{-\sigma}\quad\Longrightarrow\quad x_i^*=k\,\alpha_i\,p_i^{-\sigma},
+$$
+
+com escala $k$ a fixar por $U(x^*)=\bar U$. Calculando $S$ no ótimo (usando $p_i^{-\sigma\rho}=p_i^{1-\sigma}$ e $\alpha_i^{1/\sigma}\alpha_i^\rho=\alpha_i$):
+
+$$
+S=k^\rho\sum_j\alpha_jp_j^{1-\sigma}=k^\rho P^{1-\sigma},\qquad P=\Big[\sum_j\alpha_jp_j^{1-\sigma}\Big]^{1/(1-\sigma)}.
+$$
+
+Impondo $U=S^{1/\rho}=\bar U$, isto é $S=\bar U^\rho$, e como $1-\sigma=-\sigma\rho$, vem $k=\bar U P^{\sigma}$. Logo as **demandas hicksianas**:
+
+$$
+\boxed{x_i^*=\bar U\,\alpha_i\Big(\frac{p_i}{P}\Big)^{-\sigma}=\bar U\,\frac{\alpha_i\,p_i^{-\sigma}}{\big(\sum_j\alpha_jp_j^{1-\sigma}\big)^{\sigma/(\sigma-1)}},\quad i=1,2,3.}
+$$
+
+A função despesa é $E^*=\sum_ip_ix_i^*=\bar U P^{\sigma}\sum_i\alpha_ip_i^{1-\sigma}=\bar U P^{\sigma}P^{1-\sigma}=\bar U P$, e o multiplicador
+
+$$
+\boxed{\lambda^*=\mu^*=\frac{\partial E^*}{\partial\bar U}=P=\Big[\sum_j\alpha_jp_j^{1-\sigma}\Big]^{1/(1-\sigma)}.}
+$$
+
+$E^*=\bar U P$ é homogênea de grau 1 nos preços; cada $x_i^*$, de grau 0 ✓.
+
+\newpage
+
+## Prova — 4 de maio de 2024
+
+### Questão 1 — Regra do produto
+
+*Enunciado. Demonstre a regra do produto: $(fg)'=f'g+fg'$.*
+
+Pela definição,
+
+$$
+(fg)'(x)=\lim_{h\to0}\frac{f(x+h)g(x+h)-f(x)g(x)}{h}.
+$$
+
+Somamos e subtraímos $f(x)g(x+h)$ no numerador, criando a ponte entre os produtos:
+
+$$
+f(x+h)g(x+h)-f(x)g(x)=\big[f(x+h)-f(x)\big]g(x+h)+f(x)\big[g(x+h)-g(x)\big].
+$$
+
+Dividindo por $h$ e separando os limites:
+
+$$
+(fg)'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}\,g(x+h)+f(x)\lim_{h\to0}\frac{g(x+h)-g(x)}{h}.
+$$
+
+Como $g$ é diferenciável (logo contínua), $g(x+h)\to g(x)$, e portanto
+
+$$
+\boxed{(fg)'(x)=f'(x)g(x)+f(x)g'(x).}
+$$
+
+### Questão 2 — Derivada
+
+*Enunciado. Calcule a derivada de $f(x)=\left(\tfrac1x\right)^{x+1}+\dfrac{e^{x^2+2x+1}}{\sqrt{5x-2}}-3^{x^3}$.*
+
+**Termo 1.** Como $\left(\tfrac1x\right)^{x+1}=e^{-(x+1)\ln x}$, a derivada do expoente é $-\ln x-\tfrac{x+1}{x}$, logo
+
+$$
+T_1'=\Big(\frac1x\Big)^{x+1}\Big(-\ln x-\frac{x+1}{x}\Big).
+$$
+
+**Termo 2.** Note $x^2+2x+1=(x+1)^2$. Com $u=e^{(x+1)^2}$ ($u'=2(x+1)e^{(x+1)^2}$) e $v=(5x-2)^{1/2}$ ($v'=\tfrac{5}{2\sqrt{5x-2}}$), a regra do quociente dá
+
+$$
+T_2'=e^{(x+1)^2}\left[\frac{2(x+1)}{\sqrt{5x-2}}-\frac{5}{2(5x-2)^{3/2}}\right].
+$$
+
+**Termo 3.** Como $3^{x^3}=e^{x^3\ln3}$, $T_3'=3^{x^3}\ln3\cdot3x^2$.
+
+Somando $f'=T_1'+T_2'-T_3'$:
+
+$$
+\boxed{f'(x)=\Big(\frac1x\Big)^{x+1}\!\Big(-\ln x-\frac{x+1}{x}\Big)+e^{(x+1)^2}\!\left[\frac{2(x+1)}{\sqrt{5x-2}}-\frac{5}{2(5x-2)^{3/2}}\right]-3^{x^3}\ln3\cdot3x^2.}
+$$
+
+### Questão 3 — Integral e EDO
+
+**(a)** *Enunciado. Calcule $\int(\ln x)^2dx$.*
+
+Por partes, $u=(\ln x)^2$, $dv=dx$, $v=x$:
+
+$$
+\int(\ln x)^2dx=x(\ln x)^2-2\int\ln x\,dx.
+$$
+
+Como $\int\ln x\,dx=x\ln x-x$,
+
+$$
+\boxed{\int(\ln x)^2dx=x\big[(\ln x)^2-2\ln x+2\big]+C.}
+$$
+
+Verificação: derivando, sobra $(\ln x)^2$ ✓.
+
+**(b)** *Enunciado. Resolva $2y''-8y'+8y=16$, $y(0)=3$, $y'(0)=-1$.*
+
+Dividindo por 2: $y''-4y'+4y=8$. A característica é $(r-2)^2=0$, $r=2$ dupla, logo $y_h=(C_1+C_2x)e^{2x}$. Particular: $4A=8\Rightarrow A=2$. Geral:
+
+$$
+y(x)=(C_1+C_2x)e^{2x}+2.
+$$
+
+De $y(0)=C_1+2=3\Rightarrow C_1=1$. Como $y'(x)=(2C_1+C_2+2C_2x)e^{2x}$, $y'(0)=2C_1+C_2=-1\Rightarrow C_2=-3$:
+
+$$
+\boxed{y(x)=(1-3x)e^{2x}+2.}
+$$
+
+Verificação: $y(0)=3$ ✓, $y'(0)=2-3=-1$ ✓.
+
+### Questão 4 — Maximização de utilidade
+
+**(a)** $\max U(x_1,x_2)$ s.a. $p_1x_1+p_2x_2=R$, $\mathcal L=U+\lambda(R-p_1x_1-p_2x_2)$. CPO: $U_1=\lambda p_1$, $U_2=\lambda p_2$, restrição, donde $\dfrac{U_1}{U_2}=\dfrac{p_1}{p_2}$. CSO de máximo: $|\bar H|>0$.
+
+**(b)** No plano $(x_1,x_2)$, a reta orçamentária tem inclinação $-p_1/p_2$ e interceptos $R/p_1$, $R/p_2$; as curvas de indiferença são convexas. O ótimo é a tangência da curva de indiferença mais alta com a reta orçamentária.
+
+**(c)** Diferenciando as CPO e resolvendo por Cramer com $|\bar H|>0$: $\dfrac{\partial x_1}{\partial p_1}<0$ (demanda própria decrescente) e $\dfrac{\partial x_2}{\partial R}>0$ (bem normal).
+
+**(d)** Para $U=x_1^{1/3}x_2^{2/3}$ ($\alpha=\tfrac13$): tangência $\dfrac{U_1}{U_2}=\dfrac{x_2}{2x_1}=\dfrac{p_1}{p_2}\Rightarrow p_2x_2=2p_1x_1$. Na restrição, $3p_1x_1=R$:
+
+$$
+\boxed{x_1^*=\frac{R}{3p_1},\qquad x_2^*=\frac{2R}{3p_2},\qquad \lambda^*=\frac{U_1(x^*)}{p_1}.}
+$$
+
+Das demandas, $\dfrac{\partial x_1^*}{\partial p_1}=-\dfrac{R}{3p_1^2}<0$ e $\dfrac{\partial x_2^*}{\partial R}=\dfrac{2}{3p_2}>0$ ✓ (confirmam o item c).
+
+**(e)** Utilidade indireta:
+
+$$
+V=\Big(\frac13\Big)^{1/3}\Big(\frac23\Big)^{2/3}\frac{R}{p_1^{1/3}p_2^{2/3}}.
+$$
+
+Pelo Envelope, $\dfrac{\partial V}{\partial p_2}=-\lambda^*x_2^*=-\dfrac{2}{3p_2}V$ e $\dfrac{\partial V}{\partial R}=\lambda^*=\dfrac{V}{R}$. A relação entre eles é a **Identidade de Roy**:
+
+$$
+\boxed{-\frac{\partial V/\partial p_2}{\partial V/\partial R}=\frac{2R}{3p_2}=x_2^*.}
+$$
+
+\newpage
+
+## Prova Substitutiva — 25 de maio de 2024
+
+### Questão 1 — Regra do quociente
+
+*Enunciado. Demonstre a regra do quociente: $\left(\tfrac fg\right)'=\dfrac{f'g-fg'}{g^2}$ (com $g\neq0$).*
+
+Pela definição, sobre denominador comum,
+
+$$
+\Big(\frac fg\Big)'(x)=\lim_{h\to0}\frac1h\cdot\frac{f(x+h)g(x)-f(x)g(x+h)}{g(x+h)g(x)}.
+$$
+
+Somamos e subtraímos $f(x)g(x)$ no numerador para formar os quocientes de Newton:
+
+$$
+f(x+h)g(x)-f(x)g(x+h)=g(x)\big[f(x+h)-f(x)\big]-f(x)\big[g(x+h)-g(x)\big].
+$$
+
+Substituindo e tomando o limite (com $g(x+h)\to g(x)$, pois $g$ é contínua),
+
+$$
+\boxed{\Big(\frac fg\Big)'=\frac{f'g-fg'}{g^2}.}
+$$
+
+### Questão 2 — EDO e integral
+
+**(a)** *Enunciado. Resolva $y''-5y'+6y=5$, $y(0)=\tfrac56$, $y'(0)=1$.*
+
+Característica $r^2-5r+6=(r-2)(r-3)=0$, $\Delta=1>0$, $r=2,3$, logo $y_h=C_1e^{2x}+C_2e^{3x}$. Particular: $6A=5\Rightarrow A=\tfrac56$. Geral:
+
+$$
+y=C_1e^{2x}+C_2e^{3x}+\frac56.
+$$
+
+De $y(0)=C_1+C_2+\tfrac56=\tfrac56\Rightarrow C_1+C_2=0$; e $y'(0)=2C_1+3C_2=1\Rightarrow C_2=1,\ C_1=-1$:
+
+$$
+\boxed{y(x)=-e^{2x}+e^{3x}+\frac56.}
+$$
+
+Verificação: $y(0)=\tfrac56$ ✓, $y'(0)=-2+3=1$ ✓.
+
+**(b)** *Enunciado. Calcule $\int(2+3x)e^{2x}dx$.*
+
+Por partes, $u=2+3x$, $dv=e^{2x}dx$, $v=\tfrac12e^{2x}$:
+
+$$
+\int(2+3x)e^{2x}dx=\frac{2+3x}{2}e^{2x}-\frac32\int e^{2x}dx=\frac{2+3x}{2}e^{2x}-\frac34e^{2x}+C.
+$$
+
+Reduzindo ao denominador comum,
+
+$$
+\boxed{\int(2+3x)e^{2x}dx=\frac14(6x+1)e^{2x}+C.}
+$$
+
+Verificação: $\frac{d}{dx}[\tfrac14(6x+1)e^{2x}]=(3x+2)e^{2x}$ ✓.
+
+### Questão 3 — Derivadas parciais de $f(x,y)=x^y+e^{x^2+y^2}$
+
+*Enunciado. Calcule as parciais de 1ª e 2ª ordem e mostre $f_{xy}=f_{yx}$.*
+
+Lembrando $\frac{\partial}{\partial x}x^y=yx^{y-1}$ e $\frac{\partial}{\partial y}x^y=x^y\ln x$, as parciais de 1ª ordem são
+
+$$
+f_x=y\,x^{y-1}+2x\,e^{x^2+y^2},\qquad f_y=x^{y}\ln x+2y\,e^{x^2+y^2}.
+$$
+
+As de 2ª ordem puras:
+
+$$
+f_{xx}=y(y-1)x^{y-2}+(2+4x^2)e^{x^2+y^2},\qquad f_{yy}=x^{y}(\ln x)^2+(2+4y^2)e^{x^2+y^2}.
+$$
+
+As cruzadas: derivando $f_x$ em relação a $y$ (produto em $y\,x^{y-1}$),
+
+$$
+f_{xy}=x^{y-1}(1+y\ln x)+4xy\,e^{x^2+y^2};
+$$
+
+derivando $f_y$ em relação a $x$ (produto em $x^y\ln x$),
+
+$$
+f_{yx}=y x^{y-1}\ln x+x^{y-1}+4xy\,e^{x^2+y^2}=x^{y-1}(1+y\ln x)+4xy\,e^{x^2+y^2}.
+$$
+
+Comparando, coincidem termo a termo:
+
+$$
+\boxed{f_{xy}=x^{y-1}(1+y\ln x)+4xy\,e^{x^2+y^2}=f_{yx}.}\ \checkmark
+$$
+
+### Questão 4 — Minimização de custo
+
+**(a)** $\min rK+wL$ s.a. $f(K,L)=q$, $\mathcal L=rK+wL+\lambda(q-f)$. CPO: $r=\lambda f_K$, $w=\lambda f_L$, $f=q$, donde $\dfrac{f_K}{f_L}=\dfrac{r}{w}$. CSO de mínimo: Hessiano orlado com $|\bar H|<0$ (garantido por $\lambda>0$, $f_{KK},f_{LL}<0$, $f_{KL}>0$ e quase-convexidade da isoquanta).
+
+**(b)** No plano $(L,K)$, a isoquanta $f=q$ é convexa à origem; as isocustos $rK+wL=\bar C$ têm inclinação $-w/r$. O ótimo é a tangência da isoquanta com a isocusto de menor valor.
+
+**(c)** Diferenciando as CPO e usando Cramer com $|\bar H|<0$:
+
+$$
+\frac{\partial K}{\partial r}=\frac{f_L^2}{|\bar H|}<0,\qquad \frac{\partial K}{\partial q}=\frac{\lambda(f_Kf_{LL}-f_{KL}f_L)}{|\bar H|}>0.
+$$
+
+**(d)** Para $f=(K^\rho+L^\rho)^{\beta/\rho}$, a tangência dá $\big(\tfrac KL\big)^{\rho-1}=\tfrac rw\Rightarrow \tfrac KL=(r/w)^{1/(\rho-1)}$. Impondo $K^\rho+L^\rho=q^{\rho/\beta}$:
+
+$$
+\boxed{K^*=q^{1/\beta}\frac{r^{1/(\rho-1)}}{\big(r^{\rho/(\rho-1)}+w^{\rho/(\rho-1)}\big)^{1/\rho}},\quad L^*=q^{1/\beta}\frac{w^{1/(\rho-1)}}{\big(r^{\rho/(\rho-1)}+w^{\rho/(\rho-1)}\big)^{1/\rho}},}
+$$
+
+e $\lambda^*=\partial C^*/\partial q$ (item e).
+
+**(e)** A função custo é $C^*=rK^*+wL^*$; como $r\cdot r^{1/(\rho-1)}=r^{\rho/(\rho-1)}$,
+
+$$
+\boxed{C^*=q^{1/\beta}\big(r^{\rho/(\rho-1)}+w^{\rho/(\rho-1)}\big)^{(\rho-1)/\rho},}
+$$
+
+homogênea de grau 1 em $(r,w)$. Pelo Lema de Shephard,
+
+$$
+\boxed{\frac{\partial C^*}{\partial r}=K^*,\qquad \frac{\partial C^*}{\partial w}=L^*.}\ \checkmark
+$$
+
+\newpage
+
+## Prova — 10 de maio de 2025
+
+### Questão 1 — Condições necessárias de mínimo
+
+*Enunciado. Seja $f:\mathbb{R}\to\mathbb{R}$ diferenciável. Quais as condições necessárias para $x^*$ ser mínimo relativo?*
+
+Pela expansão de Taylor de 2ª ordem, $f(x^*+h)-f(x^*)=f'(x^*)h+\tfrac12f''(x^*)h^2+o(h^2)\ge0$. Para $h$ pequeno o termo linear domina; como $h$ tem qualquer sinal, é necessário
+
+$$
+\boxed{f'(x^*)=0.}
+$$
+
+Anulado o linear, $\tfrac12f''(x^*)h^2+o(h^2)\ge0$; dividindo por $h^2>0$ e fazendo $h\to0$,
+
+$$
+\boxed{f''(x^*)\ge0.}
+$$
+
+(A suficiente correspondente seria $f''(x^*)>0$.)
+
+### Questão 2 — Derivada (diferenciação logarítmica)
+
+*Enunciado. Calcule a derivada de $f(x)=\sqrt{\left(x^x+\dfrac{\sqrt{2+3x}}{\ln(5+3^x+xe^x)}\right)^{e^x}}$.*
+
+Defina a expressão interna $G(x)=x^x+\dfrac{\sqrt{2+3x}}{\ln(5+3^x+xe^x)}$. Como a raiz é potência $\tfrac12$,
+
+$$
+f(x)=\big(G^{e^x}\big)^{1/2}=G^{\,e^x/2}.
+$$
+
+Base e expoente variam: usamos **diferenciação logarítmica**. De $\ln f=\tfrac{e^x}{2}\ln G$,
+
+$$
+\frac{f'}{f}=\frac{e^x}{2}\Big(\ln G+\frac{G'}{G}\Big)\quad\Longrightarrow\quad f'=G^{\,e^x/2}\cdot\frac{e^x}{2}\Big(\ln G+\frac{G'}{G}\Big).
+$$
+
+Falta $G'$. O primeiro termo: $\frac{d}{dx}x^x=x^x(\ln x+1)$. O segundo é quociente $N/D$ com $N=\sqrt{2+3x}$, $D=\ln(5+3^x+xe^x)$:
+
+$$
+N'=\frac{3}{2\sqrt{2+3x}},\qquad D'=\frac{3^x\ln3+e^x(1+x)}{5+3^x+xe^x},
+$$
+
+de modo que
+
+$$
+G'=x^x(\ln x+1)+\frac{\dfrac{3}{2\sqrt{2+3x}}\,\ln(5+3^x+xe^x)-\sqrt{2+3x}\,\dfrac{3^x\ln3+e^x(1+x)}{5+3^x+xe^x}}{[\ln(5+3^x+xe^x)]^2}.
+$$
+
+Portanto,
+
+$$
+\boxed{f'(x)=G^{\,e^x/2}\cdot\frac{e^x}{2}\Big(\ln G+\frac{G'}{G}\Big),}
+$$
+
+com $G$ e $G'$ acima.
+
+### Questão 3 — Integral e EDO
+
+**(1)** *Enunciado. Calcule $\int x^3\ln(x^2+2)dx$.*
+
+Por partes, $u=\ln(x^2+2)$, $dv=x^3dx$, $v=\tfrac{x^4}{4}$, $du=\tfrac{2x}{x^2+2}dx$:
+
+$$
+\int x^3\ln(x^2+2)dx=\frac{x^4}{4}\ln(x^2+2)-\frac12\int\frac{x^5}{x^2+2}dx.
+$$
+
+Por divisão polinomial, $\dfrac{x^5}{x^2+2}=x^3-2x+\dfrac{4x}{x^2+2}$, logo $\int=\tfrac{x^4}{4}-x^2+2\ln(x^2+2)$. Substituindo,
+
+$$
+\boxed{\int x^3\ln(x^2+2)dx=\frac{x^4}{4}\ln(x^2+2)-\frac{x^4}{8}+\frac{x^2}{2}-\ln(x^2+2)+C.}
+$$
+
+**(2)** *Enunciado. Resolva $y''+6y'+9y=5$, $y(0)=\tfrac{14}{9}$, $y'(0)=0$.*
+
+Característica $(r+3)^2=0$, $r=-3$ dupla, $y_h=(C_1+C_2x)e^{-3x}$. Particular: $9A=5\Rightarrow A=\tfrac59$. Geral $y=(C_1+C_2x)e^{-3x}+\tfrac59$. De $y(0)=C_1+\tfrac59=\tfrac{14}{9}\Rightarrow C_1=1$; $y'(0)=C_2-3C_1=0\Rightarrow C_2=3$:
+
+$$
+\boxed{y(x)=(1+3x)e^{-3x}+\frac59.}
+$$
+
+Verificação: $y(0)=\tfrac{14}{9}$ ✓, $y'(0)=0$ ✓.
+
+### Questão 4 — Minimização de despesa
+
+**(a)** $\min p_1x_1+p_2x_2$ s.a. $U=\bar U$, $\mathcal L=p_1x_1+p_2x_2+\mu(\bar U-U)$. CPO: $p_1=\mu U_1$, $p_2=\mu U_2$, $U=\bar U$, donde $\dfrac{U_1}{U_2}=\dfrac{p_1}{p_2}$. CSO de mínimo: $|\bar H|<0$.
+
+**(b)** Curva de indiferença $U=\bar U$ convexa à origem; isodespesas de inclinação $-p_1/p_2$. Ótimo na tangência com a isodespesa de menor valor.
+
+**(c)** Diferenciando as CPO (Cramer, $|\bar H|<0$): $\dfrac{\partial x_1}{\partial p_1}=\dfrac{-U_2^2}{|\bar H|}<0$ — hicksiana decrescente no próprio preço (efeito substituição puro).
+
+**(d)** Três bens: $\min\sum p_ix_i$ s.a. $U(x_1,x_2,x_3)=\bar U$; CPO $p_i=\mu U_i$, $U=\bar U$, tangências $\dfrac{U_i}{U_j}=\dfrac{p_i}{p_j}$; CSO orlado $4\times4$ ($|\bar H_3|<0$, $|\bar H_4|>0$).
+
+**(e)** Para $U=x_1^{1/4}x_2^{1/4}x_3^{1/2}$ (expoentes $a_1=a_2=\tfrac14$, $a_3=\tfrac12$, somam 1), $U_i=a_iU/x_i$ e a tangência dá $p_ix_i$ proporcional a $a_i$, isto é $x_i^*=\dfrac{a_iE^*}{p_i}$. Impondo $U(x^*)=\bar U$:
+
+$$
+\bar U=\prod_i\Big(\frac{a_iE^*}{p_i}\Big)^{a_i}=E^*\prod_i\Big(\frac{a_i}{p_i}\Big)^{a_i}\ \Longrightarrow\ E^*=\bar U\prod_i\Big(\frac{p_i}{a_i}\Big)^{a_i}=2\sqrt2\,\bar U\,p_1^{1/4}p_2^{1/4}p_3^{1/2}.
+$$
+
+Logo
+
+$$
+\boxed{x_1^*=\frac{E^*}{4p_1},\quad x_2^*=\frac{E^*}{4p_2},\quad x_3^*=\frac{E^*}{2p_3},\quad \lambda^*=\mu^*=\frac{E^*}{\bar U}=2\sqrt2\,p_1^{1/4}p_2^{1/4}p_3^{1/2}.}
+$$
+
+**(f)** A função despesa $E^*=2\sqrt2\,\bar U\,p_1^{1/4}p_2^{1/4}p_3^{1/2}$ é **homogênea de grau 1** nos preços ($\tfrac14+\tfrac14+\tfrac12=1$): dobrar todos os preços dobra a despesa mínima.
+
+\newpage
+
+## Prova — 11 de maio de 2025
+
+### Questão 1 — Condições necessárias e suficientes de máximo
+
+*Enunciado. Seja $f:\mathbb{R}\to\mathbb{R}$ diferenciável. Quais as condições necessárias e suficientes para $x^*$ ser máximo relativo?*
+
+Por Taylor, $f(x^*+h)-f(x^*)=f'(x^*)h+\tfrac12f''(x^*)h^2+o(h^2)\le0$. O termo linear domina para $h$ pequeno; como $h$ tem qualquer sinal,
+
+$$
+\boxed{f'(x^*)=0.}
+$$
+
+Anulado o linear, $\tfrac12f''(x^*)h^2+o(h^2)\le0$; dividindo por $h^2>0$,
+
+$$
+\boxed{f''(x^*)\le0\quad(\text{necessária}).}
+$$
+
+**Suficiente:** se $f'(x^*)=0$ e $f''(x^*)<0$, por continuidade $f''<0$ numa vizinhança, e pelo resto de Lagrange $f(x^*+h)-f(x^*)=\tfrac12f''(\xi)h^2<0$ para $0<|h|<\delta$: **máximo local estrito**. A diferença para a necessária é só a desigualdade estrita.
+
+### Questão 2 — Derivada
+
+*Enunciado. Calcule a derivada de $f(x)=x^{\frac{x}{x+1}}+\dfrac{2+3^x}{\ln\!\left(1-2x+\dfrac{3}{x^2}\right)}$.*
+
+**Primeira parcela** $A=x^{x/(x+1)}=e^{\frac{x}{x+1}\ln x}$. Como $\frac{d}{dx}\frac{x}{x+1}=\frac{1}{(x+1)^2}$, a derivada do expoente é $\frac{\ln x}{(x+1)^2}+\frac{1}{x+1}$, logo
+
+$$
+A'=x^{\frac{x}{x+1}}\left[\frac{\ln x}{(x+1)^2}+\frac{1}{x+1}\right].
+$$
+
+**Segunda parcela** $B=N/D$ com $N=2+3^x$ ($N'=3^x\ln3$) e $D=\ln(1-2x+3x^{-2})$ ($D'=\dfrac{-2-6/x^3}{1-2x+3/x^2}$). Pela regra do quociente,
+
+$$
+B'=\frac{3^x\ln3\,\ln\!\big(1-2x+\tfrac{3}{x^2}\big)+(2+3^x)\dfrac{2+6/x^3}{1-2x+3/x^2}}{\big[\ln(1-2x+\tfrac{3}{x^2})\big]^2}
+$$
+
+(o sinal vira positivo pois $-N\cdot D'=-(2+3^x)\tfrac{-2-6/x^3}{\cdot}$). Somando,
+
+$$
+\boxed{f'(x)=x^{\frac{x}{x+1}}\!\left[\frac{\ln x}{(x+1)^2}+\frac{1}{x+1}\right]+B'(x).}
+$$
+
+### Questão 3 — Integral e EDO
+
+**(a)** *Enunciado. Calcule $\int\dfrac{x^2}{e^x}dx$.*
+
+Reescrevendo $\tfrac{x^2}{e^x}=x^2e^{-x}$ e integrando por partes ($u=x^2$, $dv=e^{-x}dx$):
+
+$$
+\int x^2e^{-x}dx=-x^2e^{-x}+2\int xe^{-x}dx=-x^2e^{-x}+2(-xe^{-x}-e^{-x})+C.
+$$
+
+$$
+\boxed{\int\frac{x^2}{e^x}dx=-e^{-x}(x^2+2x+2)+C.}
+$$
+
+Verificação: derivando, retorna $x^2e^{-x}$ ✓.
+
+**(b)** *Enunciado. Resolva $y''-4y'+4y=5$, $y(0)=\tfrac32$, $y'(0)=-1$.*
+
+Característica $(r-2)^2=0$, $r=2$ dupla, $y_h=(C_1+C_2x)e^{2x}$. Particular: $4A=5\Rightarrow A=\tfrac54$. Geral $y=(C_1+C_2x)e^{2x}+\tfrac54$. De $y(0)=C_1+\tfrac54=\tfrac32\Rightarrow C_1=\tfrac14$; $y'(0)=C_2+2C_1=-1\Rightarrow C_2=-\tfrac32$:
+
+$$
+\boxed{y(x)=\Big(\frac14-\frac32x\Big)e^{2x}+\frac54.}
+$$
+
+Verificação: $y(0)=\tfrac32$ ✓, $y'(0)=-\tfrac32+\tfrac12=-1$ ✓.
+
+### Questão 4 — Minimização de custo
+
+**(a)** $\min rK+wL$ s.a. $f(K,L)=q$, $\mathcal L=rK+wL+\lambda(q-f)$. CPO: $r=\lambda f_K$, $w=\lambda f_L$, $f=q$, donde $\dfrac{f_K}{f_L}=\dfrac rw$. CSO de mínimo: Hessiano orlado com $|\bar H|<0$.
+
+**(b)** No plano $(L,K)$, a tangência entre a isoquanta $f=q$ (convexa à origem) e a isocusto $rK+wL=\bar C$ (inclinação $-w/r$) de menor valor.
+
+**(c)** Diferenciando as CPO em relação a $q$ e resolvendo por Cramer:
+
+$$
+\frac{\partial L}{\partial q}=\frac{\lambda(f_Lf_{KK}-f_{KL}f_K)}{|\bar H|}>0,
+$$
+
+pois numerador $<0$ ($f_{KK}<0$) e $|\bar H|<0$: produzir mais eleva o uso de trabalho.
+
+**(d)** Para $f=K^{1/2}L^{1/2}$: tangência $\dfrac{f_K}{f_L}=\dfrac LK=\dfrac rw\Rightarrow L=\tfrac rw K$; na restrição $K\sqrt{r/w}=q$:
+
+$$
+\boxed{K^*=q\sqrt{\frac wr},\qquad L^*=q\sqrt{\frac rw},\qquad \lambda^*=2\sqrt{rw}.}
+$$
+
+Custo: $C^*=2q\sqrt{rw}$, e $\partial C^*/\partial q=2\sqrt{rw}=\lambda^*$ ✓.
+
+**(e)** Com terceiro insumo $X$ de preço $p_X$: $\min rK+wL+p_XX$ s.a. $f(K,L,X)=q$, com CPO
+
+$$
+\boxed{r=\lambda f_K,\quad w=\lambda f_L,\quad p_X=\lambda f_X,\quad f=q.}
+$$
+
+**(f)** Para $f=K^{1/4}L^{1/4}X^{1/2}$ (expoentes $a_K=a_L=\tfrac14$, $a_X=\tfrac12$, somam 1), cada gasto é a fração do expoente no custo total: $rK^*=a_KC^*$ etc. Substituindo $K^*=\tfrac{C^*}{4r}$, $L^*=\tfrac{C^*}{4w}$, $X^*=\tfrac{C^*}{2p_X}$ em $f=q$ e isolando ($C^*$ tem expoente total 1):
+
+$$
+\boxed{C^*=q\,(4r)^{1/4}(4w)^{1/4}(2p_X)^{1/2}=2\sqrt2\,q\,r^{1/4}w^{1/4}p_X^{1/2},}
+$$
+
+homogênea de grau 1 nos preços. Daí $\lambda^*=\dfrac{\partial C^*}{\partial q}=\dfrac{C^*}{q}=2\sqrt2\,r^{1/4}w^{1/4}p_X^{1/2}$, e
+
+$$
+\boxed{K^*=\frac{q}{\sqrt2}r^{-3/4}w^{1/4}p_X^{1/2},\quad L^*=\frac{q}{\sqrt2}r^{1/4}w^{-3/4}p_X^{1/2},\quad X^*=\sqrt2\,q\,r^{1/4}w^{1/4}p_X^{-1/2}.}
+$$
+
+**(g)** Pelo Lema de Shephard,
+
+$$
+\boxed{\frac{\partial C^*}{\partial p_X}=X^*=\sqrt2\,q\,r^{1/4}w^{1/4}p_X^{-1/2}.}
+$$

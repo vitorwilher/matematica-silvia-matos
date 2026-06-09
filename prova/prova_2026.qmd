@@ -1,0 +1,340 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Prova — Matemática (2026)
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Prova — Matemática (2026)
+
+## Prova (2026) — 30 de maio de 2026
+
+Resolução completa da prova final. As questões varrem todo o curso: condições de otimalidade (Q1), derivação logarítmica (Q2), integração e EDOs (Q3) e teoria do consumidor com dualidade e Teorema do Envelope (Q4). Cada resultado abaixo é uma aplicação direta dos capítulos de derivadas, integral, EDO, otimização e aplicações econômicas.
+
+### Questão 1 (1,0 ponto) — Condições Necessárias para Máximo Relativo
+
+**Seja $f:\mathbb{R}\to\mathbb{R}$ diferenciável. Quais são as condições necessárias para $x^*$ ser um ponto de máximo relativo?**
+
+**Condição necessária de primeira ordem.** Se $x^*$ é máximo relativo **interior** e $f$ é diferenciável em $x^*$, então $x^*$ é **ponto crítico**:
+
+$$\boxed{\;f'(x^*) = 0.\;}$$
+
+*Justificativa.* Como $x^*$ é máximo local, existe $\delta>0$ tal que $f(x)\le f(x^*)$ para $|x-x^*|<\delta$. Pela direita, $\dfrac{f(x)-f(x^*)}{x-x^*}\le 0$; pela esquerda, $\ge 0$. Como $f$ é diferenciável, os dois limites laterais coincidem com $f'(x^*)$, forçando $f'(x^*)=0$.
+
+**Condição necessária de segunda ordem** (caso $f$ seja duas vezes diferenciável):
+
+$$\boxed{\;f''(x^*) \le 0.\;}$$
+
+*Justificativa.* Pela expansão de Taylor, $f(x) = f(x^*) + \tfrac{1}{2}f''(x^*)(x-x^*)^2 + o((x-x^*)^2)$. Se fosse $f''(x^*)>0$, $f$ cresceria em torno de $x^*$, contradizendo o máximo.
+
+**Observação.** As condições são apenas **necessárias**, não suficientes: $f(x)=x^3$ tem $f'(0)=0$ e $f''(0)=0$ sem que $x=0$ seja máximo. A condição **suficiente** de segunda ordem é $f'(x^*)=0$ **e** $f''(x^*)<0$ (desigualdade estrita).
+
+---
+
+### Questão 2 (1,25 ponto) — Derivada por Diferenciação Logarítmica
+
+**Calcule a derivada de**
+
+$$f(x) = \left(x^2 e^{-x} + \frac{\ln(x^4 + 4^x)}{\sqrt{x^3 - 3x}}\right)^{x}.$$
+
+**Estratégia.** A função tem a forma $f(x) = g(x)^{x}$, com **base e expoente variáveis**. Isso exige **diferenciação logarítmica**. Seja
+
+$$g(x) = \underbrace{x^2 e^{-x}}_{u(x)} + \underbrace{\frac{\ln(x^4 + 4^x)}{\sqrt{x^3 - 3x}}}_{v(x)}.$$
+
+**Passo 1 — logaritmo e derivação implícita.** Tomando $\ln$ de ambos os lados, $\ln f = x\,\ln g$. Derivando:
+
+$$\frac{f'}{f} = \ln g + x\,\frac{g'}{g} \;\Longrightarrow\; f'(x) = g(x)^{x}\left[\ln g(x) + \frac{x\,g'(x)}{g(x)}\right].$$
+
+**Passo 2 — derivada de $u(x) = x^2 e^{-x}$** (regra do produto):
+
+$$u'(x) = 2x\,e^{-x} + x^2(-e^{-x}) = x\,e^{-x}(2 - x).$$
+
+**Passo 3 — derivada de $v(x) = \dfrac{N(x)}{D(x)}$**, com $N = \ln(x^4 + 4^x)$ e $D = (x^3 - 3x)^{1/2}$.
+
+$$N'(x) = \frac{4x^3 + 4^x\ln 4}{x^4 + 4^x} \qquad\bigl(\text{pois } \tfrac{d}{dx}4^x = 4^x\ln 4\bigr),$$
+
+$$D'(x) = \tfrac{1}{2}(x^3 - 3x)^{-1/2}(3x^2 - 3) = \frac{3(x^2 - 1)}{2\sqrt{x^3 - 3x}}.$$
+
+Pela regra do quociente, $v' = \dfrac{N'D - ND'}{D^2}$ com $D^2 = x^3 - 3x$:
+
+$$v'(x) = \frac{4x^3 + 4^x\ln 4}{(x^4 + 4^x)\sqrt{x^3 - 3x}} \;-\; \frac{3(x^2 - 1)\,\ln(x^4 + 4^x)}{2\,(x^3 - 3x)^{3/2}}.$$
+
+**Passo 4 — montagem.** Como $g' = u' + v'$:
+
+$$g'(x) = x\,e^{-x}(2 - x) + \frac{4x^3 + 4^x\ln 4}{(x^4 + 4^x)\sqrt{x^3 - 3x}} - \frac{3(x^2 - 1)\,\ln(x^4 + 4^x)}{2\,(x^3 - 3x)^{3/2}}.$$
+
+**Resultado final:**
+
+$$\boxed{\;f'(x) = \left(x^2 e^{-x} + \frac{\ln(x^4 + 4^x)}{\sqrt{x^3 - 3x}}\right)^{x}\!\!\left[\ln g(x) + \frac{x\,g'(x)}{g(x)}\right],\;}$$
+
+com $g$ e $g'$ dados acima. O domínio exige $x^3 - 3x > 0$, isto é, $x \in (-\sqrt{3}, 0)\cup(\sqrt{3}, \infty)$, e $g(x)>0$ para que $g(x)^x$ esteja definida.
+
+---
+
+### Questão 3
+
+#### 3.1 (1,0 ponto) — Integral $\displaystyle\int 2x^3 e^{x^2}\,dx$
+
+**Estratégia.** Substituição seguida de integração por partes. Note que $2x^3 = x^2\cdot 2x$ e que $2x\,dx$ é o diferencial de $x^2$.
+
+**Substituição** $u = x^2$, $du = 2x\,dx$. Como $x^2 = u$:
+
+$$\int 2x^3 e^{x^2}\,dx = \int x^2\,e^{x^2}\,(2x\,dx) = \int u\,e^{u}\,du.$$
+
+**Integração por partes** com $s = u$, $dt = e^u\,du$ (logo $ds = du$, $t = e^u$):
+
+$$\int u\,e^{u}\,du = u\,e^{u} - \int e^{u}\,du = (u - 1)\,e^{u} + C.$$
+
+**Voltando a $x$** ($u = x^2$):
+
+$$\boxed{\;\int 2x^3 e^{x^2}\,dx = (x^2 - 1)\,e^{x^2} + C.\;}$$
+
+**Verificação.** $\dfrac{d}{dx}\bigl[(x^2-1)e^{x^2}\bigr] = 2x\,e^{x^2} + (x^2-1)\,e^{x^2}\,2x = 2x\,e^{x^2}\bigl[1 + x^2 - 1\bigr] = 2x^3 e^{x^2}.$ $\checkmark$
+
+#### 3.2 (1,0 ponto) — EDO $y'' - 8y' + 16y = -48$, $\;y(0) = -1$, $\;y'(0) = 7$
+
+**Equação característica.** $r^2 - 8r + 16 = (r-4)^2 = 0 \Rightarrow r = 4$ (raiz dupla). Logo:
+
+$$y_h(x) = (C_1 + C_2 x)\,e^{4x}.$$
+
+**Solução particular.** Termo não-homogêneo constante e $r=0$ não é raiz, então tentamos $y_p = A$: $16A = -48 \Rightarrow A = -3$.
+
+**Solução geral.** $y(x) = (C_1 + C_2 x)\,e^{4x} - 3.$
+
+**Condições iniciais.**
+
+$$y(0) = C_1 - 3 = -1 \;\Longrightarrow\; C_1 = 2.$$
+
+$$y'(x) = \bigl(C_2 + 4C_1 + 4C_2 x\bigr)\,e^{4x}, \qquad y'(0) = C_2 + 4C_1 = C_2 + 8 = 7 \;\Longrightarrow\; C_2 = -1.$$
+
+$$\boxed{\;y(x) = (2 - x)\,e^{4x} - 3.\;}$$
+
+**Verificação.** $y(0) = 2 - 3 = -1$ $\checkmark$. $y'(x) = -e^{4x} + 4(2-x)e^{4x} = (7 - 4x)e^{4x}$, $y'(0) = 7$ $\checkmark$.
+
+```{r}
+#| label: fig-prova-2026-q3
+#| fig-cap: "Esquerda: a primitiva $(x^2-1)e^{x^2}$ (linha) e seu integrando $2x^3 e^{x^2}$ (tracejado). Direita: solução da EDO $y(x)=(2-x)e^{4x}-3$, com $y(0)=-1$ marcado; o fator $(2-x)e^{4x}$ domina o crescimento."
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 4.2
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom", legend.title = element_blank())
+
+# 3.1 primitiva e integrando
+x1 <- seq(-1.6, 1.6, length.out = 400)
+df1 <- rbind(
+  data.frame(x = x1, y = (x1^2 - 1)*exp(x1^2), curva = "F(x)=(x²-1)e^{x²}"),
+  data.frame(x = x1, y = 2*x1^3*exp(x1^2),     curva = "f(x)=2x³e^{x²}")
+)
+p1 <- ggplot(df1, aes(x, y, color = curva, linetype = curva)) +
+  geom_line(linewidth = 1) +
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.3) +
+  scale_color_manual(values = c("#440154", "#fde725")) +
+  scale_linetype_manual(values = c("solid", "dashed")) +
+  coord_cartesian(ylim = c(-8, 12)) +
+  labs(title = "Primitiva e integrando", x = "x", y = NULL) + base_t
+
+# 3.2 solução EDO
+x2 <- seq(-0.6, 0.6, length.out = 400)
+df2 <- data.frame(x = x2, y = (2 - x2)*exp(4*x2) - 3)
+p2 <- ggplot(df2, aes(x, y)) +
+  geom_line(color = "#31688e", linewidth = 1.1) +
+  geom_hline(yintercept = -3, linetype = "dashed", color = "gray50") +
+  geom_point(aes(x = 0, y = -1), color = "black", size = 2.6) +
+  annotate("text", x = 0.02, y = -1, label = "y(0) = -1",
+           hjust = 0, vjust = -0.6, size = 3.5) +
+  annotate("text", x = 0.4, y = -2.6, label = "y_p = -3",
+           color = "gray30", size = 3.5) +
+  labs(title = expression(y(x) == (2 - x)*e^{4*x} - 3),
+       x = "x", y = "y(x)") +
+  theme_minimal(base_size = 12)
+
+p1 + p2
+```
+
+---
+
+### Questão 4 — Teoria do Consumidor
+
+Seja $U(x_1, x_2)$ a utilidade do indivíduo, $x_i$ a quantidade do bem $i$ e $p_i$ o preço do bem $i$. Suponha $U_i > 0$, $U_{ii} < 0$ e $U_{ij} > 0$ para todo $i$ e $j \neq i$.
+
+#### (a) (0,75) — Maximização de utilidade: problema, CPOs e CSO
+
+**Problema.** Com renda $R$:
+
+$$\max_{x_1, x_2}\; U(x_1, x_2) \quad\text{s.a.}\quad p_1 x_1 + p_2 x_2 = R.$$
+
+**Lagrangeana.** $\mathcal{L} = U(x_1, x_2) + \lambda\,(R - p_1 x_1 - p_2 x_2)$.
+
+**CPOs:**
+
+$$\boxed{\;U_1 = \lambda p_1, \qquad U_2 = \lambda p_2, \qquad p_1 x_1 + p_2 x_2 = R.\;}$$
+
+Dividindo as duas primeiras, obtém-se a **condição de tangência** (TMS igual à razão de preços):
+
+$$\frac{U_1}{U_2} = \frac{p_1}{p_2}.$$
+
+**CSO.** Pela natureza restrita, usa-se o **Hessiano orlado**:
+
+$$\bar H = \begin{pmatrix} 0 & -p_1 & -p_2 \\ -p_1 & U_{11} & U_{12} \\ -p_2 & U_{21} & U_{22} \end{pmatrix}.$$
+
+Para **máximo** (com $n=2$ variáveis e $m=1$ restrição), exige-se $|\bar H| > 0$. Calculando:
+
+$$|\bar H| = -p_1^2\,U_{22} - p_2^2\,U_{11} + 2p_1 p_2\,U_{12}.$$
+
+Sob as hipóteses $U_{ii}<0$ e $U_{12}>0$, os três termos são positivos, de modo que $|\bar H|>0$ **automaticamente** — a solução interior é máximo.
+
+#### (b) (0,5) — Representação gráfica
+
+No plano $(x_1, x_2)$: as **curvas de indiferença** ($U=\text{const.}$) são convexas em direção à origem (decrescentes pela monotonicidade $U_i>0$, convexas pela quase-concavidade implicada por $U_{ii}<0$, $U_{ij}>0$); a **reta orçamentária** $p_1 x_1 + p_2 x_2 = R$ tem inclinação $-p_1/p_2$. O ótimo $(x_1^*, x_2^*)$ é o **ponto de tangência** entre a curva de indiferença mais alta atingível e a reta orçamentária.
+
+```{r}
+#| label: fig-prova-2026-q4b
+#| fig-cap: "Problema do consumidor para $U = x_1^{1/4} x_2^{3/4}$ com $p_1 = 1$, $p_2 = 1$, $R = 4$. Curvas de indiferença (cinza), reta orçamentária (vermelha) e o ótimo $(x_1^*, x_2^*) = (1, 3)$ (verde), no ponto de tangência."
+#| fig-align: center
+#| fig-width: 6
+#| fig-height: 5
+
+library(ggplot2)
+
+p1 <- 1; p2 <- 1; R <- 4
+# demandas Cobb-Douglas: x1 = (1/4)R/p1, x2 = (3/4)R/p2
+x1s <- (1/4)*R/p1; x2s <- (3/4)*R/p2
+
+x1g <- seq(0.05, 4, length.out = 400)
+Ustar <- x1s^(1/4) * x2s^(3/4)
+levs <- c(0.6, 1.0, 1.0*Ustar/ (x1s^(1/4)*x2s^(3/4)) * c(0.65, 1, 1.35))
+levs <- sort(unique(c(0.7, Ustar*0.7, Ustar, Ustar*1.3)))
+
+ind <- do.call(rbind, lapply(levs, function(U) {
+  # U = x1^{1/4} x2^{3/4} → x2 = (U / x1^{1/4})^{4/3}
+  data.frame(x1 = x1g, x2 = (U / x1g^(1/4))^(4/3),
+             U = sprintf("U = %.2f", U))
+}))
+ind <- subset(ind, x2 <= 6)
+
+orc <- data.frame(x1 = c(0, R/p1), x2 = c(R/p2, 0))
+
+ggplot() +
+  geom_line(data = ind, aes(x1, x2, group = U, color = U), linewidth = 0.7) +
+  geom_line(data = orc, aes(x1, x2), color = "red", linewidth = 1) +
+  geom_point(aes(x = x1s, y = x2s), color = "#1b9e77", size = 3) +
+  annotate("text", x = x1s, y = x2s, label = "(1, 3)",
+           hjust = -0.2, vjust = -0.5, size = 4, color = "#1b9e77") +
+  scale_color_grey(start = 0.7, end = 0.3) +
+  coord_cartesian(xlim = c(0, 4), ylim = c(0, 6)) +
+  labs(x = expression(x[1]), y = expression(x[2]), color = NULL,
+       title = expression(U == x[1]^{1/4} * x[2]^{3/4})) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+```
+
+#### (c) (0,75) — Diferenciação das CPOs e efeito da renda sobre a demanda do bem 1
+
+Diferenciando totalmente o sistema de equilíbrio em relação a $R$ (com $p_1, p_2$ fixos), as endógenas são $(x_1, x_2, \lambda)$:
+
+$$\begin{aligned}
+\text{(CPO 1):} \quad & U_{11}\,dx_1 + U_{12}\,dx_2 - p_1\,d\lambda = 0,\\
+\text{(CPO 2):} \quad & U_{21}\,dx_1 + U_{22}\,dx_2 - p_2\,d\lambda = 0,\\
+\text{(restrição):} \quad & p_1\,dx_1 + p_2\,dx_2 = dR.
+\end{aligned}$$
+
+Em forma matricial (ordem $d\lambda, dx_1, dx_2$), a matriz é o próprio Hessiano orlado $\bar H$:
+
+$$\bar H\begin{pmatrix} d\lambda \\ dx_1 \\ dx_2 \end{pmatrix} = \begin{pmatrix} -dR \\ 0 \\ 0 \end{pmatrix}.$$
+
+**Regra de Cramer** para $x_1$ (substituindo a coluna de $dx_1$ pelo vetor de termos independentes):
+
+$$\frac{\partial x_1}{\partial R} = \frac{1}{|\bar H|}\det\begin{pmatrix} 0 & -1 & -p_2 \\ -p_1 & 0 & U_{12} \\ -p_2 & 0 & U_{22} \end{pmatrix} = \frac{p_2\,U_{12} - p_1\,U_{22}}{|\bar H|}.$$
+
+**Sinal.** Como $U_{12} > 0$ e $U_{22} < 0$, o numerador $p_2 U_{12} - p_1 U_{22} > 0$; e $|\bar H| > 0$ pela CSO. Logo:
+
+$$\boxed{\;\frac{\partial x_1}{\partial R} > 0.\;}$$
+
+**Interpretação.** Sob as hipóteses dadas ($U_{12}>0$, $U_{ii}<0$), **o bem 1 é necessariamente normal**: aumentar a renda eleva a demanda. (Em geral o sinal seria ambíguo; aqui as hipóteses de curvatura o fixam positivo.)
+
+#### (d) (1,0) — Cobb-Douglas $U = x_1^{1/4} x_2^{3/4}$: ótimo $x_1^*, x_2^*, \lambda^*$
+
+As CPOs $U_1 = \lambda p_1$, $U_2 = \lambda p_2$ com tangência dão $\dfrac{U_1}{U_2} = \dfrac{(1/4)x_2}{(3/4)x_1} = \dfrac{x_2}{3x_1} = \dfrac{p_1}{p_2}$, e a demanda Cobb-Douglas conhecida (cada bem absorve uma fração fixa da renda igual ao seu expoente):
+
+$$\boxed{\;x_1^* = \frac{1}{4}\,\frac{R}{p_1}, \qquad x_2^* = \frac{3}{4}\,\frac{R}{p_2}.\;}$$
+
+**Multiplicador.** $\lambda^* = \dfrac{U_1(x^*)}{p_1} = \dfrac{1}{p_1}\cdot\dfrac{1}{4}(x_1^*)^{-3/4}(x_2^*)^{3/4}$. Substituindo:
+
+$$\lambda^* = \frac{1}{4p_1}\left(\frac{R/(4p_1)}{}\right)^{-3/4}\!\!\left(\frac{3R}{4p_2}\right)^{3/4}
+= \frac{1}{4p_1}\left(\frac{3p_1}{p_2}\right)^{3/4}
+= \boxed{\;\frac{3^{3/4}}{4}\,p_1^{-1/4}\,p_2^{-3/4}.\;}$$
+
+Note que $\lambda^*$ **não depende de $R$**: para Cobb-Douglas com expoentes somando 1, a utilidade indireta é linear na renda, então a utilidade marginal da renda é constante.
+
+#### (e) (0,75) — Minimização de despesa: problema, CPOs e CSO
+
+**Problema dual.** Dado um nível-alvo de utilidade $\bar U$:
+
+$$\min_{x_1, x_2}\; p_1 x_1 + p_2 x_2 \quad\text{s.a.}\quad U(x_1, x_2) = \bar U.$$
+
+**Lagrangeana.** $\mathcal{L} = p_1 x_1 + p_2 x_2 + \mu\,\bigl(\bar U - U(x_1, x_2)\bigr)$.
+
+**CPOs:**
+
+$$\boxed{\;p_1 = \mu\,U_1, \qquad p_2 = \mu\,U_2, \qquad U(x_1, x_2) = \bar U.\;}$$
+
+Dividindo, recupera-se a **mesma tangência** $\dfrac{U_1}{U_2} = \dfrac{p_1}{p_2}$ — refletindo a dualidade entre maximizar utilidade e minimizar despesa.
+
+**CSO.** Com o Hessiano orlado
+
+$$\bar H_E = \begin{pmatrix} 0 & -U_1 & -U_2 \\ -U_1 & -\mu U_{11} & -\mu U_{12} \\ -U_2 & -\mu U_{21} & -\mu U_{22} \end{pmatrix},$$
+
+a condição de **mínimo** (com $n=2$, $m=1$) é $|\bar H_E| < 0$. Como $\mu>0$ e $U$ é quase-côncava, a condição é satisfeita na solução interior.
+
+#### (f) (1,5) — Cobb-Douglas: demandas hicksianas, função despesa e homogeneidade
+
+Com $U = x_1^{1/4} x_2^{3/4}$, a tangência $\dfrac{U_1}{U_2} = \dfrac{(1/4)x_2}{(3/4)x_1} = \dfrac{x_2}{3x_1} = \dfrac{p_1}{p_2}$ dá $x_2 = \dfrac{3p_1}{p_2}\,x_1$. Substituindo na restrição $x_1^{1/4}x_2^{3/4} = \bar U$:
+
+$$x_1^{1/4}\left(\frac{3p_1}{p_2}x_1\right)^{3/4} = \bar U \;\Longrightarrow\; x_1\left(\frac{3p_1}{p_2}\right)^{3/4} = \bar U.$$
+
+**Demandas hicksianas (compensadas):**
+
+$$\boxed{\;x_1^* = \bar U\left(\frac{p_2}{3p_1}\right)^{3/4}, \qquad x_2^* = \bar U\left(\frac{3p_1}{p_2}\right)^{1/4}.\;}$$
+
+**Função despesa.** $D(p_1, p_2, \bar U) = p_1 x_1^* + p_2 x_2^*$:
+
+$$D = p_1\,\bar U\,3^{-3/4}p_1^{-3/4}p_2^{3/4} + p_2\,\bar U\,3^{1/4}p_1^{1/4}p_2^{-1/4}
+= \bar U\,p_1^{1/4}p_2^{3/4}\bigl(3^{-3/4} + 3^{1/4}\bigr).$$
+
+Como $3^{1/4} = 3\cdot 3^{-3/4}$, o fator é $3^{-3/4}(1+3) = 4\cdot 3^{-3/4}$:
+
+$$\boxed{\;D(p_1, p_2, \bar U) = 4\cdot 3^{-3/4}\,\bar U\,p_1^{1/4}\,p_2^{3/4}.\;}$$
+
+**Grau de homogeneidade nos preços.** Escalando $p_1, p_2$ por $t>0$:
+
+$$D(tp_1, tp_2, \bar U) = 4\cdot 3^{-3/4}\,\bar U\,(tp_1)^{1/4}(tp_2)^{3/4} = t^{1/4 + 3/4}\,D(p_1,p_2,\bar U) = t\,D.$$
+
+Logo $D$ é **homogênea de grau 1** nos preços — como toda função despesa (dobrar todos os preços dobra o gasto necessário para manter $\bar U$).
+
+#### (g) (0,5) — Lema de Shephard via cálculo direto e via Teorema do Envelope
+
+**Cálculo direto.** Derivando a função despesa em $p_1$:
+
+$$\frac{\partial D}{\partial p_1} = 4\cdot 3^{-3/4}\,\bar U\cdot\frac{1}{4}\,p_1^{-3/4}p_2^{3/4} = 3^{-3/4}\,\bar U\,p_1^{-3/4}p_2^{3/4} = \bar U\left(\frac{p_2}{3p_1}\right)^{3/4} = x_1^*.$$
+
+$$\boxed{\;\frac{\partial D}{\partial p_1} = x_1^*.\;}$$
+
+**Via Teorema do Envelope.** Seja $L^* = \mathcal{L}(x_1^*, x_2^*, \mu^*;\, p_1, p_2, \bar U)$ a Lagrangeana avaliada no ótimo. O Teorema do Envelope diz que a derivada da função-valor em um parâmetro iguala a derivada **parcial** da Lagrangeana naquele parâmetro, mantendo as escolhas fixas (os efeitos indiretos via $x_1^*, x_2^*$ cancelam-se pelas CPOs):
+
+$$\frac{\partial L^*}{\partial p_1} = \frac{\partial \mathcal{L}}{\partial p_1}\bigg|_{\text{ótimo}} = \frac{\partial}{\partial p_1}\bigl[p_1 x_1 + p_2 x_2 + \mu(\bar U - U)\bigr]\bigg|_{\text{ótimo}} = x_1^*.$$
+
+Como $L^* = D(p_1, p_2, \bar U)$ no ótimo (o termo da restrição é nulo), confirma-se
+
+$$\boxed{\;\frac{\partial L^*}{\partial p_1} = x_1^* = \frac{\partial D}{\partial p_1}.\;}$$
+
+Os dois caminhos coincidem: o **Lema de Shephard** para o consumidor — derivar a função despesa no preço de um bem recupera a demanda hicksiana por aquele bem — é uma aplicação imediata do Teorema do Envelope.

@@ -174,6 +174,18 @@ execute:
 
 \newpage
 
+{{< include testes/teste5.qmd >}}
+
+\newpage
+
+{{< include prova/roteiro_final.qmd >}}
+
+\newpage
+
+{{< include prova/prova_2026.qmd >}}
+
+\newpage
+
 # Referências
 
 ::: {#refs}

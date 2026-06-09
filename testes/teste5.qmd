@@ -1,0 +1,264 @@
+---
+title: |
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
+  Testes Anteriores — Teste 5
+author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
+subtitle: |
+  Notas de Aula -- Matemática para Doutorado em Economia, EPGE/FGV
+
+  Professora: Silvia Matos
+date: ""
+---
+
+# Testes Anteriores — Teste 5
+
+## Teste 5 (2026) — 29 de maio de 2026
+
+Este teste cobra **estática comparativa** em dois contextos clássicos: o modelo IS-LM não-linear (Questão 1) e a maximização de lucro da firma com dois insumos (Questão 2). Ambos são aplicações diretas do Teorema da Função Implícita e da regra de Cramer já desenvolvidas nos capítulos de funções de várias variáveis e otimização — a mecânica do IS-LM reaparece quase idêntica à do Teste 4 (2025), e o multiplicador $\partial K/\partial r$ da firma é exatamente o derivado na Seção de Aplicações Econômicas.
+
+### Questão 1 — Modelo IS-LM Não-Linear
+
+**Considere o modelo:**
+
+$$\begin{aligned}
+Y &= C + I + G, & C &= c(Y^d), & Y^d &= Y - T,\\
+I &= I_G + I_P, & I_P &= I_P(r), & M^s &= \overline{M}, & M^d &= M(Y, r),
+\end{aligned}$$
+
+**com $0 < c' < 1$, $I'_P < 0$, $M_Y > 0$, $M_r < 0$.** O equilíbrio ocorre quando demanda e oferta se igualam tanto no mercado de bens quanto no mercado monetário.
+
+#### (a) Sistema que resolve o modelo e diferencial total
+
+**Forma reduzida.** Substituindo $C = c(Y-T)$, $Y^d = Y-T$, $I = I_G + I_P(r)$ na identidade de produto, e impondo $M^d = M^s$, o equilíbrio é o par $(Y, r)$ que zera o sistema:
+
+$$\begin{cases}
+\text{IS:} & Y - c(Y - T) - I_G - I_P(r) - G = 0,\\[2pt]
+\text{LM:} & M(Y, r) - \overline{M} = 0.
+\end{cases}$$
+
+**Diferencial total.** Tomando como **endógenas** $(Y, r)$ e como **exógenas** $(G, T, I_G, \overline{M})$:
+
+$$\begin{aligned}
+\text{IS:} \quad & dY - c'\,(dY - dT) - I_P'\,dr - dI_G - dG = 0,\\
+\text{LM:} \quad & M_Y\,dY + M_r\,dr - d\overline{M} = 0.
+\end{aligned}$$
+
+Reorganizando, com as endógenas à esquerda:
+
+$$\begin{aligned}
+(1 - c')\,dY - I_P'\,dr &= dG + dI_G - c'\,dT,\\
+M_Y\,dY + M_r\,dr &= d\overline{M}.
+\end{aligned}$$
+
+**Forma matricial:**
+
+$$\boxed{\;
+\underbrace{\begin{bmatrix} 1-c' & -I_P' \\ M_Y & M_r \end{bmatrix}}_{\mathbf{J}}
+\begin{bmatrix} dY \\ dr \end{bmatrix}
+=
+\begin{bmatrix} dG + dI_G - c'\,dT \\ d\overline{M} \end{bmatrix}.\;}$$
+
+**Determinante (Jacobiano).**
+
+$$\Delta = \det \mathbf{J} = (1-c')\,M_r - (-I_P')\,M_Y = \underbrace{(1-c')\,M_r}_{<\,0} + \underbrace{I_P'\,M_Y}_{<\,0} \;<\; 0,$$
+
+pois $1-c' > 0$, $M_r < 0$, $I_P' < 0$ e $M_Y > 0$. Como $\Delta \neq 0$, o **Teorema da Função Implícita** garante que $(Y, r)$ são funções $C^1$ das exógenas numa vizinhança do equilíbrio, e os multiplicadores de estática comparativa saem pela **regra de Cramer**.
+
+#### (b) Queda na oferta monetária ($d\overline{M} < 0$, demais fixos)
+
+O sistema reduz-se a:
+
+$$\begin{bmatrix} 1-c' & -I_P' \\ M_Y & M_r \end{bmatrix}\begin{bmatrix} dY \\ dr \end{bmatrix} = \begin{bmatrix} 0 \\ d\overline{M} \end{bmatrix}.$$
+
+**Regra de Cramer.**
+
+$$\frac{dY}{d\overline{M}} = \frac{1}{\Delta}\det\!\begin{bmatrix} 0 & -I_P' \\ 1 & M_r \end{bmatrix} = \frac{I_P'}{\Delta} \;>\; 0,$$
+
+pois $I_P' < 0$ e $\Delta < 0$.
+
+$$\frac{dr}{d\overline{M}} = \frac{1}{\Delta}\det\!\begin{bmatrix} 1-c' & 0 \\ M_Y & 1 \end{bmatrix} = \frac{1-c'}{\Delta} \;<\; 0,$$
+
+pois $1-c' > 0$ e $\Delta < 0$. Como o choque é uma **queda** ($d\overline{M} < 0$), os efeitos sobre os níveis invertem o sinal dos multiplicadores:
+
+$$\boxed{\;d\overline{M} < 0 \;\Longrightarrow\; dY < 0,\quad dr > 0.\;}$$
+
+**Interpretação econômica.** Contração monetária. Com menos moeda em circulação e $Y$ momentaneamente dado, o mercado monetário só reequilibra com **juro mais alto**; a LM desloca-se para a esquerda/cima. O juro maior **desestimula o investimento privado** (pois $I'_P < 0$), reduzindo a demanda agregada e o produto. É o espelho exato da política monetária expansionista.
+
+#### (c) Aumento no gasto do governo ($dG > 0$, demais fixos)
+
+$$\begin{bmatrix} 1-c' & -I_P' \\ M_Y & M_r \end{bmatrix}\begin{bmatrix} dY \\ dr \end{bmatrix} = \begin{bmatrix} dG \\ 0 \end{bmatrix}.$$
+
+**Regra de Cramer.**
+
+$$\frac{dY}{dG} = \frac{1}{\Delta}\det\!\begin{bmatrix} 1 & -I_P' \\ 0 & M_r \end{bmatrix} = \frac{M_r}{\Delta} \;>\; 0,$$
+
+pois $M_r < 0$ e $\Delta < 0$.
+
+$$\frac{dr}{dG} = \frac{1}{\Delta}\det\!\begin{bmatrix} 1-c' & 1 \\ M_Y & 0 \end{bmatrix} = \frac{-M_Y}{\Delta} \;>\; 0,$$
+
+pois $M_Y > 0$ e $\Delta < 0$.
+
+$$\boxed{\;dG > 0 \;\Longrightarrow\; dY > 0,\quad dr > 0.\;}$$
+
+**Interpretação econômica.** Política fiscal expansionista. O aumento de $G$ desloca a **IS para a direita**: a maior demanda agregada eleva o produto $Y$. O produto maior aumenta a demanda por moeda $M(Y,r)$ e, com $\overline{M}$ fixo, o juro $r$ sobe para reequilibrar o mercado monetário. O efeito final sobre $Y$ é positivo, mas **parcialmente compensado** pelo *crowding out*: o juro mais alto reduz $I_P$.
+
+```{r}
+#| label: fig-teste5-2026-q1
+#| fig-cap: "Estática comparativa no diagrama IS-LM. Esquerda: queda de $\\overline{M}$ desloca a LM à esquerda/cima ($Y\\downarrow$, $r\\uparrow$). Direita: aumento de $G$ desloca a IS à direita ($Y\\uparrow$, $r\\uparrow$)."
+#| fig-align: center
+#| fig-width: 11
+#| fig-height: 4.5
+
+library(ggplot2)
+library(patchwork)
+
+base_t <- theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom", legend.title = element_blank())
+
+Y <- seq(80, 220, length.out = 200)
+
+# Painel 1: queda em M̄ (LM sobe/esquerda)
+IS1   <- function(Y) 12 - 0.05*Y
+LM1   <- function(Y) -3 + 0.04*Y
+LM1_n <- function(Y) -1 + 0.04*Y   # M̄ menor → LM mais alta
+
+df1 <- rbind(
+  data.frame(Y = Y, r = IS1(Y),   curva = "IS"),
+  data.frame(Y = Y, r = LM1(Y),   curva = "LM"),
+  data.frame(Y = Y, r = LM1_n(Y), curva = "LM' (M̄↓)")
+)
+E1  <- c(Y = 15/0.09, r = LM1(15/0.09))
+E1n <- c(Y = 13/0.09, r = LM1_n(13/0.09))
+eq1 <- data.frame(Y = c(E1["Y"], E1n["Y"]),
+                  r = c(E1["r"], E1n["r"]),
+                  ponto = c("E", "E'"))
+
+p1 <- ggplot(df1, aes(Y, r, color = curva, linetype = curva)) +
+  geom_line(linewidth = 1) +
+  geom_point(data = eq1, aes(Y, r), color = "black",
+             inherit.aes = FALSE, size = 2.6) +
+  geom_text(data = eq1, aes(Y, r, label = ponto), color = "black",
+            inherit.aes = FALSE, vjust = -1.0, size = 4) +
+  scale_color_manual(values = c("IS" = "#440154",
+                                 "LM" = "#31688e", "LM' (M̄↓)" = "#31688e")) +
+  scale_linetype_manual(values = c("IS" = "solid",
+                                    "LM" = "solid", "LM' (M̄↓)" = "dashed")) +
+  labs(title = "Contração monetária: queda de M̄",
+       x = "Y (produto)", y = "r (juros)") + base_t
+
+# Painel 2: aumento de G (IS sobe/direita)
+IS2   <- function(Y) 12 - 0.05*Y
+IS2_n <- function(Y) 15 - 0.05*Y
+LM2   <- function(Y) -3 + 0.04*Y
+
+df2 <- rbind(
+  data.frame(Y = Y, r = IS2(Y),   curva = "IS"),
+  data.frame(Y = Y, r = IS2_n(Y), curva = "IS' (G↑)"),
+  data.frame(Y = Y, r = LM2(Y),   curva = "LM")
+)
+E2  <- c(Y = (12+3)/0.09, r = LM2((12+3)/0.09))
+E2n <- c(Y = (15+3)/0.09, r = LM2((15+3)/0.09))
+eq2 <- data.frame(Y = c(E2["Y"], E2n["Y"]),
+                  r = c(E2["r"], E2n["r"]),
+                  ponto = c("E", "E'"))
+
+p2 <- ggplot(df2, aes(Y, r, color = curva, linetype = curva)) +
+  geom_line(linewidth = 1) +
+  geom_point(data = eq2, aes(Y, r), color = "black",
+             inherit.aes = FALSE, size = 2.6) +
+  geom_text(data = eq2, aes(Y, r, label = ponto), color = "black",
+            inherit.aes = FALSE, vjust = -1.0, size = 4) +
+  scale_color_manual(values = c("IS" = "#440154", "IS' (G↑)" = "#440154",
+                                 "LM" = "#31688e")) +
+  scale_linetype_manual(values = c("IS" = "solid", "IS' (G↑)" = "dashed",
+                                    "LM" = "solid")) +
+  labs(title = "Expansão fiscal: aumento de G",
+       x = "Y (produto)", y = "r (juros)") + base_t
+
+p1 + p2
+```
+
+---
+
+### Questão 2 — Maximização de Lucro da Firma com Dois Insumos
+
+Uma firma produz um bem ao preço $p$ usando a função de produção $F(K, L)$, com $F_K > 0$, $F_L > 0$, $F_{KK} < 0$, $F_{LL} < 0$ e $F_{KL} > 0$. Sejam $w$ o salário e $r$ a taxa de juros (preço do capital). Todos os preços $(p, w, r)$ são tomados como dados.
+
+#### (1) Problema de maximização, CPOs e CSO
+
+**Problema.** A firma escolhe $(K, L)$ que maximizam o lucro
+
+$$\max_{K, L}\; \pi(K, L) = p\,F(K, L) - r\,K - w\,L.$$
+
+**Condições de primeira ordem (CPOs).** Anulando o gradiente:
+
+$$\boxed{\;\frac{\partial \pi}{\partial K} = p\,F_K - r = 0, \qquad \frac{\partial \pi}{\partial L} = p\,F_L - w = 0.\;}$$
+
+Em palavras: a firma contrata cada insumo até que o **valor do produto marginal** se iguale ao seu preço, $p\,F_K = r$ e $p\,F_L = w$.
+
+**Condição de segunda ordem (CSO).** A Hessiana do lucro é
+
+$$H_\pi = \begin{pmatrix} \pi_{KK} & \pi_{KL} \\ \pi_{LK} & \pi_{LL} \end{pmatrix}
+= p\begin{pmatrix} F_{KK} & F_{KL} \\ F_{LK} & F_{LL} \end{pmatrix}.$$
+
+Para que o ponto crítico seja **máximo**, $H_\pi$ deve ser **definida negativa**, o que pelo critério de Sylvester (menores principais líderes alternando de sinal a partir de negativo) exige:
+
+$$\pi_{KK} = p\,F_{KK} < 0 \quad(\checkmark,\text{ pois } F_{KK}<0), \qquad
+|H_\pi| = p^2\bigl(F_{KK}\,F_{LL} - F_{KL}^2\bigr) > 0.$$
+
+A primeira condição vale por hipótese. A segunda exige $F_{KK}\,F_{LL} - F_{KL}^2 > 0$, isto é, **$F$ estritamente côncava** — a curvatura própria dos insumos domina a curvatura cruzada $F_{KL}$. Sob essa hipótese (que assumimos), o ponto crítico é máximo global.
+
+#### (2) Diferenciação da CPO e sinal de $\partial K/\partial r$
+
+Diferenciando totalmente as duas CPOs, mantendo $p$ e $w$ fixos e variando apenas $r$:
+
+$$\begin{aligned}
+p\,F_{KK}\,dK + p\,F_{KL}\,dL &= dr,\\
+p\,F_{LK}\,dK + p\,F_{LL}\,dL &= 0.
+\end{aligned}$$
+
+**Forma matricial:**
+
+$$p\begin{pmatrix} F_{KK} & F_{KL} \\ F_{LK} & F_{LL} \end{pmatrix}
+\begin{pmatrix} dK \\ dL \end{pmatrix}
+= \begin{pmatrix} dr \\ 0 \end{pmatrix}.$$
+
+A matriz do sistema é exatamente $H_\pi$, com $|H_\pi| = p^2(F_{KK}F_{LL} - F_{KL}^2) > 0$ pela CSO. Pela **regra de Cramer**:
+
+$$\frac{\partial K}{\partial r} = \frac{1}{|H_\pi|}\,
+\det\!\begin{pmatrix} 1 & p\,F_{KL} \\ 0 & p\,F_{LL} \end{pmatrix}
+= \frac{p\,F_{LL}}{p^2\bigl(F_{KK}\,F_{LL} - F_{KL}^2\bigr)}
+= \frac{F_{LL}}{p\bigl(F_{KK}\,F_{LL} - F_{KL}^2\bigr)}.$$
+
+**Sinal.** O numerador $F_{LL} < 0$; o denominador $p\,(F_{KK}F_{LL} - F_{KL}^2) > 0$ (preço positivo vezes determinante positivo da CSO). Logo:
+
+$$\boxed{\;\frac{\partial K}{\partial r} = \frac{F_{LL}}{p\,(F_{KK}F_{LL} - F_{KL}^2)} \;<\; 0.\;}$$
+
+**Interpretação econômica.** Encarecer o capital (aumento de $r$) **reduz a demanda por capital** — a curva de demanda por insumo é negativamente inclinada, resultado garantido pela concavidade da tecnologia. Por simetria, $\partial L/\partial w < 0$. Já o multiplicador cruzado $\partial L/\partial r$ tem o sinal de $-F_{KL} < 0$: como capital e trabalho são complementares ($F_{KL}>0$), encarecer o capital também reduz a demanda por trabalho.
+
+```{r}
+#| label: fig-teste5-2026-q2
+#| fig-cap: "Demanda por capital decrescente em $r$. Para a tecnologia Cobb-Douglas $F(K,L)=A K^{\\alpha}L^{\\beta}$ com $\\alpha+\\beta<1$, as CPOs $pF_K=r$, $pF_L=w$ dão a demanda ótima $K^*(r)$ a $p,w$ fixos. A curva é decrescente, confirmando $\\partial K/\\partial r<0$."
+#| fig-align: center
+#| fig-width: 6.5
+#| fig-height: 4.6
+
+library(ggplot2)
+
+# Cobb-Douglas: F = A K^a L^b, a+b<1. CPOs: pAa K^{a-1} L^b = r ; pAb K^a L^{b-1} = w
+A <- 1; a <- 0.3; b <- 0.4; p <- 10; w <- 1
+# Da razão das CPOs: K = (a w / (b r)) L  → substitui e resolve para L*, K*
+Kstar <- function(r) {
+  # L em função de K: L = (a w)/(b r) ... resolvendo o sistema fechado:
+  # K* = [ p A a^(1-b) b^b / (r^(1-b) w^b) ]^{1/(1-a-b)}
+  (p*A * a^(1-b) * b^b / (r^(1-b) * w^b))^(1/(1-a-b))
+}
+rseq <- seq(0.5, 6, length.out = 200)
+df <- data.frame(r = rseq, K = Kstar(rseq))
+
+ggplot(df, aes(r, K)) +
+  geom_line(color = "#440154", linewidth = 1.1) +
+  labs(x = "r (preço do capital)", y = expression(K^"*"(r)),
+       title = expression("Demanda por capital " * K^"*"(r) * ", decrescente")) +
+  theme_minimal(base_size = 12)
+```

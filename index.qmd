@@ -16,6 +16,7 @@ header-includes:
     \usepackage{hyperref}
     \renewcommand{\maketitle}{}
 execute:
+  echo: false
   warning: false
   message: false
 ---

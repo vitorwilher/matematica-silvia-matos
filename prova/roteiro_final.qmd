@@ -1,6 +1,6 @@
 ---
 title: |
-  \includegraphics[width=3.8cm]{../AM.png}\par\vspace{1em}
+  \includegraphics[width=3.8cm]{AM.png}\par\vspace{1em}
   Roteiro Final de Estudos — Prova de Matemática
 author: "Vitor Wilher\\footnote{Bacharel e Mestre em Economia pela UFF, Candidato ao PhD em Economia pela EPGE/FGV. É Especialista em Ciências de Dados e Inteligência Artificial Generativa pela PUC-Rio. Atualmente, exerce a função de Data Tech Lead na Análise Macro (\\url{http://analisemacro.com.br}). Saiba mais em \\url{https://github.com/vitorwilher}.}"
 subtitle: |
@@ -8,25 +8,6 @@ subtitle: |
 
   Professora: Silvia Matos
 date: ""
-lang: pt-BR
-format:
-  pdf:
-    pdf-engine: xelatex
-    toc: true
-    toc-depth: 2
-    number-sections: true
-    geometry:
-      - margin=2.5cm
-    fontsize: 11pt
-header-includes:
-  - \usepackage{amsmath}
-  - \usepackage{amssymb}
-  - \usepackage{graphicx}
-  - \usepackage{hyperref}
-execute:
-  echo: false
-  warning: false
-  message: false
 ---
 
 \newpage
